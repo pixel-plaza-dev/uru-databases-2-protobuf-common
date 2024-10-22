@@ -22,13 +22,13 @@ service UsersService {
 
 message SignUpRequest {
   string email = 1;
-  string password = 2;
+  string hashed_password = 2;
   string username = 3;
-  string firstName = 4;
-  string lastName = 5;
-  optional string phoneNumber = 6;
+  string first_name = 4;
+  string last_name = 5;
+  optional string phone_number = 6;
   optional string address = 7;
-  optional google.protobuf.Timestamp birthDate = 8;
+  optional google.protobuf.Timestamp birth_date = 8;
 }
 
 message SignUpResponse {
@@ -37,10 +37,10 @@ message SignUpResponse {
 }
 
 message UpdateProfileRequest {
-  optional string firstName = 1;
-  optional string lastName = 2;
+  optional string first_name = 1;
+  optional string last_name = 2;
   optional string address = 3;
-  optional google.protobuf.Timestamp birthDate = 4;
+  optional google.protobuf.Timestamp birth_date = 4;
 }
 
 message UpdateProfileResponse {
@@ -58,8 +58,8 @@ message ChangeUsernameResponse {
 }
 
 message ChangePasswordRequest {
-  string oldPassword = 1;
-  string newPassword = 2;
+  string old_hashed_password = 1;
+  string new_hashed_password = 2;
 }
 
 message ChangePasswordResponse {
@@ -86,7 +86,7 @@ message VerifyEmailResponse {
 }
 
 message ChangePhoneNumberRequest {
-  string phoneNumber = 1;
+  string phone_number = 1;
 }
 
 message ChangePhoneNumberResponse {
@@ -114,7 +114,7 @@ message ForgotPasswordResponse {
 
 message ResetPasswordRequest {
   string token = 1;
-  string newPassword = 2;
+  string new_hashed_password = 2;
 }
 
 message ResetPasswordResponse {
@@ -123,7 +123,7 @@ message ResetPasswordResponse {
 }
 
 message DeleteUserRequest {
-  string password = 1;
+  string hashed_password = 1;
 }
 
 message DeleteUserResponse {
