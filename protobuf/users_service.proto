@@ -21,7 +21,7 @@ service UsersService {
 }
 
 message StringArray {
-  repeated string values = 1 [packed = true];
+  repeated string values = 1;
 }
 
 message SignUpRequest {
