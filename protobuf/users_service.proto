@@ -30,7 +30,7 @@ message SignUpRequest {
   string username = 3;
   string first_name = 4;
   string last_name = 5;
-  optional string phone_number = 6;
+  string phone_number = 6;
   optional string address = 7;
   optional google.protobuf.Timestamp birth_date = 8;
 }
