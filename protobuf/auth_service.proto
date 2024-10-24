@@ -23,7 +23,7 @@ message LogInRequest {
 }
 
 message LogInResponse {
-  bool success = 1;
+  uint32 code = 1;
   string message = 2;
   string access_token = 3;
   string refresh_token = 4;
@@ -34,7 +34,7 @@ message RefreshTokenRequest {
 }
 
 message RefreshTokenResponse {
-  bool success = 1;
+  uint32 code = 1;
   string message = 2;
   string access_token = 3;
   string refresh_token = 4;
@@ -45,7 +45,7 @@ message LogOutRequest {
 }
 
 message LogOutResponse {
-  bool success = 1;
+  uint32 code = 1;
   string message = 2;
 }
 
@@ -54,7 +54,7 @@ message CloseSessionsRequest {
 }
 
 message CloseSessionsResponse {
-  bool success = 1;
+  uint32 code = 1;
   string message = 2;
 }
 
@@ -63,7 +63,7 @@ message AddPermissionRequest {
 }
 
 message AddPermissionResponse {
-  bool success = 1;
+  uint32 code = 1;
   string message = 2;
 }
 
@@ -72,7 +72,7 @@ message RevokePermissionRequest {
 }
 
 message RevokePermissionResponse {
-  bool success = 1;
+  uint32 code = 1;
   string message = 2;
 }
 
@@ -82,7 +82,7 @@ message AddRolePermissionRequest {
 }
 
 message AddRolePermissionResponse {
-  bool success = 1;
+  uint32 code = 1;
   string message = 2;
 }
 
@@ -92,7 +92,7 @@ message RevokeRolePermissionRequest {
 }
 
 message RevokeRolePermissionResponse {
-  bool success = 1;
+  uint32 code = 1;
   string message = 2;
 }
 
@@ -101,7 +101,7 @@ message AddRoleRequest {
 }
 
 message AddRoleResponse {
-  bool success = 1;
+  uint32 code = 1;
   string message = 2;
 }
 
@@ -110,6 +110,6 @@ message RevokeRoleRequest {
 }
 
 message RevokeRoleResponse {
-  bool success = 1;
+  uint32 code = 1;
   string message = 2;
 }
