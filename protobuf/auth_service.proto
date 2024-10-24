@@ -17,10 +17,6 @@ service AuthService {
   rpc RevokeRole(RevokeRoleRequest) returns (RevokeRoleResponse) {}
 }
 
-message StringArray {
-  repeated string values = 1;
-}
-
 message LogInRequest {
   string email = 1;
   string hashed_password = 2;
@@ -31,7 +27,6 @@ message LogInResponse {
   string message = 2;
   string access_token = 3;
   string refresh_token = 4;
-  map<string, StringArray> errors = 5;
 }
 
 message RefreshTokenRequest {
@@ -43,7 +38,6 @@ message RefreshTokenResponse {
   string message = 2;
   string access_token = 3;
   string refresh_token = 4;
-  map<string, StringArray> errors = 5;
 }
 
 message LogOutRequest {
@@ -53,7 +47,6 @@ message LogOutRequest {
 message LogOutResponse {
   bool success = 1;
   string message = 2;
-  map<string, StringArray> errors = 3;
 }
 
 message CloseSessionsRequest {
@@ -63,7 +56,6 @@ message CloseSessionsRequest {
 message CloseSessionsResponse {
   bool success = 1;
   string message = 2;
-  map<string, StringArray> errors = 3;
 }
 
 message AddPermissionRequest {
@@ -73,7 +65,6 @@ message AddPermissionRequest {
 message AddPermissionResponse {
   bool success = 1;
   string message = 2;
-  map<string, StringArray> errors = 3;
 }
 
 message RevokePermissionRequest {
@@ -83,7 +74,6 @@ message RevokePermissionRequest {
 message RevokePermissionResponse {
   bool success = 1;
   string message = 2;
-  map<string, StringArray> errors = 3;
 }
 
 message AddRolePermissionRequest {
@@ -94,7 +84,6 @@ message AddRolePermissionRequest {
 message AddRolePermissionResponse {
   bool success = 1;
   string message = 2;
-  map<string, StringArray> errors = 3;
 }
 
 message RevokeRolePermissionRequest {
@@ -105,7 +94,6 @@ message RevokeRolePermissionRequest {
 message RevokeRolePermissionResponse {
   bool success = 1;
   string message = 2;
-  map<string, StringArray> errors = 3;
 }
 
 message AddRoleRequest {
@@ -115,7 +103,6 @@ message AddRoleRequest {
 message AddRoleResponse {
   bool success = 1;
   string message = 2;
-  map<string, StringArray> errors = 3;
 }
 
 message RevokeRoleRequest {
@@ -125,5 +112,4 @@ message RevokeRoleRequest {
 message RevokeRoleResponse {
   bool success = 1;
   string message = 2;
-  map<string, StringArray> errors = 3;
 }
