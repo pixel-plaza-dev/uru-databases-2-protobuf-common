@@ -13,8 +13,10 @@ service UsersService {
   rpc ChangePassword(ChangePasswordRequest) returns (ChangePasswordResponse) {}
   rpc ChangeEmail(ChangeEmailRequest) returns (ChangeEmailResponse) {}
   rpc VerifyEmail(VerifyEmailRequest) returns (VerifyEmailResponse) {}
+  rpc GetActiveEmails(GetActiveEmailsRequest) returns (GetActiveEmailsResponse) {}
   rpc ChangePhoneNumber(ChangePhoneNumberRequest) returns (ChangePhoneNumberResponse) {}
   rpc VerifyPhoneNumber(VerifyPhoneNumberRequest) returns (VerifyPhoneNumberResponse) {}
+  rpc GetActivePhoneNumbers(GetActivePhoneNumbersRequest) returns (GetActivePhoneNumbersResponse) {}
   rpc ForgotPassword(ForgotPasswordRequest) returns (ForgotPasswordResponse) {}
   rpc ResetPassword(ResetPasswordRequest) returns (ResetPasswordResponse) {}
   rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse) {}
@@ -27,8 +29,7 @@ message SignUpRequest {
   string first_name = 4;
   string last_name = 5;
   string phone_number = 6;
-  optional string address = 7;
-  optional google.protobuf.Timestamp birth_date = 8;
+  optional google.protobuf.Timestamp birth_date = 7;
 }
 
 message SignUpResponse {
@@ -85,6 +86,14 @@ message VerifyEmailResponse {
   string message = 2;
 }
 
+message GetActiveEmailsRequest {}
+
+message GetActiveEmailsResponse {
+  uint32 code = 1;
+  string message = 2;
+  repeated string emails = 3;
+}
+
 message ChangePhoneNumberRequest {
   string phone_number = 1;
 }
@@ -101,6 +110,14 @@ message VerifyPhoneNumberRequest {
 message VerifyPhoneNumberResponse {
   uint32 code = 1;
   string message = 2;
+}
+
+message GetActivePhoneNumbersRequest {}
+
+message GetActivePhoneNumbersResponse {
+  uint32 code = 1;
+  string message = 2;
+  repeated string phone_numbers = 3;
 }
 
 message ForgotPasswordRequest {
