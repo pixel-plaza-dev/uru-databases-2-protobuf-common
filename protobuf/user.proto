@@ -1,12 +1,12 @@
 syntax = "proto3";
 
-package users_service;
+package user;
 
 option go_package = "compiled-protobuf/user";
 
 import "google/protobuf/timestamp.proto";
 
-service UsersService {
+service User {
   rpc SignUp(SignUpRequest) returns (SignUpResponse) {}
   rpc UpdateProfile(UpdateProfileRequest) returns (UpdateProfileResponse) {}
   rpc ChangeUsername(ChangeUsernameRequest) returns (ChangeUsernameResponse) {}

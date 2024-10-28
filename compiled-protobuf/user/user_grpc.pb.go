@@ -19,25 +19,25 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	UsersService_SignUp_FullMethodName                = "/users_service.UsersService/SignUp"
-	UsersService_UpdateProfile_FullMethodName         = "/users_service.UsersService/UpdateProfile"
-	UsersService_ChangeUsername_FullMethodName        = "/users_service.UsersService/ChangeUsername"
-	UsersService_ChangePassword_FullMethodName        = "/users_service.UsersService/ChangePassword"
-	UsersService_ChangeEmail_FullMethodName           = "/users_service.UsersService/ChangeEmail"
-	UsersService_VerifyEmail_FullMethodName           = "/users_service.UsersService/VerifyEmail"
-	UsersService_GetActiveEmails_FullMethodName       = "/users_service.UsersService/GetActiveEmails"
-	UsersService_ChangePhoneNumber_FullMethodName     = "/users_service.UsersService/ChangePhoneNumber"
-	UsersService_VerifyPhoneNumber_FullMethodName     = "/users_service.UsersService/VerifyPhoneNumber"
-	UsersService_GetActivePhoneNumbers_FullMethodName = "/users_service.UsersService/GetActivePhoneNumbers"
-	UsersService_ForgotPassword_FullMethodName        = "/users_service.UsersService/ForgotPassword"
-	UsersService_ResetPassword_FullMethodName         = "/users_service.UsersService/ResetPassword"
-	UsersService_DeleteUser_FullMethodName            = "/users_service.UsersService/DeleteUser"
+	User_SignUp_FullMethodName                = "/user.User/SignUp"
+	User_UpdateProfile_FullMethodName         = "/user.User/UpdateProfile"
+	User_ChangeUsername_FullMethodName        = "/user.User/ChangeUsername"
+	User_ChangePassword_FullMethodName        = "/user.User/ChangePassword"
+	User_ChangeEmail_FullMethodName           = "/user.User/ChangeEmail"
+	User_VerifyEmail_FullMethodName           = "/user.User/VerifyEmail"
+	User_GetActiveEmails_FullMethodName       = "/user.User/GetActiveEmails"
+	User_ChangePhoneNumber_FullMethodName     = "/user.User/ChangePhoneNumber"
+	User_VerifyPhoneNumber_FullMethodName     = "/user.User/VerifyPhoneNumber"
+	User_GetActivePhoneNumbers_FullMethodName = "/user.User/GetActivePhoneNumbers"
+	User_ForgotPassword_FullMethodName        = "/user.User/ForgotPassword"
+	User_ResetPassword_FullMethodName         = "/user.User/ResetPassword"
+	User_DeleteUser_FullMethodName            = "/user.User/DeleteUser"
 )
 
-// UsersServiceClient is the client API for UsersService service.
+// UserClient is the client API for User service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type UsersServiceClient interface {
+type UserClient interface {
 	SignUp(ctx context.Context, in *SignUpRequest, opts ...grpc.CallOption) (*SignUpResponse, error)
 	UpdateProfile(ctx context.Context, in *UpdateProfileRequest, opts ...grpc.CallOption) (*UpdateProfileResponse, error)
 	ChangeUsername(ctx context.Context, in *ChangeUsernameRequest, opts ...grpc.CallOption) (*ChangeUsernameResponse, error)
@@ -53,148 +53,148 @@ type UsersServiceClient interface {
 	DeleteUser(ctx context.Context, in *DeleteUserRequest, opts ...grpc.CallOption) (*DeleteUserResponse, error)
 }
 
-type usersServiceClient struct {
+type userClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewUsersServiceClient(cc grpc.ClientConnInterface) UsersServiceClient {
-	return &usersServiceClient{cc}
+func NewUserClient(cc grpc.ClientConnInterface) UserClient {
+	return &userClient{cc}
 }
 
-func (c *usersServiceClient) SignUp(ctx context.Context, in *SignUpRequest, opts ...grpc.CallOption) (*SignUpResponse, error) {
+func (c *userClient) SignUp(ctx context.Context, in *SignUpRequest, opts ...grpc.CallOption) (*SignUpResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(SignUpResponse)
-	err := c.cc.Invoke(ctx, UsersService_SignUp_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, User_SignUp_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *usersServiceClient) UpdateProfile(ctx context.Context, in *UpdateProfileRequest, opts ...grpc.CallOption) (*UpdateProfileResponse, error) {
+func (c *userClient) UpdateProfile(ctx context.Context, in *UpdateProfileRequest, opts ...grpc.CallOption) (*UpdateProfileResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(UpdateProfileResponse)
-	err := c.cc.Invoke(ctx, UsersService_UpdateProfile_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, User_UpdateProfile_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *usersServiceClient) ChangeUsername(ctx context.Context, in *ChangeUsernameRequest, opts ...grpc.CallOption) (*ChangeUsernameResponse, error) {
+func (c *userClient) ChangeUsername(ctx context.Context, in *ChangeUsernameRequest, opts ...grpc.CallOption) (*ChangeUsernameResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ChangeUsernameResponse)
-	err := c.cc.Invoke(ctx, UsersService_ChangeUsername_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, User_ChangeUsername_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *usersServiceClient) ChangePassword(ctx context.Context, in *ChangePasswordRequest, opts ...grpc.CallOption) (*ChangePasswordResponse, error) {
+func (c *userClient) ChangePassword(ctx context.Context, in *ChangePasswordRequest, opts ...grpc.CallOption) (*ChangePasswordResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ChangePasswordResponse)
-	err := c.cc.Invoke(ctx, UsersService_ChangePassword_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, User_ChangePassword_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *usersServiceClient) ChangeEmail(ctx context.Context, in *ChangeEmailRequest, opts ...grpc.CallOption) (*ChangeEmailResponse, error) {
+func (c *userClient) ChangeEmail(ctx context.Context, in *ChangeEmailRequest, opts ...grpc.CallOption) (*ChangeEmailResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ChangeEmailResponse)
-	err := c.cc.Invoke(ctx, UsersService_ChangeEmail_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, User_ChangeEmail_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *usersServiceClient) VerifyEmail(ctx context.Context, in *VerifyEmailRequest, opts ...grpc.CallOption) (*VerifyEmailResponse, error) {
+func (c *userClient) VerifyEmail(ctx context.Context, in *VerifyEmailRequest, opts ...grpc.CallOption) (*VerifyEmailResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(VerifyEmailResponse)
-	err := c.cc.Invoke(ctx, UsersService_VerifyEmail_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, User_VerifyEmail_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *usersServiceClient) GetActiveEmails(ctx context.Context, in *GetActiveEmailsRequest, opts ...grpc.CallOption) (*GetActiveEmailsResponse, error) {
+func (c *userClient) GetActiveEmails(ctx context.Context, in *GetActiveEmailsRequest, opts ...grpc.CallOption) (*GetActiveEmailsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetActiveEmailsResponse)
-	err := c.cc.Invoke(ctx, UsersService_GetActiveEmails_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, User_GetActiveEmails_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *usersServiceClient) ChangePhoneNumber(ctx context.Context, in *ChangePhoneNumberRequest, opts ...grpc.CallOption) (*ChangePhoneNumberResponse, error) {
+func (c *userClient) ChangePhoneNumber(ctx context.Context, in *ChangePhoneNumberRequest, opts ...grpc.CallOption) (*ChangePhoneNumberResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ChangePhoneNumberResponse)
-	err := c.cc.Invoke(ctx, UsersService_ChangePhoneNumber_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, User_ChangePhoneNumber_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *usersServiceClient) VerifyPhoneNumber(ctx context.Context, in *VerifyPhoneNumberRequest, opts ...grpc.CallOption) (*VerifyPhoneNumberResponse, error) {
+func (c *userClient) VerifyPhoneNumber(ctx context.Context, in *VerifyPhoneNumberRequest, opts ...grpc.CallOption) (*VerifyPhoneNumberResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(VerifyPhoneNumberResponse)
-	err := c.cc.Invoke(ctx, UsersService_VerifyPhoneNumber_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, User_VerifyPhoneNumber_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *usersServiceClient) GetActivePhoneNumbers(ctx context.Context, in *GetActivePhoneNumbersRequest, opts ...grpc.CallOption) (*GetActivePhoneNumbersResponse, error) {
+func (c *userClient) GetActivePhoneNumbers(ctx context.Context, in *GetActivePhoneNumbersRequest, opts ...grpc.CallOption) (*GetActivePhoneNumbersResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetActivePhoneNumbersResponse)
-	err := c.cc.Invoke(ctx, UsersService_GetActivePhoneNumbers_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, User_GetActivePhoneNumbers_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *usersServiceClient) ForgotPassword(ctx context.Context, in *ForgotPasswordRequest, opts ...grpc.CallOption) (*ForgotPasswordResponse, error) {
+func (c *userClient) ForgotPassword(ctx context.Context, in *ForgotPasswordRequest, opts ...grpc.CallOption) (*ForgotPasswordResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ForgotPasswordResponse)
-	err := c.cc.Invoke(ctx, UsersService_ForgotPassword_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, User_ForgotPassword_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *usersServiceClient) ResetPassword(ctx context.Context, in *ResetPasswordRequest, opts ...grpc.CallOption) (*ResetPasswordResponse, error) {
+func (c *userClient) ResetPassword(ctx context.Context, in *ResetPasswordRequest, opts ...grpc.CallOption) (*ResetPasswordResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ResetPasswordResponse)
-	err := c.cc.Invoke(ctx, UsersService_ResetPassword_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, User_ResetPassword_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *usersServiceClient) DeleteUser(ctx context.Context, in *DeleteUserRequest, opts ...grpc.CallOption) (*DeleteUserResponse, error) {
+func (c *userClient) DeleteUser(ctx context.Context, in *DeleteUserRequest, opts ...grpc.CallOption) (*DeleteUserResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(DeleteUserResponse)
-	err := c.cc.Invoke(ctx, UsersService_DeleteUser_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, User_DeleteUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// UsersServiceServer is the server API for UsersService service.
-// All implementations must embed UnimplementedUsersServiceServer
+// UserServer is the server API for User service.
+// All implementations must embed UnimplementedUserServer
 // for forward compatibility.
-type UsersServiceServer interface {
+type UserServer interface {
 	SignUp(context.Context, *SignUpRequest) (*SignUpResponse, error)
 	UpdateProfile(context.Context, *UpdateProfileRequest) (*UpdateProfileResponse, error)
 	ChangeUsername(context.Context, *ChangeUsernameRequest) (*ChangeUsernameResponse, error)
@@ -208,368 +208,368 @@ type UsersServiceServer interface {
 	ForgotPassword(context.Context, *ForgotPasswordRequest) (*ForgotPasswordResponse, error)
 	ResetPassword(context.Context, *ResetPasswordRequest) (*ResetPasswordResponse, error)
 	DeleteUser(context.Context, *DeleteUserRequest) (*DeleteUserResponse, error)
-	mustEmbedUnimplementedUsersServiceServer()
+	mustEmbedUnimplementedUserServer()
 }
 
-// UnimplementedUsersServiceServer must be embedded to have
+// UnimplementedUserServer must be embedded to have
 // forward compatible implementations.
 //
 // NOTE: this should be embedded by value instead of pointer to avoid a nil
 // pointer dereference when methods are called.
-type UnimplementedUsersServiceServer struct{}
+type UnimplementedUserServer struct{}
 
-func (UnimplementedUsersServiceServer) SignUp(context.Context, *SignUpRequest) (*SignUpResponse, error) {
+func (UnimplementedUserServer) SignUp(context.Context, *SignUpRequest) (*SignUpResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SignUp not implemented")
 }
-func (UnimplementedUsersServiceServer) UpdateProfile(context.Context, *UpdateProfileRequest) (*UpdateProfileResponse, error) {
+func (UnimplementedUserServer) UpdateProfile(context.Context, *UpdateProfileRequest) (*UpdateProfileResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateProfile not implemented")
 }
-func (UnimplementedUsersServiceServer) ChangeUsername(context.Context, *ChangeUsernameRequest) (*ChangeUsernameResponse, error) {
+func (UnimplementedUserServer) ChangeUsername(context.Context, *ChangeUsernameRequest) (*ChangeUsernameResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ChangeUsername not implemented")
 }
-func (UnimplementedUsersServiceServer) ChangePassword(context.Context, *ChangePasswordRequest) (*ChangePasswordResponse, error) {
+func (UnimplementedUserServer) ChangePassword(context.Context, *ChangePasswordRequest) (*ChangePasswordResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ChangePassword not implemented")
 }
-func (UnimplementedUsersServiceServer) ChangeEmail(context.Context, *ChangeEmailRequest) (*ChangeEmailResponse, error) {
+func (UnimplementedUserServer) ChangeEmail(context.Context, *ChangeEmailRequest) (*ChangeEmailResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ChangeEmail not implemented")
 }
-func (UnimplementedUsersServiceServer) VerifyEmail(context.Context, *VerifyEmailRequest) (*VerifyEmailResponse, error) {
+func (UnimplementedUserServer) VerifyEmail(context.Context, *VerifyEmailRequest) (*VerifyEmailResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method VerifyEmail not implemented")
 }
-func (UnimplementedUsersServiceServer) GetActiveEmails(context.Context, *GetActiveEmailsRequest) (*GetActiveEmailsResponse, error) {
+func (UnimplementedUserServer) GetActiveEmails(context.Context, *GetActiveEmailsRequest) (*GetActiveEmailsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetActiveEmails not implemented")
 }
-func (UnimplementedUsersServiceServer) ChangePhoneNumber(context.Context, *ChangePhoneNumberRequest) (*ChangePhoneNumberResponse, error) {
+func (UnimplementedUserServer) ChangePhoneNumber(context.Context, *ChangePhoneNumberRequest) (*ChangePhoneNumberResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ChangePhoneNumber not implemented")
 }
-func (UnimplementedUsersServiceServer) VerifyPhoneNumber(context.Context, *VerifyPhoneNumberRequest) (*VerifyPhoneNumberResponse, error) {
+func (UnimplementedUserServer) VerifyPhoneNumber(context.Context, *VerifyPhoneNumberRequest) (*VerifyPhoneNumberResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method VerifyPhoneNumber not implemented")
 }
-func (UnimplementedUsersServiceServer) GetActivePhoneNumbers(context.Context, *GetActivePhoneNumbersRequest) (*GetActivePhoneNumbersResponse, error) {
+func (UnimplementedUserServer) GetActivePhoneNumbers(context.Context, *GetActivePhoneNumbersRequest) (*GetActivePhoneNumbersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetActivePhoneNumbers not implemented")
 }
-func (UnimplementedUsersServiceServer) ForgotPassword(context.Context, *ForgotPasswordRequest) (*ForgotPasswordResponse, error) {
+func (UnimplementedUserServer) ForgotPassword(context.Context, *ForgotPasswordRequest) (*ForgotPasswordResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ForgotPassword not implemented")
 }
-func (UnimplementedUsersServiceServer) ResetPassword(context.Context, *ResetPasswordRequest) (*ResetPasswordResponse, error) {
+func (UnimplementedUserServer) ResetPassword(context.Context, *ResetPasswordRequest) (*ResetPasswordResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ResetPassword not implemented")
 }
-func (UnimplementedUsersServiceServer) DeleteUser(context.Context, *DeleteUserRequest) (*DeleteUserResponse, error) {
+func (UnimplementedUserServer) DeleteUser(context.Context, *DeleteUserRequest) (*DeleteUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteUser not implemented")
 }
-func (UnimplementedUsersServiceServer) mustEmbedUnimplementedUsersServiceServer() {}
-func (UnimplementedUsersServiceServer) testEmbeddedByValue()                      {}
+func (UnimplementedUserServer) mustEmbedUnimplementedUserServer() {}
+func (UnimplementedUserServer) testEmbeddedByValue()              {}
 
-// UnsafeUsersServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to UsersServiceServer will
+// UnsafeUserServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to UserServer will
 // result in compilation errors.
-type UnsafeUsersServiceServer interface {
-	mustEmbedUnimplementedUsersServiceServer()
+type UnsafeUserServer interface {
+	mustEmbedUnimplementedUserServer()
 }
 
-func RegisterUsersServiceServer(s grpc.ServiceRegistrar, srv UsersServiceServer) {
-	// If the following call pancis, it indicates UnimplementedUsersServiceServer was
+func RegisterUserServer(s grpc.ServiceRegistrar, srv UserServer) {
+	// If the following call pancis, it indicates UnimplementedUserServer was
 	// embedded by pointer and is nil.  This will cause panics if an
 	// unimplemented method is ever invoked, so we test this at initialization
 	// time to prevent it from happening at runtime later due to I/O.
 	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
 		t.testEmbeddedByValue()
 	}
-	s.RegisterService(&UsersService_ServiceDesc, srv)
+	s.RegisterService(&User_ServiceDesc, srv)
 }
 
-func _UsersService_SignUp_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _User_SignUp_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SignUpRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UsersServiceServer).SignUp(ctx, in)
+		return srv.(UserServer).SignUp(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: UsersService_SignUp_FullMethodName,
+		FullMethod: User_SignUp_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UsersServiceServer).SignUp(ctx, req.(*SignUpRequest))
+		return srv.(UserServer).SignUp(ctx, req.(*SignUpRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UsersService_UpdateProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _User_UpdateProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UpdateProfileRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UsersServiceServer).UpdateProfile(ctx, in)
+		return srv.(UserServer).UpdateProfile(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: UsersService_UpdateProfile_FullMethodName,
+		FullMethod: User_UpdateProfile_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UsersServiceServer).UpdateProfile(ctx, req.(*UpdateProfileRequest))
+		return srv.(UserServer).UpdateProfile(ctx, req.(*UpdateProfileRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UsersService_ChangeUsername_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _User_ChangeUsername_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ChangeUsernameRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UsersServiceServer).ChangeUsername(ctx, in)
+		return srv.(UserServer).ChangeUsername(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: UsersService_ChangeUsername_FullMethodName,
+		FullMethod: User_ChangeUsername_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UsersServiceServer).ChangeUsername(ctx, req.(*ChangeUsernameRequest))
+		return srv.(UserServer).ChangeUsername(ctx, req.(*ChangeUsernameRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UsersService_ChangePassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _User_ChangePassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ChangePasswordRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UsersServiceServer).ChangePassword(ctx, in)
+		return srv.(UserServer).ChangePassword(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: UsersService_ChangePassword_FullMethodName,
+		FullMethod: User_ChangePassword_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UsersServiceServer).ChangePassword(ctx, req.(*ChangePasswordRequest))
+		return srv.(UserServer).ChangePassword(ctx, req.(*ChangePasswordRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UsersService_ChangeEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _User_ChangeEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ChangeEmailRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UsersServiceServer).ChangeEmail(ctx, in)
+		return srv.(UserServer).ChangeEmail(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: UsersService_ChangeEmail_FullMethodName,
+		FullMethod: User_ChangeEmail_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UsersServiceServer).ChangeEmail(ctx, req.(*ChangeEmailRequest))
+		return srv.(UserServer).ChangeEmail(ctx, req.(*ChangeEmailRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UsersService_VerifyEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _User_VerifyEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(VerifyEmailRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UsersServiceServer).VerifyEmail(ctx, in)
+		return srv.(UserServer).VerifyEmail(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: UsersService_VerifyEmail_FullMethodName,
+		FullMethod: User_VerifyEmail_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UsersServiceServer).VerifyEmail(ctx, req.(*VerifyEmailRequest))
+		return srv.(UserServer).VerifyEmail(ctx, req.(*VerifyEmailRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UsersService_GetActiveEmails_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _User_GetActiveEmails_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetActiveEmailsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UsersServiceServer).GetActiveEmails(ctx, in)
+		return srv.(UserServer).GetActiveEmails(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: UsersService_GetActiveEmails_FullMethodName,
+		FullMethod: User_GetActiveEmails_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UsersServiceServer).GetActiveEmails(ctx, req.(*GetActiveEmailsRequest))
+		return srv.(UserServer).GetActiveEmails(ctx, req.(*GetActiveEmailsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UsersService_ChangePhoneNumber_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _User_ChangePhoneNumber_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ChangePhoneNumberRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UsersServiceServer).ChangePhoneNumber(ctx, in)
+		return srv.(UserServer).ChangePhoneNumber(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: UsersService_ChangePhoneNumber_FullMethodName,
+		FullMethod: User_ChangePhoneNumber_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UsersServiceServer).ChangePhoneNumber(ctx, req.(*ChangePhoneNumberRequest))
+		return srv.(UserServer).ChangePhoneNumber(ctx, req.(*ChangePhoneNumberRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UsersService_VerifyPhoneNumber_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _User_VerifyPhoneNumber_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(VerifyPhoneNumberRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UsersServiceServer).VerifyPhoneNumber(ctx, in)
+		return srv.(UserServer).VerifyPhoneNumber(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: UsersService_VerifyPhoneNumber_FullMethodName,
+		FullMethod: User_VerifyPhoneNumber_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UsersServiceServer).VerifyPhoneNumber(ctx, req.(*VerifyPhoneNumberRequest))
+		return srv.(UserServer).VerifyPhoneNumber(ctx, req.(*VerifyPhoneNumberRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UsersService_GetActivePhoneNumbers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _User_GetActivePhoneNumbers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetActivePhoneNumbersRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UsersServiceServer).GetActivePhoneNumbers(ctx, in)
+		return srv.(UserServer).GetActivePhoneNumbers(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: UsersService_GetActivePhoneNumbers_FullMethodName,
+		FullMethod: User_GetActivePhoneNumbers_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UsersServiceServer).GetActivePhoneNumbers(ctx, req.(*GetActivePhoneNumbersRequest))
+		return srv.(UserServer).GetActivePhoneNumbers(ctx, req.(*GetActivePhoneNumbersRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UsersService_ForgotPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _User_ForgotPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ForgotPasswordRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UsersServiceServer).ForgotPassword(ctx, in)
+		return srv.(UserServer).ForgotPassword(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: UsersService_ForgotPassword_FullMethodName,
+		FullMethod: User_ForgotPassword_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UsersServiceServer).ForgotPassword(ctx, req.(*ForgotPasswordRequest))
+		return srv.(UserServer).ForgotPassword(ctx, req.(*ForgotPasswordRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UsersService_ResetPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _User_ResetPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ResetPasswordRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UsersServiceServer).ResetPassword(ctx, in)
+		return srv.(UserServer).ResetPassword(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: UsersService_ResetPassword_FullMethodName,
+		FullMethod: User_ResetPassword_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UsersServiceServer).ResetPassword(ctx, req.(*ResetPasswordRequest))
+		return srv.(UserServer).ResetPassword(ctx, req.(*ResetPasswordRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UsersService_DeleteUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _User_DeleteUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleteUserRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UsersServiceServer).DeleteUser(ctx, in)
+		return srv.(UserServer).DeleteUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: UsersService_DeleteUser_FullMethodName,
+		FullMethod: User_DeleteUser_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UsersServiceServer).DeleteUser(ctx, req.(*DeleteUserRequest))
+		return srv.(UserServer).DeleteUser(ctx, req.(*DeleteUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// UsersService_ServiceDesc is the grpc.ServiceDesc for UsersService service.
+// User_ServiceDesc is the grpc.ServiceDesc for User service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var UsersService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "users_service.UsersService",
-	HandlerType: (*UsersServiceServer)(nil),
+var User_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "user.User",
+	HandlerType: (*UserServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "SignUp",
-			Handler:    _UsersService_SignUp_Handler,
+			Handler:    _User_SignUp_Handler,
 		},
 		{
 			MethodName: "UpdateProfile",
-			Handler:    _UsersService_UpdateProfile_Handler,
+			Handler:    _User_UpdateProfile_Handler,
 		},
 		{
 			MethodName: "ChangeUsername",
-			Handler:    _UsersService_ChangeUsername_Handler,
+			Handler:    _User_ChangeUsername_Handler,
 		},
 		{
 			MethodName: "ChangePassword",
-			Handler:    _UsersService_ChangePassword_Handler,
+			Handler:    _User_ChangePassword_Handler,
 		},
 		{
 			MethodName: "ChangeEmail",
-			Handler:    _UsersService_ChangeEmail_Handler,
+			Handler:    _User_ChangeEmail_Handler,
 		},
 		{
 			MethodName: "VerifyEmail",
-			Handler:    _UsersService_VerifyEmail_Handler,
+			Handler:    _User_VerifyEmail_Handler,
 		},
 		{
 			MethodName: "GetActiveEmails",
-			Handler:    _UsersService_GetActiveEmails_Handler,
+			Handler:    _User_GetActiveEmails_Handler,
 		},
 		{
 			MethodName: "ChangePhoneNumber",
-			Handler:    _UsersService_ChangePhoneNumber_Handler,
+			Handler:    _User_ChangePhoneNumber_Handler,
 		},
 		{
 			MethodName: "VerifyPhoneNumber",
-			Handler:    _UsersService_VerifyPhoneNumber_Handler,
+			Handler:    _User_VerifyPhoneNumber_Handler,
 		},
 		{
 			MethodName: "GetActivePhoneNumbers",
-			Handler:    _UsersService_GetActivePhoneNumbers_Handler,
+			Handler:    _User_GetActivePhoneNumbers_Handler,
 		},
 		{
 			MethodName: "ForgotPassword",
-			Handler:    _UsersService_ForgotPassword_Handler,
+			Handler:    _User_ForgotPassword_Handler,
 		},
 		{
 			MethodName: "ResetPassword",
-			Handler:    _UsersService_ResetPassword_Handler,
+			Handler:    _User_ResetPassword_Handler,
 		},
 		{
 			MethodName: "DeleteUser",
-			Handler:    _UsersService_DeleteUser_Handler,
+			Handler:    _User_DeleteUser_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
