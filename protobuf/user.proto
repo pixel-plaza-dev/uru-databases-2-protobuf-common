@@ -8,6 +8,7 @@ import "google/protobuf/timestamp.proto";
 
 service User {
   rpc SignUp(SignUpRequest) returns (SignUpResponse) {}
+  rpc IsPasswordCorrect(IsPasswordCorrectRequest) returns (IsPasswordCorrectResponse) {}
   rpc UpdateProfile(UpdateProfileRequest) returns (UpdateProfileResponse) {}
   rpc ChangeUsername(ChangeUsernameRequest) returns (ChangeUsernameResponse) {}
   rpc ChangePassword(ChangePasswordRequest) returns (ChangePasswordResponse) {}
@@ -33,6 +34,16 @@ message SignUpRequest {
 }
 
 message SignUpResponse {
+  uint32 code = 1;
+  string message = 2;
+}
+
+message IsPasswordCorrectRequest {
+  string username = 1;
+  string hashed_password = 2;
+}
+
+message IsPasswordCorrectResponse {
   uint32 code = 1;
   string message = 2;
 }
