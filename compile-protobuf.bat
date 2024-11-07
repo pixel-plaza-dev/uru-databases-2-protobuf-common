@@ -7,3 +7,4 @@ for %%f in (protobuf/*.proto) do (
 )
 
 echo Compilation complete.
+
