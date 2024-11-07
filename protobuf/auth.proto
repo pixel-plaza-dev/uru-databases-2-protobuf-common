@@ -19,7 +19,7 @@ service Auth {
 
 message LogInRequest {
   string username = 1;
-  string hashed_password = 2;
+  string password = 2;
 }
 
 message LogInResponse {
