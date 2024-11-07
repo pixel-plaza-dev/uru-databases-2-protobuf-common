@@ -46,6 +46,7 @@ message IsPasswordCorrectRequest {
 message IsPasswordCorrectResponse {
   uint32 code = 1;
   string message = 2;
+  string userIdentifier = 3;
 }
 
 message UpdateProfileRequest {
