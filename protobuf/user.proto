@@ -10,7 +10,7 @@ service User {
   rpc IsPasswordCorrect(IsPasswordCorrectRequest) returns (IsPasswordCorrectResponse) {}
   rpc UpdateProfile(UpdateProfileRequest) returns (UpdateProfileResponse) {}
   rpc GetProfile(GetProfileRequest) returns (GetProfileResponse) {}
-  rpc GetFullProfile(GetProfileRequest) returns (GetProfileResponse) {}
+  rpc GetFullProfile(GetFullProfileRequest) returns (GetFullProfileResponse) {}
   rpc ChangeUsername(ChangeUsernameRequest) returns (ChangeUsernameResponse) {}
   rpc ChangePassword(ChangePasswordRequest) returns (ChangePasswordResponse) {}
   rpc AddEmail(AddEmailRequest) returns (AddEmailResponse) {}

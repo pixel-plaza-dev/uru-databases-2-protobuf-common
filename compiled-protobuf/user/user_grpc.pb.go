@@ -50,7 +50,7 @@ type UserClient interface {
 	IsPasswordCorrect(ctx context.Context, in *IsPasswordCorrectRequest, opts ...grpc.CallOption) (*IsPasswordCorrectResponse, error)
 	UpdateProfile(ctx context.Context, in *UpdateProfileRequest, opts ...grpc.CallOption) (*UpdateProfileResponse, error)
 	GetProfile(ctx context.Context, in *GetProfileRequest, opts ...grpc.CallOption) (*GetProfileResponse, error)
-	GetFullProfile(ctx context.Context, in *GetProfileRequest, opts ...grpc.CallOption) (*GetProfileResponse, error)
+	GetFullProfile(ctx context.Context, in *GetFullProfileRequest, opts ...grpc.CallOption) (*GetFullProfileResponse, error)
 	ChangeUsername(ctx context.Context, in *ChangeUsernameRequest, opts ...grpc.CallOption) (*ChangeUsernameResponse, error)
 	ChangePassword(ctx context.Context, in *ChangePasswordRequest, opts ...grpc.CallOption) (*ChangePasswordResponse, error)
 	AddEmail(ctx context.Context, in *AddEmailRequest, opts ...grpc.CallOption) (*AddEmailResponse, error)
@@ -117,9 +117,9 @@ func (c *userClient) GetProfile(ctx context.Context, in *GetProfileRequest, opts
 	return out, nil
 }
 
-func (c *userClient) GetFullProfile(ctx context.Context, in *GetProfileRequest, opts ...grpc.CallOption) (*GetProfileResponse, error) {
+func (c *userClient) GetFullProfile(ctx context.Context, in *GetFullProfileRequest, opts ...grpc.CallOption) (*GetFullProfileResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetProfileResponse)
+	out := new(GetFullProfileResponse)
 	err := c.cc.Invoke(ctx, User_GetFullProfile_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -295,7 +295,7 @@ type UserServer interface {
 	IsPasswordCorrect(context.Context, *IsPasswordCorrectRequest) (*IsPasswordCorrectResponse, error)
 	UpdateProfile(context.Context, *UpdateProfileRequest) (*UpdateProfileResponse, error)
 	GetProfile(context.Context, *GetProfileRequest) (*GetProfileResponse, error)
-	GetFullProfile(context.Context, *GetProfileRequest) (*GetProfileResponse, error)
+	GetFullProfile(context.Context, *GetFullProfileRequest) (*GetFullProfileResponse, error)
 	ChangeUsername(context.Context, *ChangeUsernameRequest) (*ChangeUsernameResponse, error)
 	ChangePassword(context.Context, *ChangePasswordRequest) (*ChangePasswordResponse, error)
 	AddEmail(context.Context, *AddEmailRequest) (*AddEmailResponse, error)
@@ -334,7 +334,7 @@ func (UnimplementedUserServer) UpdateProfile(context.Context, *UpdateProfileRequ
 func (UnimplementedUserServer) GetProfile(context.Context, *GetProfileRequest) (*GetProfileResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetProfile not implemented")
 }
-func (UnimplementedUserServer) GetFullProfile(context.Context, *GetProfileRequest) (*GetProfileResponse, error) {
+func (UnimplementedUserServer) GetFullProfile(context.Context, *GetFullProfileRequest) (*GetFullProfileResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetFullProfile not implemented")
 }
 func (UnimplementedUserServer) ChangeUsername(context.Context, *ChangeUsernameRequest) (*ChangeUsernameResponse, error) {
@@ -479,7 +479,7 @@ func _User_GetProfile_Handler(srv interface{}, ctx context.Context, dec func(int
 }
 
 func _User_GetFullProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetProfileRequest)
+	in := new(GetFullProfileRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -491,7 +491,7 @@ func _User_GetFullProfile_Handler(srv interface{}, ctx context.Context, dec func
 		FullMethod: User_GetFullProfile_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).GetFullProfile(ctx, req.(*GetProfileRequest))
+		return srv.(UserServer).GetFullProfile(ctx, req.(*GetFullProfileRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
