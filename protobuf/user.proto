@@ -37,9 +37,10 @@ message Profile{
 }
 
 message SignUpRequest {
-  string email = 1;
+  Profile profile = 1;
   string password = 2;
-  Profile profile = 3;
+  string email = 3;
+  string phone_number = 4;
 }
 
 message SignUpResponse {
