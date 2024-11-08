@@ -10,6 +10,7 @@ service User {
   rpc IsPasswordCorrect(IsPasswordCorrectRequest) returns (IsPasswordCorrectResponse) {}
   rpc UpdateProfile(UpdateProfileRequest) returns (UpdateProfileResponse) {}
   rpc GetProfile(GetProfileRequest) returns (GetProfileResponse) {}
+  rpc GetFullProfile(GetProfileRequest) returns (GetProfileResponse) {}
   rpc ChangeUsername(ChangeUsernameRequest) returns (ChangeUsernameResponse) {}
   rpc ChangePassword(ChangePasswordRequest) returns (ChangePasswordResponse) {}
   rpc AddEmail(AddEmailRequest) returns (AddEmailResponse) {}
@@ -17,6 +18,7 @@ service User {
   rpc SendVerificationEmail(SendVerificationEmailRequest) returns (SendVerificationEmailResponse) {}
   rpc VerifyEmail(VerifyEmailRequest) returns (VerifyEmailResponse) {}
   rpc GetPrimaryEmail(GetPrimaryEmailRequest) returns (GetPrimaryEmailResponse) {}
+  rpc GetActiveEmails(GetActiveEmailsRequest) returns (GetActiveEmailsResponse) {}
   rpc ChangePrimaryEmail(ChangePrimaryEmailRequest) returns (ChangePrimaryEmailResponse) {}
   rpc GetPhoneNumber(GetPhoneNumberRequest) returns (GetPhoneNumberResponse) {}
   rpc ChangePhoneNumber(ChangePhoneNumberRequest) returns (ChangePhoneNumberResponse) {}
@@ -74,6 +76,16 @@ message GetProfileResponse {
   uint32 code = 1;
   string message = 2;
   Profile profile = 3;
+}
+
+message GetFullProfileRequest {}
+
+message GetFullProfileResponse {
+  uint32 code = 1;
+  string message = 2;
+  Profile profile = 3;
+  repeated string emails = 4;
+  string phone_number = 5;
 }
 
 message ChangeUsernameRequest {
@@ -146,6 +158,14 @@ message GetPrimaryEmailResponse {
   uint32 code = 1;
   string message = 2;
   string email = 3;
+}
+
+message GetActiveEmailsRequest {}
+
+message GetActiveEmailsResponse {
+  uint32 code = 1;
+  string message = 2;
+  repeated string emails = 3;
 }
 
 message ChangePhoneNumberRequest {

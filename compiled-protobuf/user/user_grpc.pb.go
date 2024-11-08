@@ -23,6 +23,7 @@ const (
 	User_IsPasswordCorrect_FullMethodName           = "/user.User/IsPasswordCorrect"
 	User_UpdateProfile_FullMethodName               = "/user.User/UpdateProfile"
 	User_GetProfile_FullMethodName                  = "/user.User/GetProfile"
+	User_GetFullProfile_FullMethodName              = "/user.User/GetFullProfile"
 	User_ChangeUsername_FullMethodName              = "/user.User/ChangeUsername"
 	User_ChangePassword_FullMethodName              = "/user.User/ChangePassword"
 	User_AddEmail_FullMethodName                    = "/user.User/AddEmail"
@@ -30,6 +31,7 @@ const (
 	User_SendVerificationEmail_FullMethodName       = "/user.User/SendVerificationEmail"
 	User_VerifyEmail_FullMethodName                 = "/user.User/VerifyEmail"
 	User_GetPrimaryEmail_FullMethodName             = "/user.User/GetPrimaryEmail"
+	User_GetActiveEmails_FullMethodName             = "/user.User/GetActiveEmails"
 	User_ChangePrimaryEmail_FullMethodName          = "/user.User/ChangePrimaryEmail"
 	User_GetPhoneNumber_FullMethodName              = "/user.User/GetPhoneNumber"
 	User_ChangePhoneNumber_FullMethodName           = "/user.User/ChangePhoneNumber"
@@ -48,6 +50,7 @@ type UserClient interface {
 	IsPasswordCorrect(ctx context.Context, in *IsPasswordCorrectRequest, opts ...grpc.CallOption) (*IsPasswordCorrectResponse, error)
 	UpdateProfile(ctx context.Context, in *UpdateProfileRequest, opts ...grpc.CallOption) (*UpdateProfileResponse, error)
 	GetProfile(ctx context.Context, in *GetProfileRequest, opts ...grpc.CallOption) (*GetProfileResponse, error)
+	GetFullProfile(ctx context.Context, in *GetProfileRequest, opts ...grpc.CallOption) (*GetProfileResponse, error)
 	ChangeUsername(ctx context.Context, in *ChangeUsernameRequest, opts ...grpc.CallOption) (*ChangeUsernameResponse, error)
 	ChangePassword(ctx context.Context, in *ChangePasswordRequest, opts ...grpc.CallOption) (*ChangePasswordResponse, error)
 	AddEmail(ctx context.Context, in *AddEmailRequest, opts ...grpc.CallOption) (*AddEmailResponse, error)
@@ -55,6 +58,7 @@ type UserClient interface {
 	SendVerificationEmail(ctx context.Context, in *SendVerificationEmailRequest, opts ...grpc.CallOption) (*SendVerificationEmailResponse, error)
 	VerifyEmail(ctx context.Context, in *VerifyEmailRequest, opts ...grpc.CallOption) (*VerifyEmailResponse, error)
 	GetPrimaryEmail(ctx context.Context, in *GetPrimaryEmailRequest, opts ...grpc.CallOption) (*GetPrimaryEmailResponse, error)
+	GetActiveEmails(ctx context.Context, in *GetActiveEmailsRequest, opts ...grpc.CallOption) (*GetActiveEmailsResponse, error)
 	ChangePrimaryEmail(ctx context.Context, in *ChangePrimaryEmailRequest, opts ...grpc.CallOption) (*ChangePrimaryEmailResponse, error)
 	GetPhoneNumber(ctx context.Context, in *GetPhoneNumberRequest, opts ...grpc.CallOption) (*GetPhoneNumberResponse, error)
 	ChangePhoneNumber(ctx context.Context, in *ChangePhoneNumberRequest, opts ...grpc.CallOption) (*ChangePhoneNumberResponse, error)
@@ -107,6 +111,16 @@ func (c *userClient) GetProfile(ctx context.Context, in *GetProfileRequest, opts
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetProfileResponse)
 	err := c.cc.Invoke(ctx, User_GetProfile_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) GetFullProfile(ctx context.Context, in *GetProfileRequest, opts ...grpc.CallOption) (*GetProfileResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetProfileResponse)
+	err := c.cc.Invoke(ctx, User_GetFullProfile_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -177,6 +191,16 @@ func (c *userClient) GetPrimaryEmail(ctx context.Context, in *GetPrimaryEmailReq
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetPrimaryEmailResponse)
 	err := c.cc.Invoke(ctx, User_GetPrimaryEmail_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) GetActiveEmails(ctx context.Context, in *GetActiveEmailsRequest, opts ...grpc.CallOption) (*GetActiveEmailsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetActiveEmailsResponse)
+	err := c.cc.Invoke(ctx, User_GetActiveEmails_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -271,6 +295,7 @@ type UserServer interface {
 	IsPasswordCorrect(context.Context, *IsPasswordCorrectRequest) (*IsPasswordCorrectResponse, error)
 	UpdateProfile(context.Context, *UpdateProfileRequest) (*UpdateProfileResponse, error)
 	GetProfile(context.Context, *GetProfileRequest) (*GetProfileResponse, error)
+	GetFullProfile(context.Context, *GetProfileRequest) (*GetProfileResponse, error)
 	ChangeUsername(context.Context, *ChangeUsernameRequest) (*ChangeUsernameResponse, error)
 	ChangePassword(context.Context, *ChangePasswordRequest) (*ChangePasswordResponse, error)
 	AddEmail(context.Context, *AddEmailRequest) (*AddEmailResponse, error)
@@ -278,6 +303,7 @@ type UserServer interface {
 	SendVerificationEmail(context.Context, *SendVerificationEmailRequest) (*SendVerificationEmailResponse, error)
 	VerifyEmail(context.Context, *VerifyEmailRequest) (*VerifyEmailResponse, error)
 	GetPrimaryEmail(context.Context, *GetPrimaryEmailRequest) (*GetPrimaryEmailResponse, error)
+	GetActiveEmails(context.Context, *GetActiveEmailsRequest) (*GetActiveEmailsResponse, error)
 	ChangePrimaryEmail(context.Context, *ChangePrimaryEmailRequest) (*ChangePrimaryEmailResponse, error)
 	GetPhoneNumber(context.Context, *GetPhoneNumberRequest) (*GetPhoneNumberResponse, error)
 	ChangePhoneNumber(context.Context, *ChangePhoneNumberRequest) (*ChangePhoneNumberResponse, error)
@@ -308,6 +334,9 @@ func (UnimplementedUserServer) UpdateProfile(context.Context, *UpdateProfileRequ
 func (UnimplementedUserServer) GetProfile(context.Context, *GetProfileRequest) (*GetProfileResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetProfile not implemented")
 }
+func (UnimplementedUserServer) GetFullProfile(context.Context, *GetProfileRequest) (*GetProfileResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetFullProfile not implemented")
+}
 func (UnimplementedUserServer) ChangeUsername(context.Context, *ChangeUsernameRequest) (*ChangeUsernameResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ChangeUsername not implemented")
 }
@@ -328,6 +357,9 @@ func (UnimplementedUserServer) VerifyEmail(context.Context, *VerifyEmailRequest)
 }
 func (UnimplementedUserServer) GetPrimaryEmail(context.Context, *GetPrimaryEmailRequest) (*GetPrimaryEmailResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPrimaryEmail not implemented")
+}
+func (UnimplementedUserServer) GetActiveEmails(context.Context, *GetActiveEmailsRequest) (*GetActiveEmailsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetActiveEmails not implemented")
 }
 func (UnimplementedUserServer) ChangePrimaryEmail(context.Context, *ChangePrimaryEmailRequest) (*ChangePrimaryEmailResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ChangePrimaryEmail not implemented")
@@ -442,6 +474,24 @@ func _User_GetProfile_Handler(srv interface{}, ctx context.Context, dec func(int
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServer).GetProfile(ctx, req.(*GetProfileRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_GetFullProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetProfileRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).GetFullProfile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_GetFullProfile_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).GetFullProfile(ctx, req.(*GetProfileRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -568,6 +618,24 @@ func _User_GetPrimaryEmail_Handler(srv interface{}, ctx context.Context, dec fun
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServer).GetPrimaryEmail(ctx, req.(*GetPrimaryEmailRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_GetActiveEmails_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetActiveEmailsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).GetActiveEmails(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_GetActiveEmails_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).GetActiveEmails(ctx, req.(*GetActiveEmailsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -740,6 +808,10 @@ var User_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _User_GetProfile_Handler,
 		},
 		{
+			MethodName: "GetFullProfile",
+			Handler:    _User_GetFullProfile_Handler,
+		},
+		{
 			MethodName: "ChangeUsername",
 			Handler:    _User_ChangeUsername_Handler,
 		},
@@ -766,6 +838,10 @@ var User_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetPrimaryEmail",
 			Handler:    _User_GetPrimaryEmail_Handler,
+		},
+		{
+			MethodName: "GetActiveEmails",
+			Handler:    _User_GetActiveEmails_Handler,
 		},
 		{
 			MethodName: "ChangePrimaryEmail",
