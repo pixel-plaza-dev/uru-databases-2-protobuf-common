@@ -15,6 +15,9 @@ service User {
   rpc ChangeEmail(ChangeEmailRequest) returns (ChangeEmailResponse) {}
   rpc VerifyEmail(VerifyEmailRequest) returns (VerifyEmailResponse) {}
   rpc GetActiveEmails(GetActiveEmailsRequest) returns (GetActiveEmailsResponse) {}
+  rpc AddEmail(AddEmailRequest) returns (AddEmailResponse) {}
+  rpc DeleteEmail(DeleteEmailRequest) returns (DeleteEmailResponse) {}
+  rpc ChangePrimaryEmail(ChangePrimaryEmailRequest) returns (ChangePrimaryEmailResponse) {}
   rpc ChangePhoneNumber(ChangePhoneNumberRequest) returns (ChangePhoneNumberResponse) {}
   rpc VerifyPhoneNumber(VerifyPhoneNumberRequest) returns (VerifyPhoneNumberResponse) {}
   rpc GetActivePhoneNumbers(GetActivePhoneNumbersRequest) returns (GetActivePhoneNumbersResponse) {}
@@ -115,6 +118,33 @@ message GetActiveEmailsResponse {
   uint32 code = 1;
   string message = 2;
   repeated string emails = 3;
+}
+
+message AddEmailRequest {
+  string email = 1;
+}
+
+message AddEmailResponse {
+  uint32 code = 1;
+  string message = 2;
+}
+
+message DeleteEmailRequest {
+  string email = 1;
+}
+
+message DeleteEmailResponse {
+  uint32 code = 1;
+  string message = 2;
+}
+
+message ChangePrimaryEmailRequest {
+  string email = 1;
+}
+
+message ChangePrimaryEmailResponse {
+  uint32 code = 1;
+  string message = 2;
 }
 
 message ChangePhoneNumberRequest {
