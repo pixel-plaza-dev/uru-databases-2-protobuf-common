@@ -8,6 +8,7 @@ service Auth {
   rpc LogIn(LogInRequest) returns (LogInResponse) {}
   rpc RefreshToken(RefreshTokenRequest) returns (RefreshTokenResponse) {}
   rpc LogOut(LogOutRequest) returns (LogOutResponse) {}
+  rpc GetSessions(GetSessionsRequest) returns (GetSessionsResponse) {}
   rpc CloseSessions(CloseSessionsRequest) returns (CloseSessionsResponse) {}
   rpc AddPermission(AddPermissionRequest) returns (AddPermissionResponse) {}
   rpc RevokePermission(RevokePermissionRequest) returns (RevokePermissionResponse) {}
@@ -54,6 +55,23 @@ message LogOutRequest {
 message LogOutResponse {
   uint32 code = 1;
   string message = 2;
+}
+
+message Session {
+  string id = 1;
+  string user_id = 2;
+  string ipv4_address = 3;
+  string created_at = 4;
+}
+
+message GetSessionsRequest {
+  string username = 1;
+}
+
+message GetSessionsResponse {
+  uint32 code = 1;
+  string message = 2;
+  repeated Session sessions = 3;
 }
 
 message CloseSessionsRequest {
