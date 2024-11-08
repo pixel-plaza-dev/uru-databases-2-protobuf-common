@@ -3,13 +3,13 @@ syntax = "proto3";
 package user;
 
 option go_package = "compiled-protobuf/user";
-
 import "google/protobuf/timestamp.proto";
 
 service User {
   rpc SignUp(SignUpRequest) returns (SignUpResponse) {}
   rpc IsPasswordCorrect(IsPasswordCorrectRequest) returns (IsPasswordCorrectResponse) {}
   rpc UpdateProfile(UpdateProfileRequest) returns (UpdateProfileResponse) {}
+  rpc GetProfile(GetProfileRequest) returns (GetProfileResponse) {}
   rpc ChangeUsername(ChangeUsernameRequest) returns (ChangeUsernameResponse) {}
   rpc ChangePassword(ChangePasswordRequest) returns (ChangePasswordResponse) {}
   rpc ChangeEmail(ChangeEmailRequest) returns (ChangeEmailResponse) {}
@@ -59,6 +59,17 @@ message UpdateProfileRequest {
 message UpdateProfileResponse {
   uint32 code = 1;
   string message = 2;
+}
+
+message GetProfileRequest {}
+
+message GetProfileResponse {
+  uint32 code = 1;
+  string message = 2;
+  string username = 3;
+  string first_name = 4;
+  string last_name = 5;
+  google.protobuf.Timestamp birth_date = 6;
 }
 
 message ChangeUsernameRequest {

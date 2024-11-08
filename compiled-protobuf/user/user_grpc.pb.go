@@ -22,6 +22,7 @@ const (
 	User_SignUp_FullMethodName                = "/user.User/SignUp"
 	User_IsPasswordCorrect_FullMethodName     = "/user.User/IsPasswordCorrect"
 	User_UpdateProfile_FullMethodName         = "/user.User/UpdateProfile"
+	User_GetProfile_FullMethodName            = "/user.User/GetProfile"
 	User_ChangeUsername_FullMethodName        = "/user.User/ChangeUsername"
 	User_ChangePassword_FullMethodName        = "/user.User/ChangePassword"
 	User_ChangeEmail_FullMethodName           = "/user.User/ChangeEmail"
@@ -42,6 +43,7 @@ type UserClient interface {
 	SignUp(ctx context.Context, in *SignUpRequest, opts ...grpc.CallOption) (*SignUpResponse, error)
 	IsPasswordCorrect(ctx context.Context, in *IsPasswordCorrectRequest, opts ...grpc.CallOption) (*IsPasswordCorrectResponse, error)
 	UpdateProfile(ctx context.Context, in *UpdateProfileRequest, opts ...grpc.CallOption) (*UpdateProfileResponse, error)
+	GetProfile(ctx context.Context, in *GetProfileRequest, opts ...grpc.CallOption) (*GetProfileResponse, error)
 	ChangeUsername(ctx context.Context, in *ChangeUsernameRequest, opts ...grpc.CallOption) (*ChangeUsernameResponse, error)
 	ChangePassword(ctx context.Context, in *ChangePasswordRequest, opts ...grpc.CallOption) (*ChangePasswordResponse, error)
 	ChangeEmail(ctx context.Context, in *ChangeEmailRequest, opts ...grpc.CallOption) (*ChangeEmailResponse, error)
@@ -87,6 +89,16 @@ func (c *userClient) UpdateProfile(ctx context.Context, in *UpdateProfileRequest
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(UpdateProfileResponse)
 	err := c.cc.Invoke(ctx, User_UpdateProfile_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) GetProfile(ctx context.Context, in *GetProfileRequest, opts ...grpc.CallOption) (*GetProfileResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetProfileResponse)
+	err := c.cc.Invoke(ctx, User_GetProfile_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -210,6 +222,7 @@ type UserServer interface {
 	SignUp(context.Context, *SignUpRequest) (*SignUpResponse, error)
 	IsPasswordCorrect(context.Context, *IsPasswordCorrectRequest) (*IsPasswordCorrectResponse, error)
 	UpdateProfile(context.Context, *UpdateProfileRequest) (*UpdateProfileResponse, error)
+	GetProfile(context.Context, *GetProfileRequest) (*GetProfileResponse, error)
 	ChangeUsername(context.Context, *ChangeUsernameRequest) (*ChangeUsernameResponse, error)
 	ChangePassword(context.Context, *ChangePasswordRequest) (*ChangePasswordResponse, error)
 	ChangeEmail(context.Context, *ChangeEmailRequest) (*ChangeEmailResponse, error)
@@ -239,6 +252,9 @@ func (UnimplementedUserServer) IsPasswordCorrect(context.Context, *IsPasswordCor
 }
 func (UnimplementedUserServer) UpdateProfile(context.Context, *UpdateProfileRequest) (*UpdateProfileResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateProfile not implemented")
+}
+func (UnimplementedUserServer) GetProfile(context.Context, *GetProfileRequest) (*GetProfileResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetProfile not implemented")
 }
 func (UnimplementedUserServer) ChangeUsername(context.Context, *ChangeUsernameRequest) (*ChangeUsernameResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ChangeUsername not implemented")
@@ -344,6 +360,24 @@ func _User_UpdateProfile_Handler(srv interface{}, ctx context.Context, dec func(
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServer).UpdateProfile(ctx, req.(*UpdateProfileRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_GetProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetProfileRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).GetProfile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_GetProfile_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).GetProfile(ctx, req.(*GetProfileRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -564,6 +598,10 @@ var User_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateProfile",
 			Handler:    _User_UpdateProfile_Handler,
+		},
+		{
+			MethodName: "GetProfile",
+			Handler:    _User_GetProfile_Handler,
 		},
 		{
 			MethodName: "ChangeUsername",

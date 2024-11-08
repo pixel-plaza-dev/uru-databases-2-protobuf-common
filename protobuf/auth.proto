@@ -11,10 +11,16 @@ service Auth {
   rpc CloseSessions(CloseSessionsRequest) returns (CloseSessionsResponse) {}
   rpc AddPermission(AddPermissionRequest) returns (AddPermissionResponse) {}
   rpc RevokePermission(RevokePermissionRequest) returns (RevokePermissionResponse) {}
+  rpc GetPermissions(GetPermissionsRequest) returns (GetPermissionsResponse) {}
   rpc AddRolePermission(AddRolePermissionRequest) returns (AddRolePermissionResponse) {}
   rpc RevokeRolePermission(RevokeRolePermissionRequest) returns (RevokeRolePermissionResponse) {}
+  rpc GetRolePermissions(GetRolePermissionsRequest) returns (GetRolePermissionsResponse) {}
   rpc AddRole(AddRoleRequest) returns (AddRoleResponse) {}
   rpc RevokeRole(RevokeRoleRequest) returns (RevokeRoleResponse) {}
+  rpc GetRoles(GetRolesRequest) returns (GetRolesResponse) {}
+  rpc AddUserRole(AddUserRoleRequest) returns (AddUserRoleResponse) {}
+  rpc RevokeUserRole(RevokeUserRoleRequest) returns (RevokeUserRoleResponse) {}
+  rpc GetUserRoles(GetUserRolesRequest) returns (GetUserRolesResponse) {}
 }
 
 message LogInRequest {
@@ -76,6 +82,14 @@ message RevokePermissionResponse {
   string message = 2;
 }
 
+message GetPermissionsRequest {}
+
+message GetPermissionsResponse {
+  uint32 code = 1;
+  string message = 2;
+  repeated string permissions = 3;
+}
+
 message AddRolePermissionRequest {
   string role = 1;
   string permission = 2;
@@ -96,6 +110,16 @@ message RevokeRolePermissionResponse {
   string message = 2;
 }
 
+message GetRolePermissionsRequest {
+  string role = 1;
+}
+
+message GetRolePermissionsResponse {
+  uint32 code = 1;
+  string message = 2;
+  repeated string permissions = 3;
+}
+
 message AddRoleRequest {
   string role = 1;
 }
@@ -112,4 +136,42 @@ message RevokeRoleRequest {
 message RevokeRoleResponse {
   uint32 code = 1;
   string message = 2;
+}
+
+message GetRolesRequest {}
+
+message GetRolesResponse {
+  uint32 code = 1;
+  string message = 2;
+  repeated string roles = 3;
+}
+
+message AddUserRoleRequest {
+  string user = 1;
+  string role = 2;
+}
+
+message AddUserRoleResponse {
+  uint32 code = 1;
+  string message = 2;
+}
+
+message RevokeUserRoleRequest {
+  string user = 1;
+  string role = 2;
+}
+
+message RevokeUserRoleResponse {
+  uint32 code = 1;
+  string message = 2;
+}
+
+message GetUserRolesRequest {
+  string user = 1;
+}
+
+message GetUserRolesResponse {
+  uint32 code = 1;
+  string message = 2;
+  repeated string roles = 3;
 }
