@@ -19,24 +19,26 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	User_SignUp_FullMethodName                = "/user.User/SignUp"
-	User_IsPasswordCorrect_FullMethodName     = "/user.User/IsPasswordCorrect"
-	User_UpdateProfile_FullMethodName         = "/user.User/UpdateProfile"
-	User_GetProfile_FullMethodName            = "/user.User/GetProfile"
-	User_ChangeUsername_FullMethodName        = "/user.User/ChangeUsername"
-	User_ChangePassword_FullMethodName        = "/user.User/ChangePassword"
-	User_ChangeEmail_FullMethodName           = "/user.User/ChangeEmail"
-	User_VerifyEmail_FullMethodName           = "/user.User/VerifyEmail"
-	User_GetActiveEmails_FullMethodName       = "/user.User/GetActiveEmails"
-	User_AddEmail_FullMethodName              = "/user.User/AddEmail"
-	User_DeleteEmail_FullMethodName           = "/user.User/DeleteEmail"
-	User_ChangePrimaryEmail_FullMethodName    = "/user.User/ChangePrimaryEmail"
-	User_ChangePhoneNumber_FullMethodName     = "/user.User/ChangePhoneNumber"
-	User_VerifyPhoneNumber_FullMethodName     = "/user.User/VerifyPhoneNumber"
-	User_GetActivePhoneNumbers_FullMethodName = "/user.User/GetActivePhoneNumbers"
-	User_ForgotPassword_FullMethodName        = "/user.User/ForgotPassword"
-	User_ResetPassword_FullMethodName         = "/user.User/ResetPassword"
-	User_DeleteUser_FullMethodName            = "/user.User/DeleteUser"
+	User_SignUp_FullMethodName                      = "/user.User/SignUp"
+	User_IsPasswordCorrect_FullMethodName           = "/user.User/IsPasswordCorrect"
+	User_UpdateProfile_FullMethodName               = "/user.User/UpdateProfile"
+	User_GetProfile_FullMethodName                  = "/user.User/GetProfile"
+	User_ChangeUsername_FullMethodName              = "/user.User/ChangeUsername"
+	User_ChangePassword_FullMethodName              = "/user.User/ChangePassword"
+	User_ChangeEmail_FullMethodName                 = "/user.User/ChangeEmail"
+	User_SendVerificationEmail_FullMethodName       = "/user.User/SendVerificationEmail"
+	User_VerifyEmail_FullMethodName                 = "/user.User/VerifyEmail"
+	User_GetActiveEmails_FullMethodName             = "/user.User/GetActiveEmails"
+	User_AddEmail_FullMethodName                    = "/user.User/AddEmail"
+	User_DeleteEmail_FullMethodName                 = "/user.User/DeleteEmail"
+	User_ChangePrimaryEmail_FullMethodName          = "/user.User/ChangePrimaryEmail"
+	User_ChangePhoneNumber_FullMethodName           = "/user.User/ChangePhoneNumber"
+	User_SendVerificationPhoneNumber_FullMethodName = "/user.User/SendVerificationPhoneNumber"
+	User_VerifyPhoneNumber_FullMethodName           = "/user.User/VerifyPhoneNumber"
+	User_GetActivePhoneNumbers_FullMethodName       = "/user.User/GetActivePhoneNumbers"
+	User_ForgotPassword_FullMethodName              = "/user.User/ForgotPassword"
+	User_ResetPassword_FullMethodName               = "/user.User/ResetPassword"
+	User_DeleteUser_FullMethodName                  = "/user.User/DeleteUser"
 )
 
 // UserClient is the client API for User service.
@@ -50,12 +52,14 @@ type UserClient interface {
 	ChangeUsername(ctx context.Context, in *ChangeUsernameRequest, opts ...grpc.CallOption) (*ChangeUsernameResponse, error)
 	ChangePassword(ctx context.Context, in *ChangePasswordRequest, opts ...grpc.CallOption) (*ChangePasswordResponse, error)
 	ChangeEmail(ctx context.Context, in *ChangeEmailRequest, opts ...grpc.CallOption) (*ChangeEmailResponse, error)
+	SendVerificationEmail(ctx context.Context, in *SendVerificationEmailRequest, opts ...grpc.CallOption) (*SendVerificationEmailResponse, error)
 	VerifyEmail(ctx context.Context, in *VerifyEmailRequest, opts ...grpc.CallOption) (*VerifyEmailResponse, error)
 	GetActiveEmails(ctx context.Context, in *GetActiveEmailsRequest, opts ...grpc.CallOption) (*GetActiveEmailsResponse, error)
 	AddEmail(ctx context.Context, in *AddEmailRequest, opts ...grpc.CallOption) (*AddEmailResponse, error)
 	DeleteEmail(ctx context.Context, in *DeleteEmailRequest, opts ...grpc.CallOption) (*DeleteEmailResponse, error)
 	ChangePrimaryEmail(ctx context.Context, in *ChangePrimaryEmailRequest, opts ...grpc.CallOption) (*ChangePrimaryEmailResponse, error)
 	ChangePhoneNumber(ctx context.Context, in *ChangePhoneNumberRequest, opts ...grpc.CallOption) (*ChangePhoneNumberResponse, error)
+	SendVerificationPhoneNumber(ctx context.Context, in *SendVerificationPhoneNumberRequest, opts ...grpc.CallOption) (*SendVerificationPhoneNumberResponse, error)
 	VerifyPhoneNumber(ctx context.Context, in *VerifyPhoneNumberRequest, opts ...grpc.CallOption) (*VerifyPhoneNumberResponse, error)
 	GetActivePhoneNumbers(ctx context.Context, in *GetActivePhoneNumbersRequest, opts ...grpc.CallOption) (*GetActivePhoneNumbersResponse, error)
 	ForgotPassword(ctx context.Context, in *ForgotPasswordRequest, opts ...grpc.CallOption) (*ForgotPasswordResponse, error)
@@ -141,6 +145,16 @@ func (c *userClient) ChangeEmail(ctx context.Context, in *ChangeEmailRequest, op
 	return out, nil
 }
 
+func (c *userClient) SendVerificationEmail(ctx context.Context, in *SendVerificationEmailRequest, opts ...grpc.CallOption) (*SendVerificationEmailResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SendVerificationEmailResponse)
+	err := c.cc.Invoke(ctx, User_SendVerificationEmail_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *userClient) VerifyEmail(ctx context.Context, in *VerifyEmailRequest, opts ...grpc.CallOption) (*VerifyEmailResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(VerifyEmailResponse)
@@ -195,6 +209,16 @@ func (c *userClient) ChangePhoneNumber(ctx context.Context, in *ChangePhoneNumbe
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ChangePhoneNumberResponse)
 	err := c.cc.Invoke(ctx, User_ChangePhoneNumber_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) SendVerificationPhoneNumber(ctx context.Context, in *SendVerificationPhoneNumberRequest, opts ...grpc.CallOption) (*SendVerificationPhoneNumberResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SendVerificationPhoneNumberResponse)
+	err := c.cc.Invoke(ctx, User_SendVerificationPhoneNumber_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -262,12 +286,14 @@ type UserServer interface {
 	ChangeUsername(context.Context, *ChangeUsernameRequest) (*ChangeUsernameResponse, error)
 	ChangePassword(context.Context, *ChangePasswordRequest) (*ChangePasswordResponse, error)
 	ChangeEmail(context.Context, *ChangeEmailRequest) (*ChangeEmailResponse, error)
+	SendVerificationEmail(context.Context, *SendVerificationEmailRequest) (*SendVerificationEmailResponse, error)
 	VerifyEmail(context.Context, *VerifyEmailRequest) (*VerifyEmailResponse, error)
 	GetActiveEmails(context.Context, *GetActiveEmailsRequest) (*GetActiveEmailsResponse, error)
 	AddEmail(context.Context, *AddEmailRequest) (*AddEmailResponse, error)
 	DeleteEmail(context.Context, *DeleteEmailRequest) (*DeleteEmailResponse, error)
 	ChangePrimaryEmail(context.Context, *ChangePrimaryEmailRequest) (*ChangePrimaryEmailResponse, error)
 	ChangePhoneNumber(context.Context, *ChangePhoneNumberRequest) (*ChangePhoneNumberResponse, error)
+	SendVerificationPhoneNumber(context.Context, *SendVerificationPhoneNumberRequest) (*SendVerificationPhoneNumberResponse, error)
 	VerifyPhoneNumber(context.Context, *VerifyPhoneNumberRequest) (*VerifyPhoneNumberResponse, error)
 	GetActivePhoneNumbers(context.Context, *GetActivePhoneNumbersRequest) (*GetActivePhoneNumbersResponse, error)
 	ForgotPassword(context.Context, *ForgotPasswordRequest) (*ForgotPasswordResponse, error)
@@ -304,6 +330,9 @@ func (UnimplementedUserServer) ChangePassword(context.Context, *ChangePasswordRe
 func (UnimplementedUserServer) ChangeEmail(context.Context, *ChangeEmailRequest) (*ChangeEmailResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ChangeEmail not implemented")
 }
+func (UnimplementedUserServer) SendVerificationEmail(context.Context, *SendVerificationEmailRequest) (*SendVerificationEmailResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendVerificationEmail not implemented")
+}
 func (UnimplementedUserServer) VerifyEmail(context.Context, *VerifyEmailRequest) (*VerifyEmailResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method VerifyEmail not implemented")
 }
@@ -321,6 +350,9 @@ func (UnimplementedUserServer) ChangePrimaryEmail(context.Context, *ChangePrimar
 }
 func (UnimplementedUserServer) ChangePhoneNumber(context.Context, *ChangePhoneNumberRequest) (*ChangePhoneNumberResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ChangePhoneNumber not implemented")
+}
+func (UnimplementedUserServer) SendVerificationPhoneNumber(context.Context, *SendVerificationPhoneNumberRequest) (*SendVerificationPhoneNumberResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendVerificationPhoneNumber not implemented")
 }
 func (UnimplementedUserServer) VerifyPhoneNumber(context.Context, *VerifyPhoneNumberRequest) (*VerifyPhoneNumberResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method VerifyPhoneNumber not implemented")
@@ -484,6 +516,24 @@ func _User_ChangeEmail_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
+func _User_SendVerificationEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SendVerificationEmailRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).SendVerificationEmail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_SendVerificationEmail_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).SendVerificationEmail(ctx, req.(*SendVerificationEmailRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _User_VerifyEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(VerifyEmailRequest)
 	if err := dec(in); err != nil {
@@ -588,6 +638,24 @@ func _User_ChangePhoneNumber_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServer).ChangePhoneNumber(ctx, req.(*ChangePhoneNumberRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_SendVerificationPhoneNumber_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SendVerificationPhoneNumberRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).SendVerificationPhoneNumber(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_SendVerificationPhoneNumber_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).SendVerificationPhoneNumber(ctx, req.(*SendVerificationPhoneNumberRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -718,6 +786,10 @@ var User_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _User_ChangeEmail_Handler,
 		},
 		{
+			MethodName: "SendVerificationEmail",
+			Handler:    _User_SendVerificationEmail_Handler,
+		},
+		{
 			MethodName: "VerifyEmail",
 			Handler:    _User_VerifyEmail_Handler,
 		},
@@ -740,6 +812,10 @@ var User_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ChangePhoneNumber",
 			Handler:    _User_ChangePhoneNumber_Handler,
+		},
+		{
+			MethodName: "SendVerificationPhoneNumber",
+			Handler:    _User_SendVerificationPhoneNumber_Handler,
 		},
 		{
 			MethodName: "VerifyPhoneNumber",

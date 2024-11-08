@@ -13,12 +13,14 @@ service User {
   rpc ChangeUsername(ChangeUsernameRequest) returns (ChangeUsernameResponse) {}
   rpc ChangePassword(ChangePasswordRequest) returns (ChangePasswordResponse) {}
   rpc ChangeEmail(ChangeEmailRequest) returns (ChangeEmailResponse) {}
+  rpc SendVerificationEmail(SendVerificationEmailRequest) returns (SendVerificationEmailResponse) {}
   rpc VerifyEmail(VerifyEmailRequest) returns (VerifyEmailResponse) {}
   rpc GetActiveEmails(GetActiveEmailsRequest) returns (GetActiveEmailsResponse) {}
   rpc AddEmail(AddEmailRequest) returns (AddEmailResponse) {}
   rpc DeleteEmail(DeleteEmailRequest) returns (DeleteEmailResponse) {}
   rpc ChangePrimaryEmail(ChangePrimaryEmailRequest) returns (ChangePrimaryEmailResponse) {}
   rpc ChangePhoneNumber(ChangePhoneNumberRequest) returns (ChangePhoneNumberResponse) {}
+  rpc SendVerificationPhoneNumber(SendVerificationPhoneNumberRequest) returns (SendVerificationPhoneNumberResponse) {}
   rpc VerifyPhoneNumber(VerifyPhoneNumberRequest) returns (VerifyPhoneNumberResponse) {}
   rpc GetActivePhoneNumbers(GetActivePhoneNumbersRequest) returns (GetActivePhoneNumbersResponse) {}
   rpc ForgotPassword(ForgotPasswordRequest) returns (ForgotPasswordResponse) {}
@@ -103,6 +105,15 @@ message ChangeEmailResponse {
   string message = 2;
 }
 
+message SendVerificationEmailRequest {
+  string email = 1;
+}
+
+message SendVerificationEmailResponse {
+  uint32 code = 1;
+  string message = 2;
+}
+
 message VerifyEmailRequest {
   string token = 1;
 }
@@ -152,6 +163,15 @@ message ChangePhoneNumberRequest {
 }
 
 message ChangePhoneNumberResponse {
+  uint32 code = 1;
+  string message = 2;
+}
+
+message SendVerificationPhoneNumberRequest {
+  string phone_number = 1;
+}
+
+message SendVerificationPhoneNumberResponse {
   uint32 code = 1;
   string message = 2;
 }
