@@ -25,6 +25,7 @@ const (
 	Auth_CloseSessions_FullMethodName        = "/auth.Auth/CloseSessions"
 	Auth_AddPermission_FullMethodName        = "/auth.Auth/AddPermission"
 	Auth_RevokePermission_FullMethodName     = "/auth.Auth/RevokePermission"
+	Auth_GetPermission_FullMethodName        = "/auth.Auth/GetPermission"
 	Auth_GetPermissions_FullMethodName       = "/auth.Auth/GetPermissions"
 	Auth_AddRolePermission_FullMethodName    = "/auth.Auth/AddRolePermission"
 	Auth_RevokeRolePermission_FullMethodName = "/auth.Auth/RevokeRolePermission"
@@ -47,6 +48,7 @@ type AuthClient interface {
 	CloseSessions(ctx context.Context, in *CloseSessionsRequest, opts ...grpc.CallOption) (*CloseSessionsResponse, error)
 	AddPermission(ctx context.Context, in *AddPermissionRequest, opts ...grpc.CallOption) (*AddPermissionResponse, error)
 	RevokePermission(ctx context.Context, in *RevokePermissionRequest, opts ...grpc.CallOption) (*RevokePermissionResponse, error)
+	GetPermission(ctx context.Context, in *GetPermissionRequest, opts ...grpc.CallOption) (*GetPermissionResponse, error)
 	GetPermissions(ctx context.Context, in *GetPermissionsRequest, opts ...grpc.CallOption) (*GetPermissionsResponse, error)
 	AddRolePermission(ctx context.Context, in *AddRolePermissionRequest, opts ...grpc.CallOption) (*AddRolePermissionResponse, error)
 	RevokeRolePermission(ctx context.Context, in *RevokeRolePermissionRequest, opts ...grpc.CallOption) (*RevokeRolePermissionResponse, error)
@@ -121,6 +123,16 @@ func (c *authClient) RevokePermission(ctx context.Context, in *RevokePermissionR
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(RevokePermissionResponse)
 	err := c.cc.Invoke(ctx, Auth_RevokePermission_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authClient) GetPermission(ctx context.Context, in *GetPermissionRequest, opts ...grpc.CallOption) (*GetPermissionResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetPermissionResponse)
+	err := c.cc.Invoke(ctx, Auth_GetPermission_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -237,6 +249,7 @@ type AuthServer interface {
 	CloseSessions(context.Context, *CloseSessionsRequest) (*CloseSessionsResponse, error)
 	AddPermission(context.Context, *AddPermissionRequest) (*AddPermissionResponse, error)
 	RevokePermission(context.Context, *RevokePermissionRequest) (*RevokePermissionResponse, error)
+	GetPermission(context.Context, *GetPermissionRequest) (*GetPermissionResponse, error)
 	GetPermissions(context.Context, *GetPermissionsRequest) (*GetPermissionsResponse, error)
 	AddRolePermission(context.Context, *AddRolePermissionRequest) (*AddRolePermissionResponse, error)
 	RevokeRolePermission(context.Context, *RevokeRolePermissionRequest) (*RevokeRolePermissionResponse, error)
@@ -274,6 +287,9 @@ func (UnimplementedAuthServer) AddPermission(context.Context, *AddPermissionRequ
 }
 func (UnimplementedAuthServer) RevokePermission(context.Context, *RevokePermissionRequest) (*RevokePermissionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RevokePermission not implemented")
+}
+func (UnimplementedAuthServer) GetPermission(context.Context, *GetPermissionRequest) (*GetPermissionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPermission not implemented")
 }
 func (UnimplementedAuthServer) GetPermissions(context.Context, *GetPermissionsRequest) (*GetPermissionsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPermissions not implemented")
@@ -430,6 +446,24 @@ func _Auth_RevokePermission_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AuthServer).RevokePermission(ctx, req.(*RevokePermissionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Auth_GetPermission_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPermissionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).GetPermission(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_GetPermission_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).GetPermission(ctx, req.(*GetPermissionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -644,6 +678,10 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RevokePermission",
 			Handler:    _Auth_RevokePermission_Handler,
+		},
+		{
+			MethodName: "GetPermission",
+			Handler:    _Auth_GetPermission_Handler,
 		},
 		{
 			MethodName: "GetPermissions",

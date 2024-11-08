@@ -12,30 +12,32 @@ service User {
   rpc GetProfile(GetProfileRequest) returns (GetProfileResponse) {}
   rpc ChangeUsername(ChangeUsernameRequest) returns (ChangeUsernameResponse) {}
   rpc ChangePassword(ChangePasswordRequest) returns (ChangePasswordResponse) {}
-  rpc ChangeEmail(ChangeEmailRequest) returns (ChangeEmailResponse) {}
-  rpc SendVerificationEmail(SendVerificationEmailRequest) returns (SendVerificationEmailResponse) {}
-  rpc VerifyEmail(VerifyEmailRequest) returns (VerifyEmailResponse) {}
-  rpc GetActiveEmails(GetActiveEmailsRequest) returns (GetActiveEmailsResponse) {}
   rpc AddEmail(AddEmailRequest) returns (AddEmailResponse) {}
   rpc DeleteEmail(DeleteEmailRequest) returns (DeleteEmailResponse) {}
+  rpc SendVerificationEmail(SendVerificationEmailRequest) returns (SendVerificationEmailResponse) {}
+  rpc VerifyEmail(VerifyEmailRequest) returns (VerifyEmailResponse) {}
+  rpc GetPrimaryEmail(GetPrimaryEmailRequest) returns (GetPrimaryEmailResponse) {}
   rpc ChangePrimaryEmail(ChangePrimaryEmailRequest) returns (ChangePrimaryEmailResponse) {}
+  rpc GetPhoneNumber(GetPhoneNumberRequest) returns (GetPhoneNumberResponse) {}
   rpc ChangePhoneNumber(ChangePhoneNumberRequest) returns (ChangePhoneNumberResponse) {}
   rpc SendVerificationPhoneNumber(SendVerificationPhoneNumberRequest) returns (SendVerificationPhoneNumberResponse) {}
   rpc VerifyPhoneNumber(VerifyPhoneNumberRequest) returns (VerifyPhoneNumberResponse) {}
-  rpc GetActivePhoneNumbers(GetActivePhoneNumbersRequest) returns (GetActivePhoneNumbersResponse) {}
   rpc ForgotPassword(ForgotPasswordRequest) returns (ForgotPasswordResponse) {}
   rpc ResetPassword(ResetPasswordRequest) returns (ResetPasswordResponse) {}
   rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse) {}
 }
 
+message Profile{
+  string username = 1;
+  string first_name = 2;
+  string last_name = 3;
+  optional google.protobuf.Timestamp birth_date = 7;
+}
+
 message SignUpRequest {
   string email = 1;
   string password = 2;
-  string username = 3;
-  string first_name = 4;
-  string last_name = 5;
-  string phone_number = 6;
-  optional google.protobuf.Timestamp birth_date = 7;
+  Profile profile = 3;
 }
 
 message SignUpResponse {
@@ -51,7 +53,7 @@ message IsPasswordCorrectRequest {
 message IsPasswordCorrectResponse {
   uint32 code = 1;
   string message = 2;
-  string userIdentifier = 3;
+  string user_id = 3;
 }
 
 message UpdateProfileRequest {
@@ -71,10 +73,7 @@ message GetProfileRequest {}
 message GetProfileResponse {
   uint32 code = 1;
   string message = 2;
-  string username = 3;
-  string first_name = 4;
-  string last_name = 5;
-  google.protobuf.Timestamp birth_date = 6;
+  Profile profile = 3;
 }
 
 message ChangeUsernameRequest {
@@ -96,11 +95,20 @@ message ChangePasswordResponse {
   string message = 2;
 }
 
-message ChangeEmailRequest {
+message AddEmailRequest {
   string email = 1;
 }
 
-message ChangeEmailResponse {
+message AddEmailResponse {
+  uint32 code = 1;
+  string message = 2;
+}
+
+message DeleteEmailRequest {
+  string email = 1;
+}
+
+message DeleteEmailResponse {
   uint32 code = 1;
   string message = 2;
 }
@@ -123,32 +131,6 @@ message VerifyEmailResponse {
   string message = 2;
 }
 
-message GetActiveEmailsRequest {}
-
-message GetActiveEmailsResponse {
-  uint32 code = 1;
-  string message = 2;
-  repeated string emails = 3;
-}
-
-message AddEmailRequest {
-  string email = 1;
-}
-
-message AddEmailResponse {
-  uint32 code = 1;
-  string message = 2;
-}
-
-message DeleteEmailRequest {
-  string email = 1;
-}
-
-message DeleteEmailResponse {
-  uint32 code = 1;
-  string message = 2;
-}
-
 message ChangePrimaryEmailRequest {
   string email = 1;
 }
@@ -156,6 +138,14 @@ message ChangePrimaryEmailRequest {
 message ChangePrimaryEmailResponse {
   uint32 code = 1;
   string message = 2;
+}
+
+message GetPrimaryEmailRequest {}
+
+message GetPrimaryEmailResponse {
+  uint32 code = 1;
+  string message = 2;
+  string email = 3;
 }
 
 message ChangePhoneNumberRequest {
@@ -185,12 +175,12 @@ message VerifyPhoneNumberResponse {
   string message = 2;
 }
 
-message GetActivePhoneNumbersRequest {}
+message GetPhoneNumberRequest {}
 
-message GetActivePhoneNumbersResponse {
+message GetPhoneNumberResponse {
   uint32 code = 1;
   string message = 2;
-  repeated string phone_numbers = 3;
+  string phone_number = 3;
 }
 
 message ForgotPasswordRequest {

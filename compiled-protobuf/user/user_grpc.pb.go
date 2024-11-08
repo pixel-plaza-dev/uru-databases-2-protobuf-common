@@ -25,17 +25,16 @@ const (
 	User_GetProfile_FullMethodName                  = "/user.User/GetProfile"
 	User_ChangeUsername_FullMethodName              = "/user.User/ChangeUsername"
 	User_ChangePassword_FullMethodName              = "/user.User/ChangePassword"
-	User_ChangeEmail_FullMethodName                 = "/user.User/ChangeEmail"
-	User_SendVerificationEmail_FullMethodName       = "/user.User/SendVerificationEmail"
-	User_VerifyEmail_FullMethodName                 = "/user.User/VerifyEmail"
-	User_GetActiveEmails_FullMethodName             = "/user.User/GetActiveEmails"
 	User_AddEmail_FullMethodName                    = "/user.User/AddEmail"
 	User_DeleteEmail_FullMethodName                 = "/user.User/DeleteEmail"
+	User_SendVerificationEmail_FullMethodName       = "/user.User/SendVerificationEmail"
+	User_VerifyEmail_FullMethodName                 = "/user.User/VerifyEmail"
+	User_GetPrimaryEmail_FullMethodName             = "/user.User/GetPrimaryEmail"
 	User_ChangePrimaryEmail_FullMethodName          = "/user.User/ChangePrimaryEmail"
+	User_GetPhoneNumber_FullMethodName              = "/user.User/GetPhoneNumber"
 	User_ChangePhoneNumber_FullMethodName           = "/user.User/ChangePhoneNumber"
 	User_SendVerificationPhoneNumber_FullMethodName = "/user.User/SendVerificationPhoneNumber"
 	User_VerifyPhoneNumber_FullMethodName           = "/user.User/VerifyPhoneNumber"
-	User_GetActivePhoneNumbers_FullMethodName       = "/user.User/GetActivePhoneNumbers"
 	User_ForgotPassword_FullMethodName              = "/user.User/ForgotPassword"
 	User_ResetPassword_FullMethodName               = "/user.User/ResetPassword"
 	User_DeleteUser_FullMethodName                  = "/user.User/DeleteUser"
@@ -51,17 +50,16 @@ type UserClient interface {
 	GetProfile(ctx context.Context, in *GetProfileRequest, opts ...grpc.CallOption) (*GetProfileResponse, error)
 	ChangeUsername(ctx context.Context, in *ChangeUsernameRequest, opts ...grpc.CallOption) (*ChangeUsernameResponse, error)
 	ChangePassword(ctx context.Context, in *ChangePasswordRequest, opts ...grpc.CallOption) (*ChangePasswordResponse, error)
-	ChangeEmail(ctx context.Context, in *ChangeEmailRequest, opts ...grpc.CallOption) (*ChangeEmailResponse, error)
-	SendVerificationEmail(ctx context.Context, in *SendVerificationEmailRequest, opts ...grpc.CallOption) (*SendVerificationEmailResponse, error)
-	VerifyEmail(ctx context.Context, in *VerifyEmailRequest, opts ...grpc.CallOption) (*VerifyEmailResponse, error)
-	GetActiveEmails(ctx context.Context, in *GetActiveEmailsRequest, opts ...grpc.CallOption) (*GetActiveEmailsResponse, error)
 	AddEmail(ctx context.Context, in *AddEmailRequest, opts ...grpc.CallOption) (*AddEmailResponse, error)
 	DeleteEmail(ctx context.Context, in *DeleteEmailRequest, opts ...grpc.CallOption) (*DeleteEmailResponse, error)
+	SendVerificationEmail(ctx context.Context, in *SendVerificationEmailRequest, opts ...grpc.CallOption) (*SendVerificationEmailResponse, error)
+	VerifyEmail(ctx context.Context, in *VerifyEmailRequest, opts ...grpc.CallOption) (*VerifyEmailResponse, error)
+	GetPrimaryEmail(ctx context.Context, in *GetPrimaryEmailRequest, opts ...grpc.CallOption) (*GetPrimaryEmailResponse, error)
 	ChangePrimaryEmail(ctx context.Context, in *ChangePrimaryEmailRequest, opts ...grpc.CallOption) (*ChangePrimaryEmailResponse, error)
+	GetPhoneNumber(ctx context.Context, in *GetPhoneNumberRequest, opts ...grpc.CallOption) (*GetPhoneNumberResponse, error)
 	ChangePhoneNumber(ctx context.Context, in *ChangePhoneNumberRequest, opts ...grpc.CallOption) (*ChangePhoneNumberResponse, error)
 	SendVerificationPhoneNumber(ctx context.Context, in *SendVerificationPhoneNumberRequest, opts ...grpc.CallOption) (*SendVerificationPhoneNumberResponse, error)
 	VerifyPhoneNumber(ctx context.Context, in *VerifyPhoneNumberRequest, opts ...grpc.CallOption) (*VerifyPhoneNumberResponse, error)
-	GetActivePhoneNumbers(ctx context.Context, in *GetActivePhoneNumbersRequest, opts ...grpc.CallOption) (*GetActivePhoneNumbersResponse, error)
 	ForgotPassword(ctx context.Context, in *ForgotPasswordRequest, opts ...grpc.CallOption) (*ForgotPasswordResponse, error)
 	ResetPassword(ctx context.Context, in *ResetPasswordRequest, opts ...grpc.CallOption) (*ResetPasswordResponse, error)
 	DeleteUser(ctx context.Context, in *DeleteUserRequest, opts ...grpc.CallOption) (*DeleteUserResponse, error)
@@ -135,10 +133,20 @@ func (c *userClient) ChangePassword(ctx context.Context, in *ChangePasswordReque
 	return out, nil
 }
 
-func (c *userClient) ChangeEmail(ctx context.Context, in *ChangeEmailRequest, opts ...grpc.CallOption) (*ChangeEmailResponse, error) {
+func (c *userClient) AddEmail(ctx context.Context, in *AddEmailRequest, opts ...grpc.CallOption) (*AddEmailResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ChangeEmailResponse)
-	err := c.cc.Invoke(ctx, User_ChangeEmail_FullMethodName, in, out, cOpts...)
+	out := new(AddEmailResponse)
+	err := c.cc.Invoke(ctx, User_AddEmail_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) DeleteEmail(ctx context.Context, in *DeleteEmailRequest, opts ...grpc.CallOption) (*DeleteEmailResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteEmailResponse)
+	err := c.cc.Invoke(ctx, User_DeleteEmail_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -165,30 +173,10 @@ func (c *userClient) VerifyEmail(ctx context.Context, in *VerifyEmailRequest, op
 	return out, nil
 }
 
-func (c *userClient) GetActiveEmails(ctx context.Context, in *GetActiveEmailsRequest, opts ...grpc.CallOption) (*GetActiveEmailsResponse, error) {
+func (c *userClient) GetPrimaryEmail(ctx context.Context, in *GetPrimaryEmailRequest, opts ...grpc.CallOption) (*GetPrimaryEmailResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetActiveEmailsResponse)
-	err := c.cc.Invoke(ctx, User_GetActiveEmails_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *userClient) AddEmail(ctx context.Context, in *AddEmailRequest, opts ...grpc.CallOption) (*AddEmailResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(AddEmailResponse)
-	err := c.cc.Invoke(ctx, User_AddEmail_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *userClient) DeleteEmail(ctx context.Context, in *DeleteEmailRequest, opts ...grpc.CallOption) (*DeleteEmailResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(DeleteEmailResponse)
-	err := c.cc.Invoke(ctx, User_DeleteEmail_FullMethodName, in, out, cOpts...)
+	out := new(GetPrimaryEmailResponse)
+	err := c.cc.Invoke(ctx, User_GetPrimaryEmail_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -199,6 +187,16 @@ func (c *userClient) ChangePrimaryEmail(ctx context.Context, in *ChangePrimaryEm
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ChangePrimaryEmailResponse)
 	err := c.cc.Invoke(ctx, User_ChangePrimaryEmail_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) GetPhoneNumber(ctx context.Context, in *GetPhoneNumberRequest, opts ...grpc.CallOption) (*GetPhoneNumberResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetPhoneNumberResponse)
+	err := c.cc.Invoke(ctx, User_GetPhoneNumber_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -229,16 +227,6 @@ func (c *userClient) VerifyPhoneNumber(ctx context.Context, in *VerifyPhoneNumbe
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(VerifyPhoneNumberResponse)
 	err := c.cc.Invoke(ctx, User_VerifyPhoneNumber_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *userClient) GetActivePhoneNumbers(ctx context.Context, in *GetActivePhoneNumbersRequest, opts ...grpc.CallOption) (*GetActivePhoneNumbersResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetActivePhoneNumbersResponse)
-	err := c.cc.Invoke(ctx, User_GetActivePhoneNumbers_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -285,17 +273,16 @@ type UserServer interface {
 	GetProfile(context.Context, *GetProfileRequest) (*GetProfileResponse, error)
 	ChangeUsername(context.Context, *ChangeUsernameRequest) (*ChangeUsernameResponse, error)
 	ChangePassword(context.Context, *ChangePasswordRequest) (*ChangePasswordResponse, error)
-	ChangeEmail(context.Context, *ChangeEmailRequest) (*ChangeEmailResponse, error)
-	SendVerificationEmail(context.Context, *SendVerificationEmailRequest) (*SendVerificationEmailResponse, error)
-	VerifyEmail(context.Context, *VerifyEmailRequest) (*VerifyEmailResponse, error)
-	GetActiveEmails(context.Context, *GetActiveEmailsRequest) (*GetActiveEmailsResponse, error)
 	AddEmail(context.Context, *AddEmailRequest) (*AddEmailResponse, error)
 	DeleteEmail(context.Context, *DeleteEmailRequest) (*DeleteEmailResponse, error)
+	SendVerificationEmail(context.Context, *SendVerificationEmailRequest) (*SendVerificationEmailResponse, error)
+	VerifyEmail(context.Context, *VerifyEmailRequest) (*VerifyEmailResponse, error)
+	GetPrimaryEmail(context.Context, *GetPrimaryEmailRequest) (*GetPrimaryEmailResponse, error)
 	ChangePrimaryEmail(context.Context, *ChangePrimaryEmailRequest) (*ChangePrimaryEmailResponse, error)
+	GetPhoneNumber(context.Context, *GetPhoneNumberRequest) (*GetPhoneNumberResponse, error)
 	ChangePhoneNumber(context.Context, *ChangePhoneNumberRequest) (*ChangePhoneNumberResponse, error)
 	SendVerificationPhoneNumber(context.Context, *SendVerificationPhoneNumberRequest) (*SendVerificationPhoneNumberResponse, error)
 	VerifyPhoneNumber(context.Context, *VerifyPhoneNumberRequest) (*VerifyPhoneNumberResponse, error)
-	GetActivePhoneNumbers(context.Context, *GetActivePhoneNumbersRequest) (*GetActivePhoneNumbersResponse, error)
 	ForgotPassword(context.Context, *ForgotPasswordRequest) (*ForgotPasswordResponse, error)
 	ResetPassword(context.Context, *ResetPasswordRequest) (*ResetPasswordResponse, error)
 	DeleteUser(context.Context, *DeleteUserRequest) (*DeleteUserResponse, error)
@@ -327,8 +314,11 @@ func (UnimplementedUserServer) ChangeUsername(context.Context, *ChangeUsernameRe
 func (UnimplementedUserServer) ChangePassword(context.Context, *ChangePasswordRequest) (*ChangePasswordResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ChangePassword not implemented")
 }
-func (UnimplementedUserServer) ChangeEmail(context.Context, *ChangeEmailRequest) (*ChangeEmailResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ChangeEmail not implemented")
+func (UnimplementedUserServer) AddEmail(context.Context, *AddEmailRequest) (*AddEmailResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddEmail not implemented")
+}
+func (UnimplementedUserServer) DeleteEmail(context.Context, *DeleteEmailRequest) (*DeleteEmailResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteEmail not implemented")
 }
 func (UnimplementedUserServer) SendVerificationEmail(context.Context, *SendVerificationEmailRequest) (*SendVerificationEmailResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SendVerificationEmail not implemented")
@@ -336,17 +326,14 @@ func (UnimplementedUserServer) SendVerificationEmail(context.Context, *SendVerif
 func (UnimplementedUserServer) VerifyEmail(context.Context, *VerifyEmailRequest) (*VerifyEmailResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method VerifyEmail not implemented")
 }
-func (UnimplementedUserServer) GetActiveEmails(context.Context, *GetActiveEmailsRequest) (*GetActiveEmailsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetActiveEmails not implemented")
-}
-func (UnimplementedUserServer) AddEmail(context.Context, *AddEmailRequest) (*AddEmailResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AddEmail not implemented")
-}
-func (UnimplementedUserServer) DeleteEmail(context.Context, *DeleteEmailRequest) (*DeleteEmailResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteEmail not implemented")
+func (UnimplementedUserServer) GetPrimaryEmail(context.Context, *GetPrimaryEmailRequest) (*GetPrimaryEmailResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPrimaryEmail not implemented")
 }
 func (UnimplementedUserServer) ChangePrimaryEmail(context.Context, *ChangePrimaryEmailRequest) (*ChangePrimaryEmailResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ChangePrimaryEmail not implemented")
+}
+func (UnimplementedUserServer) GetPhoneNumber(context.Context, *GetPhoneNumberRequest) (*GetPhoneNumberResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPhoneNumber not implemented")
 }
 func (UnimplementedUserServer) ChangePhoneNumber(context.Context, *ChangePhoneNumberRequest) (*ChangePhoneNumberResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ChangePhoneNumber not implemented")
@@ -356,9 +343,6 @@ func (UnimplementedUserServer) SendVerificationPhoneNumber(context.Context, *Sen
 }
 func (UnimplementedUserServer) VerifyPhoneNumber(context.Context, *VerifyPhoneNumberRequest) (*VerifyPhoneNumberResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method VerifyPhoneNumber not implemented")
-}
-func (UnimplementedUserServer) GetActivePhoneNumbers(context.Context, *GetActivePhoneNumbersRequest) (*GetActivePhoneNumbersResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetActivePhoneNumbers not implemented")
 }
 func (UnimplementedUserServer) ForgotPassword(context.Context, *ForgotPasswordRequest) (*ForgotPasswordResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ForgotPassword not implemented")
@@ -498,20 +482,38 @@ func _User_ChangePassword_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
-func _User_ChangeEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ChangeEmailRequest)
+func _User_AddEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddEmailRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServer).ChangeEmail(ctx, in)
+		return srv.(UserServer).AddEmail(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: User_ChangeEmail_FullMethodName,
+		FullMethod: User_AddEmail_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).ChangeEmail(ctx, req.(*ChangeEmailRequest))
+		return srv.(UserServer).AddEmail(ctx, req.(*AddEmailRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_DeleteEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteEmailRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).DeleteEmail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_DeleteEmail_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).DeleteEmail(ctx, req.(*DeleteEmailRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -552,56 +554,20 @@ func _User_VerifyEmail_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
-func _User_GetActiveEmails_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetActiveEmailsRequest)
+func _User_GetPrimaryEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPrimaryEmailRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServer).GetActiveEmails(ctx, in)
+		return srv.(UserServer).GetPrimaryEmail(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: User_GetActiveEmails_FullMethodName,
+		FullMethod: User_GetPrimaryEmail_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).GetActiveEmails(ctx, req.(*GetActiveEmailsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _User_AddEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AddEmailRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(UserServer).AddEmail(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: User_AddEmail_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).AddEmail(ctx, req.(*AddEmailRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _User_DeleteEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteEmailRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(UserServer).DeleteEmail(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: User_DeleteEmail_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).DeleteEmail(ctx, req.(*DeleteEmailRequest))
+		return srv.(UserServer).GetPrimaryEmail(ctx, req.(*GetPrimaryEmailRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -620,6 +586,24 @@ func _User_ChangePrimaryEmail_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServer).ChangePrimaryEmail(ctx, req.(*ChangePrimaryEmailRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_GetPhoneNumber_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPhoneNumberRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).GetPhoneNumber(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_GetPhoneNumber_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).GetPhoneNumber(ctx, req.(*GetPhoneNumberRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -674,24 +658,6 @@ func _User_VerifyPhoneNumber_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServer).VerifyPhoneNumber(ctx, req.(*VerifyPhoneNumberRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _User_GetActivePhoneNumbers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetActivePhoneNumbersRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(UserServer).GetActivePhoneNumbers(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: User_GetActivePhoneNumbers_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).GetActivePhoneNumbers(ctx, req.(*GetActivePhoneNumbersRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -782,8 +748,12 @@ var User_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _User_ChangePassword_Handler,
 		},
 		{
-			MethodName: "ChangeEmail",
-			Handler:    _User_ChangeEmail_Handler,
+			MethodName: "AddEmail",
+			Handler:    _User_AddEmail_Handler,
+		},
+		{
+			MethodName: "DeleteEmail",
+			Handler:    _User_DeleteEmail_Handler,
 		},
 		{
 			MethodName: "SendVerificationEmail",
@@ -794,20 +764,16 @@ var User_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _User_VerifyEmail_Handler,
 		},
 		{
-			MethodName: "GetActiveEmails",
-			Handler:    _User_GetActiveEmails_Handler,
-		},
-		{
-			MethodName: "AddEmail",
-			Handler:    _User_AddEmail_Handler,
-		},
-		{
-			MethodName: "DeleteEmail",
-			Handler:    _User_DeleteEmail_Handler,
+			MethodName: "GetPrimaryEmail",
+			Handler:    _User_GetPrimaryEmail_Handler,
 		},
 		{
 			MethodName: "ChangePrimaryEmail",
 			Handler:    _User_ChangePrimaryEmail_Handler,
+		},
+		{
+			MethodName: "GetPhoneNumber",
+			Handler:    _User_GetPhoneNumber_Handler,
 		},
 		{
 			MethodName: "ChangePhoneNumber",
@@ -820,10 +786,6 @@ var User_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "VerifyPhoneNumber",
 			Handler:    _User_VerifyPhoneNumber_Handler,
-		},
-		{
-			MethodName: "GetActivePhoneNumbers",
-			Handler:    _User_GetActivePhoneNumbers_Handler,
 		},
 		{
 			MethodName: "ForgotPassword",
