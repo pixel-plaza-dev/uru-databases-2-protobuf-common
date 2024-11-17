@@ -205,7 +205,7 @@ message GetPhoneNumberResponse {
 }
 
 message ForgotPasswordRequest {
-  string email = 1;
+  string username = 1;
 }
 
 message ForgotPasswordResponse {
