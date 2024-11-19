@@ -3,6 +3,7 @@ package auth
 // MethodsToIntercept is the list of methods to intercept
 var MethodsToIntercept = map[string]bool{
 	"LogIn":                false,
+	"IsAccessTokenValid":   true,
 	"RefreshToken":         true,
 	"LogOut":               true,
 	"GetSessions":          true,

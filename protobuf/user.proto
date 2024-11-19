@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package user;
 
-option go_package = "compiled-protobuf/user";
+option go_package = "compiled/user";
 import "google/protobuf/timestamp.proto";
 
 service User {
