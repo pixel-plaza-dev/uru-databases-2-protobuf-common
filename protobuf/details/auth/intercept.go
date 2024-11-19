@@ -4,6 +4,7 @@ package auth
 var MethodsToIntercept = map[string]bool{
 	"LogIn":                false,
 	"IsAccessTokenValid":   true,
+	"IsRefreshTokenValid":  true,
 	"RefreshToken":         true,
 	"LogOut":               true,
 	"GetSessions":          true,

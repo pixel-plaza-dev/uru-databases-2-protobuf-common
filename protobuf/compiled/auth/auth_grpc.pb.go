@@ -21,6 +21,7 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	Auth_LogIn_FullMethodName                = "/auth.Auth/LogIn"
 	Auth_IsAccessTokenValid_FullMethodName   = "/auth.Auth/IsAccessTokenValid"
+	Auth_IsRefreshTokenValid_FullMethodName  = "/auth.Auth/IsRefreshTokenValid"
 	Auth_RefreshToken_FullMethodName         = "/auth.Auth/RefreshToken"
 	Auth_LogOut_FullMethodName               = "/auth.Auth/LogOut"
 	Auth_GetSessions_FullMethodName          = "/auth.Auth/GetSessions"
@@ -46,6 +47,7 @@ const (
 type AuthClient interface {
 	LogIn(ctx context.Context, in *LogInRequest, opts ...grpc.CallOption) (*LogInResponse, error)
 	IsAccessTokenValid(ctx context.Context, in *IsAccessTokenValidRequest, opts ...grpc.CallOption) (*IsAccessTokenValidResponse, error)
+	IsRefreshTokenValid(ctx context.Context, in *IsRefreshTokenValidRequest, opts ...grpc.CallOption) (*IsRefreshTokenValidResponse, error)
 	RefreshToken(ctx context.Context, in *RefreshTokenRequest, opts ...grpc.CallOption) (*RefreshTokenResponse, error)
 	LogOut(ctx context.Context, in *LogOutRequest, opts ...grpc.CallOption) (*LogOutResponse, error)
 	GetSessions(ctx context.Context, in *GetSessionsRequest, opts ...grpc.CallOption) (*GetSessionsResponse, error)
@@ -87,6 +89,16 @@ func (c *authClient) IsAccessTokenValid(ctx context.Context, in *IsAccessTokenVa
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(IsAccessTokenValidResponse)
 	err := c.cc.Invoke(ctx, Auth_IsAccessTokenValid_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authClient) IsRefreshTokenValid(ctx context.Context, in *IsRefreshTokenValidRequest, opts ...grpc.CallOption) (*IsRefreshTokenValidResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(IsRefreshTokenValidResponse)
+	err := c.cc.Invoke(ctx, Auth_IsRefreshTokenValid_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -269,6 +281,7 @@ func (c *authClient) GetUserRoles(ctx context.Context, in *GetUserRolesRequest, 
 type AuthServer interface {
 	LogIn(context.Context, *LogInRequest) (*LogInResponse, error)
 	IsAccessTokenValid(context.Context, *IsAccessTokenValidRequest) (*IsAccessTokenValidResponse, error)
+	IsRefreshTokenValid(context.Context, *IsRefreshTokenValidRequest) (*IsRefreshTokenValidResponse, error)
 	RefreshToken(context.Context, *RefreshTokenRequest) (*RefreshTokenResponse, error)
 	LogOut(context.Context, *LogOutRequest) (*LogOutResponse, error)
 	GetSessions(context.Context, *GetSessionsRequest) (*GetSessionsResponse, error)
@@ -301,6 +314,9 @@ func (UnimplementedAuthServer) LogIn(context.Context, *LogInRequest) (*LogInResp
 }
 func (UnimplementedAuthServer) IsAccessTokenValid(context.Context, *IsAccessTokenValidRequest) (*IsAccessTokenValidResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method IsAccessTokenValid not implemented")
+}
+func (UnimplementedAuthServer) IsRefreshTokenValid(context.Context, *IsRefreshTokenValidRequest) (*IsRefreshTokenValidResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method IsRefreshTokenValid not implemented")
 }
 func (UnimplementedAuthServer) RefreshToken(context.Context, *RefreshTokenRequest) (*RefreshTokenResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RefreshToken not implemented")
@@ -406,6 +422,24 @@ func _Auth_IsAccessTokenValid_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AuthServer).IsAccessTokenValid(ctx, req.(*IsAccessTokenValidRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Auth_IsRefreshTokenValid_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IsRefreshTokenValidRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).IsRefreshTokenValid(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_IsRefreshTokenValid_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).IsRefreshTokenValid(ctx, req.(*IsRefreshTokenValidRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -730,6 +764,10 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "IsAccessTokenValid",
 			Handler:    _Auth_IsAccessTokenValid_Handler,
+		},
+		{
+			MethodName: "IsRefreshTokenValid",
+			Handler:    _Auth_IsRefreshTokenValid_Handler,
 		},
 		{
 			MethodName: "RefreshToken",

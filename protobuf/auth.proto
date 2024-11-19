@@ -7,6 +7,7 @@ option go_package = "compiled/auth";
 service Auth {
   rpc LogIn(LogInRequest) returns (LogInResponse) {}
   rpc IsAccessTokenValid(IsAccessTokenValidRequest) returns (IsAccessTokenValidResponse) {}
+  rpc IsRefreshTokenValid(IsRefreshTokenValidRequest) returns (IsRefreshTokenValidResponse) {}
   rpc RefreshToken(RefreshTokenRequest) returns (RefreshTokenResponse) {}
   rpc LogOut(LogOutRequest) returns (LogOutResponse) {}
   rpc GetSessions(GetSessionsRequest) returns (GetSessionsResponse) {}
@@ -43,6 +44,15 @@ message IsAccessTokenValidRequest {
 }
 
 message IsAccessTokenValidResponse {
+  uint32 code = 1;
+  string message = 2;
+}
+
+message IsRefreshTokenValidRequest {
+  string refresh_token = 1;
+}
+
+message IsRefreshTokenValidResponse {
   uint32 code = 1;
   string message = 2;
 }
