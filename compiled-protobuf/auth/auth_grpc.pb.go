@@ -20,6 +20,7 @@ const _ = grpc.SupportPackageIsVersion9
 
 const (
 	Auth_LogIn_FullMethodName                = "/auth.Auth/LogIn"
+	Auth_IsAccessTokenValid_FullMethodName   = "/auth.Auth/IsAccessTokenValid"
 	Auth_RefreshToken_FullMethodName         = "/auth.Auth/RefreshToken"
 	Auth_LogOut_FullMethodName               = "/auth.Auth/LogOut"
 	Auth_GetSessions_FullMethodName          = "/auth.Auth/GetSessions"
@@ -44,6 +45,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AuthClient interface {
 	LogIn(ctx context.Context, in *LogInRequest, opts ...grpc.CallOption) (*LogInResponse, error)
+	IsAccessTokenValid(ctx context.Context, in *IsAccessTokenValidRequest, opts ...grpc.CallOption) (*IsAccessTokenValidResponse, error)
 	RefreshToken(ctx context.Context, in *RefreshTokenRequest, opts ...grpc.CallOption) (*RefreshTokenResponse, error)
 	LogOut(ctx context.Context, in *LogOutRequest, opts ...grpc.CallOption) (*LogOutResponse, error)
 	GetSessions(ctx context.Context, in *GetSessionsRequest, opts ...grpc.CallOption) (*GetSessionsResponse, error)
@@ -75,6 +77,16 @@ func (c *authClient) LogIn(ctx context.Context, in *LogInRequest, opts ...grpc.C
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(LogInResponse)
 	err := c.cc.Invoke(ctx, Auth_LogIn_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authClient) IsAccessTokenValid(ctx context.Context, in *IsAccessTokenValidRequest, opts ...grpc.CallOption) (*IsAccessTokenValidResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(IsAccessTokenValidResponse)
+	err := c.cc.Invoke(ctx, Auth_IsAccessTokenValid_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -256,6 +268,7 @@ func (c *authClient) GetUserRoles(ctx context.Context, in *GetUserRolesRequest, 
 // for forward compatibility.
 type AuthServer interface {
 	LogIn(context.Context, *LogInRequest) (*LogInResponse, error)
+	IsAccessTokenValid(context.Context, *IsAccessTokenValidRequest) (*IsAccessTokenValidResponse, error)
 	RefreshToken(context.Context, *RefreshTokenRequest) (*RefreshTokenResponse, error)
 	LogOut(context.Context, *LogOutRequest) (*LogOutResponse, error)
 	GetSessions(context.Context, *GetSessionsRequest) (*GetSessionsResponse, error)
@@ -285,6 +298,9 @@ type UnimplementedAuthServer struct{}
 
 func (UnimplementedAuthServer) LogIn(context.Context, *LogInRequest) (*LogInResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LogIn not implemented")
+}
+func (UnimplementedAuthServer) IsAccessTokenValid(context.Context, *IsAccessTokenValidRequest) (*IsAccessTokenValidResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method IsAccessTokenValid not implemented")
 }
 func (UnimplementedAuthServer) RefreshToken(context.Context, *RefreshTokenRequest) (*RefreshTokenResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RefreshToken not implemented")
@@ -372,6 +388,24 @@ func _Auth_LogIn_Handler(srv interface{}, ctx context.Context, dec func(interfac
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AuthServer).LogIn(ctx, req.(*LogInRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Auth_IsAccessTokenValid_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IsAccessTokenValidRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).IsAccessTokenValid(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_IsAccessTokenValid_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).IsAccessTokenValid(ctx, req.(*IsAccessTokenValidRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -692,6 +726,10 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "LogIn",
 			Handler:    _Auth_LogIn_Handler,
+		},
+		{
+			MethodName: "IsAccessTokenValid",
+			Handler:    _Auth_IsAccessTokenValid_Handler,
 		},
 		{
 			MethodName: "RefreshToken",

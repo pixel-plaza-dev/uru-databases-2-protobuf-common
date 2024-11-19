@@ -6,6 +6,7 @@ option go_package = "compiled-protobuf/auth";
 
 service Auth {
   rpc LogIn(LogInRequest) returns (LogInResponse) {}
+  rpc IsAccessTokenValid(IsAccessTokenValidRequest) returns (IsAccessTokenValidResponse) {}
   rpc RefreshToken(RefreshTokenRequest) returns (RefreshTokenResponse) {}
   rpc LogOut(LogOutRequest) returns (LogOutResponse) {}
   rpc GetSessions(GetSessionsRequest) returns (GetSessionsResponse) {}
@@ -35,6 +36,15 @@ message LogInResponse {
   string message = 2;
   string access_token = 3;
   string refresh_token = 4;
+}
+
+message IsAccessTokenValidRequest {
+  string access_token = 1;
+}
+
+message IsAccessTokenValidResponse {
+  uint32 code = 1;
+  string message = 2;
 }
 
 message RefreshTokenRequest {
