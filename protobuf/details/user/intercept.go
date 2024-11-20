@@ -2,8 +2,8 @@ package user
 
 import "github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/protobuf/details"
 
-// MethodsToIntercept is a map of methods to not intercept
-var MethodsToIntercept = map[details.GRPCMethod]details.Interception{
+// GRPCInterceptions is the list of gRPC methods to intercept
+var GRPCInterceptions = map[details.GRPCMethod]details.Interception{
 	SignUp:                details.None,
 	IsPasswordCorrect:     details.None,
 	UpdateProfile:         details.AccessToken,
