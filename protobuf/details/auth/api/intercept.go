@@ -6,60 +6,60 @@ import (
 )
 
 // RESTMap is the map of the Rest API endpoints to the auth service gRPC methods
-var RESTMap = map[*types.RESTEndpoint]map[types.RESTMethod]types.GRPCMethod{
-	LogIn: {
+var RESTMap = map[string]map[types.RESTMethod]types.GRPCMethod{
+	LogIn.String(): {
 		types.POST: detailsauth.LogIn,
 	},
-	RefreshToken: {
+	RefreshToken.String(): {
 		types.POST: detailsauth.RefreshToken,
 	},
-	LogOut: {
+	LogOut.String(): {
 		types.POST: detailsauth.LogOut,
 	},
-	Sessions: {
+	Sessions.String(): {
 		types.GET: detailsauth.GetSessions,
 	},
-	CloseSessionByToken: {
+	CloseSessionByToken.String(): {
 		types.POST: detailsauth.CloseSession,
 	},
-	CloseSessions: {
+	CloseSessions.String(): {
 		types.POST: detailsauth.CloseSessions,
 	},
-	Permission: {
+	Permission.String(): {
 		types.POST: detailsauth.AddPermission,
 	},
-	PermissionById: {
+	PermissionById.String(): {
 		types.GET:    detailsauth.GetPermission,
 		types.DELETE: detailsauth.RevokePermission,
 	},
-	Permissions: {
+	Permissions.String(): {
 		types.GET: detailsauth.GetPermissions,
 	},
-	RolePermission: {
+	RolePermission.String(): {
 		types.POST: detailsauth.AddRolePermission,
 	},
-	RolePermissionById: {
+	RolePermissionById.String(): {
 		types.DELETE: detailsauth.RevokeRolePermission,
 	},
-	RolePermissions: {
+	RolePermissions.String(): {
 		types.GET: detailsauth.GetRolePermissions,
 	},
-	Role: {
+	Role.String(): {
 		types.POST: detailsauth.AddRole,
 	},
-	RoleById: {
+	RoleById.String(): {
 		types.DELETE: detailsauth.RevokeRole,
 	},
-	Roles: {
+	Roles.String(): {
 		types.GET: detailsauth.GetRoles,
 	},
-	UserRole: {
+	UserRole.String(): {
 		types.POST: detailsauth.AddUserRole,
 	},
-	UserRoleById: {
+	UserRoleById.String(): {
 		types.DELETE: detailsauth.RevokeUserRole,
 	},
-	UserRoles: {
+	UserRoles.String(): {
 		types.GET: detailsauth.GetUserRoles,
 	},
 }

@@ -6,57 +6,57 @@ import (
 )
 
 // RESTMap is the map of the Rest API endpoints to the user service gRPC methods
-var RESTMap = map[*types.RESTEndpoint]map[types.RESTMethod]types.GRPCMethod{
-	SignUp: {
+var RESTMap = map[string]map[types.RESTMethod]types.GRPCMethod{
+	SignUp.String(): {
 		types.POST: detailsuser.SignUp,
 	},
-	Profile: {
+	Profile.String(): {
 		types.GET:   detailsuser.GetProfile,
 		types.PATCH: detailsuser.UpdateProfile,
 	},
-	FullProfile: {
+	FullProfile.String(): {
 		types.GET: detailsuser.GetFullProfile,
 	},
-	Password: {
+	Password.String(): {
 		types.PUT: detailsuser.ChangePassword,
 	},
-	Username: {
+	Username.String(): {
 		types.PUT: detailsuser.ChangeUsername,
 	},
-	Email: {
+	Email.String(): {
 		types.GET:  detailsuser.GetPrimaryEmail,
 		types.PUT:  detailsuser.ChangePrimaryEmail,
 		types.POST: detailsuser.AddEmail,
 	},
-	EmailByMail: {
+	EmailByMail.String(): {
 		types.DELETE: detailsuser.DeleteEmail,
 	},
-	Emails: {
+	Emails.String(): {
 		types.GET: detailsuser.GetActiveEmails,
 	},
-	SendVerificationEmail: {
+	SendVerificationEmail.String(): {
 		types.POST: detailsuser.SendVerificationEmail,
 	},
-	VerifyEmailByToken: {
+	VerifyEmailByToken.String(): {
 		types.POST: detailsuser.VerifyEmail,
 	},
-	PhoneNumber: {
+	PhoneNumber.String(): {
 		types.PUT: detailsuser.ChangePhoneNumber,
 		types.GET: detailsuser.GetPhoneNumber,
 	},
-	SendVerificationSMS: {
+	SendVerificationSMS.String(): {
 		types.POST: detailsuser.SendVerificationSMS,
 	},
-	VerifyPhoneNumberByToken: {
+	VerifyPhoneNumberByToken.String(): {
 		types.POST: detailsuser.VerifyPhoneNumber,
 	},
-	ForgotPassword: {
+	ForgotPassword.String(): {
 		types.POST: detailsuser.ForgotPassword,
 	},
-	ResetPasswordByToken: {
+	ResetPasswordByToken.String(): {
 		types.POST: detailsuser.ResetPassword,
 	},
-	DeleteAccount: {
+	DeleteAccount.String(): {
 		types.DELETE: detailsuser.DeleteUser,
 	},
 }
