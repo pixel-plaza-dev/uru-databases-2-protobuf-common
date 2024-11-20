@@ -5,27 +5,27 @@ import (
 )
 
 // User service REST endpoints
-const (
-	SignUp                = details.RESTEndpoint("/sign-up")
-	Profile               = details.RESTEndpoint("/profile")
-	FullProfile           = details.RESTEndpoint("/full-profile")
-	Password              = details.RESTEndpoint("/password")
-	Username              = details.RESTEndpoint("/username")
-	Email                 = details.RESTEndpoint("/email")
-	EmailByMail           = details.RESTEndpoint("/email/:" + details.Email)
-	Emails                = details.RESTEndpoint("/emails")
-	SendVerificationEmail = details.RESTEndpoint("/send-verification-email")
-	VerifyEmailByToken    = details.RESTEndpoint(
-		"/verify-email/:" + details.Token,
+var (
+	SignUp                = details.NewRESTEndpoint("/sign-up")
+	Profile               = details.NewRESTEndpoint("/profile")
+	FullProfile           = details.NewRESTEndpoint("/full-profile")
+	Password              = details.NewRESTEndpoint("/password")
+	Username              = details.NewRESTEndpoint("/username")
+	Email                 = details.NewRESTEndpoint("/email")
+	EmailByMail           = details.NewRESTEndpoint("/email", details.Email)
+	Emails                = details.NewRESTEndpoint("/emails")
+	SendVerificationEmail = details.NewRESTEndpoint("/send-verification-email")
+	VerifyEmailByToken    = details.NewRESTEndpoint(
+		"/verify-email", details.Token,
 	)
-	PhoneNumber              = details.RESTEndpoint("/phone-number")
-	SendVerificationSMS      = details.RESTEndpoint("/send-verification-sms")
-	VerifyPhoneNumberByToken = details.RESTEndpoint(
-		"/verify-phone-number/:" + details.Token,
+	PhoneNumber              = details.NewRESTEndpoint("/phone-number")
+	SendVerificationSMS      = details.NewRESTEndpoint("/send-verification-sms")
+	VerifyPhoneNumberByToken = details.NewRESTEndpoint(
+		"/verify-phone-number", details.Token,
 	)
-	ForgotPassword       = details.RESTEndpoint("/forgot-password")
-	ResetPasswordByToken = details.RESTEndpoint(
-		"/reset-password/:" + details.Token,
+	ForgotPassword       = details.NewRESTEndpoint("/forgot-password")
+	ResetPasswordByToken = details.NewRESTEndpoint(
+		"/reset-password", details.Token,
 	)
-	DeleteAccount = details.RESTEndpoint("/delete-account")
+	DeleteAccount = details.NewRESTEndpoint("/delete-account")
 )

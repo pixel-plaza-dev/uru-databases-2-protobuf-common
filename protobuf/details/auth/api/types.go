@@ -5,26 +5,31 @@ import (
 )
 
 // Auth service REST endpoints
-const (
-	LogIn               = details.RESTEndpoint("/log-in")
-	LogOut              = details.RESTEndpoint("/log-out")
-	RefreshToken        = details.RESTEndpoint("/refresh-token")
-	Sessions            = details.RESTEndpoint("/sessions")
-	CloseSessionByToken = details.RESTEndpoint(
-		"/close-session/:" + details.
-			Token,
+var (
+	LogIn               = details.NewRESTEndpoint("/log-in")
+	LogOut              = details.NewRESTEndpoint("/log-out")
+	RefreshToken        = details.NewRESTEndpoint("/refresh-token")
+	Sessions            = details.NewRESTEndpoint("/sessions")
+	CloseSessionByToken = details.NewRESTEndpoint(
+		"/close-session", details.Token,
 	)
-	CloseSessions      = details.RESTEndpoint("/close-sessions")
-	Permission         = details.RESTEndpoint("/permission")
-	PermissionById     = details.RESTEndpoint("/permission/:" + details.Id)
-	Permissions        = details.RESTEndpoint("/permissions")
-	RolePermission     = details.RESTEndpoint("/role-permission")
-	RolePermissionById = details.RESTEndpoint("/role-permission/:" + details.Id)
-	RolePermissions    = details.RESTEndpoint("/role-permissions")
-	Role               = details.RESTEndpoint("/role")
-	RoleById           = details.RESTEndpoint("/role/:" + details.Id)
-	Roles              = details.RESTEndpoint("/roles")
-	UserRole           = details.RESTEndpoint("/user-role/:" + details.UserId)
-	UserRoleById       = details.RESTEndpoint("/user-role/:" + details.Id)
-	UserRoles          = details.RESTEndpoint("/user-roles/:" + details.UserId)
+	CloseSessions      = details.NewRESTEndpoint("/close-sessions")
+	Permission         = details.NewRESTEndpoint("/permission")
+	PermissionById     = details.NewRESTEndpoint("/permission/:" + details.Id.String())
+	Permissions        = details.NewRESTEndpoint("/permissions")
+	RolePermission     = details.NewRESTEndpoint("/role-permission")
+	RolePermissionById = details.NewRESTEndpoint(
+		"/role-permission", details.Id,
+	)
+	RolePermissions = details.NewRESTEndpoint("/role-permissions")
+	Role            = details.NewRESTEndpoint("/role")
+	RoleById        = details.NewRESTEndpoint("/role/:" + details.Id.String())
+	Roles           = details.NewRESTEndpoint("/roles")
+	UserRole        = details.NewRESTEndpoint(
+		"/user-role", details.UserId,
+	)
+	UserRoleById = details.NewRESTEndpoint("/user-role/:" + details.Id.String())
+	UserRoles    = details.NewRESTEndpoint(
+		"/user-roles", details.UserId,
+	)
 )

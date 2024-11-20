@@ -5,26 +5,26 @@ import (
 )
 
 // User service gRPC methods
-const (
-	SignUp                details.GRPCMethod = "SignUp"
-	IsPasswordCorrect     details.GRPCMethod = "IsPasswordCorrect"
-	UpdateProfile         details.GRPCMethod = "UpdateProfile"
-	GetProfile            details.GRPCMethod = "GetProfile"
-	GetFullProfile        details.GRPCMethod = "GetFullProfile"
-	ChangePassword        details.GRPCMethod = "ChangePassword"
-	ChangeUsername        details.GRPCMethod = "ChangeUsername"
-	AddEmail              details.GRPCMethod = "AddEmail"
-	DeleteEmail           details.GRPCMethod = "DeleteEmail"
-	SendVerificationEmail details.GRPCMethod = "SendVerificationEmail"
-	VerifyEmail           details.GRPCMethod = "VerifyEmail"
-	GetPrimaryEmail       details.GRPCMethod = "GetPrimaryEmail"
-	ChangePrimaryEmail    details.GRPCMethod = "ChangePrimaryEmail"
-	GetActiveEmails       details.GRPCMethod = "GetActiveEmails"
-	ChangePhoneNumber     details.GRPCMethod = "ChangePhoneNumber"
-	GetPhoneNumber        details.GRPCMethod = "GetPhoneNumber"
-	SendVerificationSMS   details.GRPCMethod = "SendVerificationSMS"
-	VerifyPhoneNumber     details.GRPCMethod = "VerifyPhoneNumber"
-	ForgotPassword        details.GRPCMethod = "ForgotPassword"
-	ResetPassword         details.GRPCMethod = "ResetPassword"
-	DeleteUser            details.GRPCMethod = "DeleteUser"
+var (
+	SignUp                = details.NewGRPCMethod("SignUp")
+	IsPasswordCorrect     = details.NewGRPCMethod("IsPasswordCorrect")
+	UpdateProfile         = details.NewGRPCMethod("UpdateProfile")
+	GetProfile            = details.NewGRPCMethod("GetProfile")
+	GetFullProfile        = details.NewGRPCMethod("GetFullProfile")
+	ChangePassword        = details.NewGRPCMethod("ChangePassword")
+	ChangeUsername        = details.NewGRPCMethod("ChangeUsername")
+	AddEmail              = details.NewGRPCMethod("AddEmail")
+	DeleteEmail           = details.NewGRPCMethod("DeleteEmail")
+	SendVerificationEmail = details.NewGRPCMethod("SendVerificationEmail")
+	VerifyEmail           = details.NewGRPCMethod("VerifyEmail")
+	GetPrimaryEmail       = details.NewGRPCMethod("GetPrimaryEmail")
+	ChangePrimaryEmail    = details.NewGRPCMethod("ChangePrimaryEmail")
+	GetActiveEmails       = details.NewGRPCMethod("GetActiveEmails")
+	ChangePhoneNumber     = details.NewGRPCMethod("ChangePhoneNumber")
+	GetPhoneNumber        = details.NewGRPCMethod("GetPhoneNumber")
+	SendVerificationSMS   = details.NewGRPCMethod("SendVerificationSMS")
+	VerifyPhoneNumber     = details.NewGRPCMethod("VerifyPhoneNumber")
+	ForgotPassword        = details.NewGRPCMethod("ForgotPassword")
+	ResetPassword         = details.NewGRPCMethod("ResetPassword")
+	DeleteUser            = details.NewGRPCMethod("DeleteUser")
 )
