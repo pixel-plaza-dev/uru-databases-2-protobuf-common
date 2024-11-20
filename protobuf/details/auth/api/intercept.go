@@ -17,13 +17,11 @@ var RESTMap = map[string]map[types.RESTMethod]types.GRPCMethod{
 		types.POST: detailsauth.LogOut,
 	},
 	Sessions.String(): {
-		types.GET: detailsauth.GetSessions,
+		types.GET:    detailsauth.GetSessions,
+		types.DELETE: detailsauth.CloseSessions,
 	},
-	CloseSessionByToken.String(): {
+	SessionByToken.String(): {
 		types.POST: detailsauth.CloseSession,
-	},
-	CloseSessions.String(): {
-		types.POST: detailsauth.CloseSessions,
 	},
 	Permission.String(): {
 		types.POST: detailsauth.AddPermission,

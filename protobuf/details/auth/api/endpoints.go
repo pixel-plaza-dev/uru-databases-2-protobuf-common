@@ -6,14 +6,11 @@ import (
 
 // Auth service REST endpoints
 var (
-	LogIn               = types.NewRESTEndpoint("/log-in")
-	LogOut              = types.NewRESTEndpoint("/log-out")
-	RefreshToken        = types.NewRESTEndpoint("/refresh-token")
-	Sessions            = types.NewRESTEndpoint("/sessions")
-	CloseSessionByToken = types.NewRESTEndpoint(
-		"/close-session", types.Token,
-	)
-	CloseSessions      = types.NewRESTEndpoint("/close-sessions")
+	LogIn              = types.NewRESTEndpoint("/log-in")
+	LogOut             = types.NewRESTEndpoint("/log-out")
+	RefreshToken       = types.NewRESTEndpoint("/refresh-token")
+	Sessions           = types.NewRESTEndpoint("/sessions")
+	SessionByToken     = types.NewRESTEndpoint("/session", types.Token)
 	Permission         = types.NewRESTEndpoint("/permission")
 	PermissionById     = types.NewRESTEndpoint("/permission/:" + types.Id.String())
 	Permissions        = types.NewRESTEndpoint("/permissions")
