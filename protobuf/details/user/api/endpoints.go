@@ -9,6 +9,7 @@ var (
 	SignUp                = types.NewRESTEndpoint("/sign-up")
 	Profile               = types.NewRESTEndpoint("/profile")
 	FullProfile           = types.NewRESTEndpoint("/full-profile")
+	Id                    = types.NewRESTEndpoint("/id")
 	Password              = types.NewRESTEndpoint("/password")
 	Username              = types.NewRESTEndpoint("/username")
 	Email                 = types.NewRESTEndpoint("/email")

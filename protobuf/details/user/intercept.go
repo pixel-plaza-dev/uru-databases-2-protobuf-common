@@ -7,6 +7,8 @@ import (
 // GRPCInterceptions is the list of gRPC methods to intercept
 var GRPCInterceptions = map[types.GRPCMethod]types.Interception{
 	SignUp:                types.None,
+	UsernameExists:        types.None,
+	GetUserIdByUsername:   types.None,
 	IsPasswordCorrect:     types.None,
 	UpdateProfile:         types.AccessToken,
 	GetProfile:            types.AccessToken,

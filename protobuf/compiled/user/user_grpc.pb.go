@@ -20,6 +20,8 @@ const _ = grpc.SupportPackageIsVersion9
 
 const (
 	User_SignUp_FullMethodName                = "/user.User/SignUp"
+	User_UsernameExists_FullMethodName        = "/user.User/UsernameExists"
+	User_GetUserIdByUsername_FullMethodName   = "/user.User/GetUserIdByUsername"
 	User_IsPasswordCorrect_FullMethodName     = "/user.User/IsPasswordCorrect"
 	User_UpdateProfile_FullMethodName         = "/user.User/UpdateProfile"
 	User_GetProfile_FullMethodName            = "/user.User/GetProfile"
@@ -47,6 +49,8 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type UserClient interface {
 	SignUp(ctx context.Context, in *SignUpRequest, opts ...grpc.CallOption) (*SignUpResponse, error)
+	UsernameExists(ctx context.Context, in *UsernameExistsRequest, opts ...grpc.CallOption) (*UsernameExistsResponse, error)
+	GetUserIdByUsername(ctx context.Context, in *GetUserIdByUsernameRequest, opts ...grpc.CallOption) (*GetUserIdByUsernameResponse, error)
 	IsPasswordCorrect(ctx context.Context, in *IsPasswordCorrectRequest, opts ...grpc.CallOption) (*IsPasswordCorrectResponse, error)
 	UpdateProfile(ctx context.Context, in *UpdateProfileRequest, opts ...grpc.CallOption) (*UpdateProfileResponse, error)
 	GetProfile(ctx context.Context, in *GetProfileRequest, opts ...grpc.CallOption) (*GetProfileResponse, error)
@@ -81,6 +85,26 @@ func (c *userClient) SignUp(ctx context.Context, in *SignUpRequest, opts ...grpc
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(SignUpResponse)
 	err := c.cc.Invoke(ctx, User_SignUp_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) UsernameExists(ctx context.Context, in *UsernameExistsRequest, opts ...grpc.CallOption) (*UsernameExistsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UsernameExistsResponse)
+	err := c.cc.Invoke(ctx, User_UsernameExists_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) GetUserIdByUsername(ctx context.Context, in *GetUserIdByUsernameRequest, opts ...grpc.CallOption) (*GetUserIdByUsernameResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetUserIdByUsernameResponse)
+	err := c.cc.Invoke(ctx, User_GetUserIdByUsername_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -292,6 +316,8 @@ func (c *userClient) DeleteUser(ctx context.Context, in *DeleteUserRequest, opts
 // for forward compatibility.
 type UserServer interface {
 	SignUp(context.Context, *SignUpRequest) (*SignUpResponse, error)
+	UsernameExists(context.Context, *UsernameExistsRequest) (*UsernameExistsResponse, error)
+	GetUserIdByUsername(context.Context, *GetUserIdByUsernameRequest) (*GetUserIdByUsernameResponse, error)
 	IsPasswordCorrect(context.Context, *IsPasswordCorrectRequest) (*IsPasswordCorrectResponse, error)
 	UpdateProfile(context.Context, *UpdateProfileRequest) (*UpdateProfileResponse, error)
 	GetProfile(context.Context, *GetProfileRequest) (*GetProfileResponse, error)
@@ -324,6 +350,12 @@ type UnimplementedUserServer struct{}
 
 func (UnimplementedUserServer) SignUp(context.Context, *SignUpRequest) (*SignUpResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SignUp not implemented")
+}
+func (UnimplementedUserServer) UsernameExists(context.Context, *UsernameExistsRequest) (*UsernameExistsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UsernameExists not implemented")
+}
+func (UnimplementedUserServer) GetUserIdByUsername(context.Context, *GetUserIdByUsernameRequest) (*GetUserIdByUsernameResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUserIdByUsername not implemented")
 }
 func (UnimplementedUserServer) IsPasswordCorrect(context.Context, *IsPasswordCorrectRequest) (*IsPasswordCorrectResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method IsPasswordCorrect not implemented")
@@ -420,6 +452,42 @@ func _User_SignUp_Handler(srv interface{}, ctx context.Context, dec func(interfa
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServer).SignUp(ctx, req.(*SignUpRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_UsernameExists_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UsernameExistsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).UsernameExists(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_UsernameExists_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).UsernameExists(ctx, req.(*UsernameExistsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_GetUserIdByUsername_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserIdByUsernameRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).GetUserIdByUsername(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_GetUserIdByUsername_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).GetUserIdByUsername(ctx, req.(*GetUserIdByUsernameRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -794,6 +862,14 @@ var User_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SignUp",
 			Handler:    _User_SignUp_Handler,
+		},
+		{
+			MethodName: "UsernameExists",
+			Handler:    _User_UsernameExists_Handler,
+		},
+		{
+			MethodName: "GetUserIdByUsername",
+			Handler:    _User_GetUserIdByUsername_Handler,
 		},
 		{
 			MethodName: "IsPasswordCorrect",

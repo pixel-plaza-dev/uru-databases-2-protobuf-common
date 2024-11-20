@@ -17,10 +17,14 @@ var RESTMap = map[string]map[types.RESTMethod]types.GRPCMethod{
 	FullProfile.String(): {
 		types.GET: detailsuser.GetFullProfile,
 	},
+	Id.String(): {
+		types.GET: detailsuser.GetUserIdByUsername,
+	},
 	Password.String(): {
 		types.PUT: detailsuser.ChangePassword,
 	},
 	Username.String(): {
+		types.GET: detailsuser.UsernameExists,
 		types.PUT: detailsuser.ChangeUsername,
 	},
 	Email.String(): {

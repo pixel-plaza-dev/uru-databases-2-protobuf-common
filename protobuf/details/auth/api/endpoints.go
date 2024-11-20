@@ -8,6 +8,7 @@ import (
 var (
 	LogIn              = types.NewRESTEndpoint("/log-in")
 	LogOut             = types.NewRESTEndpoint("/log-out")
+	AccessToken        = types.NewRESTEndpoint("/access-token")
 	RefreshToken       = types.NewRESTEndpoint("/refresh-token")
 	Sessions           = types.NewRESTEndpoint("/sessions")
 	SessionByToken     = types.NewRESTEndpoint("/session", types.Token)

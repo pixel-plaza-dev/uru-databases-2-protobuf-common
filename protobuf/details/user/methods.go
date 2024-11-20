@@ -7,6 +7,8 @@ import (
 // User service gRPC methods
 var (
 	SignUp                = types.NewGRPCMethod("SignUp")
+	UsernameExists        = types.NewGRPCMethod("UsernameExists")
+	GetUserIdByUsername   = types.NewGRPCMethod("GetUserIdByUsername")
 	IsPasswordCorrect     = types.NewGRPCMethod("IsPasswordCorrect")
 	UpdateProfile         = types.NewGRPCMethod("UpdateProfile")
 	GetProfile            = types.NewGRPCMethod("GetProfile")

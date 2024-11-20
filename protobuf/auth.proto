@@ -86,7 +86,7 @@ message Session {
 }
 
 message GetSessionsRequest {
-  string username = 1;
+  string user_id = 1;
 }
 
 message GetSessionsResponse {
@@ -104,9 +104,8 @@ message CloseSessionResponse {
   string message = 2;
 }
 
-
 message CloseSessionsRequest {
-  string username = 1;
+  string user_id = 1;
 }
 
 message CloseSessionsResponse {
@@ -124,7 +123,7 @@ message AddPermissionResponse {
 }
 
 message RevokePermissionRequest {
-  string permission = 1;
+  string permission_id = 1;
 }
 
 message RevokePermissionResponse {
@@ -133,7 +132,7 @@ message RevokePermissionResponse {
 }
 
 message Permission {
-  string id = 1;
+  string permission_id = 1;
   string resource = 2;
   string action = 3;
   string description = 4;
@@ -158,8 +157,8 @@ message GetPermissionResponse {
 }
 
 message AddRolePermissionRequest {
-  string role = 1;
-  string permission = 2;
+  string role_id = 1;
+  string permission_id = 2;
 }
 
 message AddRolePermissionResponse {
@@ -168,8 +167,8 @@ message AddRolePermissionResponse {
 }
 
 message RevokeRolePermissionRequest {
-  string role = 1;
-  string permission = 2;
+  string role_id = 1;
+  string permission_id = 2;
 }
 
 message RevokeRolePermissionResponse {
@@ -197,7 +196,7 @@ message AddRoleResponse {
 }
 
 message RevokeRoleRequest {
-  string role = 1;
+  string role_id = 1;
 }
 
 message RevokeRoleResponse {
@@ -206,7 +205,7 @@ message RevokeRoleResponse {
 }
 
 message Role {
-  string id = 1;
+  string role_id = 1;
   string name = 2;
   string description = 3;
 }
@@ -220,8 +219,8 @@ message GetRolesResponse {
 }
 
 message AddUserRoleRequest {
-  string user_id = 1;
   string role_id = 2;
+  string user_id = 1;
 }
 
 message AddUserRoleResponse {
@@ -230,8 +229,8 @@ message AddUserRoleResponse {
 }
 
 message RevokeUserRoleRequest {
-  string user_id = 1;
   string role_id = 2;
+  string user_id = 1;
 }
 
 message RevokeUserRoleResponse {
@@ -240,7 +239,7 @@ message RevokeUserRoleResponse {
 }
 
 message GetUserRolesRequest {
-  string user_id = 1;
+  string username = 1;
 }
 
 message GetUserRolesResponse {
