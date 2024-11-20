@@ -1,28 +1,30 @@
 package auth
 
-import "github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/protobuf/details"
+import (
+	"github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/protobuf/details/types"
+)
 
 // GRPCInterceptions is the list of gRPC methods to intercept
-var GRPCInterceptions = map[details.GRPCMethod]details.Interception{
-	LogIn:                details.None,
-	IsAccessTokenValid:   details.AccessToken,
-	IsRefreshTokenValid:  details.RefreshToken,
-	RefreshToken:         details.RefreshToken,
-	LogOut:               details.AccessToken,
-	GetSessions:          details.AccessToken,
-	CloseSession:         details.AccessToken,
-	CloseSessions:        details.AccessToken,
-	AddPermission:        details.AccessToken,
-	RevokePermission:     details.AccessToken,
-	GetPermission:        details.AccessToken,
-	GetPermissions:       details.AccessToken,
-	AddRolePermission:    details.AccessToken,
-	RevokeRolePermission: details.AccessToken,
-	GetRolePermissions:   details.AccessToken,
-	AddRole:              details.AccessToken,
-	RevokeRole:           details.AccessToken,
-	GetRoles:             details.AccessToken,
-	AddUserRole:          details.AccessToken,
-	RevokeUserRole:       details.AccessToken,
-	GetUserRoles:         details.AccessToken,
+var GRPCInterceptions = map[types.GRPCMethod]types.Interception{
+	LogIn:                types.None,
+	IsAccessTokenValid:   types.AccessToken,
+	IsRefreshTokenValid:  types.RefreshToken,
+	RefreshToken:         types.RefreshToken,
+	LogOut:               types.AccessToken,
+	GetSessions:          types.AccessToken,
+	CloseSession:         types.AccessToken,
+	CloseSessions:        types.AccessToken,
+	AddPermission:        types.AccessToken,
+	RevokePermission:     types.AccessToken,
+	GetPermission:        types.AccessToken,
+	GetPermissions:       types.AccessToken,
+	AddRolePermission:    types.AccessToken,
+	RevokeRolePermission: types.AccessToken,
+	GetRolePermissions:   types.AccessToken,
+	AddRole:              types.AccessToken,
+	RevokeRole:           types.AccessToken,
+	GetRoles:             types.AccessToken,
+	AddUserRole:          types.AccessToken,
+	RevokeUserRole:       types.AccessToken,
+	GetUserRoles:         types.AccessToken,
 }

@@ -1,65 +1,65 @@
 package api
 
 import (
-	"github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/protobuf/details"
 	detailsauth "github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/protobuf/details/auth"
+	"github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/protobuf/details/types"
 )
 
 // RESTMap is the map of the Rest API endpoints to the auth service gRPC methods
-var RESTMap = map[details.RESTEndpoint]map[details.RESTMethod]details.GRPCMethod{
+var RESTMap = map[*types.RESTEndpoint]map[types.RESTMethod]types.GRPCMethod{
 	LogIn: {
-		details.POST: detailsauth.LogIn,
+		types.POST: detailsauth.LogIn,
 	},
 	RefreshToken: {
-		details.POST: detailsauth.RefreshToken,
+		types.POST: detailsauth.RefreshToken,
 	},
 	LogOut: {
-		details.POST: detailsauth.LogOut,
+		types.POST: detailsauth.LogOut,
 	},
 	Sessions: {
-		details.GET: detailsauth.GetSessions,
+		types.GET: detailsauth.GetSessions,
 	},
 	CloseSessionByToken: {
-		details.POST: detailsauth.CloseSession,
+		types.POST: detailsauth.CloseSession,
 	},
 	CloseSessions: {
-		details.POST: detailsauth.CloseSessions,
+		types.POST: detailsauth.CloseSessions,
 	},
 	Permission: {
-		details.POST: detailsauth.AddPermission,
+		types.POST: detailsauth.AddPermission,
 	},
 	PermissionById: {
-		details.GET:    detailsauth.GetPermission,
-		details.DELETE: detailsauth.RevokePermission,
+		types.GET:    detailsauth.GetPermission,
+		types.DELETE: detailsauth.RevokePermission,
 	},
 	Permissions: {
-		details.GET: detailsauth.GetPermissions,
+		types.GET: detailsauth.GetPermissions,
 	},
 	RolePermission: {
-		details.POST: detailsauth.AddRolePermission,
+		types.POST: detailsauth.AddRolePermission,
 	},
 	RolePermissionById: {
-		details.DELETE: detailsauth.RevokeRolePermission,
+		types.DELETE: detailsauth.RevokeRolePermission,
 	},
 	RolePermissions: {
-		details.GET: detailsauth.GetRolePermissions,
+		types.GET: detailsauth.GetRolePermissions,
 	},
 	Role: {
-		details.POST: detailsauth.AddRole,
+		types.POST: detailsauth.AddRole,
 	},
 	RoleById: {
-		details.DELETE: detailsauth.RevokeRole,
+		types.DELETE: detailsauth.RevokeRole,
 	},
 	Roles: {
-		details.GET: detailsauth.GetRoles,
+		types.GET: detailsauth.GetRoles,
 	},
 	UserRole: {
-		details.POST: detailsauth.AddUserRole,
+		types.POST: detailsauth.AddUserRole,
 	},
 	UserRoleById: {
-		details.DELETE: detailsauth.RevokeUserRole,
+		types.DELETE: detailsauth.RevokeUserRole,
 	},
 	UserRoles: {
-		details.GET: detailsauth.GetUserRoles,
+		types.GET: detailsauth.GetUserRoles,
 	},
 }

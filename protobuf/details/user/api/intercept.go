@@ -1,62 +1,62 @@
 package api
 
 import (
-	"github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/protobuf/details"
+	"github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/protobuf/details/types"
 	detailsuser "github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/protobuf/details/user"
 )
 
 // RESTMap is the map of the Rest API endpoints to the user service gRPC methods
-var RESTMap = map[details.RESTEndpoint]map[details.RESTMethod]details.GRPCMethod{
+var RESTMap = map[*types.RESTEndpoint]map[types.RESTMethod]types.GRPCMethod{
 	SignUp: {
-		details.POST: detailsuser.SignUp,
+		types.POST: detailsuser.SignUp,
 	},
 	Profile: {
-		details.GET:   detailsuser.GetProfile,
-		details.PATCH: detailsuser.UpdateProfile,
+		types.GET:   detailsuser.GetProfile,
+		types.PATCH: detailsuser.UpdateProfile,
 	},
 	FullProfile: {
-		details.GET: detailsuser.GetFullProfile,
+		types.GET: detailsuser.GetFullProfile,
 	},
 	Password: {
-		details.PUT: detailsuser.ChangePassword,
+		types.PUT: detailsuser.ChangePassword,
 	},
 	Username: {
-		details.PUT: detailsuser.ChangeUsername,
+		types.PUT: detailsuser.ChangeUsername,
 	},
 	Email: {
-		details.GET:  detailsuser.GetPrimaryEmail,
-		details.PUT:  detailsuser.ChangePrimaryEmail,
-		details.POST: detailsuser.AddEmail,
+		types.GET:  detailsuser.GetPrimaryEmail,
+		types.PUT:  detailsuser.ChangePrimaryEmail,
+		types.POST: detailsuser.AddEmail,
 	},
 	EmailByMail: {
-		details.DELETE: detailsuser.DeleteEmail,
+		types.DELETE: detailsuser.DeleteEmail,
 	},
 	Emails: {
-		details.GET: detailsuser.GetActiveEmails,
+		types.GET: detailsuser.GetActiveEmails,
 	},
 	SendVerificationEmail: {
-		details.POST: detailsuser.SendVerificationEmail,
+		types.POST: detailsuser.SendVerificationEmail,
 	},
 	VerifyEmailByToken: {
-		details.POST: detailsuser.VerifyEmail,
+		types.POST: detailsuser.VerifyEmail,
 	},
 	PhoneNumber: {
-		details.PUT: detailsuser.ChangePhoneNumber,
-		details.GET: detailsuser.GetPhoneNumber,
+		types.PUT: detailsuser.ChangePhoneNumber,
+		types.GET: detailsuser.GetPhoneNumber,
 	},
 	SendVerificationSMS: {
-		details.POST: detailsuser.SendVerificationSMS,
+		types.POST: detailsuser.SendVerificationSMS,
 	},
 	VerifyPhoneNumberByToken: {
-		details.POST: detailsuser.VerifyPhoneNumber,
+		types.POST: detailsuser.VerifyPhoneNumber,
 	},
 	ForgotPassword: {
-		details.POST: detailsuser.ForgotPassword,
+		types.POST: detailsuser.ForgotPassword,
 	},
 	ResetPasswordByToken: {
-		details.POST: detailsuser.ResetPassword,
+		types.POST: detailsuser.ResetPassword,
 	},
 	DeleteAccount: {
-		details.DELETE: detailsuser.DeleteUser,
+		types.DELETE: detailsuser.DeleteUser,
 	},
 }

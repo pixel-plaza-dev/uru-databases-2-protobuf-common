@@ -1,28 +1,30 @@
 package user
 
-import "github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/protobuf/details"
+import (
+	"github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/protobuf/details/types"
+)
 
 // GRPCInterceptions is the list of gRPC methods to intercept
-var GRPCInterceptions = map[details.GRPCMethod]details.Interception{
-	SignUp:                details.None,
-	IsPasswordCorrect:     details.None,
-	UpdateProfile:         details.AccessToken,
-	GetProfile:            details.AccessToken,
-	GetFullProfile:        details.AccessToken,
-	ChangePassword:        details.AccessToken,
-	ChangeUsername:        details.AccessToken,
-	AddEmail:              details.AccessToken,
-	DeleteEmail:           details.AccessToken,
-	SendVerificationEmail: details.AccessToken,
-	VerifyEmail:           details.AccessToken,
-	GetPrimaryEmail:       details.AccessToken,
-	ChangePrimaryEmail:    details.AccessToken,
-	GetActiveEmails:       details.AccessToken,
-	ChangePhoneNumber:     details.AccessToken,
-	GetPhoneNumber:        details.AccessToken,
-	SendVerificationSMS:   details.AccessToken,
-	VerifyPhoneNumber:     details.AccessToken,
-	ForgotPassword:        details.None,
-	ResetPassword:         details.None,
-	DeleteUser:            details.AccessToken,
+var GRPCInterceptions = map[types.GRPCMethod]types.Interception{
+	SignUp:                types.None,
+	IsPasswordCorrect:     types.None,
+	UpdateProfile:         types.AccessToken,
+	GetProfile:            types.AccessToken,
+	GetFullProfile:        types.AccessToken,
+	ChangePassword:        types.AccessToken,
+	ChangeUsername:        types.AccessToken,
+	AddEmail:              types.AccessToken,
+	DeleteEmail:           types.AccessToken,
+	SendVerificationEmail: types.AccessToken,
+	VerifyEmail:           types.AccessToken,
+	GetPrimaryEmail:       types.AccessToken,
+	ChangePrimaryEmail:    types.AccessToken,
+	GetActiveEmails:       types.AccessToken,
+	ChangePhoneNumber:     types.AccessToken,
+	GetPhoneNumber:        types.AccessToken,
+	SendVerificationSMS:   types.AccessToken,
+	VerifyPhoneNumber:     types.AccessToken,
+	ForgotPassword:        types.None,
+	ResetPassword:         types.None,
+	DeleteUser:            types.AccessToken,
 }
