@@ -11,6 +11,7 @@ service Auth {
   rpc RefreshToken(RefreshTokenRequest) returns (RefreshTokenResponse) {}
   rpc LogOut(LogOutRequest) returns (LogOutResponse) {}
   rpc GetSessions(GetSessionsRequest) returns (GetSessionsResponse) {}
+  rpc CloseSession(CloseSessionRequest) returns (CloseSessionResponse) {}
   rpc CloseSessions(CloseSessionsRequest) returns (CloseSessionsResponse) {}
   rpc AddPermission(AddPermissionRequest) returns (AddPermissionResponse) {}
   rpc RevokePermission(RevokePermissionRequest) returns (RevokePermissionResponse) {}
@@ -94,8 +95,18 @@ message GetSessionsResponse {
   repeated Session sessions = 3;
 }
 
+message CloseSessionRequest {
+  string refresh_token = 1;
+}
+
+message CloseSessionResponse {
+  uint32 code = 1;
+  string message = 2;
+}
+
+
 message CloseSessionsRequest {
-  string email = 1;
+  string username = 1;
 }
 
 message CloseSessionsResponse {

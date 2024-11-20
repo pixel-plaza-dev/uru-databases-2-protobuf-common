@@ -25,6 +25,7 @@ const (
 	Auth_RefreshToken_FullMethodName         = "/auth.Auth/RefreshToken"
 	Auth_LogOut_FullMethodName               = "/auth.Auth/LogOut"
 	Auth_GetSessions_FullMethodName          = "/auth.Auth/GetSessions"
+	Auth_CloseSession_FullMethodName         = "/auth.Auth/CloseSession"
 	Auth_CloseSessions_FullMethodName        = "/auth.Auth/CloseSessions"
 	Auth_AddPermission_FullMethodName        = "/auth.Auth/AddPermission"
 	Auth_RevokePermission_FullMethodName     = "/auth.Auth/RevokePermission"
@@ -51,6 +52,7 @@ type AuthClient interface {
 	RefreshToken(ctx context.Context, in *RefreshTokenRequest, opts ...grpc.CallOption) (*RefreshTokenResponse, error)
 	LogOut(ctx context.Context, in *LogOutRequest, opts ...grpc.CallOption) (*LogOutResponse, error)
 	GetSessions(ctx context.Context, in *GetSessionsRequest, opts ...grpc.CallOption) (*GetSessionsResponse, error)
+	CloseSession(ctx context.Context, in *CloseSessionRequest, opts ...grpc.CallOption) (*CloseSessionResponse, error)
 	CloseSessions(ctx context.Context, in *CloseSessionsRequest, opts ...grpc.CallOption) (*CloseSessionsResponse, error)
 	AddPermission(ctx context.Context, in *AddPermissionRequest, opts ...grpc.CallOption) (*AddPermissionResponse, error)
 	RevokePermission(ctx context.Context, in *RevokePermissionRequest, opts ...grpc.CallOption) (*RevokePermissionResponse, error)
@@ -129,6 +131,16 @@ func (c *authClient) GetSessions(ctx context.Context, in *GetSessionsRequest, op
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetSessionsResponse)
 	err := c.cc.Invoke(ctx, Auth_GetSessions_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authClient) CloseSession(ctx context.Context, in *CloseSessionRequest, opts ...grpc.CallOption) (*CloseSessionResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CloseSessionResponse)
+	err := c.cc.Invoke(ctx, Auth_CloseSession_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -285,6 +297,7 @@ type AuthServer interface {
 	RefreshToken(context.Context, *RefreshTokenRequest) (*RefreshTokenResponse, error)
 	LogOut(context.Context, *LogOutRequest) (*LogOutResponse, error)
 	GetSessions(context.Context, *GetSessionsRequest) (*GetSessionsResponse, error)
+	CloseSession(context.Context, *CloseSessionRequest) (*CloseSessionResponse, error)
 	CloseSessions(context.Context, *CloseSessionsRequest) (*CloseSessionsResponse, error)
 	AddPermission(context.Context, *AddPermissionRequest) (*AddPermissionResponse, error)
 	RevokePermission(context.Context, *RevokePermissionRequest) (*RevokePermissionResponse, error)
@@ -326,6 +339,9 @@ func (UnimplementedAuthServer) LogOut(context.Context, *LogOutRequest) (*LogOutR
 }
 func (UnimplementedAuthServer) GetSessions(context.Context, *GetSessionsRequest) (*GetSessionsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSessions not implemented")
+}
+func (UnimplementedAuthServer) CloseSession(context.Context, *CloseSessionRequest) (*CloseSessionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CloseSession not implemented")
 }
 func (UnimplementedAuthServer) CloseSessions(context.Context, *CloseSessionsRequest) (*CloseSessionsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CloseSessions not implemented")
@@ -494,6 +510,24 @@ func _Auth_GetSessions_Handler(srv interface{}, ctx context.Context, dec func(in
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AuthServer).GetSessions(ctx, req.(*GetSessionsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Auth_CloseSession_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CloseSessionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).CloseSession(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_CloseSession_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).CloseSession(ctx, req.(*CloseSessionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -780,6 +814,10 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetSessions",
 			Handler:    _Auth_GetSessions_Handler,
+		},
+		{
+			MethodName: "CloseSession",
+			Handler:    _Auth_CloseSession_Handler,
 		},
 		{
 			MethodName: "CloseSessions",

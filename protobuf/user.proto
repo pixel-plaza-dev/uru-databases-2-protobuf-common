@@ -22,7 +22,7 @@ service User {
   rpc ChangePrimaryEmail(ChangePrimaryEmailRequest) returns (ChangePrimaryEmailResponse) {}
   rpc GetPhoneNumber(GetPhoneNumberRequest) returns (GetPhoneNumberResponse) {}
   rpc ChangePhoneNumber(ChangePhoneNumberRequest) returns (ChangePhoneNumberResponse) {}
-  rpc SendVerificationPhoneNumber(SendVerificationPhoneNumberRequest) returns (SendVerificationPhoneNumberResponse) {}
+  rpc SendVerificationSMS(SendVerificationSMSRequest) returns (SendVerificationSMSResponse) {}
   rpc VerifyPhoneNumber(VerifyPhoneNumberRequest) returns (VerifyPhoneNumberResponse) {}
   rpc ForgotPassword(ForgotPasswordRequest) returns (ForgotPasswordResponse) {}
   rpc ResetPassword(ResetPasswordRequest) returns (ResetPasswordResponse) {}
@@ -178,11 +178,11 @@ message ChangePhoneNumberResponse {
   string message = 2;
 }
 
-message SendVerificationPhoneNumberRequest {
+message SendVerificationSMSRequest {
   string phone_number = 1;
 }
 
-message SendVerificationPhoneNumberResponse {
+message SendVerificationSMSResponse {
   uint32 code = 1;
   string message = 2;
 }

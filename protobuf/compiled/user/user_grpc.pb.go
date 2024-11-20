@@ -19,27 +19,27 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	User_SignUp_FullMethodName                      = "/user.User/SignUp"
-	User_IsPasswordCorrect_FullMethodName           = "/user.User/IsPasswordCorrect"
-	User_UpdateProfile_FullMethodName               = "/user.User/UpdateProfile"
-	User_GetProfile_FullMethodName                  = "/user.User/GetProfile"
-	User_GetFullProfile_FullMethodName              = "/user.User/GetFullProfile"
-	User_ChangeUsername_FullMethodName              = "/user.User/ChangeUsername"
-	User_ChangePassword_FullMethodName              = "/user.User/ChangePassword"
-	User_AddEmail_FullMethodName                    = "/user.User/AddEmail"
-	User_DeleteEmail_FullMethodName                 = "/user.User/DeleteEmail"
-	User_SendVerificationEmail_FullMethodName       = "/user.User/SendVerificationEmail"
-	User_VerifyEmail_FullMethodName                 = "/user.User/VerifyEmail"
-	User_GetPrimaryEmail_FullMethodName             = "/user.User/GetPrimaryEmail"
-	User_GetActiveEmails_FullMethodName             = "/user.User/GetActiveEmails"
-	User_ChangePrimaryEmail_FullMethodName          = "/user.User/ChangePrimaryEmail"
-	User_GetPhoneNumber_FullMethodName              = "/user.User/GetPhoneNumber"
-	User_ChangePhoneNumber_FullMethodName           = "/user.User/ChangePhoneNumber"
-	User_SendVerificationPhoneNumber_FullMethodName = "/user.User/SendVerificationPhoneNumber"
-	User_VerifyPhoneNumber_FullMethodName           = "/user.User/VerifyPhoneNumber"
-	User_ForgotPassword_FullMethodName              = "/user.User/ForgotPassword"
-	User_ResetPassword_FullMethodName               = "/user.User/ResetPassword"
-	User_DeleteUser_FullMethodName                  = "/user.User/DeleteUser"
+	User_SignUp_FullMethodName                = "/user.User/SignUp"
+	User_IsPasswordCorrect_FullMethodName     = "/user.User/IsPasswordCorrect"
+	User_UpdateProfile_FullMethodName         = "/user.User/UpdateProfile"
+	User_GetProfile_FullMethodName            = "/user.User/GetProfile"
+	User_GetFullProfile_FullMethodName        = "/user.User/GetFullProfile"
+	User_ChangeUsername_FullMethodName        = "/user.User/ChangeUsername"
+	User_ChangePassword_FullMethodName        = "/user.User/ChangePassword"
+	User_AddEmail_FullMethodName              = "/user.User/AddEmail"
+	User_DeleteEmail_FullMethodName           = "/user.User/DeleteEmail"
+	User_SendVerificationEmail_FullMethodName = "/user.User/SendVerificationEmail"
+	User_VerifyEmail_FullMethodName           = "/user.User/VerifyEmail"
+	User_GetPrimaryEmail_FullMethodName       = "/user.User/GetPrimaryEmail"
+	User_GetActiveEmails_FullMethodName       = "/user.User/GetActiveEmails"
+	User_ChangePrimaryEmail_FullMethodName    = "/user.User/ChangePrimaryEmail"
+	User_GetPhoneNumber_FullMethodName        = "/user.User/GetPhoneNumber"
+	User_ChangePhoneNumber_FullMethodName     = "/user.User/ChangePhoneNumber"
+	User_SendVerificationSMS_FullMethodName   = "/user.User/SendVerificationSMS"
+	User_VerifyPhoneNumber_FullMethodName     = "/user.User/VerifyPhoneNumber"
+	User_ForgotPassword_FullMethodName        = "/user.User/ForgotPassword"
+	User_ResetPassword_FullMethodName         = "/user.User/ResetPassword"
+	User_DeleteUser_FullMethodName            = "/user.User/DeleteUser"
 )
 
 // UserClient is the client API for User service.
@@ -62,7 +62,7 @@ type UserClient interface {
 	ChangePrimaryEmail(ctx context.Context, in *ChangePrimaryEmailRequest, opts ...grpc.CallOption) (*ChangePrimaryEmailResponse, error)
 	GetPhoneNumber(ctx context.Context, in *GetPhoneNumberRequest, opts ...grpc.CallOption) (*GetPhoneNumberResponse, error)
 	ChangePhoneNumber(ctx context.Context, in *ChangePhoneNumberRequest, opts ...grpc.CallOption) (*ChangePhoneNumberResponse, error)
-	SendVerificationPhoneNumber(ctx context.Context, in *SendVerificationPhoneNumberRequest, opts ...grpc.CallOption) (*SendVerificationPhoneNumberResponse, error)
+	SendVerificationSMS(ctx context.Context, in *SendVerificationSMSRequest, opts ...grpc.CallOption) (*SendVerificationSMSResponse, error)
 	VerifyPhoneNumber(ctx context.Context, in *VerifyPhoneNumberRequest, opts ...grpc.CallOption) (*VerifyPhoneNumberResponse, error)
 	ForgotPassword(ctx context.Context, in *ForgotPasswordRequest, opts ...grpc.CallOption) (*ForgotPasswordResponse, error)
 	ResetPassword(ctx context.Context, in *ResetPasswordRequest, opts ...grpc.CallOption) (*ResetPasswordResponse, error)
@@ -237,10 +237,10 @@ func (c *userClient) ChangePhoneNumber(ctx context.Context, in *ChangePhoneNumbe
 	return out, nil
 }
 
-func (c *userClient) SendVerificationPhoneNumber(ctx context.Context, in *SendVerificationPhoneNumberRequest, opts ...grpc.CallOption) (*SendVerificationPhoneNumberResponse, error) {
+func (c *userClient) SendVerificationSMS(ctx context.Context, in *SendVerificationSMSRequest, opts ...grpc.CallOption) (*SendVerificationSMSResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(SendVerificationPhoneNumberResponse)
-	err := c.cc.Invoke(ctx, User_SendVerificationPhoneNumber_FullMethodName, in, out, cOpts...)
+	out := new(SendVerificationSMSResponse)
+	err := c.cc.Invoke(ctx, User_SendVerificationSMS_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -307,7 +307,7 @@ type UserServer interface {
 	ChangePrimaryEmail(context.Context, *ChangePrimaryEmailRequest) (*ChangePrimaryEmailResponse, error)
 	GetPhoneNumber(context.Context, *GetPhoneNumberRequest) (*GetPhoneNumberResponse, error)
 	ChangePhoneNumber(context.Context, *ChangePhoneNumberRequest) (*ChangePhoneNumberResponse, error)
-	SendVerificationPhoneNumber(context.Context, *SendVerificationPhoneNumberRequest) (*SendVerificationPhoneNumberResponse, error)
+	SendVerificationSMS(context.Context, *SendVerificationSMSRequest) (*SendVerificationSMSResponse, error)
 	VerifyPhoneNumber(context.Context, *VerifyPhoneNumberRequest) (*VerifyPhoneNumberResponse, error)
 	ForgotPassword(context.Context, *ForgotPasswordRequest) (*ForgotPasswordResponse, error)
 	ResetPassword(context.Context, *ResetPasswordRequest) (*ResetPasswordResponse, error)
@@ -370,8 +370,8 @@ func (UnimplementedUserServer) GetPhoneNumber(context.Context, *GetPhoneNumberRe
 func (UnimplementedUserServer) ChangePhoneNumber(context.Context, *ChangePhoneNumberRequest) (*ChangePhoneNumberResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ChangePhoneNumber not implemented")
 }
-func (UnimplementedUserServer) SendVerificationPhoneNumber(context.Context, *SendVerificationPhoneNumberRequest) (*SendVerificationPhoneNumberResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SendVerificationPhoneNumber not implemented")
+func (UnimplementedUserServer) SendVerificationSMS(context.Context, *SendVerificationSMSRequest) (*SendVerificationSMSResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendVerificationSMS not implemented")
 }
 func (UnimplementedUserServer) VerifyPhoneNumber(context.Context, *VerifyPhoneNumberRequest) (*VerifyPhoneNumberResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method VerifyPhoneNumber not implemented")
@@ -694,20 +694,20 @@ func _User_ChangePhoneNumber_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
-func _User_SendVerificationPhoneNumber_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SendVerificationPhoneNumberRequest)
+func _User_SendVerificationSMS_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SendVerificationSMSRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServer).SendVerificationPhoneNumber(ctx, in)
+		return srv.(UserServer).SendVerificationSMS(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: User_SendVerificationPhoneNumber_FullMethodName,
+		FullMethod: User_SendVerificationSMS_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).SendVerificationPhoneNumber(ctx, req.(*SendVerificationPhoneNumberRequest))
+		return srv.(UserServer).SendVerificationSMS(ctx, req.(*SendVerificationSMSRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -856,8 +856,8 @@ var User_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _User_ChangePhoneNumber_Handler,
 		},
 		{
-			MethodName: "SendVerificationPhoneNumber",
-			Handler:    _User_SendVerificationPhoneNumber_Handler,
+			MethodName: "SendVerificationSMS",
+			Handler:    _User_SendVerificationSMS_Handler,
 		},
 		{
 			MethodName: "VerifyPhoneNumber",
