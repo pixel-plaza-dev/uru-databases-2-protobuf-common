@@ -21,6 +21,7 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	User_SignUp_FullMethodName                = "/user.User/SignUp"
 	User_UsernameExists_FullMethodName        = "/user.User/UsernameExists"
+	User_GetUsernameByUserId_FullMethodName   = "/user.User/GetUsernameByUserId"
 	User_GetUserIdByUsername_FullMethodName   = "/user.User/GetUserIdByUsername"
 	User_IsPasswordCorrect_FullMethodName     = "/user.User/IsPasswordCorrect"
 	User_UpdateProfile_FullMethodName         = "/user.User/UpdateProfile"
@@ -50,6 +51,7 @@ const (
 type UserClient interface {
 	SignUp(ctx context.Context, in *SignUpRequest, opts ...grpc.CallOption) (*SignUpResponse, error)
 	UsernameExists(ctx context.Context, in *UsernameExistsRequest, opts ...grpc.CallOption) (*UsernameExistsResponse, error)
+	GetUsernameByUserId(ctx context.Context, in *GetUsernameByUserIdRequest, opts ...grpc.CallOption) (*GetUsernameByUserIdResponse, error)
 	GetUserIdByUsername(ctx context.Context, in *GetUserIdByUsernameRequest, opts ...grpc.CallOption) (*GetUserIdByUsernameResponse, error)
 	IsPasswordCorrect(ctx context.Context, in *IsPasswordCorrectRequest, opts ...grpc.CallOption) (*IsPasswordCorrectResponse, error)
 	UpdateProfile(ctx context.Context, in *UpdateProfileRequest, opts ...grpc.CallOption) (*UpdateProfileResponse, error)
@@ -95,6 +97,16 @@ func (c *userClient) UsernameExists(ctx context.Context, in *UsernameExistsReque
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(UsernameExistsResponse)
 	err := c.cc.Invoke(ctx, User_UsernameExists_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) GetUsernameByUserId(ctx context.Context, in *GetUsernameByUserIdRequest, opts ...grpc.CallOption) (*GetUsernameByUserIdResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetUsernameByUserIdResponse)
+	err := c.cc.Invoke(ctx, User_GetUsernameByUserId_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -317,6 +329,7 @@ func (c *userClient) DeleteUser(ctx context.Context, in *DeleteUserRequest, opts
 type UserServer interface {
 	SignUp(context.Context, *SignUpRequest) (*SignUpResponse, error)
 	UsernameExists(context.Context, *UsernameExistsRequest) (*UsernameExistsResponse, error)
+	GetUsernameByUserId(context.Context, *GetUsernameByUserIdRequest) (*GetUsernameByUserIdResponse, error)
 	GetUserIdByUsername(context.Context, *GetUserIdByUsernameRequest) (*GetUserIdByUsernameResponse, error)
 	IsPasswordCorrect(context.Context, *IsPasswordCorrectRequest) (*IsPasswordCorrectResponse, error)
 	UpdateProfile(context.Context, *UpdateProfileRequest) (*UpdateProfileResponse, error)
@@ -353,6 +366,9 @@ func (UnimplementedUserServer) SignUp(context.Context, *SignUpRequest) (*SignUpR
 }
 func (UnimplementedUserServer) UsernameExists(context.Context, *UsernameExistsRequest) (*UsernameExistsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UsernameExists not implemented")
+}
+func (UnimplementedUserServer) GetUsernameByUserId(context.Context, *GetUsernameByUserIdRequest) (*GetUsernameByUserIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUsernameByUserId not implemented")
 }
 func (UnimplementedUserServer) GetUserIdByUsername(context.Context, *GetUserIdByUsernameRequest) (*GetUserIdByUsernameResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUserIdByUsername not implemented")
@@ -470,6 +486,24 @@ func _User_UsernameExists_Handler(srv interface{}, ctx context.Context, dec func
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServer).UsernameExists(ctx, req.(*UsernameExistsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_GetUsernameByUserId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUsernameByUserIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).GetUsernameByUserId(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_GetUsernameByUserId_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).GetUsernameByUserId(ctx, req.(*GetUsernameByUserIdRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -866,6 +900,10 @@ var User_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UsernameExists",
 			Handler:    _User_UsernameExists_Handler,
+		},
+		{
+			MethodName: "GetUsernameByUserId",
+			Handler:    _User_GetUsernameByUserId_Handler,
 		},
 		{
 			MethodName: "GetUserIdByUsername",

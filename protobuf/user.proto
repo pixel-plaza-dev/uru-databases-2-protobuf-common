@@ -8,6 +8,7 @@ import "google/protobuf/timestamp.proto";
 service User {
   rpc SignUp(SignUpRequest) returns (SignUpResponse) {}
   rpc UsernameExists(UsernameExistsRequest) returns (UsernameExistsResponse) {}
+  rpc GetUsernameByUserId(GetUsernameByUserIdRequest) returns (GetUsernameByUserIdResponse) {}
   rpc GetUserIdByUsername(GetUserIdByUsernameRequest) returns (GetUserIdByUsernameResponse) {}
   rpc IsPasswordCorrect(IsPasswordCorrectRequest) returns (IsPasswordCorrectResponse) {}
   rpc UpdateProfile(UpdateProfileRequest) returns (UpdateProfileResponse) {}
@@ -58,6 +59,16 @@ message UsernameExistsResponse {
   uint32 code = 1;
   string message = 2;
   repeated bool exists = 3;
+}
+
+message GetUsernameByUserIdRequest {
+  string user_id = 1;
+}
+
+message GetUsernameByUserIdResponse {
+  uint32 code = 1;
+  string message = 2;
+  string username = 3;
 }
 
 message GetUserIdByUsernameRequest {

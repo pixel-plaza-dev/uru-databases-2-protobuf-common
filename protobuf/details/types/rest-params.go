@@ -19,8 +19,9 @@ func (r RESTParam) String() string {
 
 // RESTParam values
 var (
-	Email  = NewRESTParam("email")
-	Token  = NewRESTParam("token")
-	Id     = NewRESTParam("id")
-	UserId = NewRESTParam("user_id")
+	Email    = NewRESTParam("email")
+	Username = NewRESTParam("username")
+	Token    = NewRESTParam("token")
+	Id       = NewRESTParam("id")
+	UserId   = NewRESTParam("user_id")
 )

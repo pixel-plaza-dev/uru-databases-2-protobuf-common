@@ -17,22 +17,27 @@ var RESTMap = map[string]map[types.RESTMethod]types.GRPCMethod{
 	FullProfile.String(): {
 		types.GET: detailsuser.GetFullProfile,
 	},
-	Id.String(): {
+	IdByUsername.String(): {
 		types.GET: detailsuser.GetUserIdByUsername,
 	},
 	Password.String(): {
 		types.PUT: detailsuser.ChangePassword,
 	},
 	Username.String(): {
-		types.GET: detailsuser.UsernameExists,
 		types.PUT: detailsuser.ChangeUsername,
+	},
+	UsernameByUsername.String(): {
+		types.GET: detailsuser.UsernameExists,
+	},
+	UsernameById.String(): {
+		types.GET: detailsuser.GetUsernameByUserId,
 	},
 	Email.String(): {
 		types.GET:  detailsuser.GetPrimaryEmail,
 		types.PUT:  detailsuser.ChangePrimaryEmail,
 		types.POST: detailsuser.AddEmail,
 	},
-	EmailByMail.String(): {
+	EmailByEmail.String(): {
 		types.DELETE: detailsuser.DeleteEmail,
 	},
 	Emails.String(): {
