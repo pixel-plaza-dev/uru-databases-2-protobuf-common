@@ -12,6 +12,9 @@ type (
 
 	// RESTMethod is the type of REST request method
 	RESTMethod string
+
+	// RESTParam is the type of REST request parameter
+	RESTParam string
 )
 
 // Interception values
@@ -28,4 +31,12 @@ const (
 	PUT    RESTMethod = "PUT"
 	DELETE RESTMethod = "DELETE"
 	PATCH  RESTMethod = "PATCH"
+)
+
+// RESTParam values
+const (
+	Email  RESTParam = "email"
+	Token  RESTParam = "token"
+	Id     RESTParam = "id"
+	UserId RESTParam = "user_id"
 )

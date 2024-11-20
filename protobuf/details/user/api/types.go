@@ -1,21 +1,31 @@
 package api
 
-// User REST endpoints
+import (
+	"github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/protobuf/details"
+)
+
+// User service REST endpoints
 const (
-	SignUp                   = "/sign-up"
-	Profile                  = "/profile"
-	FullProfile              = "/full-profile"
-	Password                 = "/password"
-	Username                 = "/username"
-	Email                    = "/email"
-	EmailByMail              = "/email/:email"
-	Emails                   = "/emails"
-	SendVerificationEmail    = "/send-verification-email"
-	VerifyEmailByToken       = "/verify-email/:token"
-	PhoneNumber              = "/phone-number"
-	SendVerificationSMS      = "/send-verification-sms"
-	VerifyPhoneNumberByToken = "/verify-phone-number/:token"
-	ForgotPassword           = "/forgot-password"
-	ResetPasswordByToken     = "/reset-password/:token"
-	DeleteAccount            = "/delete-account"
+	SignUp                = details.RESTEndpoint("/sign-up")
+	Profile               = details.RESTEndpoint("/profile")
+	FullProfile           = details.RESTEndpoint("/full-profile")
+	Password              = details.RESTEndpoint("/password")
+	Username              = details.RESTEndpoint("/username")
+	Email                 = details.RESTEndpoint("/email")
+	EmailByMail           = details.RESTEndpoint("/email/:" + details.Email)
+	Emails                = details.RESTEndpoint("/emails")
+	SendVerificationEmail = details.RESTEndpoint("/send-verification-email")
+	VerifyEmailByToken    = details.RESTEndpoint(
+		"/verify-email/:" + details.Token,
+	)
+	PhoneNumber              = details.RESTEndpoint("/phone-number")
+	SendVerificationSMS      = details.RESTEndpoint("/send-verification-sms")
+	VerifyPhoneNumberByToken = details.RESTEndpoint(
+		"/verify-phone-number/:" + details.Token,
+	)
+	ForgotPassword       = details.RESTEndpoint("/forgot-password")
+	ResetPasswordByToken = details.RESTEndpoint(
+		"/reset-password/:" + details.Token,
+	)
+	DeleteAccount = details.RESTEndpoint("/delete-account")
 )
