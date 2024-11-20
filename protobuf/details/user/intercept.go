@@ -1,25 +1,27 @@
 package user
 
+import "github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/protobuf/details"
+
 // MethodsToIntercept is a map of methods to not intercept
-var MethodsToIntercept = map[string]bool{
-	"SignUp":                false,
-	"IsPasswordCorrect":     false,
-	"UpdateProfile":         true,
-	"GetProfile":            true,
-	"GetFullProfile":        true,
-	"ChangePassword":        true,
-	"ChangeUsername":        true,
-	"AddEmail":              true,
-	"DeleteEmail":           true,
-	"SendVerificationEmail": true,
-	"VerifyEmail":           true,
-	"GetPrimaryEmail":       true,
-	"ChangePrimaryEmail":    true,
-	"GetActiveEmails":       true,
-	"ChangePhoneNumber":     true,
-	"GetPhoneNumber":        true,
-	"VerifyPhoneNumber":     true,
-	"ForgotPassword":        false,
-	"ResetPassword":         false,
-	"DeleteUser":            true,
+var MethodsToIntercept = map[string]details.Interception{
+	"SignUp":                details.None,
+	"IsPasswordCorrect":     details.None,
+	"UpdateProfile":         details.AccessToken,
+	"GetProfile":            details.AccessToken,
+	"GetFullProfile":        details.AccessToken,
+	"ChangePassword":        details.AccessToken,
+	"ChangeUsername":        details.AccessToken,
+	"AddEmail":              details.AccessToken,
+	"DeleteEmail":           details.AccessToken,
+	"SendVerificationEmail": details.AccessToken,
+	"VerifyEmail":           details.AccessToken,
+	"GetPrimaryEmail":       details.AccessToken,
+	"ChangePrimaryEmail":    details.AccessToken,
+	"GetActiveEmails":       details.AccessToken,
+	"ChangePhoneNumber":     details.AccessToken,
+	"GetPhoneNumber":        details.AccessToken,
+	"VerifyPhoneNumber":     details.AccessToken,
+	"ForgotPassword":        details.None,
+	"ResetPassword":         details.None,
+	"DeleteUser":            details.AccessToken,
 }
