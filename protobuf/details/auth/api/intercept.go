@@ -53,7 +53,7 @@ var RESTMap = map[string]map[types.RESTMethod]types.GRPCMethod{
 	Roles.String(): {
 		types.GET: detailsauth.GetRoles,
 	},
-	UserRoleByUserId: {
+	UserRoleByUserId.String(): {
 		types.POST:   detailsauth.AddUserRole,
 		types.DELETE: detailsauth.RevokeUserRole,
 	},
