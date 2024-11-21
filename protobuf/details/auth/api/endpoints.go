@@ -8,8 +8,14 @@ import (
 var (
 	LogIn              = types.NewRESTEndpoint("/log-in")
 	LogOut             = types.NewRESTEndpoint("/log-out")
-	AccessToken        = types.NewRESTEndpoint("/access-token")
-	RefreshToken       = types.NewRESTEndpoint("/refresh-token")
+	AccessTokenByToken = types.NewRESTEndpoint(
+		"/access-token",
+		types.Token,
+	)
+	RefreshTokenByToken = types.NewRESTEndpoint(
+		"/refresh-token",
+		types.Token,
+	)
 	Sessions           = types.NewRESTEndpoint("/sessions")
 	SessionByToken     = types.NewRESTEndpoint("/session", types.Token)
 	Permission         = types.NewRESTEndpoint("/permission")

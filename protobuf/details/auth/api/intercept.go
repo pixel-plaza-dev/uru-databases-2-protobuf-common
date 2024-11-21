@@ -10,10 +10,10 @@ var RESTMap = map[string]map[types.RESTMethod]types.GRPCMethod{
 	LogIn.String(): {
 		types.POST: detailsauth.LogIn,
 	},
-	AccessToken.String(): {
+	AccessTokenByToken.String(): {
 		types.GET: detailsauth.IsAccessTokenValid,
 	},
-	RefreshToken.String(): {
+	RefreshTokenByToken.String(): {
 		types.GET:  detailsauth.IsRefreshTokenValid,
 		types.POST: detailsauth.RefreshToken,
 	},
