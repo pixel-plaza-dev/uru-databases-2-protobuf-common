@@ -41,7 +41,7 @@ message LogInResponse {
 }
 
 message IsAccessTokenValidRequest {
-  string access_token = 1;
+  string jwt_id = 1;
 }
 
 message IsAccessTokenValidResponse {
@@ -50,7 +50,7 @@ message IsAccessTokenValidResponse {
 }
 
 message IsRefreshTokenValidRequest {
-  string refresh_token = 1;
+  string jwt_id = 1;
 }
 
 message IsRefreshTokenValidResponse {

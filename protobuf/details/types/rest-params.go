@@ -24,4 +24,5 @@ var (
 	Token    = NewRESTParam("token")
 	Id       = NewRESTParam("id")
 	UserId   = NewRESTParam("user_id")
+	JwtId    = NewRESTParam("jwt_id")
 )
