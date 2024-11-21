@@ -85,9 +85,7 @@ message Session {
   string created_at = 4;
 }
 
-message GetSessionsRequest {
-  string user_id = 1;
-}
+message GetSessionsRequest {}
 
 message GetSessionsResponse {
   uint32 code = 1;
@@ -104,9 +102,7 @@ message CloseSessionResponse {
   string message = 2;
 }
 
-message CloseSessionsRequest {
-  string user_id = 1;
-}
+message CloseSessionsRequest {}
 
 message CloseSessionsResponse {
   uint32 code = 1;
@@ -239,7 +235,7 @@ message RevokeUserRoleResponse {
 }
 
 message GetUserRolesRequest {
-  string username = 1;
+  string user_id = 1;
 }
 
 message GetUserRolesResponse {

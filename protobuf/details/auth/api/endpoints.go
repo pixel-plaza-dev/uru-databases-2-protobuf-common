@@ -12,6 +12,7 @@ var (
 		"/access-token",
 		types.Token,
 	)
+	RefreshToken        = types.NewRESTEndpoint("/refresh-token")
 	RefreshTokenByToken = types.NewRESTEndpoint(
 		"/refresh-token",
 		types.Token,
@@ -21,19 +22,17 @@ var (
 	Permission         = types.NewRESTEndpoint("/permission")
 	PermissionById     = types.NewRESTEndpoint("/permission/:" + types.Id.String())
 	Permissions        = types.NewRESTEndpoint("/permissions")
-	RolePermission     = types.NewRESTEndpoint("/role-permission")
 	RolePermissionById = types.NewRESTEndpoint(
 		"/role-permission", types.Id,
 	)
-	RolePermissions = types.NewRESTEndpoint("/role-permissions")
-	Role            = types.NewRESTEndpoint("/role")
-	RoleById        = types.NewRESTEndpoint("/role/:" + types.Id.String())
-	Roles           = types.NewRESTEndpoint("/roles")
-	UserRole        = types.NewRESTEndpoint(
+	Role             = types.NewRESTEndpoint("/role")
+	RoleById         = types.NewRESTEndpoint("/role/:" + types.Id.String())
+	Roles            = types.NewRESTEndpoint("/roles")
+	UserRoleByUserId = types.NewRESTEndpoint(
 		"/user-role", types.UserId,
 	)
-	UserRoleById = types.NewRESTEndpoint("/user-role/:" + types.Id.String())
-	UserRoles    = types.NewRESTEndpoint(
+	UserRoleById      = types.NewRESTEndpoint("/user-role/:" + types.Id.String())
+	UserRolesByUserId = types.NewRESTEndpoint(
 		"/user-roles", types.UserId,
 	)
 )

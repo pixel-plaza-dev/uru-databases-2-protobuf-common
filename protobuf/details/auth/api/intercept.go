@@ -14,7 +14,9 @@ var RESTMap = map[string]map[types.RESTMethod]types.GRPCMethod{
 		types.GET: detailsauth.IsAccessTokenValid,
 	},
 	RefreshTokenByToken.String(): {
-		types.GET:  detailsauth.IsRefreshTokenValid,
+		types.GET: detailsauth.IsRefreshTokenValid,
+	},
+	RefreshToken.String(): {
 		types.POST: detailsauth.RefreshToken,
 	},
 	LogOut.String(): {
@@ -37,31 +39,25 @@ var RESTMap = map[string]map[types.RESTMethod]types.GRPCMethod{
 	Permissions.String(): {
 		types.GET: detailsauth.GetPermissions,
 	},
-	RolePermission.String(): {
-		types.POST: detailsauth.AddRolePermission,
-	},
 	RolePermissionById.String(): {
 		types.DELETE: detailsauth.RevokeRolePermission,
-	},
-	RolePermissions.String(): {
-		types.GET: detailsauth.GetRolePermissions,
 	},
 	Role.String(): {
 		types.POST: detailsauth.AddRole,
 	},
 	RoleById.String(): {
+		types.POST:   detailsauth.AddRolePermission,
+		types.GET:    detailsauth.GetRolePermissions,
 		types.DELETE: detailsauth.RevokeRole,
 	},
 	Roles.String(): {
 		types.GET: detailsauth.GetRoles,
 	},
-	UserRole.String(): {
-		types.POST: detailsauth.AddUserRole,
-	},
-	UserRoleById.String(): {
+	UserRoleByUserId: {
+		types.POST:   detailsauth.AddUserRole,
 		types.DELETE: detailsauth.RevokeUserRole,
 	},
-	UserRoles.String(): {
+	UserRolesByUserId.String(): {
 		types.GET: detailsauth.GetUserRoles,
 	},
 }
