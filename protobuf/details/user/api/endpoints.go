@@ -6,14 +6,23 @@ import (
 
 // User service REST endpoints
 var (
-	SignUp                = types.NewRESTEndpoint("/sign-up")
-	Profile               = types.NewRESTEndpoint("/profile")
-	FullProfile           = types.NewRESTEndpoint("/full-profile")
-	IdByUsername          = types.NewRESTEndpoint("/id", types.Username)
-	Password              = types.NewRESTEndpoint("/password")
-	Username              = types.NewRESTEndpoint("/username")
-	UsernameByUsername    = types.NewRESTEndpoint("/username", types.Username)
-	UsernameById          = types.NewRESTEndpoint("/username", types.Id)
+	SignUp          = types.NewRESTEndpoint("/sign-up")
+	Profile         = types.NewRESTEndpoint("/profile")
+	FullProfile     = types.NewRESTEndpoint("/full-profile")
+	GetIdByUsername = types.NewRESTEndpoint(
+		"/get-id",
+		types.Username,
+	)
+	Password        = types.NewRESTEndpoint("/password")
+	Username        = types.NewRESTEndpoint("/username")
+	GetUsernameById = types.NewRESTEndpoint(
+		"/get-username",
+		types.Id,
+	)
+	UsernameExistsByUsername = types.NewRESTEndpoint(
+		"/username-exists",
+		types.Username,
+	)
 	Email                 = types.NewRESTEndpoint("/email")
 	EmailByEmail          = types.NewRESTEndpoint("/email", types.Email)
 	Emails                = types.NewRESTEndpoint("/emails")

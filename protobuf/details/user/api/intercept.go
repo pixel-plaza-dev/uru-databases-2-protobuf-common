@@ -17,7 +17,7 @@ var RESTMap = map[string]map[types.RESTMethod]types.GRPCMethod{
 	FullProfile.String(): {
 		types.GET: detailsuser.GetFullProfile,
 	},
-	IdByUsername.String(): {
+	GetIdByUsername.String(): {
 		types.GET: detailsuser.GetUserIdByUsername,
 	},
 	Password.String(): {
@@ -26,10 +26,10 @@ var RESTMap = map[string]map[types.RESTMethod]types.GRPCMethod{
 	Username.String(): {
 		types.PUT: detailsuser.ChangeUsername,
 	},
-	UsernameByUsername.String(): {
+	UsernameExistsByUsername.String(): {
 		types.GET: detailsuser.UsernameExists,
 	},
-	UsernameById.String(): {
+	GetUsernameById.String(): {
 		types.GET: detailsuser.GetUsernameByUserId,
 	},
 	Email.String(): {
