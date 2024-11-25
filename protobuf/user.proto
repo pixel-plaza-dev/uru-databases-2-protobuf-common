@@ -52,7 +52,7 @@ message SignUpResponse {
 }
 
 message UsernameExistsRequest {
-  repeated string username = 1;
+  string username = 1;
 }
 
 message UsernameExistsResponse {
