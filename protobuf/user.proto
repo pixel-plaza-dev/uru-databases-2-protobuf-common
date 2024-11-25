@@ -58,7 +58,7 @@ message UsernameExistsRequest {
 message UsernameExistsResponse {
   uint32 code = 1;
   string message = 2;
-  repeated bool exists = 3;
+  bool exists = 3;
 }
 
 message GetUsernameByUserIdRequest {
