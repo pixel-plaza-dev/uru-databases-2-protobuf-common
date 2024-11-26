@@ -31,7 +31,6 @@ var (
 	UserRoleByUserId = types.NewRESTEndpoint(
 		"/user-role", types.UserId,
 	)
-	UserRoleById      = types.NewRESTEndpoint("/user-role/:" + types.Id.String())
 	UserRolesByUserId = types.NewRESTEndpoint(
 		"/user-roles", types.UserId,
 	)
