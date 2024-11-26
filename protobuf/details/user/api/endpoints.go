@@ -10,17 +10,17 @@ var (
 	Profile      = types.NewRESTEndpoint("/profile")
 	FullProfile  = types.NewRESTEndpoint("/full-profile")
 	IdByUsername = types.NewRESTEndpoint(
-		"/id",
+		"/id-by-username",
 		types.Username,
 	)
 	Password     = types.NewRESTEndpoint("/password")
 	Username     = types.NewRESTEndpoint("/username")
 	UsernameById = types.NewRESTEndpoint(
-		"/username",
+		"/username-by-id",
 		types.Id,
 	)
 	UsernameExistsByUsername = types.NewRESTEndpoint(
-		"/username",
+		"/username-exists",
 		types.Username,
 	)
 	Email                 = types.NewRESTEndpoint("/email")
