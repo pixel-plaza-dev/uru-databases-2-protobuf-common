@@ -34,10 +34,9 @@ message LogInRequest {
 }
 
 message LogInResponse {
-  uint32 code = 1;
-  string message = 2;
-  string access_token = 3;
-  string refresh_token = 4;
+  string message = 1;
+  string access_token = 2;
+  string refresh_token = 3;
 }
 
 message IsAccessTokenValidRequest {
@@ -45,8 +44,7 @@ message IsAccessTokenValidRequest {
 }
 
 message IsAccessTokenValidResponse {
-  uint32 code = 1;
-  string message = 2;
+  string message = 1;
 }
 
 message IsRefreshTokenValidRequest {
@@ -54,28 +52,21 @@ message IsRefreshTokenValidRequest {
 }
 
 message IsRefreshTokenValidResponse {
-  uint32 code = 1;
-  string message = 2;
+  string message = 1;
 }
 
-message RefreshTokenRequest {
-  string refreshToken = 1;
-}
+message RefreshTokenRequest {}
 
 message RefreshTokenResponse {
-  uint32 code = 1;
-  string message = 2;
-  string access_token = 3;
-  string refresh_token = 4;
+  string message = 1;
+  string access_token = 2;
+  string refresh_token = 3;
 }
 
-message LogOutRequest {
-  string refresh_token = 1;
-}
+message LogOutRequest {}
 
 message LogOutResponse {
-  uint32 code = 1;
-  string message = 2;
+  string message = 1;
 }
 
 message Session {
@@ -88,9 +79,8 @@ message Session {
 message GetSessionsRequest {}
 
 message GetSessionsResponse {
-  uint32 code = 1;
-  string message = 2;
-  repeated Session sessions = 3;
+  string message = 1;
+  repeated Session sessions = 2;
 }
 
 message CloseSessionRequest {
@@ -98,15 +88,13 @@ message CloseSessionRequest {
 }
 
 message CloseSessionResponse {
-  uint32 code = 1;
-  string message = 2;
+  string message = 1;
 }
 
 message CloseSessionsRequest {}
 
 message CloseSessionsResponse {
-  uint32 code = 1;
-  string message = 2;
+  string message = 1;
 }
 
 message AddPermissionRequest {
@@ -114,8 +102,7 @@ message AddPermissionRequest {
 }
 
 message AddPermissionResponse {
-  uint32 code = 1;
-  string message = 2;
+  string message = 1;
 }
 
 message RevokePermissionRequest {
@@ -123,8 +110,7 @@ message RevokePermissionRequest {
 }
 
 message RevokePermissionResponse {
-  uint32 code = 1;
-  string message = 2;
+  string message = 1;
 }
 
 message Permission {
@@ -137,9 +123,8 @@ message Permission {
 message GetPermissionsRequest {}
 
 message GetPermissionsResponse {
-  uint32 code = 1;
-  string message = 2;
-  repeated Permission permission = 3;
+  string message = 1;
+  repeated Permission permission = 2;
 }
 
 message GetPermissionRequest {
@@ -147,9 +132,8 @@ message GetPermissionRequest {
 }
 
 message GetPermissionResponse {
-  uint32 code = 1;
-  string message = 2;
-  Permission permission = 3;
+  string message = 1;
+  Permission permission = 2;
 }
 
 message AddRolePermissionRequest {
@@ -158,8 +142,7 @@ message AddRolePermissionRequest {
 }
 
 message AddRolePermissionResponse {
-  uint32 code = 1;
-  string message = 2;
+  string message = 1;
 }
 
 message RevokeRolePermissionRequest {
@@ -168,8 +151,7 @@ message RevokeRolePermissionRequest {
 }
 
 message RevokeRolePermissionResponse {
-  uint32 code = 1;
-  string message = 2;
+  string message = 1;
 }
 
 message GetRolePermissionsRequest {
@@ -177,9 +159,8 @@ message GetRolePermissionsRequest {
 }
 
 message GetRolePermissionsResponse {
-  uint32 code = 1;
-  string message = 2;
-  repeated string permissions_id = 3;
+  string message = 1;
+  repeated string permissions_id = 2;
 }
 
 message AddRoleRequest {
@@ -187,8 +168,7 @@ message AddRoleRequest {
 }
 
 message AddRoleResponse {
-  uint32 code = 1;
-  string message = 2;
+  string message = 1;
 }
 
 message RevokeRoleRequest {
@@ -196,8 +176,7 @@ message RevokeRoleRequest {
 }
 
 message RevokeRoleResponse {
-  uint32 code = 1;
-  string message = 2;
+  string message = 1;
 }
 
 message Role {
@@ -209,9 +188,8 @@ message Role {
 message GetRolesRequest {}
 
 message GetRolesResponse {
-  uint32 code = 1;
-  string message = 2;
-  repeated Role roles = 3;
+  string message = 1;
+  repeated Role roles = 2;
 }
 
 message AddUserRoleRequest {
@@ -220,8 +198,7 @@ message AddUserRoleRequest {
 }
 
 message AddUserRoleResponse {
-  uint32 code = 1;
-  string message = 2;
+  string message = 1;
 }
 
 message RevokeUserRoleRequest {
@@ -230,8 +207,7 @@ message RevokeUserRoleRequest {
 }
 
 message RevokeUserRoleResponse {
-  uint32 code = 1;
-  string message = 2;
+  string message = 1;
 }
 
 message GetUserRolesRequest {
@@ -239,7 +215,6 @@ message GetUserRolesRequest {
 }
 
 message GetUserRolesResponse {
-  uint32 code = 1;
-  string message = 2;
-  repeated string roles_id = 3;
+  string message = 1;
+  repeated string roles_id = 2;
 }

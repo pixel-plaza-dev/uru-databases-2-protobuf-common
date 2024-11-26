@@ -43,8 +43,7 @@ message SignUpRequest {
 }
 
 message SignUpResponse {
-  uint32 code = 1;
-  string message = 2;
+  string message = 1;
 }
 
 message IsPasswordCorrectRequest {
@@ -53,9 +52,8 @@ message IsPasswordCorrectRequest {
 }
 
 message IsPasswordCorrectResponse {
-  uint32 code = 1;
-  string message = 2;
-  string user_id = 3;
+  string message = 1;
+  string user_id = 2;
 }
 
 message UsernameExistsRequest {
@@ -63,9 +61,8 @@ message UsernameExistsRequest {
 }
 
 message UsernameExistsResponse {
-  uint32 code = 1;
-  string message = 2;
-  bool exists = 3;
+  string message = 1;
+  bool exists = 2;
 }
 
 message GetUsernameByUserIdRequest {
@@ -73,9 +70,8 @@ message GetUsernameByUserIdRequest {
 }
 
 message GetUsernameByUserIdResponse {
-  uint32 code = 1;
-  string message = 2;
-  string username = 3;
+  string message = 1;
+  string username = 2;
 }
 
 message GetUserIdByUsernameRequest {
@@ -83,9 +79,8 @@ message GetUserIdByUsernameRequest {
 }
 
 message GetUserIdByUsernameResponse {
-  uint32 code = 1;
-  string message = 2;
-  string user_id = 3;
+  string message = 1;
+  string user_id = 2;
 }
 
 message UpdateProfileRequest {
@@ -95,8 +90,7 @@ message UpdateProfileRequest {
 }
 
 message UpdateProfileResponse {
-  uint32 code = 1;
-  string message = 2;
+  string message = 1;
 }
 
 message GetProfileRequest {
@@ -104,12 +98,11 @@ message GetProfileRequest {
 }
 
 message GetProfileResponse {
-  uint32 code = 1;
-  string message = 2;
-  string username = 3;
-  string first_name = 4;
-  string last_name = 5;
-  google.protobuf.Timestamp birthdate = 6;
+  string message = 1;
+  string username = 2;
+  string first_name = 3;
+  string last_name = 4;
+  google.protobuf.Timestamp birthdate = 5;
 }
 
 message GetFullProfileRequest {
@@ -117,14 +110,13 @@ message GetFullProfileRequest {
 }
 
 message GetFullProfileResponse {
-  uint32 code = 1;
-  string message = 2;
-  string username = 3;
-  string first_name = 4;
-  string last_name = 5;
-  repeated string emails = 6;
-  string phone_number = 7;
-  google.protobuf.Timestamp birthdate = 8;
+  string message = 1;
+  string username = 2;
+  string first_name = 3;
+  string last_name = 4;
+  repeated string emails = 5;
+  string phone_number = 6;
+  google.protobuf.Timestamp birthdate = 7;
 }
 
 message ChangeUsernameRequest {
@@ -132,8 +124,7 @@ message ChangeUsernameRequest {
 }
 
 message ChangeUsernameResponse {
-  uint32 code = 1;
-  string message = 2;
+  string message = 1;
 }
 
 message ChangePasswordRequest {
@@ -142,8 +133,7 @@ message ChangePasswordRequest {
 }
 
 message ChangePasswordResponse {
-  uint32 code = 1;
-  string message = 2;
+  string message = 1;
 }
 
 message AddEmailRequest {
@@ -151,8 +141,7 @@ message AddEmailRequest {
 }
 
 message AddEmailResponse {
-  uint32 code = 1;
-  string message = 2;
+  string message = 1;
 }
 
 message DeleteEmailRequest {
@@ -160,8 +149,7 @@ message DeleteEmailRequest {
 }
 
 message DeleteEmailResponse {
-  uint32 code = 1;
-  string message = 2;
+  string message = 1;
 }
 
 message SendVerificationEmailRequest {
@@ -169,8 +157,7 @@ message SendVerificationEmailRequest {
 }
 
 message SendVerificationEmailResponse {
-  uint32 code = 1;
-  string message = 2;
+  string message = 1;
 }
 
 message VerifyEmailRequest {
@@ -178,8 +165,7 @@ message VerifyEmailRequest {
 }
 
 message VerifyEmailResponse {
-  uint32 code = 1;
-  string message = 2;
+  string message = 1;
 }
 
 message ChangePrimaryEmailRequest {
@@ -187,24 +173,21 @@ message ChangePrimaryEmailRequest {
 }
 
 message ChangePrimaryEmailResponse {
-  uint32 code = 1;
-  string message = 2;
+  string message = 1;
 }
 
 message GetPrimaryEmailRequest {}
 
 message GetPrimaryEmailResponse {
-  uint32 code = 1;
-  string message = 2;
-  string email = 3;
+  string message = 1;
+  string email = 2;
 }
 
 message GetActiveEmailsRequest {}
 
 message GetActiveEmailsResponse {
-  uint32 code = 1;
-  string message = 2;
-  repeated string emails = 3;
+  string message = 1;
+  repeated string emails = 2;
 }
 
 message ChangePhoneNumberRequest {
@@ -212,8 +195,7 @@ message ChangePhoneNumberRequest {
 }
 
 message ChangePhoneNumberResponse {
-  uint32 code = 1;
-  string message = 2;
+  string message = 1;
 }
 
 message SendVerificationSMSRequest {
@@ -221,8 +203,7 @@ message SendVerificationSMSRequest {
 }
 
 message SendVerificationSMSResponse {
-  uint32 code = 1;
-  string message = 2;
+  string message = 1;
 }
 
 message VerifyPhoneNumberRequest {
@@ -230,16 +211,14 @@ message VerifyPhoneNumberRequest {
 }
 
 message VerifyPhoneNumberResponse {
-  uint32 code = 1;
-  string message = 2;
+  string message = 1;
 }
 
 message GetPhoneNumberRequest {}
 
 message GetPhoneNumberResponse {
-  uint32 code = 1;
-  string message = 2;
-  string phone_number = 3;
+  string message = 1;
+  string phone_number = 2;
 }
 
 message ForgotPasswordRequest {
@@ -247,8 +226,7 @@ message ForgotPasswordRequest {
 }
 
 message ForgotPasswordResponse {
-  uint32 code = 1;
-  string message = 2;
+  string message = 1;
 }
 
 message ResetPasswordRequest {
@@ -257,8 +235,7 @@ message ResetPasswordRequest {
 }
 
 message ResetPasswordResponse {
-  uint32 code = 1;
-  string message = 2;
+  string message = 1;
 }
 
 message DeleteUserRequest {
@@ -266,6 +243,5 @@ message DeleteUserRequest {
 }
 
 message DeleteUserResponse {
-  uint32 code = 1;
-  string message = 2;
+  string message = 1;
 }
