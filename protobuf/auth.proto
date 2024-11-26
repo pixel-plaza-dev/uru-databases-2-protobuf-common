@@ -45,6 +45,7 @@ message IsAccessTokenValidRequest {
 
 message IsAccessTokenValidResponse {
   string message = 1;
+  bool is_valid = 2;
 }
 
 message IsRefreshTokenValidRequest {
@@ -53,6 +54,7 @@ message IsRefreshTokenValidRequest {
 
 message IsRefreshTokenValidResponse {
   string message = 1;
+  bool is_valid = 2;
 }
 
 message RefreshTokenRequest {}
