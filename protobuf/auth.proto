@@ -73,7 +73,6 @@ message LogOutResponse {
 
 message Session {
   string id = 1;
-  string user_id = 2;
   string ipv4_address = 3;
   string created_at = 4;
 }

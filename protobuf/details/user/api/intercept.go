@@ -14,8 +14,8 @@ var RESTMap = map[string]map[types.RESTMethod]types.GRPCMethod{
 		types.GET:   detailsuser.GetProfile,
 		types.PATCH: detailsuser.UpdateProfile,
 	},
-	FullProfile.String(): {
-		types.GET: detailsuser.GetFullProfile,
+	MyProfile.String(): {
+		types.GET: detailsuser.GetMyProfile,
 	},
 	IdByUsername.String(): {
 		types.GET: detailsuser.GetUserIdByUsername,

@@ -8,7 +8,7 @@ import (
 var (
 	SignUp       = types.NewRESTEndpoint("/sign-up")
 	Profile      = types.NewRESTEndpoint("/profile")
-	FullProfile  = types.NewRESTEndpoint("/full-profile")
+	MyProfile    = types.NewRESTEndpoint("/my-profile")
 	IdByUsername = types.NewRESTEndpoint(
 		"/id-by-username",
 		types.Username,

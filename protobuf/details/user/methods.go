@@ -13,7 +13,7 @@ var (
 	IsPasswordCorrect     = types.NewGRPCMethod("IsPasswordCorrect")
 	UpdateProfile         = types.NewGRPCMethod("UpdateProfile")
 	GetProfile            = types.NewGRPCMethod("GetProfile")
-	GetFullProfile        = types.NewGRPCMethod("GetFullProfile")
+	GetMyProfile          = types.NewGRPCMethod("GetMyProfile")
 	ChangePassword        = types.NewGRPCMethod("ChangePassword")
 	ChangeUsername        = types.NewGRPCMethod("ChangeUsername")
 	AddEmail              = types.NewGRPCMethod("AddEmail")

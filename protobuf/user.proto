@@ -13,7 +13,7 @@ service User {
   rpc IsPasswordCorrect(IsPasswordCorrectRequest) returns (IsPasswordCorrectResponse) {}
   rpc UpdateProfile(UpdateProfileRequest) returns (UpdateProfileResponse) {}
   rpc GetProfile(GetProfileRequest) returns (GetProfileResponse) {}
-  rpc GetFullProfile(GetFullProfileRequest) returns (GetFullProfileResponse) {}
+  rpc GetMyProfile(GetMyProfileRequest) returns (GetMyProfileResponse) {}
   rpc ChangeUsername(ChangeUsernameRequest) returns (ChangeUsernameResponse) {}
   rpc ChangePassword(ChangePasswordRequest) returns (ChangePasswordResponse) {}
   rpc AddEmail(AddEmailRequest) returns (AddEmailResponse) {}
@@ -102,14 +102,12 @@ message GetProfileResponse {
   string username = 2;
   string first_name = 3;
   string last_name = 4;
-  google.protobuf.Timestamp birthdate = 5;
 }
 
-message GetFullProfileRequest {
-  string user_id = 1;
+message GetMyProfileRequest {
 }
 
-message GetFullProfileResponse {
+message GetMyProfileResponse {
   string message = 1;
   string username = 2;
   string first_name = 3;
