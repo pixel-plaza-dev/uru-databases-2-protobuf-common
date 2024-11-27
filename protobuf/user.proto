@@ -11,7 +11,7 @@ service User {
   rpc GetUsernameByUserId(GetUsernameByUserIdRequest) returns (GetUsernameByUserIdResponse) {}
   rpc GetUserIdByUsername(GetUserIdByUsernameRequest) returns (GetUserIdByUsernameResponse) {}
   rpc IsPasswordCorrect(IsPasswordCorrectRequest) returns (IsPasswordCorrectResponse) {}
-  rpc UpdateProfile(UpdateProfileRequest) returns (UpdateProfileResponse) {}
+  rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse) {}
   rpc GetProfile(GetProfileRequest) returns (GetProfileResponse) {}
   rpc GetMyProfile(GetMyProfileRequest) returns (GetMyProfileResponse) {}
   rpc ChangeUsername(ChangeUsernameRequest) returns (ChangeUsernameResponse) {}
@@ -83,13 +83,13 @@ message GetUserIdByUsernameResponse {
   string user_id = 2;
 }
 
-message UpdateProfileRequest {
+message UpdateUserRequest {
   optional string first_name = 1;
   optional string last_name = 2;
   optional google.protobuf.Timestamp birthdate = 4;
 }
 
-message UpdateProfileResponse {
+message UpdateUserResponse {
   string message = 1;
 }
 

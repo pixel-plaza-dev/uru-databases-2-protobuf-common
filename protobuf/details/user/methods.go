@@ -11,7 +11,7 @@ var (
 	GetUserIdByUsername   = types.NewGRPCMethod("GetUserIdByUsername")
 	GetUsernameByUserId   = types.NewGRPCMethod("GetUsernameByUserId")
 	IsPasswordCorrect     = types.NewGRPCMethod("IsPasswordCorrect")
-	UpdateProfile         = types.NewGRPCMethod("UpdateProfile")
+	UpdateUser            = types.NewGRPCMethod("UpdateUser")
 	GetProfile            = types.NewGRPCMethod("GetProfile")
 	GetMyProfile          = types.NewGRPCMethod("GetMyProfile")
 	ChangePassword        = types.NewGRPCMethod("ChangePassword")

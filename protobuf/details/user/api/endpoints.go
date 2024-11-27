@@ -6,8 +6,9 @@ import (
 
 // User service REST endpoints
 var (
+	User         = types.NewRESTEndpoint("/")
 	SignUp       = types.NewRESTEndpoint("/sign-up")
-	Profile      = types.NewRESTEndpoint("/profile")
+	Profile      = types.NewRESTEndpoint("/profile", types.Username)
 	MyProfile    = types.NewRESTEndpoint("/my-profile")
 	IdByUsername = types.NewRESTEndpoint(
 		"/id-by-username",

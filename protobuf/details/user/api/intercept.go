@@ -7,12 +7,14 @@ import (
 
 // RESTMap is the map of the Rest API endpoints to the user service gRPC methods
 var RESTMap = map[string]map[types.RESTMethod]types.GRPCMethod{
+	User.String(): {
+		types.PATCH: detailsuser.UpdateUser,
+	},
 	SignUp.String(): {
 		types.POST: detailsuser.SignUp,
 	},
 	Profile.String(): {
-		types.GET:   detailsuser.GetProfile,
-		types.PATCH: detailsuser.UpdateProfile,
+		types.GET: detailsuser.GetProfile,
 	},
 	MyProfile.String(): {
 		types.GET: detailsuser.GetMyProfile,
