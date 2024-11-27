@@ -13,7 +13,7 @@ var GRPCInterceptions = map[types.GRPCMethod]types.Interception{
 	IsPasswordCorrect:     types.None,
 	UpdateProfile:         types.AccessToken,
 	GetProfile:            types.AccessToken,
-	GetFullProfile:        types.AccessToken,
+	GetMyProfile:          types.AccessToken,
 	ChangePassword:        types.AccessToken,
 	ChangeUsername:        types.AccessToken,
 	AddEmail:              types.AccessToken,
