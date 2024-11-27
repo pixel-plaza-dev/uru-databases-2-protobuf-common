@@ -62,7 +62,6 @@ message UsernameExistsRequest {
 
 message UsernameExistsResponse {
   string message = 1;
-  bool exists = 2;
 }
 
 message GetUsernameByUserIdRequest {
