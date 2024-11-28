@@ -56,6 +56,7 @@ message IsPasswordCorrectRequest {
 message IsPasswordCorrectResponse {
   string message = 1;
   string user_id = 2;
+  string user_shared_id = 3;
 }
 
 message UsernameExistsRequest {
