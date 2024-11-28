@@ -19,30 +19,32 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	User_SignUp_FullMethodName                = "/user.User/SignUp"
-	User_UsernameExists_FullMethodName        = "/user.User/UsernameExists"
-	User_GetUsernameByUserId_FullMethodName   = "/user.User/GetUsernameByUserId"
-	User_GetUserIdByUsername_FullMethodName   = "/user.User/GetUserIdByUsername"
-	User_IsPasswordCorrect_FullMethodName     = "/user.User/IsPasswordCorrect"
-	User_UpdateUser_FullMethodName            = "/user.User/UpdateUser"
-	User_GetProfile_FullMethodName            = "/user.User/GetProfile"
-	User_GetMyProfile_FullMethodName          = "/user.User/GetMyProfile"
-	User_ChangeUsername_FullMethodName        = "/user.User/ChangeUsername"
-	User_ChangePassword_FullMethodName        = "/user.User/ChangePassword"
-	User_AddEmail_FullMethodName              = "/user.User/AddEmail"
-	User_DeleteEmail_FullMethodName           = "/user.User/DeleteEmail"
-	User_SendVerificationEmail_FullMethodName = "/user.User/SendVerificationEmail"
-	User_VerifyEmail_FullMethodName           = "/user.User/VerifyEmail"
-	User_GetPrimaryEmail_FullMethodName       = "/user.User/GetPrimaryEmail"
-	User_GetActiveEmails_FullMethodName       = "/user.User/GetActiveEmails"
-	User_ChangePrimaryEmail_FullMethodName    = "/user.User/ChangePrimaryEmail"
-	User_GetPhoneNumber_FullMethodName        = "/user.User/GetPhoneNumber"
-	User_ChangePhoneNumber_FullMethodName     = "/user.User/ChangePhoneNumber"
-	User_SendVerificationSMS_FullMethodName   = "/user.User/SendVerificationSMS"
-	User_VerifyPhoneNumber_FullMethodName     = "/user.User/VerifyPhoneNumber"
-	User_ForgotPassword_FullMethodName        = "/user.User/ForgotPassword"
-	User_ResetPassword_FullMethodName         = "/user.User/ResetPassword"
-	User_DeleteUser_FullMethodName            = "/user.User/DeleteUser"
+	User_SignUp_FullMethodName                  = "/user.User/SignUp"
+	User_UsernameExists_FullMethodName          = "/user.User/UsernameExists"
+	User_GetUsernameByUserId_FullMethodName     = "/user.User/GetUsernameByUserId"
+	User_GetUserIdByUsername_FullMethodName     = "/user.User/GetUserIdByUsername"
+	User_GetUserSharedIdByUserId_FullMethodName = "/user.User/GetUserSharedIdByUserId"
+	User_GetUserIdByUserSharedId_FullMethodName = "/user.User/GetUserIdByUserSharedId"
+	User_IsPasswordCorrect_FullMethodName       = "/user.User/IsPasswordCorrect"
+	User_UpdateUser_FullMethodName              = "/user.User/UpdateUser"
+	User_GetProfile_FullMethodName              = "/user.User/GetProfile"
+	User_GetMyProfile_FullMethodName            = "/user.User/GetMyProfile"
+	User_ChangeUsername_FullMethodName          = "/user.User/ChangeUsername"
+	User_ChangePassword_FullMethodName          = "/user.User/ChangePassword"
+	User_AddEmail_FullMethodName                = "/user.User/AddEmail"
+	User_DeleteEmail_FullMethodName             = "/user.User/DeleteEmail"
+	User_SendVerificationEmail_FullMethodName   = "/user.User/SendVerificationEmail"
+	User_VerifyEmail_FullMethodName             = "/user.User/VerifyEmail"
+	User_GetPrimaryEmail_FullMethodName         = "/user.User/GetPrimaryEmail"
+	User_GetActiveEmails_FullMethodName         = "/user.User/GetActiveEmails"
+	User_ChangePrimaryEmail_FullMethodName      = "/user.User/ChangePrimaryEmail"
+	User_GetPhoneNumber_FullMethodName          = "/user.User/GetPhoneNumber"
+	User_ChangePhoneNumber_FullMethodName       = "/user.User/ChangePhoneNumber"
+	User_SendVerificationSMS_FullMethodName     = "/user.User/SendVerificationSMS"
+	User_VerifyPhoneNumber_FullMethodName       = "/user.User/VerifyPhoneNumber"
+	User_ForgotPassword_FullMethodName          = "/user.User/ForgotPassword"
+	User_ResetPassword_FullMethodName           = "/user.User/ResetPassword"
+	User_DeleteUser_FullMethodName              = "/user.User/DeleteUser"
 )
 
 // UserClient is the client API for User service.
@@ -53,6 +55,8 @@ type UserClient interface {
 	UsernameExists(ctx context.Context, in *UsernameExistsRequest, opts ...grpc.CallOption) (*UsernameExistsResponse, error)
 	GetUsernameByUserId(ctx context.Context, in *GetUsernameByUserIdRequest, opts ...grpc.CallOption) (*GetUsernameByUserIdResponse, error)
 	GetUserIdByUsername(ctx context.Context, in *GetUserIdByUsernameRequest, opts ...grpc.CallOption) (*GetUserIdByUsernameResponse, error)
+	GetUserSharedIdByUserId(ctx context.Context, in *GetUserSharedIdByUserIdRequest, opts ...grpc.CallOption) (*GetUserSharedIdByUserIdResponse, error)
+	GetUserIdByUserSharedId(ctx context.Context, in *GetUserIdByUserSharedIdRequest, opts ...grpc.CallOption) (*GetUserIdByUserSharedIdResponse, error)
 	IsPasswordCorrect(ctx context.Context, in *IsPasswordCorrectRequest, opts ...grpc.CallOption) (*IsPasswordCorrectResponse, error)
 	UpdateUser(ctx context.Context, in *UpdateUserRequest, opts ...grpc.CallOption) (*UpdateUserResponse, error)
 	GetProfile(ctx context.Context, in *GetProfileRequest, opts ...grpc.CallOption) (*GetProfileResponse, error)
@@ -117,6 +121,26 @@ func (c *userClient) GetUserIdByUsername(ctx context.Context, in *GetUserIdByUse
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetUserIdByUsernameResponse)
 	err := c.cc.Invoke(ctx, User_GetUserIdByUsername_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) GetUserSharedIdByUserId(ctx context.Context, in *GetUserSharedIdByUserIdRequest, opts ...grpc.CallOption) (*GetUserSharedIdByUserIdResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetUserSharedIdByUserIdResponse)
+	err := c.cc.Invoke(ctx, User_GetUserSharedIdByUserId_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) GetUserIdByUserSharedId(ctx context.Context, in *GetUserIdByUserSharedIdRequest, opts ...grpc.CallOption) (*GetUserIdByUserSharedIdResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetUserIdByUserSharedIdResponse)
+	err := c.cc.Invoke(ctx, User_GetUserIdByUserSharedId_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -331,6 +355,8 @@ type UserServer interface {
 	UsernameExists(context.Context, *UsernameExistsRequest) (*UsernameExistsResponse, error)
 	GetUsernameByUserId(context.Context, *GetUsernameByUserIdRequest) (*GetUsernameByUserIdResponse, error)
 	GetUserIdByUsername(context.Context, *GetUserIdByUsernameRequest) (*GetUserIdByUsernameResponse, error)
+	GetUserSharedIdByUserId(context.Context, *GetUserSharedIdByUserIdRequest) (*GetUserSharedIdByUserIdResponse, error)
+	GetUserIdByUserSharedId(context.Context, *GetUserIdByUserSharedIdRequest) (*GetUserIdByUserSharedIdResponse, error)
 	IsPasswordCorrect(context.Context, *IsPasswordCorrectRequest) (*IsPasswordCorrectResponse, error)
 	UpdateUser(context.Context, *UpdateUserRequest) (*UpdateUserResponse, error)
 	GetProfile(context.Context, *GetProfileRequest) (*GetProfileResponse, error)
@@ -372,6 +398,12 @@ func (UnimplementedUserServer) GetUsernameByUserId(context.Context, *GetUsername
 }
 func (UnimplementedUserServer) GetUserIdByUsername(context.Context, *GetUserIdByUsernameRequest) (*GetUserIdByUsernameResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUserIdByUsername not implemented")
+}
+func (UnimplementedUserServer) GetUserSharedIdByUserId(context.Context, *GetUserSharedIdByUserIdRequest) (*GetUserSharedIdByUserIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUserSharedIdByUserId not implemented")
+}
+func (UnimplementedUserServer) GetUserIdByUserSharedId(context.Context, *GetUserIdByUserSharedIdRequest) (*GetUserIdByUserSharedIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUserIdByUserSharedId not implemented")
 }
 func (UnimplementedUserServer) IsPasswordCorrect(context.Context, *IsPasswordCorrectRequest) (*IsPasswordCorrectResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method IsPasswordCorrect not implemented")
@@ -522,6 +554,42 @@ func _User_GetUserIdByUsername_Handler(srv interface{}, ctx context.Context, dec
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServer).GetUserIdByUsername(ctx, req.(*GetUserIdByUsernameRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_GetUserSharedIdByUserId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserSharedIdByUserIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).GetUserSharedIdByUserId(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_GetUserSharedIdByUserId_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).GetUserSharedIdByUserId(ctx, req.(*GetUserSharedIdByUserIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_GetUserIdByUserSharedId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserIdByUserSharedIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).GetUserIdByUserSharedId(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_GetUserIdByUserSharedId_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).GetUserIdByUserSharedId(ctx, req.(*GetUserIdByUserSharedIdRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -908,6 +976,14 @@ var User_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetUserIdByUsername",
 			Handler:    _User_GetUserIdByUsername_Handler,
+		},
+		{
+			MethodName: "GetUserSharedIdByUserId",
+			Handler:    _User_GetUserSharedIdByUserId_Handler,
+		},
+		{
+			MethodName: "GetUserIdByUserSharedId",
+			Handler:    _User_GetUserIdByUserSharedId_Handler,
 		},
 		{
 			MethodName: "IsPasswordCorrect",

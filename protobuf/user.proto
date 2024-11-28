@@ -10,6 +10,8 @@ service User {
   rpc UsernameExists(UsernameExistsRequest) returns (UsernameExistsResponse) {}
   rpc GetUsernameByUserId(GetUsernameByUserIdRequest) returns (GetUsernameByUserIdResponse) {}
   rpc GetUserIdByUsername(GetUserIdByUsernameRequest) returns (GetUserIdByUsernameResponse) {}
+  rpc GetUserSharedIdByUserId(GetUserSharedIdByUserIdRequest) returns (GetUserSharedIdByUserIdResponse) {}
+  rpc GetUserIdByUserSharedId(GetUserIdByUserSharedIdRequest) returns (GetUserIdByUserSharedIdResponse) {}
   rpc IsPasswordCorrect(IsPasswordCorrectRequest) returns (IsPasswordCorrectResponse) {}
   rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse) {}
   rpc GetProfile(GetProfileRequest) returns (GetProfileResponse) {}
@@ -78,6 +80,24 @@ message GetUserIdByUsernameRequest {
 }
 
 message GetUserIdByUsernameResponse {
+  string message = 1;
+  string user_id = 2;
+}
+
+message GetUserSharedIdByUserIdRequest {
+  string user_id = 1;
+}
+
+message GetUserSharedIdByUserIdResponse {
+  string message = 1;
+  string user_shared_id = 2;
+}
+
+message GetUserIdByUserSharedIdRequest {
+  string user_shared_id = 1;
+}
+
+message GetUserIdByUserSharedIdResponse {
   string message = 1;
   string user_id = 2;
 }
