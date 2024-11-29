@@ -16,10 +16,8 @@ var RESTMap = map[string]map[types.RESTMethod]types.GRPCMethod{
 	IsRefreshTokenValidByJwtId.String(): {
 		types.GET: detailsauth.IsRefreshTokenValid,
 	},
-	RefreshToken.String(): {
-		types.GET: detailsauth.GetRefreshTokensInformation,
-	},
 	RefreshTokenByJwtId.String(): {
+		types.GET:    detailsauth.GetRefreshTokenInformation,
 		types.POST:   detailsauth.RefreshToken,
 		types.DELETE: detailsauth.RevokeRefreshToken,
 	},
