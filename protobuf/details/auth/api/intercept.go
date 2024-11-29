@@ -10,24 +10,25 @@ var RESTMap = map[string]map[types.RESTMethod]types.GRPCMethod{
 	LogIn.String(): {
 		types.POST: detailsauth.LogIn,
 	},
-	AccessTokenByJwtId.String(): {
+	IsAccessTokenValidByJwtId.String(): {
 		types.GET: detailsauth.IsAccessTokenValid,
 	},
-	RefreshTokenByJwtId.String(): {
+	IsRefreshTokenValidByJwtId.String(): {
 		types.GET: detailsauth.IsRefreshTokenValid,
 	},
 	RefreshToken.String(): {
-		types.POST: detailsauth.RefreshToken,
+		types.GET: detailsauth.GetRefreshTokensInformation,
+	},
+	RefreshTokenByJwtId.String(): {
+		types.POST:   detailsauth.RefreshToken,
+		types.DELETE: detailsauth.RevokeRefreshToken,
+	},
+	RefreshTokens.String(): {
+		types.GET:    detailsauth.GetRefreshTokensInformation,
+		types.DELETE: detailsauth.RevokeRefreshTokens,
 	},
 	LogOut.String(): {
 		types.POST: detailsauth.LogOut,
-	},
-	Sessions.String(): {
-		types.GET:    detailsauth.GetSessions,
-		types.DELETE: detailsauth.CloseSessions,
-	},
-	SessionByToken.String(): {
-		types.POST: detailsauth.CloseSession,
 	},
 	Permission.String(): {
 		types.POST: detailsauth.AddPermission,

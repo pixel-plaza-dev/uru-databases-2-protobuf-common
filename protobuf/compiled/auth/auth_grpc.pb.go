@@ -19,27 +19,28 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Auth_LogIn_FullMethodName                = "/auth.Auth/LogIn"
-	Auth_IsAccessTokenValid_FullMethodName   = "/auth.Auth/IsAccessTokenValid"
-	Auth_IsRefreshTokenValid_FullMethodName  = "/auth.Auth/IsRefreshTokenValid"
-	Auth_RefreshToken_FullMethodName         = "/auth.Auth/RefreshToken"
-	Auth_LogOut_FullMethodName               = "/auth.Auth/LogOut"
-	Auth_GetSessions_FullMethodName          = "/auth.Auth/GetSessions"
-	Auth_CloseSession_FullMethodName         = "/auth.Auth/CloseSession"
-	Auth_CloseSessions_FullMethodName        = "/auth.Auth/CloseSessions"
-	Auth_AddPermission_FullMethodName        = "/auth.Auth/AddPermission"
-	Auth_RevokePermission_FullMethodName     = "/auth.Auth/RevokePermission"
-	Auth_GetPermission_FullMethodName        = "/auth.Auth/GetPermission"
-	Auth_GetPermissions_FullMethodName       = "/auth.Auth/GetPermissions"
-	Auth_AddRolePermission_FullMethodName    = "/auth.Auth/AddRolePermission"
-	Auth_RevokeRolePermission_FullMethodName = "/auth.Auth/RevokeRolePermission"
-	Auth_GetRolePermissions_FullMethodName   = "/auth.Auth/GetRolePermissions"
-	Auth_AddRole_FullMethodName              = "/auth.Auth/AddRole"
-	Auth_RevokeRole_FullMethodName           = "/auth.Auth/RevokeRole"
-	Auth_GetRoles_FullMethodName             = "/auth.Auth/GetRoles"
-	Auth_AddUserRole_FullMethodName          = "/auth.Auth/AddUserRole"
-	Auth_RevokeUserRole_FullMethodName       = "/auth.Auth/RevokeUserRole"
-	Auth_GetUserRoles_FullMethodName         = "/auth.Auth/GetUserRoles"
+	Auth_LogIn_FullMethodName                       = "/auth.Auth/LogIn"
+	Auth_IsAccessTokenValid_FullMethodName          = "/auth.Auth/IsAccessTokenValid"
+	Auth_IsRefreshTokenValid_FullMethodName         = "/auth.Auth/IsRefreshTokenValid"
+	Auth_RefreshToken_FullMethodName                = "/auth.Auth/RefreshToken"
+	Auth_LogOut_FullMethodName                      = "/auth.Auth/LogOut"
+	Auth_GetRefreshTokenInformation_FullMethodName  = "/auth.Auth/GetRefreshTokenInformation"
+	Auth_GetRefreshTokensInformation_FullMethodName = "/auth.Auth/GetRefreshTokensInformation"
+	Auth_RevokeRefreshToken_FullMethodName          = "/auth.Auth/RevokeRefreshToken"
+	Auth_RevokeRefreshTokens_FullMethodName         = "/auth.Auth/RevokeRefreshTokens"
+	Auth_AddPermission_FullMethodName               = "/auth.Auth/AddPermission"
+	Auth_RevokePermission_FullMethodName            = "/auth.Auth/RevokePermission"
+	Auth_GetPermission_FullMethodName               = "/auth.Auth/GetPermission"
+	Auth_GetPermissions_FullMethodName              = "/auth.Auth/GetPermissions"
+	Auth_AddRolePermission_FullMethodName           = "/auth.Auth/AddRolePermission"
+	Auth_RevokeRolePermission_FullMethodName        = "/auth.Auth/RevokeRolePermission"
+	Auth_GetRolePermissions_FullMethodName          = "/auth.Auth/GetRolePermissions"
+	Auth_AddRole_FullMethodName                     = "/auth.Auth/AddRole"
+	Auth_RevokeRole_FullMethodName                  = "/auth.Auth/RevokeRole"
+	Auth_GetRoles_FullMethodName                    = "/auth.Auth/GetRoles"
+	Auth_AddUserRole_FullMethodName                 = "/auth.Auth/AddUserRole"
+	Auth_RevokeUserRole_FullMethodName              = "/auth.Auth/RevokeUserRole"
+	Auth_GetUserRoles_FullMethodName                = "/auth.Auth/GetUserRoles"
 )
 
 // AuthClient is the client API for Auth service.
@@ -51,9 +52,10 @@ type AuthClient interface {
 	IsRefreshTokenValid(ctx context.Context, in *IsRefreshTokenValidRequest, opts ...grpc.CallOption) (*IsRefreshTokenValidResponse, error)
 	RefreshToken(ctx context.Context, in *RefreshTokenRequest, opts ...grpc.CallOption) (*RefreshTokenResponse, error)
 	LogOut(ctx context.Context, in *LogOutRequest, opts ...grpc.CallOption) (*LogOutResponse, error)
-	GetSessions(ctx context.Context, in *GetSessionsRequest, opts ...grpc.CallOption) (*GetSessionsResponse, error)
-	CloseSession(ctx context.Context, in *CloseSessionRequest, opts ...grpc.CallOption) (*CloseSessionResponse, error)
-	CloseSessions(ctx context.Context, in *CloseSessionsRequest, opts ...grpc.CallOption) (*CloseSessionsResponse, error)
+	GetRefreshTokenInformation(ctx context.Context, in *RefreshTokenRequest, opts ...grpc.CallOption) (*RefreshTokenResponse, error)
+	GetRefreshTokensInformation(ctx context.Context, in *GetRefreshTokensInformationRequest, opts ...grpc.CallOption) (*GetRefreshTokensInformationResponse, error)
+	RevokeRefreshToken(ctx context.Context, in *RevokeRefreshTokenRequest, opts ...grpc.CallOption) (*RevokeRefreshTokenResponse, error)
+	RevokeRefreshTokens(ctx context.Context, in *RevokeRefreshTokensRequest, opts ...grpc.CallOption) (*RevokeRefreshTokensResponse, error)
 	AddPermission(ctx context.Context, in *AddPermissionRequest, opts ...grpc.CallOption) (*AddPermissionResponse, error)
 	RevokePermission(ctx context.Context, in *RevokePermissionRequest, opts ...grpc.CallOption) (*RevokePermissionResponse, error)
 	GetPermission(ctx context.Context, in *GetPermissionRequest, opts ...grpc.CallOption) (*GetPermissionResponse, error)
@@ -127,30 +129,40 @@ func (c *authClient) LogOut(ctx context.Context, in *LogOutRequest, opts ...grpc
 	return out, nil
 }
 
-func (c *authClient) GetSessions(ctx context.Context, in *GetSessionsRequest, opts ...grpc.CallOption) (*GetSessionsResponse, error) {
+func (c *authClient) GetRefreshTokenInformation(ctx context.Context, in *RefreshTokenRequest, opts ...grpc.CallOption) (*RefreshTokenResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetSessionsResponse)
-	err := c.cc.Invoke(ctx, Auth_GetSessions_FullMethodName, in, out, cOpts...)
+	out := new(RefreshTokenResponse)
+	err := c.cc.Invoke(ctx, Auth_GetRefreshTokenInformation_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authClient) CloseSession(ctx context.Context, in *CloseSessionRequest, opts ...grpc.CallOption) (*CloseSessionResponse, error) {
+func (c *authClient) GetRefreshTokensInformation(ctx context.Context, in *GetRefreshTokensInformationRequest, opts ...grpc.CallOption) (*GetRefreshTokensInformationResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CloseSessionResponse)
-	err := c.cc.Invoke(ctx, Auth_CloseSession_FullMethodName, in, out, cOpts...)
+	out := new(GetRefreshTokensInformationResponse)
+	err := c.cc.Invoke(ctx, Auth_GetRefreshTokensInformation_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authClient) CloseSessions(ctx context.Context, in *CloseSessionsRequest, opts ...grpc.CallOption) (*CloseSessionsResponse, error) {
+func (c *authClient) RevokeRefreshToken(ctx context.Context, in *RevokeRefreshTokenRequest, opts ...grpc.CallOption) (*RevokeRefreshTokenResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CloseSessionsResponse)
-	err := c.cc.Invoke(ctx, Auth_CloseSessions_FullMethodName, in, out, cOpts...)
+	out := new(RevokeRefreshTokenResponse)
+	err := c.cc.Invoke(ctx, Auth_RevokeRefreshToken_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authClient) RevokeRefreshTokens(ctx context.Context, in *RevokeRefreshTokensRequest, opts ...grpc.CallOption) (*RevokeRefreshTokensResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RevokeRefreshTokensResponse)
+	err := c.cc.Invoke(ctx, Auth_RevokeRefreshTokens_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -296,9 +308,10 @@ type AuthServer interface {
 	IsRefreshTokenValid(context.Context, *IsRefreshTokenValidRequest) (*IsRefreshTokenValidResponse, error)
 	RefreshToken(context.Context, *RefreshTokenRequest) (*RefreshTokenResponse, error)
 	LogOut(context.Context, *LogOutRequest) (*LogOutResponse, error)
-	GetSessions(context.Context, *GetSessionsRequest) (*GetSessionsResponse, error)
-	CloseSession(context.Context, *CloseSessionRequest) (*CloseSessionResponse, error)
-	CloseSessions(context.Context, *CloseSessionsRequest) (*CloseSessionsResponse, error)
+	GetRefreshTokenInformation(context.Context, *RefreshTokenRequest) (*RefreshTokenResponse, error)
+	GetRefreshTokensInformation(context.Context, *GetRefreshTokensInformationRequest) (*GetRefreshTokensInformationResponse, error)
+	RevokeRefreshToken(context.Context, *RevokeRefreshTokenRequest) (*RevokeRefreshTokenResponse, error)
+	RevokeRefreshTokens(context.Context, *RevokeRefreshTokensRequest) (*RevokeRefreshTokensResponse, error)
 	AddPermission(context.Context, *AddPermissionRequest) (*AddPermissionResponse, error)
 	RevokePermission(context.Context, *RevokePermissionRequest) (*RevokePermissionResponse, error)
 	GetPermission(context.Context, *GetPermissionRequest) (*GetPermissionResponse, error)
@@ -337,14 +350,17 @@ func (UnimplementedAuthServer) RefreshToken(context.Context, *RefreshTokenReques
 func (UnimplementedAuthServer) LogOut(context.Context, *LogOutRequest) (*LogOutResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LogOut not implemented")
 }
-func (UnimplementedAuthServer) GetSessions(context.Context, *GetSessionsRequest) (*GetSessionsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetSessions not implemented")
+func (UnimplementedAuthServer) GetRefreshTokenInformation(context.Context, *RefreshTokenRequest) (*RefreshTokenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetRefreshTokenInformation not implemented")
 }
-func (UnimplementedAuthServer) CloseSession(context.Context, *CloseSessionRequest) (*CloseSessionResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CloseSession not implemented")
+func (UnimplementedAuthServer) GetRefreshTokensInformation(context.Context, *GetRefreshTokensInformationRequest) (*GetRefreshTokensInformationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetRefreshTokensInformation not implemented")
 }
-func (UnimplementedAuthServer) CloseSessions(context.Context, *CloseSessionsRequest) (*CloseSessionsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CloseSessions not implemented")
+func (UnimplementedAuthServer) RevokeRefreshToken(context.Context, *RevokeRefreshTokenRequest) (*RevokeRefreshTokenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RevokeRefreshToken not implemented")
+}
+func (UnimplementedAuthServer) RevokeRefreshTokens(context.Context, *RevokeRefreshTokensRequest) (*RevokeRefreshTokensResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RevokeRefreshTokens not implemented")
 }
 func (UnimplementedAuthServer) AddPermission(context.Context, *AddPermissionRequest) (*AddPermissionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddPermission not implemented")
@@ -496,56 +512,74 @@ func _Auth_LogOut_Handler(srv interface{}, ctx context.Context, dec func(interfa
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Auth_GetSessions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetSessionsRequest)
+func _Auth_GetRefreshTokenInformation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RefreshTokenRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthServer).GetSessions(ctx, in)
+		return srv.(AuthServer).GetRefreshTokenInformation(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Auth_GetSessions_FullMethodName,
+		FullMethod: Auth_GetRefreshTokenInformation_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServer).GetSessions(ctx, req.(*GetSessionsRequest))
+		return srv.(AuthServer).GetRefreshTokenInformation(ctx, req.(*RefreshTokenRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Auth_CloseSession_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CloseSessionRequest)
+func _Auth_GetRefreshTokensInformation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRefreshTokensInformationRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthServer).CloseSession(ctx, in)
+		return srv.(AuthServer).GetRefreshTokensInformation(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Auth_CloseSession_FullMethodName,
+		FullMethod: Auth_GetRefreshTokensInformation_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServer).CloseSession(ctx, req.(*CloseSessionRequest))
+		return srv.(AuthServer).GetRefreshTokensInformation(ctx, req.(*GetRefreshTokensInformationRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Auth_CloseSessions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CloseSessionsRequest)
+func _Auth_RevokeRefreshToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RevokeRefreshTokenRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthServer).CloseSessions(ctx, in)
+		return srv.(AuthServer).RevokeRefreshToken(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Auth_CloseSessions_FullMethodName,
+		FullMethod: Auth_RevokeRefreshToken_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServer).CloseSessions(ctx, req.(*CloseSessionsRequest))
+		return srv.(AuthServer).RevokeRefreshToken(ctx, req.(*RevokeRefreshTokenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Auth_RevokeRefreshTokens_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RevokeRefreshTokensRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).RevokeRefreshTokens(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_RevokeRefreshTokens_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).RevokeRefreshTokens(ctx, req.(*RevokeRefreshTokensRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -812,16 +846,20 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Auth_LogOut_Handler,
 		},
 		{
-			MethodName: "GetSessions",
-			Handler:    _Auth_GetSessions_Handler,
+			MethodName: "GetRefreshTokenInformation",
+			Handler:    _Auth_GetRefreshTokenInformation_Handler,
 		},
 		{
-			MethodName: "CloseSession",
-			Handler:    _Auth_CloseSession_Handler,
+			MethodName: "GetRefreshTokensInformation",
+			Handler:    _Auth_GetRefreshTokensInformation_Handler,
 		},
 		{
-			MethodName: "CloseSessions",
-			Handler:    _Auth_CloseSessions_Handler,
+			MethodName: "RevokeRefreshToken",
+			Handler:    _Auth_RevokeRefreshToken_Handler,
+		},
+		{
+			MethodName: "RevokeRefreshTokens",
+			Handler:    _Auth_RevokeRefreshTokens_Handler,
 		},
 		{
 			MethodName: "AddPermission",

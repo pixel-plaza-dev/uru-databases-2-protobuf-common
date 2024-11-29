@@ -11,9 +11,10 @@ service Auth {
   rpc IsRefreshTokenValid(IsRefreshTokenValidRequest) returns (IsRefreshTokenValidResponse) {}
   rpc RefreshToken(RefreshTokenRequest) returns (RefreshTokenResponse) {}
   rpc LogOut(LogOutRequest) returns (LogOutResponse) {}
-  rpc GetSessions(GetSessionsRequest) returns (GetSessionsResponse) {}
-  rpc CloseSession(CloseSessionRequest) returns (CloseSessionResponse) {}
-  rpc CloseSessions(CloseSessionsRequest) returns (CloseSessionsResponse) {}
+  rpc GetRefreshTokenInformation(RefreshTokenRequest) returns (RefreshTokenResponse) {}
+  rpc GetRefreshTokensInformation(GetRefreshTokensInformationRequest) returns (GetRefreshTokensInformationResponse) {}
+  rpc RevokeRefreshToken(RevokeRefreshTokenRequest) returns (RevokeRefreshTokenResponse) {}
+  rpc RevokeRefreshTokens(RevokeRefreshTokensRequest) returns (RevokeRefreshTokensResponse) {}
   rpc AddPermission(AddPermissionRequest) returns (AddPermissionResponse) {}
   rpc RevokePermission(RevokePermissionRequest) returns (RevokePermissionResponse) {}
   rpc GetPermission (GetPermissionRequest) returns (GetPermissionResponse) {}
@@ -72,31 +73,40 @@ message LogOutResponse {
   string message = 1;
 }
 
-message Session {
+message RefreshTokenInformation {
   string id = 1;
   string ipv4_address = 2;
   google.protobuf.Timestamp issued_at = 3;
   google.protobuf.Timestamp expires_at = 4;
 }
 
-message GetSessionsRequest {}
-
-message GetSessionsResponse {
-  string message = 1;
-  repeated Session sessions = 2;
-}
-
-message CloseSessionRequest {
+message GetRefreshTokenInformationRequest {
   string jwt_id = 1;
 }
 
-message CloseSessionResponse {
+message GetRefreshTokenInformationResponse {
+  string message = 1;
+  RefreshTokenInformation refresh_token_information = 2;
+}
+
+message GetRefreshTokensInformationRequest {}
+
+message GetRefreshTokensInformationResponse {
+  string message = 1;
+  repeated RefreshTokenInformation refresh_tokens_information = 2;
+}
+
+message RevokeRefreshTokenRequest {
+  string jwt_id = 1;
+}
+
+message RevokeRefreshTokenResponse {
   string message = 1;
 }
 
-message CloseSessionsRequest {}
+message RevokeRefreshTokensRequest {}
 
-message CloseSessionsResponse {
+message RevokeRefreshTokensResponse {
   string message = 1;
 }
 

@@ -6,10 +6,14 @@ import (
 
 // Auth service REST endpoints
 var (
-	LogIn              = types.NewRESTEndpoint("/log-in")
-	LogOut             = types.NewRESTEndpoint("/log-out")
-	AccessTokenByJwtId = types.NewRESTEndpoint(
-		"/access-token",
+	LogIn                     = types.NewRESTEndpoint("/log-in")
+	LogOut                    = types.NewRESTEndpoint("/log-out")
+	IsAccessTokenValidByJwtId = types.NewRESTEndpoint(
+		"/is-access-token-valid",
+		types.JwtId,
+	)
+	IsRefreshTokenValidByJwtId = types.NewRESTEndpoint(
+		"/is-refresh-token-valid",
 		types.JwtId,
 	)
 	RefreshToken        = types.NewRESTEndpoint("/refresh-token")
@@ -17,8 +21,7 @@ var (
 		"/refresh-token",
 		types.JwtId,
 	)
-	Sessions           = types.NewRESTEndpoint("/sessions")
-	SessionByToken     = types.NewRESTEndpoint("/session", types.Token)
+	RefreshTokens      = types.NewRESTEndpoint("/refresh-tokens")
 	Permission         = types.NewRESTEndpoint("/permission")
 	PermissionById     = types.NewRESTEndpoint("/permission/:" + types.Id.String())
 	Permissions        = types.NewRESTEndpoint("/permissions")
