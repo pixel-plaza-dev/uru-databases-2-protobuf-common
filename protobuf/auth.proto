@@ -11,7 +11,7 @@ service Auth {
   rpc IsRefreshTokenValid(IsRefreshTokenValidRequest) returns (IsRefreshTokenValidResponse) {}
   rpc RefreshToken(RefreshTokenRequest) returns (RefreshTokenResponse) {}
   rpc LogOut(LogOutRequest) returns (LogOutResponse) {}
-  rpc GetRefreshTokenInformation(RefreshTokenRequest) returns (RefreshTokenResponse) {}
+  rpc GetRefreshTokenInformation(GetRefreshTokenInformationRequest) returns (GetRefreshTokenInformationResponse) {}
   rpc GetRefreshTokensInformation(GetRefreshTokensInformationRequest) returns (GetRefreshTokensInformationResponse) {}
   rpc RevokeRefreshToken(RevokeRefreshTokenRequest) returns (RevokeRefreshTokenResponse) {}
   rpc RevokeRefreshTokens(RevokeRefreshTokensRequest) returns (RevokeRefreshTokensResponse) {}

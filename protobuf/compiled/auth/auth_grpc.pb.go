@@ -52,7 +52,7 @@ type AuthClient interface {
 	IsRefreshTokenValid(ctx context.Context, in *IsRefreshTokenValidRequest, opts ...grpc.CallOption) (*IsRefreshTokenValidResponse, error)
 	RefreshToken(ctx context.Context, in *RefreshTokenRequest, opts ...grpc.CallOption) (*RefreshTokenResponse, error)
 	LogOut(ctx context.Context, in *LogOutRequest, opts ...grpc.CallOption) (*LogOutResponse, error)
-	GetRefreshTokenInformation(ctx context.Context, in *RefreshTokenRequest, opts ...grpc.CallOption) (*RefreshTokenResponse, error)
+	GetRefreshTokenInformation(ctx context.Context, in *GetRefreshTokenInformationRequest, opts ...grpc.CallOption) (*GetRefreshTokenInformationResponse, error)
 	GetRefreshTokensInformation(ctx context.Context, in *GetRefreshTokensInformationRequest, opts ...grpc.CallOption) (*GetRefreshTokensInformationResponse, error)
 	RevokeRefreshToken(ctx context.Context, in *RevokeRefreshTokenRequest, opts ...grpc.CallOption) (*RevokeRefreshTokenResponse, error)
 	RevokeRefreshTokens(ctx context.Context, in *RevokeRefreshTokensRequest, opts ...grpc.CallOption) (*RevokeRefreshTokensResponse, error)
@@ -129,9 +129,9 @@ func (c *authClient) LogOut(ctx context.Context, in *LogOutRequest, opts ...grpc
 	return out, nil
 }
 
-func (c *authClient) GetRefreshTokenInformation(ctx context.Context, in *RefreshTokenRequest, opts ...grpc.CallOption) (*RefreshTokenResponse, error) {
+func (c *authClient) GetRefreshTokenInformation(ctx context.Context, in *GetRefreshTokenInformationRequest, opts ...grpc.CallOption) (*GetRefreshTokenInformationResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RefreshTokenResponse)
+	out := new(GetRefreshTokenInformationResponse)
 	err := c.cc.Invoke(ctx, Auth_GetRefreshTokenInformation_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -308,7 +308,7 @@ type AuthServer interface {
 	IsRefreshTokenValid(context.Context, *IsRefreshTokenValidRequest) (*IsRefreshTokenValidResponse, error)
 	RefreshToken(context.Context, *RefreshTokenRequest) (*RefreshTokenResponse, error)
 	LogOut(context.Context, *LogOutRequest) (*LogOutResponse, error)
-	GetRefreshTokenInformation(context.Context, *RefreshTokenRequest) (*RefreshTokenResponse, error)
+	GetRefreshTokenInformation(context.Context, *GetRefreshTokenInformationRequest) (*GetRefreshTokenInformationResponse, error)
 	GetRefreshTokensInformation(context.Context, *GetRefreshTokensInformationRequest) (*GetRefreshTokensInformationResponse, error)
 	RevokeRefreshToken(context.Context, *RevokeRefreshTokenRequest) (*RevokeRefreshTokenResponse, error)
 	RevokeRefreshTokens(context.Context, *RevokeRefreshTokensRequest) (*RevokeRefreshTokensResponse, error)
@@ -350,7 +350,7 @@ func (UnimplementedAuthServer) RefreshToken(context.Context, *RefreshTokenReques
 func (UnimplementedAuthServer) LogOut(context.Context, *LogOutRequest) (*LogOutResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LogOut not implemented")
 }
-func (UnimplementedAuthServer) GetRefreshTokenInformation(context.Context, *RefreshTokenRequest) (*RefreshTokenResponse, error) {
+func (UnimplementedAuthServer) GetRefreshTokenInformation(context.Context, *GetRefreshTokenInformationRequest) (*GetRefreshTokenInformationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetRefreshTokenInformation not implemented")
 }
 func (UnimplementedAuthServer) GetRefreshTokensInformation(context.Context, *GetRefreshTokensInformationRequest) (*GetRefreshTokensInformationResponse, error) {
@@ -513,7 +513,7 @@ func _Auth_LogOut_Handler(srv interface{}, ctx context.Context, dec func(interfa
 }
 
 func _Auth_GetRefreshTokenInformation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RefreshTokenRequest)
+	in := new(GetRefreshTokenInformationRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -525,7 +525,7 @@ func _Auth_GetRefreshTokenInformation_Handler(srv interface{}, ctx context.Conte
 		FullMethod: Auth_GetRefreshTokenInformation_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServer).GetRefreshTokenInformation(ctx, req.(*RefreshTokenRequest))
+		return srv.(AuthServer).GetRefreshTokenInformation(ctx, req.(*GetRefreshTokenInformationRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
