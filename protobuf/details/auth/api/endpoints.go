@@ -16,6 +16,7 @@ var (
 		"/is-refresh-token-valid",
 		types.JwtId,
 	)
+	RefreshToken        = types.NewRESTEndpoint("/refresh-token")
 	RefreshTokenByJwtId = types.NewRESTEndpoint(
 		"/refresh-token",
 		types.JwtId,
