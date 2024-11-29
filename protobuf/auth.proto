@@ -73,8 +73,9 @@ message LogOutResponse {
 
 message Session {
   string id = 1;
-  string ipv4_address = 3;
-  string created_at = 4;
+  string ipv4_address = 2;
+  string issued_at = 3;
+  string expires_at = 4;
 }
 
 message GetSessionsRequest {}
