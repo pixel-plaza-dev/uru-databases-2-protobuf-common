@@ -87,7 +87,7 @@ message GetSessionsResponse {
 }
 
 message CloseSessionRequest {
-  string refresh_token = 1;
+  string jwt_id = 1;
 }
 
 message CloseSessionResponse {
