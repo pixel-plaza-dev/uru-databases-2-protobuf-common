@@ -3,6 +3,7 @@ syntax = "proto3";
 package auth;
 
 option go_package = "compiled/auth";
+import "google/protobuf/timestamp.proto";
 
 service Auth {
   rpc LogIn(LogInRequest) returns (LogInResponse) {}
@@ -74,8 +75,8 @@ message LogOutResponse {
 message Session {
   string id = 1;
   string ipv4_address = 2;
-  string issued_at = 3;
-  string expires_at = 4;
+  google.protobuf.Timestamp issued_at = 3;
+  google.protobuf.Timestamp expires_at = 4;
 }
 
 message GetSessionsRequest {}
