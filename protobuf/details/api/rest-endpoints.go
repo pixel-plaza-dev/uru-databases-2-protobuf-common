@@ -1,4 +1,4 @@
-package types
+package api
 
 type (
 	// RESTEndpoint is the REST endpoint

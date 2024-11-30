@@ -1,4 +1,4 @@
-package types
+package api
 
 type (
 	// RESTMethod is the type of REST request method

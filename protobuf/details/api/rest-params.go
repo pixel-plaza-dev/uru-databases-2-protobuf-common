@@ -1,4 +1,4 @@
-package types
+package api
 
 type (
 	// RESTParam is the type of REST request parameter
