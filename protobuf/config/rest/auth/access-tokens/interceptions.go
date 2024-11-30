@@ -1,7 +1,7 @@
 package access_tokens
 
 import (
-	detailsauth "github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/protobuf/interceptions/grpc/auth"
+	detailsauth "github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/protobuf/config/grpc/auth"
 	"github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/protobuf/types/grpc"
 	"github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/protobuf/types/rest"
 )
