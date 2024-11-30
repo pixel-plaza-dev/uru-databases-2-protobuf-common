@@ -1,4 +1,4 @@
-package user
+package users
 
 import (
 	"github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/protobuf/details/api"
@@ -8,7 +8,7 @@ import (
 
 // RESTMap is the map of the Rest API endpoints to the user service gRPC methods
 var RESTMap = map[string]map[api.RESTMethod]types.GRPCMethod{
-	User.String(): {
+	Relative.String(): {
 		api.PATCH: detailsuser.UpdateUser,
 	},
 	SignUp.String(): {
