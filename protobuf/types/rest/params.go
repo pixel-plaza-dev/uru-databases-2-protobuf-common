@@ -23,6 +23,6 @@ var (
 	Username = NewParam("username")
 	Token    = NewParam("token")
 	Id       = NewParam("id")
-	UserId   = NewParam("user_id")
-	JwtId    = NewParam("jwt_id")
+	UserId   = NewParam("user-id")
+	JwtId    = NewParam("jwt-id")
 )

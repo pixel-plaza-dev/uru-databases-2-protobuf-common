@@ -1,7 +1,7 @@
 package auth
 
 import (
-	"github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/protobuf/interceptions/grpc"
+	"github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/protobuf/types/grpc"
 )
 
 // Auth service gRPC methods

@@ -1,7 +1,7 @@
 package refresh_tokens
 
 import (
-	"github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/protobuf/interceptions/rest"
+	rest2 "github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/protobuf/types/rest"
 )
 
 // BaseURI is the base URI for the auth service refresh tokens REST endpoints
@@ -9,13 +9,13 @@ const BaseURI = "/refresh-tokens"
 
 // Auth service refresh tokens REST endpoints
 var (
-	Relative = rest.NewEndpoint("/")
-	ByJwtId  = rest.NewEndpoint(
+	Relative = rest2.NewEndpoint("/")
+	ByJwtId  = rest2.NewEndpoint(
 		"/",
-		rest.JwtId,
+		rest2.JwtId,
 	)
-	Valid = rest.NewEndpoint(
+	Valid = rest2.NewEndpoint(
 		"/valid",
-		rest.JwtId,
+		rest2.JwtId,
 	)
 )

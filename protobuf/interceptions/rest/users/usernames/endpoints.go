@@ -1,7 +1,7 @@
 package usernames
 
 import (
-	"github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/protobuf/interceptions/rest"
+	rest2 "github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/protobuf/types/rest"
 )
 
 // BaseURI is the base URI for the user service usernames REST endpoints
@@ -9,12 +9,12 @@ const BaseURI = "/usernames"
 
 // User service usernames REST endpoints
 var (
-	ById = rest.NewEndpoint(
+	ById = rest2.NewEndpoint(
 		"/",
-		rest.Id,
+		rest2.Id,
 	)
-	ExistsByUsername = rest.NewEndpoint(
+	ExistsByUsername = rest2.NewEndpoint(
 		"/exists",
-		rest.Username,
+		rest2.Username,
 	)
 )

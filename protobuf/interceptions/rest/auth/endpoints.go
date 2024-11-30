@@ -1,7 +1,7 @@
 package auth
 
 import (
-	"github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/protobuf/interceptions/rest"
+	"github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/protobuf/types/rest"
 )
 
 // BaseURI is the base URI for the auth service REST endpoints

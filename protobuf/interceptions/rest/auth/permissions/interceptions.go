@@ -1,9 +1,9 @@
 package permissions
 
 import (
-	"github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/protobuf/interceptions/grpc"
 	detailsauth "github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/protobuf/interceptions/grpc/auth"
-	"github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/protobuf/interceptions/rest"
+	"github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/protobuf/types/grpc"
+	"github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/protobuf/types/rest"
 )
 
 // Map is the map of the REST API endpoints to the auth service permissions gRPC methods
