@@ -2,11 +2,11 @@ package auth
 
 import (
 	"github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/protobuf/config/grpc"
-	grpc2 "github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/protobuf/types/grpc"
+	typesgrpc "github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/protobuf/types/grpc"
 )
 
 // Interceptions is the list of gRPC methods to intercept
-var Interceptions = map[grpc2.Method]grpc.Interception{
+var Interceptions = map[typesgrpc.Method]grpc.Interception{
 	LogIn:                       grpc.None,
 	IsAccessTokenValid:          grpc.None,
 	IsRefreshTokenValid:         grpc.None,

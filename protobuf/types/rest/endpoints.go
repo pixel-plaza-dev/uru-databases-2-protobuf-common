@@ -19,5 +19,5 @@ func (r Endpoint) String() string {
 	for _, param := range r.Params {
 		formattedParams += "/:" + param.String()
 	}
-	return r.Name + formattedParams
+	return "/" + r.Name + formattedParams
 }
