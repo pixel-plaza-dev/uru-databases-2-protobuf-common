@@ -6,9 +6,9 @@ import (
 
 // User service usernames REST endpoints
 var (
-	ById = rest.NewEndpoint(
+	ByUserId = rest.NewEndpoint(
 		"",
-		rest.Id,
+		rest.UserId,
 	)
 	ExistsByUsername = rest.NewEndpoint(
 		"exists",

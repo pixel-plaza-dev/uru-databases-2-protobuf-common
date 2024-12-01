@@ -14,7 +14,7 @@ var Interceptions = map[string]map[rest.Method]grpc.Method{
 	SignUp.String(): {
 		rest.POST: configusers.SignUp,
 	},
-	IdByUsername.String(): {
+	UserIdByUsername.String(): {
 		rest.GET: configusers.GetUserIdByUsername,
 	},
 	Password.String(): {

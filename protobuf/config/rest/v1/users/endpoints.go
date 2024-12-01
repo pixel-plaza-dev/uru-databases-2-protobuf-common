@@ -6,12 +6,12 @@ import (
 
 // Users service REST endpoints
 var (
-	Relative     = typesrest.NewEndpoint("")
-	SignUp       = typesrest.NewEndpoint("sign-up")
-	Password     = typesrest.NewEndpoint("password")
-	Username     = typesrest.NewEndpoint("username")
-	IdByUsername = typesrest.NewEndpoint(
-		"id",
+	Relative         = typesrest.NewEndpoint("")
+	SignUp           = typesrest.NewEndpoint("sign-up")
+	Password         = typesrest.NewEndpoint("password")
+	Username         = typesrest.NewEndpoint("username")
+	UserIdByUsername = typesrest.NewEndpoint(
+		"user-id",
 		typesrest.Username,
 	)
 	ForgotPassword       = typesrest.NewEndpoint("forgot-password")

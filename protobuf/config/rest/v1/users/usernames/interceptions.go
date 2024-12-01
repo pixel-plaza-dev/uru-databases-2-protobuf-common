@@ -8,7 +8,7 @@ import (
 
 // Interceptions is the map of the REST API endpoints to the user service usernames gRPC methods
 var Interceptions = map[string]map[rest.Method]grpc.Method{
-	ById.String(): {
+	ByUserId.String(): {
 		rest.GET: user.GetUsernameByUserId,
 	},
 	ExistsByUsername.String(): {
