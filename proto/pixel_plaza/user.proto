@@ -15,7 +15,7 @@ service User {
   rpc GetUserIdByUserSharedId(GetUserIdByUserSharedIdRequest) returns (GetUserIdByUserSharedIdResponse) {}
   rpc IsPasswordCorrect(IsPasswordCorrectRequest) returns (IsPasswordCorrectResponse) {}
   rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse) {}
-  rpc GetProfile(google.protobuf.Empty) returns (GetProfileResponse) {}
+  rpc GetProfile(GetProfileRequest) returns (GetProfileResponse) {}
   rpc GetMyProfile(google.protobuf.Empty) returns (GetMyProfileResponse) {}
   rpc ChangeUsername(ChangeUsernameRequest) returns (ChangeUsernameResponse) {}
   rpc ChangePassword(ChangePasswordRequest) returns (ChangePasswordResponse) {}
