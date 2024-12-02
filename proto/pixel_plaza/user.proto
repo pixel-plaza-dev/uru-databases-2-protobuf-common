@@ -1,0 +1,258 @@
+syntax = "proto3";
+
+package pixel_plaza;
+
+option go_package = "compiled/pixel_plaza/user";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+service User {
+  rpc SignUp(SignUpRequest) returns (SignUpResponse) {}
+  rpc UsernameExists(UsernameExistsRequest) returns (UsernameExistsResponse) {}
+  rpc GetUsernameByUserId(GetUsernameByUserIdRequest) returns (GetUsernameByUserIdResponse) {}
+  rpc GetUserIdByUsername(GetUserIdByUsernameRequest) returns (GetUserIdByUsernameResponse) {}
+  rpc GetUserSharedIdByUserId(GetUserSharedIdByUserIdRequest) returns (GetUserSharedIdByUserIdResponse) {}
+  rpc GetUserIdByUserSharedId(GetUserIdByUserSharedIdRequest) returns (GetUserIdByUserSharedIdResponse) {}
+  rpc IsPasswordCorrect(IsPasswordCorrectRequest) returns (IsPasswordCorrectResponse) {}
+  rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse) {}
+  rpc GetProfile(google.protobuf.Empty) returns (GetProfileResponse) {}
+  rpc GetMyProfile(google.protobuf.Empty) returns (GetMyProfileResponse) {}
+  rpc ChangeUsername(ChangeUsernameRequest) returns (ChangeUsernameResponse) {}
+  rpc ChangePassword(ChangePasswordRequest) returns (ChangePasswordResponse) {}
+  rpc AddEmail(AddEmailRequest) returns (AddEmailResponse) {}
+  rpc DeleteEmail(DeleteEmailRequest) returns (DeleteEmailResponse) {}
+  rpc SendVerificationEmail(SendVerificationEmailRequest) returns (SendVerificationEmailResponse) {}
+  rpc VerifyEmail(VerifyEmailRequest) returns (VerifyEmailResponse) {}
+  rpc GetPrimaryEmail(google.protobuf.Empty) returns (GetPrimaryEmailResponse) {}
+  rpc GetActiveEmails(google.protobuf.Empty) returns (GetActiveEmailsResponse) {}
+  rpc ChangePrimaryEmail(ChangePrimaryEmailRequest) returns (ChangePrimaryEmailResponse) {}
+  rpc GetPhoneNumber(google.protobuf.Empty) returns (GetPhoneNumberResponse) {}
+  rpc ChangePhoneNumber(ChangePhoneNumberRequest) returns (ChangePhoneNumberResponse) {}
+  rpc SendVerificationSMS(SendVerificationSMSRequest) returns (SendVerificationSMSResponse) {}
+  rpc VerifyPhoneNumber(VerifyPhoneNumberRequest) returns (VerifyPhoneNumberResponse) {}
+  rpc ForgotPassword(ForgotPasswordRequest) returns (ForgotPasswordResponse) {}
+  rpc ResetPassword(ResetPasswordRequest) returns (ResetPasswordResponse) {}
+  rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse) {}
+}
+
+message SignUpRequest {
+  string username = 1;
+  string first_name = 2;
+  string last_name = 3;
+  string password = 4;
+  string email = 5;
+  string phone_number = 6;
+  optional google.protobuf.Timestamp birthdate = 7;
+}
+
+message SignUpResponse {
+  string message = 1;
+}
+
+message IsPasswordCorrectRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message IsPasswordCorrectResponse {
+  string message = 1;
+  string user_id = 2;
+  string user_shared_id = 3;
+}
+
+message UsernameExistsRequest {
+  string username = 1;
+}
+
+message UsernameExistsResponse {
+  string message = 1;
+}
+
+message GetUsernameByUserIdRequest {
+  string user_id = 1;
+}
+
+message GetUsernameByUserIdResponse {
+  string message = 1;
+  string username = 2;
+}
+
+message GetUserIdByUsernameRequest {
+  string username = 1;
+}
+
+message GetUserIdByUsernameResponse {
+  string message = 1;
+  string user_id = 2;
+}
+
+message GetUserSharedIdByUserIdRequest {
+  string user_id = 1;
+}
+
+message GetUserSharedIdByUserIdResponse {
+  string message = 1;
+  string user_shared_id = 2;
+}
+
+message GetUserIdByUserSharedIdRequest {
+  string user_shared_id = 1;
+}
+
+message GetUserIdByUserSharedIdResponse {
+  string message = 1;
+  string user_id = 2;
+}
+
+message UpdateUserRequest {
+  optional string first_name = 1;
+  optional string last_name = 2;
+  optional google.protobuf.Timestamp birthdate = 4;
+}
+
+message UpdateUserResponse {
+  string message = 1;
+}
+
+message GetProfileRequest {
+  string username = 1;
+}
+
+message GetProfileResponse {
+  string message = 1;
+  string first_name = 3;
+  string last_name = 4;
+  google.protobuf.Timestamp joined_at = 5;
+}
+
+message GetMyProfileResponse {
+  string message = 1;
+  string username = 2;
+  string first_name = 3;
+  string last_name = 4;
+  repeated string emails = 5;
+  string phone_number = 6;
+  google.protobuf.Timestamp birthdate = 7;
+  google.protobuf.Timestamp joined_at = 8;
+}
+
+message ChangeUsernameRequest {
+  string username = 1;
+}
+
+message ChangeUsernameResponse {
+  string message = 1;
+}
+
+message ChangePasswordRequest {
+  string old_password = 1;
+  string new_password = 2;
+}
+
+message ChangePasswordResponse {
+  string message = 1;
+}
+
+message AddEmailRequest {
+  string email = 1;
+}
+
+message AddEmailResponse {
+  string message = 1;
+}
+
+message DeleteEmailRequest {
+  string email = 1;
+}
+
+message DeleteEmailResponse {
+  string message = 1;
+}
+
+message SendVerificationEmailRequest {
+  string email = 1;
+}
+
+message SendVerificationEmailResponse {
+  string message = 1;
+}
+
+message VerifyEmailRequest {
+  string token = 1;
+}
+
+message VerifyEmailResponse {
+  string message = 1;
+}
+
+message ChangePrimaryEmailRequest {
+  string email = 1;
+}
+
+message ChangePrimaryEmailResponse {
+  string message = 1;
+}
+
+message GetPrimaryEmailResponse {
+  string message = 1;
+  string email = 2;
+}
+
+message GetActiveEmailsResponse {
+  string message = 1;
+  repeated string emails = 2;
+}
+
+message ChangePhoneNumberRequest {
+  string phone_number = 1;
+}
+
+message ChangePhoneNumberResponse {
+  string message = 1;
+}
+
+message SendVerificationSMSRequest {
+  string phone_number = 1;
+}
+
+message SendVerificationSMSResponse {
+  string message = 1;
+}
+
+message VerifyPhoneNumberRequest {
+  string token = 1;
+}
+
+message VerifyPhoneNumberResponse {
+  string message = 1;
+}
+
+message GetPhoneNumberResponse {
+  string message = 1;
+  string phone_number = 2;
+}
+
+message ForgotPasswordRequest {
+  string username = 1;
+}
+
+message ForgotPasswordResponse {
+  string message = 1;
+}
+
+message ResetPasswordRequest {
+  string token = 1;
+  string new_password = 2;
+}
+
+message ResetPasswordResponse {
+  string message = 1;
+}
+
+message DeleteUserRequest {
+  string password = 1;
+}
+
+message DeleteUserResponse {
+  string message = 1;
+}

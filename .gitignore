@@ -1,3 +1,9 @@
 # IDEs folders
 /**/*.idea
 /**/*.vscode
+
+# Environment variables
+/**/*.env
+
+# Executable files
+/**/*.exe
