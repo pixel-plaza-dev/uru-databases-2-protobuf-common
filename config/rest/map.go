@@ -39,7 +39,7 @@ func (m *Map) Traverse(relativeURI string, restMethod rest.Method) (*grpc.Method
 
 	// Check if the URI is the endpoint or a URI with a parameter
 	isEndpoint := false
-	if firstHalfUriIndex == -1 || relativeURI[firstHalfUriIndex+1] == ':' {
+	if firstHalfUriIndex == -1 || len(relativeURI) == firstHalfUriIndex+1 || relativeURI[firstHalfUriIndex+1] == ':' {
 		firstHalfUri = relativeURI
 		isEndpoint = true
 	} else {
