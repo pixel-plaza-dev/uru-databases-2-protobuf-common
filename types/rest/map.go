@@ -9,7 +9,7 @@ import (
 type (
 	// Mapper is the interface for the REST map
 	Mapper interface {
-		Traverse(relativeURI string, restMethod Method) (*grpc.Method, error)
+		Traverse(debug bool, relativeURI string, restMethod Method) (*grpc.Method, error)
 	}
 
 	// Map struct for the REST endpoints
