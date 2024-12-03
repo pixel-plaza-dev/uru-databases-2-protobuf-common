@@ -4,10 +4,10 @@ import (
 	"github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/config/rest"
 	accesstokens "github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/config/rest/v1/auth/access-tokens"
 	"github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/config/rest/v1/auth/permissions"
+	refreshtokens "github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/config/rest/v1/auth/refresh-tokens"
 	rolepermissions "github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/config/rest/v1/auth/role-permissions"
 	"github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/config/rest/v1/auth/roles"
 	userroles "github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/config/rest/v1/auth/user-roles"
-	refreshtokens "github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/protobuf/config/rest/v1/auth/refresh-tokens"
 )
 
 // ChildrenMaps is the map of the REST API endpoints of the auth service
