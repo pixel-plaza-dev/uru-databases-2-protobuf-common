@@ -1,6 +1,7 @@
 package rest
 
 import (
+	"fmt"
 	"github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/types/grpc"
 	"strings"
 )
@@ -56,10 +57,10 @@ func (m *Map) Traverse(relativeURI string, restMethod Method) (*grpc.Method, err
 
 		// Check if the URI is an endpoint
 		if isEndpoint {
-			return nil, MissingEndpointInterception
+			return nil, fmt.Errorf(MissingEndpointInterception, relativeURI)
 		}
 	} else if isEndpoint {
-		return nil, MissingInterceptions
+		return nil, fmt.Errorf(MissingInterceptions, relativeURI)
 	}
 
 	// Check if the first half URI is in the children maps
@@ -69,7 +70,7 @@ func (m *Map) Traverse(relativeURI string, restMethod Method) (*grpc.Method, err
 			return childMap.Traverse(secondHalfUri, restMethod)
 		}
 	} else {
-		return nil, MissingChildrenMap
+		return nil, fmt.Errorf(MissingChildrenMap, relativeURI)
 	}
-	return nil, FailedToTraverse
+	return nil, fmt.Errorf(FailedToTraverse, relativeURI)
 }
