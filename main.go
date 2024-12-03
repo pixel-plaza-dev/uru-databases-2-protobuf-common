@@ -72,6 +72,12 @@ func main() {
 			configgrpcauth.GetUserRoles.RequestString(): []string{
 				"UserId",
 			},
+			configgrpcauth.AddUserRole.RequestString(): []string{
+				"UserId",
+			},
+			configgrpcauth.RevokeUserRole.RequestString(): []string{
+				"UserId",
+			},
 		},
 	}
 
