@@ -65,10 +65,10 @@ func (m *Map) Traverse(debug bool, relativeURI string, restMethod Method) (*grpc
 
 		// Check if the URI is an endpoint
 		if isEndpoint {
-			return nil, fmt.Errorf(MissingEndpointInterception, relativeURI)
+			return nil, fmt.Errorf(MissingEndpointInterception, relativeURI, restMethod)
 		}
 	} else if isEndpoint {
-		return nil, fmt.Errorf(MissingInterceptions, relativeURI)
+		return nil, fmt.Errorf(MissingInterceptions, relativeURI, restMethod)
 	}
 
 	// Check if the first half URI is in the children maps
@@ -78,7 +78,7 @@ func (m *Map) Traverse(debug bool, relativeURI string, restMethod Method) (*grpc
 			return childMap.Traverse(debug, secondHalfUri, restMethod)
 		}
 	} else {
-		return nil, fmt.Errorf(MissingChildrenMap, relativeURI)
+		return nil, fmt.Errorf(MissingChildrenMap, relativeURI, restMethod)
 	}
-	return nil, fmt.Errorf(FailedToTraverse, relativeURI)
+	return nil, fmt.Errorf(FailedToTraverse, relativeURI, restMethod)
 }
