@@ -14,14 +14,16 @@ type (
 
 	// Map struct for the REST endpoints
 	Map struct {
+		Debug         bool
 		Interceptions *map[string]map[Method]grpc.Method
 		ChildrenMaps  *map[string]*Map
 	}
 )
 
 // NewMap creates a new REST map
-func NewMap(interceptions *map[string]map[Method]grpc.Method, childrenMaps *map[string]*Map) *Map {
+func NewMap(debug bool, interceptions *map[string]map[Method]grpc.Method, childrenMaps *map[string]*Map) *Map {
 	return &Map{
+		Debug:         debug,
 		Interceptions: interceptions,
 		ChildrenMaps:  childrenMaps,
 	}
@@ -45,6 +47,13 @@ func (m *Map) Traverse(relativeURI string, restMethod Method) (*grpc.Method, err
 	} else {
 		firstHalfUri = relativeURI[:firstHalfUriIndex]
 		secondHalfUri = relativeURI[firstHalfUriIndex:]
+	}
+
+	if m.Debug {
+		// Print if the URI is an endpoint. first half URI and second half URI if debug is enabled
+		fmt.Printf("Is endpoint: %t\n", isEndpoint)
+		fmt.Printf("First half URI: %s\n", firstHalfUri)
+		fmt.Printf("Second half URI: %s\n", secondHalfUri)
 	}
 
 	// Check if the first half URI is in the interceptions map
