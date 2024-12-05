@@ -7,6 +7,6 @@ import (
 
 // Users service usernames endpoints handlers
 var (
-	GetUsernameByUserIdHandler = typesrest.NewHandler(ByUserId, grpcuser.GetUsernameByUserId)
-	UsernameExistsHandler      = typesrest.NewHandler(ExistsByUsername, grpcuser.UsernameExists)
+	GetUsernameByUserIdMapper = typesrest.NewMapper(ByUserId, grpcuser.GetUsernameByUserId)
+	UsernameExistsMapper      = typesrest.NewMapper(ExistsByUsername, grpcuser.UsernameExists)
 )

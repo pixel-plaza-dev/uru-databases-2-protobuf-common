@@ -5,8 +5,8 @@ import (
 	typesrest "github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/types/rest"
 )
 
-// Auth service endpoints handlers
+// Auth service endpoints mapping
 var (
-	LogInHandler  = typesrest.NewHandler(LogIn, grpcauth.LogIn)
-	LogOutHandler = typesrest.NewHandler(LogOut, grpcauth.LogOut)
+	LogInMapper  = typesrest.NewMapper(LogIn, grpcauth.LogIn)
+	LogOutMapper = typesrest.NewMapper(LogOut, grpcauth.LogOut)
 )

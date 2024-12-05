@@ -5,8 +5,8 @@ import (
 	typesrest "github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/types/rest"
 )
 
-// Users service profiles endpoints handlers
+// Users service profiles endpoints mapping
 var (
-	GetMyProfileHandler = typesrest.NewHandler(Relative, grpcuser.GetMyProfile)
-	GetProfileHandler   = typesrest.NewHandler(ByUsername, grpcuser.GetProfile)
+	GetMyProfileMapper = typesrest.NewMapper(Relative, grpcuser.GetMyProfile)
+	GetProfileMapper   = typesrest.NewMapper(ByUsername, grpcuser.GetProfile)
 )

@@ -5,25 +5,25 @@ import (
 )
 
 type (
-	// Handler is a handler for a REST endpoint
-	Handler struct {
+	// Mapper is the mapper for a REST endpoint and a gRPC method
+	Mapper struct {
 		Endpoint   *Endpoint
 		GRPCMethod grpc.Method
 	}
 )
 
-// NewHandler creates a new handler
-func NewHandler(
+// NewMapper creates a new mapper
+func NewMapper(
 	endpoint *Endpoint,
 	grpcMethod grpc.Method,
-) *Handler {
-	return &Handler{
+) *Mapper {
+	return &Mapper{
 		Endpoint:   endpoint,
 		GRPCMethod: grpcMethod,
 	}
 }
 
-// Path returns the path of the handler
-func (h Handler) Path() string {
-	return h.Endpoint.Path()
+// Path returns the path of the REST endpoint
+func (m Mapper) Path() string {
+	return m.Endpoint.Path()
 }
