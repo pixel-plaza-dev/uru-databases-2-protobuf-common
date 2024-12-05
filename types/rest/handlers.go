@@ -22,3 +22,8 @@ func NewHandler(
 		GRPCMethod: grpcMethod,
 	}
 }
+
+// Path returns the path of the handler
+func (h Handler) Path() string {
+	return h.Endpoint.Path()
+}

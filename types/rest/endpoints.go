@@ -21,3 +21,8 @@ func (r Endpoint) String() string {
 	}
 	return "/" + r.Name + formattedParams
 }
+
+// Path returns the path of the Endpoint
+func (r Endpoint) Path() string {
+	return r.String()
+}
