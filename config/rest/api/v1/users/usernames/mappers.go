@@ -5,7 +5,7 @@ import (
 	typesrest "github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/types/rest"
 )
 
-// Users service usernames endpoints handlers
+// Users service usernames endpoints mapping
 var (
 	GetUsernameByUserIdMapper = typesrest.NewMapper(ByUserId, grpcuser.GetUsernameByUserId)
 	UsernameExistsMapper      = typesrest.NewMapper(ExistsByUsername, grpcuser.UsernameExists)

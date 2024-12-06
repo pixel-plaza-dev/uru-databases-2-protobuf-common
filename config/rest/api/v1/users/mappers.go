@@ -13,6 +13,6 @@ var (
 	ChangePasswordMapper      = rest.NewMapper(Password, configusers.ChangePassword)
 	ChangeUsernameMapper      = rest.NewMapper(Username, configusers.ChangeUsername)
 	ForgotPasswordMapper      = rest.NewMapper(ForgotPassword, configusers.ForgotPassword)
-	PostResetPasswordMapper   = rest.NewMapper(ResetPasswordByToken, configusers.ResetPassword)
+	ResetPasswordMapper       = rest.NewMapper(ResetPasswordByToken, configusers.ResetPassword)
 	DeleteAccountMapper       = rest.NewMapper(DeleteAccount, configusers.DeleteUser)
 )
