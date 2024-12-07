@@ -25,6 +25,14 @@ func ParseGoFile(filePath string) (*token.FileSet, *ast.File, error) {
 
 // WriteGoFile write the given AST node to the given file path
 func WriteGoFile(filePath string, fileSet *token.FileSet, node *ast.File) error {
+	// Check the file set and the AST node
+	if fileSet == nil {
+		return NilFileSetError
+	}
+	if node == nil {
+		return NilASTNodeError
+	}
+
 	// Write the modified AST back to the file
 	file, err := os.Create(filePath)
 	if err != nil {

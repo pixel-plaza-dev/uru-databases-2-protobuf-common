@@ -17,7 +17,12 @@ type (
 )
 
 // OverwriteJSONTags overwrite the given structs fields JSON tags from the given Go file
-func OverwriteJSONTags(filePath string, structJSONTag StructJSONTag) error {
+func OverwriteJSONTags(filePath string, structJSONTag *StructJSONTag) error {
+	// Check if the struct JSON tag is nil
+	if structJSONTag == nil {
+		return NilStructJSONTagError
+	}
+
 	// Compile the regex pattern to match any content inside json tag
 	regex, err := regexp.Compile(`json:"[^"]*"`)
 	if err != nil {
@@ -31,7 +36,7 @@ func OverwriteJSONTags(filePath string, structJSONTag StructJSONTag) error {
 	}
 
 	// Traverse the AST to find the struct and field
-	parser.TraverseAST(
+	err = parser.TraverseAST(
 		node, func(n ast.Node) bool {
 			// Check if the node is a type spec
 			ts, ok := n.(*ast.TypeSpec)
@@ -46,7 +51,7 @@ func OverwriteJSONTags(filePath string, structJSONTag StructJSONTag) error {
 			}
 
 			// Check if the struct name is in the map
-			fieldJSONTag, ok := structJSONTag[ts.Name.Name]
+			fieldJSONTag, ok := (*structJSONTag)[ts.Name.Name]
 			if !ok {
 				return true
 			}
@@ -86,19 +91,22 @@ func OverwriteJSONTags(filePath string, structJSONTag StructJSONTag) error {
 			// Check if the struct has fields to update
 			numFields := len(fieldJSONTag)
 			if numFields == 0 {
-				delete(structJSONTag, ts.Name.Name)
+				delete(*structJSONTag, ts.Name.Name)
 				return false
 			}
 			return true
 		},
 	)
+	if err != nil {
+		return err
+	}
 
 	// Check if all structs have been updated
-	if len(structJSONTag) > 0 {
+	if len(*structJSONTag) > 0 {
 		// Print the structs fields that haven't been updated
 		fmt.Println("The following structs fields haven't been updated:")
-		for structName := range structJSONTag {
-			for fieldName := range structJSONTag[structName] {
+		for structName := range *structJSONTag {
+			for fieldName := range (*structJSONTag)[structName] {
 				fmt.Printf("Struct: %s, Field: %s\n", structName, fieldName)
 			}
 		}

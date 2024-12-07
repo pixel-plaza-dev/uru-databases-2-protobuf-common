@@ -82,7 +82,7 @@ func main() {
 	}
 
 	// Hide the JSON tags in the specified files
-	err := utilsparsertags.HideFilesJSONTags(goFileStructFields)
+	err := utilsparsertags.HideFilesJSONTags(&goFileStructFields)
 	if err != nil {
 		panic(err)
 	}
