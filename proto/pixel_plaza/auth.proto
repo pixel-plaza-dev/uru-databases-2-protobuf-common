@@ -31,6 +31,26 @@ service Auth {
   rpc GetUserRoles(GetUserRolesRequest) returns (GetUserRolesResponse) {}
 }
 
+message RefreshTokenInformation {
+  string id = 1;
+  string ipv4_address = 2;
+  google.protobuf.Timestamp issued_at = 3;
+  google.protobuf.Timestamp expires_at = 4;
+}
+
+message Permission {
+  string permission_id = 1;
+  string resource = 2;
+  string action = 3;
+  string description = 4;
+}
+
+message Role {
+  string role_id = 1;
+  string name = 2;
+  string description = 3;
+}
+
 message LogInRequest {
   string username = 1;
   string password = 2;
@@ -68,13 +88,6 @@ message RefreshTokenResponse {
 
 message LogOutResponse {
   string message = 1;
-}
-
-message RefreshTokenInformation {
-  string id = 1;
-  string ipv4_address = 2;
-  google.protobuf.Timestamp issued_at = 3;
-  google.protobuf.Timestamp expires_at = 4;
 }
 
 message GetRefreshTokenInformationRequest {
@@ -117,13 +130,6 @@ message RevokePermissionRequest {
 
 message RevokePermissionResponse {
   string message = 1;
-}
-
-message Permission {
-  string permission_id = 1;
-  string resource = 2;
-  string action = 3;
-  string description = 4;
 }
 
 message GetPermissionsResponse {
@@ -181,12 +187,6 @@ message RevokeRoleRequest {
 
 message RevokeRoleResponse {
   string message = 1;
-}
-
-message Role {
-  string role_id = 1;
-  string name = 2;
-  string description = 3;
 }
 
 message GetRolesResponse {

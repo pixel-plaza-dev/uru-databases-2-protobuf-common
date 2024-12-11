@@ -1,0 +1,724 @@
+syntax = "proto3";
+
+package pixel_plaza;
+
+option go_package = "compiled/pixel_plaza/business";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+service Business{
+  rpc AddBusiness(AddBusinessRequest) returns (AddBusinessResponse) {}
+  rpc GetBusiness(GetBusinessRequest) returns (GetBusinessResponse) {}
+  rpc UpdateBusiness(UpdateBusinessRequest) returns (UpdateBusinessResponse) {}
+  rpc SetBusinessProfilePicture(SetBusinessProfilePictureRequest) returns (SetBusinessProfilePictureResponse) {}
+  rpc SuspendBusiness(SuspendBusinessRequest) returns (SuspendBusinessResponse) {}
+  rpc ActivateBusiness(ActivateBusinessRequest) returns (ActivateBusinessResponse) {}
+  rpc DeleteBusiness(DeleteBusinessRequest) returns (DeleteBusinessResponse) {}
+  rpc AddBusinessOwner(AddBusinessOwnerRequest) returns (AddBusinessOwnerResponse) {}
+  rpc RemoveBusinessOwner(RemoveBusinessOwnerRequest) returns (RemoveBusinessOwnerResponse) {}
+  rpc GetBusinessOwners(GetBusinessOwnersRequest) returns (GetBusinessOwnersResponse) {}
+  rpc AddBusinessClient(AddBusinessClientRequest) returns (AddBusinessClientResponse) {}
+  rpc IsBusinessClient(IsBusinessClientRequest) returns (IsBusinessClientResponse) {}
+  rpc AddMarketCategory(AddMarketCategoryRequest) returns (AddMarketCategoryResponse) {}
+  rpc GetMarketCategory(GetMarketCategoryRequest) returns (GetMarketCategoryResponse) {}
+  rpc UpdateMarketCategory(UpdateMarketCategoryRequest) returns (UpdateMarketCategoryResponse) {}
+  rpc AddBusinessMarketCategory(AddBusinessMarketCategoryRequest) returns (AddBusinessMarketCategoryResponse) {}
+  rpc GetBusinessMarketCategories(GetBusinessMarketCategoriesRequest) returns (GetBusinessMarketCategoriesResponse) {}
+  rpc AddStore(AddStoreRequest) returns (AddStoreResponse) {}
+  rpc GetStore(GetStoreRequest) returns (GetStoreResponse) {}
+  rpc DeleteStore(DeleteStoreRequest) returns (DeleteStoreResponse) {}
+  rpc GetUnoccupiedStores(google.protobuf.Empty) returns (GetUnoccupiedStoresResponse) {}
+  rpc AddBranch(AddBranchRequest) returns (AddBranchResponse) {}
+  rpc GetBranch(GetBranchRequest) returns (GetBranchResponse) {}
+  rpc GetBusinessBranches(GetBusinessBranchesRequest) returns (GetBusinessBranchesResponse) {}
+  rpc UpdateBranch(UpdateBranchRequest) returns (UpdateBranchResponse) {}
+  rpc SuspendBranch(SuspendBranchRequest) returns (SuspendBranchResponse) {}
+  rpc ActivateBranch(ActivateBranchRequest) returns (ActivateBranchResponse) {}
+  rpc DeleteBranch(DeleteBranchRequest) returns (DeleteBranchResponse) {}
+  rpc AddStoreBranchRent(AddStoreBranchRentRequest) returns (AddStoreBranchRentResponse) {}
+  rpc GetStoreBranchRents(GetStoreBranchRentRequest) returns (GetStoreBranchRentResponse) {}
+  rpc UpdateStoreBranchRent(UpdateBranchRentRequest) returns (UpdateBranchRentResponse) {}
+  rpc GetUnpaidBranchRents(GetUnpaidBranchRentsRequest) returns (GetUnpaidBranchRentsResponse) {}
+  rpc GetBusinessUnpaidBranchRents(GetBusinessUnpaidBranchRentsRequest) returns (GetBusinessUnpaidBranchRentsResponse) {}
+  rpc AddProductCategory(AddProductCategoryRequest) returns (AddProductCategoryResponse) {}
+  rpc GetProductCategory(GetProductCategoryRequest) returns (GetProductCategoryResponse) {}
+  rpc UpdateProductCategory(UpdateProductCategoryRequest) returns (UpdateProductCategoryResponse) {}
+  rpc AddProduct(AddProductRequest) returns (AddProductResponse) {}
+  rpc GetProduct(GetProductRequest) returns (GetProductResponse) {}
+  rpc UpdateProduct(UpdateProductRequest) returns (UpdateProductResponse) {}
+  rpc SearchProducts(SearchProductsRequest) returns (SearchProductsResponse) {}
+  rpc SuspendProduct(SuspendProductRequest) returns (SuspendProductResponse) {}
+  rpc ActivateProduct(ActivateProductRequest) returns (ActivateProductResponse) {}
+  rpc AddBusinessProduct(AddBusinessProductRequest) returns (AddBusinessProductResponse) {}
+  rpc GetBusinessProduct(GetBusinessProductRequest) returns (GetBusinessProductResponse) {}
+  rpc UpdateBusinessProduct(UpdateBusinessProductRequest) returns (UpdateBusinessProductResponse) {}
+  rpc SuspendBusinessProduct(SuspendBusinessProductRequest) returns (SuspendBusinessProductResponse) {}
+  rpc ActivateBusinessProduct(ActivateBusinessProductRequest) returns (ActivateBusinessProductResponse) {}
+  rpc AddBranchProduct(AddBranchProductRequest) returns (AddBranchProductResponse) {}
+  rpc GetBranchProduct(GetBranchProductRequest) returns (GetBranchProductResponse) {}
+  rpc SearchBranchProducts(SearchBranchProductsRequest) returns (SearchBranchProductsResponse) {}
+  rpc UpdateBranchProduct(UpdateBranchProductRequest) returns (UpdateBranchProductResponse) {}
+}
+
+message Store {
+  int32 mall_floor = 1;
+  string store_number = 2;
+  int32 square_meters = 3;
+  int32 floors = 4;
+}
+
+message MarketCategory {
+  string name = 1;
+  string description = 2;
+}
+
+message AddBranchRent {
+  string store_id = 1;
+  google.protobuf.Timestamp from = 2;
+  google.protobuf.Timestamp to = 3;
+  float price = 4;
+}
+
+message GetBranchRent {
+  string store_id = 1;
+  google.protobuf.Timestamp from = 2;
+  google.protobuf.Timestamp to = 3;
+  float price = 4;
+  float paid_amount = 5;
+}
+
+message GetBusinessBranchRent {
+  string branch_id = 1;
+  repeated GetBranchRent branch_rents = 2;
+}
+
+message ProductCategory {
+  string name = 1;
+  string description = 2;
+}
+
+message Toy {
+  string age_group = 2;
+  string toy_type = 3;
+}
+
+message UpdateToy {
+  optional string age_group = 2;
+  optional string toy_type = 3;
+}
+
+message Food {
+  string food_type = 1;
+  repeated string ingredients = 2;
+}
+
+message UpdateFood {
+  optional string food_type = 2;
+  repeated string ingredients = 3;
+}
+
+message Electronics {
+  repeated string technical_specifications = 1;
+  string model = 2;
+  optional string color = 3;
+}
+
+message UpdateElectronics {
+  repeated string technical_specifications = 1;
+  optional string color = 2;
+  optional string model = 3;
+}
+
+message Book {
+  string isbn = 1;
+  string author = 2;
+  string publisher = 3;
+  repeated string genres = 4;
+  google.protobuf.Timestamp published_at = 5;
+  int32 pages = 6;
+  string language = 7;
+}
+
+message UpdateBook {
+  optional string isbn = 1;
+  optional string author = 2;
+  optional string publisher = 3;
+  repeated string genres = 4;
+  optional google.protobuf.Timestamp published_at = 5;
+  optional int32 pages = 6;
+  optional string language = 7;
+}
+
+message Clothing {
+  string size = 1;
+  string color = 2;
+  string material = 3;
+  optional string gender = 4;
+  optional string season = 5;
+}
+
+message UpdateClothing {
+  optional string size = 1;
+  optional string color = 2;
+  optional string material = 3;
+  optional string gender = 4;
+  optional string season = 5;
+}
+
+message Product {
+  string name = 2;
+  string description = 3;
+  string brand = 4;
+  float price = 5;
+  repeated string product_category_ids = 6;
+  optional string barcode = 7;
+  optional float weight = 8;
+  optional float height = 9;
+  optional float width = 10;
+  optional float length = 11;
+  optional Toy toy = 12;
+  optional Food food = 13;
+  optional Electronics electronics = 14;
+  optional Book book = 15;
+  optional Clothing clothing = 16;
+}
+
+message ProductWithId {
+  string product_id = 1;
+  string name = 2;
+  string description = 3;
+  string brand = 4;
+  float price = 5;
+  repeated string product_category_ids = 6;
+  optional string barcode = 7;
+  optional float weight = 8;
+  optional float height = 9;
+  optional float width = 10;
+  optional float length = 11;
+  optional Toy toy = 12;
+  optional Food food = 13;
+  optional Electronics electronics = 14;
+  optional Book book = 15;
+  optional Clothing clothing = 16;
+}
+
+message UpdateProduct {
+  optional string name = 1;
+  optional string description = 2;
+  optional string brand = 3;
+  optional float price = 4;
+  repeated string product_category_ids = 5;
+  optional string barcode = 6;
+  optional float weight = 7;
+  optional float height = 8;
+  optional float width = 9;
+  optional float length = 10;
+  optional UpdateToy toy = 11;
+  optional UpdateFood food = 12;
+  optional UpdateElectronics electronics = 13;
+  optional UpdateBook book = 14;
+  optional UpdateClothing clothing = 15;
+}
+
+message BranchProduct {
+  Product product = 1;
+  repeated string additional_details = 2;
+  int32 stock = 3;
+  float price = 4;
+  float discount_percentage = 5;
+}
+
+message SearchProductResult {
+  string product_id = 1;
+  string name = 2;
+  string description = 3;
+  string brand = 4;
+}
+
+message SearchBranchProductResult {
+  string product_id = 1;
+  string name = 2;
+  string description = 3;
+  string brand = 4;
+  int32 stock = 5;
+  float price = 6;
+  float discount_percentage = 7;
+}
+
+
+message AddBusinessRequest {
+  string name = 1;
+  string description = 2;
+}
+
+message AddBusinessResponse {
+  string message = 1;
+}
+
+message GetBusinessRequest {
+  string business_id = 1;
+}
+
+message GetBusinessResponse {
+  string message = 1;
+  string name = 2;
+  string description = 3;
+  google.protobuf.Timestamp joined_at = 4;
+}
+
+message UpdateBusinessRequest {
+  optional string name = 1;
+  optional string description = 2;
+}
+
+message UpdateBusinessResponse {
+  string message = 1;
+}
+
+message SetBusinessProfilePictureRequest {
+  string business_id = 1;
+  string image_id = 2;
+}
+
+message SetBusinessProfilePictureResponse {
+  string message = 1;
+}
+
+message SuspendBusinessRequest {
+  string business_id = 1;
+}
+
+message SuspendBusinessResponse {
+  string message = 1;
+}
+
+message ActivateBusinessRequest {
+  string business_id = 1;
+}
+
+message ActivateBusinessResponse {
+  string message = 1;
+}
+
+message DeleteBusinessRequest {
+  string business_id = 1;
+}
+
+message DeleteBusinessResponse {
+  string message = 1;
+}
+
+message AddBusinessOwnerRequest {
+  string business_id = 1;
+  string user_id = 2;
+}
+
+message AddBusinessOwnerResponse {
+  string message = 1;
+}
+
+message RemoveBusinessOwnerRequest {
+  string business_id = 1;
+  string user_id = 2;
+}
+
+message RemoveBusinessOwnerResponse {
+  string message = 1;
+}
+
+message GetBusinessOwnersRequest {
+  string business_id = 1;
+}
+
+message GetBusinessOwnersResponse {
+  string message = 1;
+  repeated string user_ids = 2;
+}
+
+message AddBusinessClientRequest {
+  string business_id = 1;
+  string user_id = 2;
+}
+
+message AddBusinessClientResponse {
+  string message = 1;
+}
+
+message IsBusinessClientRequest {
+  string business_id = 1;
+  string user_id = 2;
+}
+
+message IsBusinessClientResponse {
+  string message = 1;
+  bool is_client = 2;
+}
+
+message AddMarketCategoryRequest {
+  MarketCategory market_category = 1;
+}
+
+message AddMarketCategoryResponse {
+  string message = 1;
+}
+
+message GetMarketCategoryRequest {
+  string market_category_id = 1;
+}
+
+message GetMarketCategoryResponse {
+  string message = 1;
+  MarketCategory market_category = 2;
+}
+
+message UpdateMarketCategoryRequest {
+  string market_category_id = 1;
+  optional string name = 2;
+  optional string description = 3;
+}
+
+message UpdateMarketCategoryResponse {
+  string message = 1;
+}
+
+message AddBusinessMarketCategoryRequest {
+  string business_id = 1;
+  string market_category_id = 2;
+}
+
+message AddBusinessMarketCategoryResponse {
+  string message = 1;
+}
+
+message GetBusinessMarketCategoriesRequest {
+  string business_id = 1;
+}
+
+message GetBusinessMarketCategoriesResponse {
+  string message = 1;
+  repeated string market_category_ids = 2;
+}
+
+message AddStoreRequest {
+  Store store = 1;
+}
+
+message AddStoreResponse {
+  string message = 1;
+}
+
+message GetStoreRequest {
+  string store_id = 1;
+}
+
+message GetStoreResponse {
+  string message = 1;
+  Store store = 2;
+}
+
+message DeleteStoreRequest {
+  string store_id = 1;
+}
+
+message DeleteStoreResponse {
+  string message = 1;
+}
+
+message GetUnoccupiedStoresRequest {
+  string business_id = 1;
+}
+
+message GetUnoccupiedStoresResponse {
+  string message = 1;
+  repeated Store stores = 2;
+}
+
+message AddBranchRequest {
+  string store_id = 1;
+  string name = 2;
+  string description = 3;
+}
+
+message AddBranchResponse {
+  string message = 1;
+}
+
+message GetBranchRequest {
+  string branch_id = 1;
+}
+
+message GetBranchResponse {
+  string message = 1;
+  string name = 2;
+  string description = 3;
+  google.protobuf.Timestamp joined_at = 4;
+}
+
+message UpdateBranchRequest {
+  string branch_id = 1;
+  optional string name = 2;
+  optional string description = 3;
+}
+
+message UpdateBranchResponse {
+  string message = 1;
+}
+
+message SuspendBranchRequest {
+  string branch_id = 1;
+}
+
+message SuspendBranchResponse {
+  string message = 1;
+}
+
+message ActivateBranchRequest {
+  string branch_id = 1;
+}
+
+message ActivateBranchResponse {
+  string message = 1;
+}
+
+message GetBusinessBranchesRequest {
+  string business_id = 1;
+}
+
+message GetBusinessBranchesResponse {
+  string message = 1;
+  repeated string branch_ids = 2;
+}
+
+message DeleteBranchRequest {
+  string branch_id = 1;
+}
+
+message DeleteBranchResponse {
+  string message = 1;
+}
+
+message AddStoreBranchRentRequest {
+  string branch_id = 1;
+  AddBranchRent branch_rent = 2;
+}
+
+message AddStoreBranchRentResponse {
+  string message = 1;
+}
+
+message GetStoreBranchRentRequest {
+  string branch_id = 1;
+  optional google.protobuf.Timestamp from = 2;
+  optional google.protobuf.Timestamp to = 3;
+}
+
+message GetStoreBranchRentResponse {
+  string message = 1;
+  repeated GetBranchRent branch_rents = 2;
+}
+
+message UpdateBranchRentRequest {
+  string branch_rent_id = 1;
+  optional google.protobuf.Timestamp from = 2;
+  optional google.protobuf.Timestamp to = 3;
+  optional string price = 4;
+}
+
+message UpdateBranchRentResponse {
+  string message = 1;
+}
+
+message GetUnpaidBranchRentsRequest {
+  string branch_id = 1;
+}
+
+message GetUnpaidBranchRentsResponse {
+  string message = 1;
+  repeated GetBranchRent branch_rents = 2;
+}
+
+message GetBusinessUnpaidBranchRentsRequest {
+  string business_id = 1;
+}
+
+message GetBusinessUnpaidBranchRentsResponse {
+  string message = 1;
+  repeated GetBranchRent branch_rents = 2;
+}
+
+message AddProductCategoryRequest {
+  string name = 1;
+  string description = 2;
+}
+
+message AddProductCategoryResponse {
+  string message = 1;
+}
+
+message GetProductCategoryRequest {
+  string product_category_id = 1;
+}
+
+message GetProductCategoryResponse {
+  string message = 1;
+  ProductCategory product_category = 2;
+}
+
+message UpdateProductCategoryRequest {
+  string product_category_id = 1;
+  optional string name = 2;
+  optional string description = 3;
+}
+
+message UpdateProductCategoryResponse {
+  string message = 1;
+}
+
+message AddProductRequest {
+  string product_id = 1;
+  Product product = 2;
+}
+
+message AddProductResponse {
+  string message = 1;
+}
+
+message GetProductRequest {
+  string product_id = 1;
+}
+
+message GetProductResponse {
+  string message = 1;
+  Product product = 2;
+}
+
+message UpdateProductRequest {
+  string product_id = 1;
+  UpdateProduct product = 2;
+}
+
+message UpdateProductResponse {
+  string message = 1;
+}
+
+message SearchProductsRequest {
+  string query = 1;
+  optional string product_category_id = 2;
+}
+
+message SearchProductsResponse {
+  string message = 1;
+  repeated SearchProductResult products = 2;
+}
+
+message SuspendProductRequest {
+  string product_id = 1;
+}
+
+message SuspendProductResponse {
+  string message = 1;
+}
+
+message ActivateProductRequest {
+  string product_id = 1;
+}
+
+message ActivateProductResponse {
+  string message = 1;
+}
+
+message AddBusinessProductRequest {
+  string business_id = 1;
+  string product_id = 2;
+  repeated string images_id = 3;
+  repeated string additional_details = 4;
+}
+
+message AddBusinessProductResponse {
+  string message = 1;
+}
+
+message GetBusinessProductRequest {
+  string business_id = 1;
+  string product_id = 2;
+}
+
+message GetBusinessProductResponse {
+  string message = 1;
+  string product_id = 2;
+  repeated string images_id = 3;
+  repeated string additional_details = 4;
+}
+
+message UpdateBusinessProductRequest {
+  string business_id = 1;
+  string product_id = 2;
+  repeated string images_id = 3;
+  repeated string additional_details = 4;
+}
+
+message UpdateBusinessProductResponse {
+  string message = 1;
+}
+
+message SuspendBusinessProductRequest {
+  string business_id = 1;
+  string product_id = 2;
+}
+
+message SuspendBusinessProductResponse {
+  string message = 1;
+}
+
+message ActivateBusinessProductRequest {
+  string business_id = 1;
+  string product_id = 2;
+}
+
+message ActivateBusinessProductResponse {
+  string message = 1;
+}
+
+message AddBranchProductRequest {
+  string branch_id = 1;
+  string product_id = 2;
+  int32 stock = 3;
+  float price = 4;
+  float discount_percentage = 5;
+}
+
+message AddBranchProductResponse {
+  string message = 1;
+}
+
+message GetBranchProductRequest {
+  string branch_id = 1;
+  string product_id = 2;
+}
+
+message GetBranchProductResponse {
+  string message = 1;
+  BranchProduct branch_product = 2;
+}
+
+message SearchBranchProductsRequest {
+  string query = 1;
+  optional string product_category_id = 2;
+}
+
+message SearchBranchProductsResponse {
+  string message = 1;
+  repeated SearchBranchProductResult products = 2;
+}
+
+message UpdateBranchProductRequest {
+  string branch_id = 1;
+  string product_id = 2;
+  optional int32 stock = 3;
+  optional float price = 4;
+  optional float discount_percentage = 5;
+}
+
+message UpdateBranchProductResponse {
+  string message = 1;
+}

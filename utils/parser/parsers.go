@@ -9,8 +9,6 @@ import (
 	"os"
 )
 
-//
-
 // ParseGoFile parse the given Go file and return the file set and the AST node
 func ParseGoFile(filePath string) (*token.FileSet, *ast.File, error) {
 	// Parse the Go file

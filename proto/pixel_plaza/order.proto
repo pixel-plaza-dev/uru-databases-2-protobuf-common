@@ -1,0 +1,116 @@
+syntax = "proto3";
+
+package pixel_plaza;
+
+option go_package = "compiled/pixel_plaza/order";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+service Order {
+  rpc AddProductToCart(AddProductToCartRequest) returns (AddProductToCartResponse) {}
+  rpc RemoveProductFromCart(RemoveProductFromCartRequest) returns (RemoveProductFromCartResponse) {}
+  rpc GetCart(GetCartRequest) returns (GetCartResponse) {}
+  rpc GetCurrentCart(google.protobuf.Empty) returns (GetCurrentCartResponse) {}
+  rpc GetCurrentCartId(google.protobuf.Empty) returns (GetCartResponse) {}
+  rpc GetCarts(GetCartsRequest) returns (GetCartsResponse) {}
+  rpc GetCartTotal(GetCartTotalRequest) returns (GetCartTotalResponse) {}
+  rpc ProceedToCheckout(ProceedToCheckoutRequest) returns (ProceedToCheckoutResponse) {}
+  rpc GetOrders(google.protobuf.Empty) returns (GetOrdersResponse) {}
+  rpc GetOrder(GetOrderRequest) returns (GetOrderResponse) {}
+}
+
+message GetProduct {
+  string branch_product_id = 1;
+  string name = 2;
+  string description = 3;
+  int32 quantity = 4;
+  string total_price = 5;
+ optional string image_id = 6;
+}
+
+message GetOrder {
+  string order_id = 1;
+  repeated GetProduct products = 2;
+  string total_price = 3;
+  google.protobuf.Timestamp order_date = 4;
+}
+
+message AddProductToCartRequest {
+  string branch_product_id = 1;
+  int32 quantity = 2;
+}
+
+message AddProductToCartResponse {
+  string message = 1;
+}
+
+message RemoveProductFromCartRequest {
+  string branch_product_id = 1;
+  int32 quantity = 2;
+}
+
+message RemoveProductFromCartResponse {
+  string message = 1;
+}
+
+message GetCartRequest {
+  string cart_id = 1;
+}
+
+message GetCartResponse {
+  string message = 1;
+  repeated GetProduct products = 2;
+  float total_price = 3;
+}
+
+message GetCurrentCartResponse {
+  string message = 1;
+  repeated GetProduct products = 2;
+  float total_price = 3;
+}
+
+message GetCurrentCartId {
+  string cart_id = 1;
+}
+
+message GetCartsRequest {
+  optional google.protobuf.Timestamp from = 1;
+  optional google.protobuf.Timestamp to = 2;
+}
+
+message GetCartsResponse {
+  string message = 1;
+  repeated string cart_id = 2;
+}
+
+message GetCartTotalRequest {
+  string cart_id = 1;
+}
+
+message GetCartTotalResponse {
+  string message = 1;
+  float total_price = 2;
+}
+
+message ProceedToCheckoutRequest {
+  string cart_id = 1;
+  optional string user_id = 2;
+}
+
+message ProceedToCheckoutResponse {
+  string message = 1;
+}
+
+message GetOrdersResponse {
+  string message = 1;
+  repeated string orders_id = 2;
+}
+
+message GetOrderRequest {
+  string order_id = 1;
+}
+
+message GetOrderResponse {
+  string message = 1;
+  GetOrder order = 2;
+}

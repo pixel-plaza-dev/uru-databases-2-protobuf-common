@@ -1,0 +1,158 @@
+syntax = "proto3";
+
+package pixel_plaza;
+
+option go_package = "compiled/pixel_plaza/payment";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+service Payment {
+  rpc AddOrderPayment(AddOrderPaymentRequest) returns (AddOrderPaymentResponse) {}
+  rpc GetOrderPayments(GetOrderPaymentsRequest) returns (GetOrderPaymentsResponse) {}
+  rpc AddBranchRentPayment(AddBranchRentPaymentRequest) returns (AddBranchRentPaymentResponse) {}
+  rpc GetBranchRentPayments(GetBranchRentPaymentsRequest) returns (GetBranchRentPaymentsResponse) {}
+  rpc GetBranchRentsPayments(GetBranchRentPaymentsRequest) returns (GetBranchRentPaymentsResponse) {}
+  rpc VerifyPayment (VerifyPaymentRequest) returns (VerifyPaymentResponse) {}
+  rpc AddPaymentAccount(AddPaymentAccountRequest) returns (AddPaymentAccountResponse) {}
+  rpc GetPaymentAccounts(google.protobuf.Empty) returns (GetPaymentAccountsResponse) {}
+  rpc GetActivePaymentAccounts(google.protobuf.Empty) returns (GetActivePaymentAccountsResponse) {}
+  rpc GetSuspendedPaymentAccounts(google.protobuf.Empty) returns (GetSuspendedPaymentAccountsResponse) {}
+  rpc SuspendPaymentAccount(SuspendPaymentAccountRequest) returns (SuspendPaymentAccountResponse) {}
+  rpc ActivatePaymentAccount(ActivatePaymentAccountRequest) returns (ActivatePaymentAccountResponse) {}
+  rpc PayForOrder(PayForOrderRequest) returns (PayForOrderResponse) {}
+  rpc PayForBranchRent(PayForBranchRentRequest) returns (PayForBranchRentResponse) {}
+}
+
+message AddPayment {
+  string payment_account_id = 1;
+  string payment_identifier = 2;
+  string amount = 3;
+  google.protobuf.Timestamp payment_date = 4;
+}
+
+message GetPayment {
+  string payment_account_id = 1;
+  string payment_identifier = 2;
+  string amount = 3;
+  google.protobuf.Timestamp payment_date = 4;
+  bool is_verified = 5;
+}
+
+message PaymentAccount {
+  string platform = 1;
+  string account_identifier = 2;
+  optional string account_phone_number = 3;
+  optional string account_email = 4;
+  optional string account_name = 5;
+}
+
+message AddOrderPaymentRequest {
+  string order_id = 1;
+  AddPayment payment = 2;
+}
+
+message AddOrderPaymentResponse {
+  string message = 1;
+}
+
+message GetOrderPaymentsRequest {
+  string order_id = 1;
+}
+
+message GetOrderPaymentsResponse {
+  string message = 1;
+  repeated GetPayment payments = 2;
+}
+
+message AddBranchRentPaymentRequest {
+  string branch_rent_id = 1;
+  AddPayment payment = 2;
+}
+
+message AddBranchRentPaymentResponse {
+  string message = 1;
+}
+
+message GetBranchRentPaymentsRequest {
+  string branch_rent_id = 1;
+}
+
+message GetBranchRentPaymentsResponse {
+  string message = 1;
+  repeated GetPayment payments = 2;
+}
+
+message GetBranchRentsPaymentsRequest {
+  optional google.protobuf.Timestamp from = 1;
+  optional google.protobuf.Timestamp to = 2;
+}
+
+message GetBranchRentsPaymentsResponse {
+  string message = 1;
+  repeated GetPayment payments = 2;
+}
+
+message VerifyPaymentRequest {
+  string payment_id = 1;
+}
+
+message VerifyPaymentResponse {
+  string message = 1;
+}
+
+message AddPaymentAccountRequest {
+  PaymentAccount payment_account = 1;
+}
+
+message AddPaymentAccountResponse {
+  string message = 1;
+}
+
+message GetPaymentAccountsResponse {
+  string message = 1;
+  repeated PaymentAccount payment_accounts = 2;
+}
+
+message GetActivePaymentAccountsResponse {
+  string message = 1;
+  repeated PaymentAccount payment_accounts = 2;
+}
+
+message GetSuspendedPaymentAccountsResponse {
+  string message = 1;
+  repeated PaymentAccount payment_accounts = 2;
+}
+
+message SuspendPaymentAccountRequest {
+  string payment_account_id = 1;
+}
+
+message SuspendPaymentAccountResponse {
+  string message = 1;
+}
+
+message ActivatePaymentAccountRequest {
+  string payment_account_id = 1;
+}
+
+message ActivatePaymentAccountResponse {
+  string message = 1;
+}
+
+message PayForOrderRequest {
+  string order_id = 1;
+  AddPayment payment = 2;
+}
+
+message PayForOrderResponse {
+  string message = 1;
+}
+
+message PayForBranchRentRequest {
+  string branch_rent_id = 1;
+  AddPayment payment = 2;
+}
+
+message PayForBranchRentResponse {
+  string message = 1;
+}

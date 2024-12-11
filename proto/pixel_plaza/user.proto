@@ -11,10 +11,9 @@ service User {
   rpc UsernameExists(UsernameExistsRequest) returns (UsernameExistsResponse) {}
   rpc GetUsernameByUserId(GetUsernameByUserIdRequest) returns (GetUsernameByUserIdResponse) {}
   rpc GetUserIdByUsername(GetUserIdByUsernameRequest) returns (GetUserIdByUsernameResponse) {}
-  rpc GetUserSharedIdByUserId(GetUserSharedIdByUserIdRequest) returns (GetUserSharedIdByUserIdResponse) {}
-  rpc GetUserIdByUserSharedId(GetUserIdByUserSharedIdRequest) returns (GetUserIdByUserSharedIdResponse) {}
   rpc IsPasswordCorrect(IsPasswordCorrectRequest) returns (IsPasswordCorrectResponse) {}
   rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse) {}
+  rpc SetProfilePicture(SetProfilePictureRequest) returns (SetProfilePictureResponse) {}
   rpc GetProfile(GetProfileRequest) returns (GetProfileResponse) {}
   rpc GetMyProfile(google.protobuf.Empty) returns (GetMyProfileResponse) {}
   rpc ChangeUsername(ChangeUsernameRequest) returns (ChangeUsernameResponse) {}
@@ -57,7 +56,6 @@ message IsPasswordCorrectRequest {
 message IsPasswordCorrectResponse {
   string message = 1;
   string user_id = 2;
-  string user_shared_id = 3;
 }
 
 message UsernameExistsRequest {
@@ -86,24 +84,6 @@ message GetUserIdByUsernameResponse {
   string user_id = 2;
 }
 
-message GetUserSharedIdByUserIdRequest {
-  string user_id = 1;
-}
-
-message GetUserSharedIdByUserIdResponse {
-  string message = 1;
-  string user_shared_id = 2;
-}
-
-message GetUserIdByUserSharedIdRequest {
-  string user_shared_id = 1;
-}
-
-message GetUserIdByUserSharedIdResponse {
-  string message = 1;
-  string user_id = 2;
-}
-
 message UpdateUserRequest {
   optional string first_name = 1;
   optional string last_name = 2;
@@ -111,6 +91,14 @@ message UpdateUserRequest {
 }
 
 message UpdateUserResponse {
+  string message = 1;
+}
+
+message SetProfilePictureRequest {
+  string image_id = 1;
+}
+
+message SetProfilePictureResponse {
   string message = 1;
 }
 
@@ -123,6 +111,7 @@ message GetProfileResponse {
   string first_name = 3;
   string last_name = 4;
   google.protobuf.Timestamp joined_at = 5;
+  optional  string profile_picture = 6;
 }
 
 message GetMyProfileResponse {
@@ -134,6 +123,7 @@ message GetMyProfileResponse {
   string phone_number = 6;
   google.protobuf.Timestamp birthdate = 7;
   google.protobuf.Timestamp joined_at = 8;
+  optional string profile_picture = 9;
 }
 
 message ChangeUsernameRequest {
