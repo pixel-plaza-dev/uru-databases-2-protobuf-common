@@ -24,10 +24,9 @@ const (
 	Order_RemoveProductFromCart_FullMethodName = "/pixel_plaza.Order/RemoveProductFromCart"
 	Order_GetCart_FullMethodName               = "/pixel_plaza.Order/GetCart"
 	Order_GetCurrentCart_FullMethodName        = "/pixel_plaza.Order/GetCurrentCart"
-	Order_GetCurrentCartId_FullMethodName      = "/pixel_plaza.Order/GetCurrentCartId"
 	Order_GetCarts_FullMethodName              = "/pixel_plaza.Order/GetCarts"
 	Order_GetCartTotal_FullMethodName          = "/pixel_plaza.Order/GetCartTotal"
-	Order_ProceedToCheckout_FullMethodName     = "/pixel_plaza.Order/ProceedToCheckout"
+	Order_PlaceOrder_FullMethodName            = "/pixel_plaza.Order/PlaceOrder"
 	Order_GetOrders_FullMethodName             = "/pixel_plaza.Order/GetOrders"
 	Order_GetOrder_FullMethodName              = "/pixel_plaza.Order/GetOrder"
 )
@@ -40,10 +39,9 @@ type OrderClient interface {
 	RemoveProductFromCart(ctx context.Context, in *RemoveProductFromCartRequest, opts ...grpc.CallOption) (*RemoveProductFromCartResponse, error)
 	GetCart(ctx context.Context, in *GetCartRequest, opts ...grpc.CallOption) (*GetCartResponse, error)
 	GetCurrentCart(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetCurrentCartResponse, error)
-	GetCurrentCartId(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetCartResponse, error)
 	GetCarts(ctx context.Context, in *GetCartsRequest, opts ...grpc.CallOption) (*GetCartsResponse, error)
 	GetCartTotal(ctx context.Context, in *GetCartTotalRequest, opts ...grpc.CallOption) (*GetCartTotalResponse, error)
-	ProceedToCheckout(ctx context.Context, in *ProceedToCheckoutRequest, opts ...grpc.CallOption) (*ProceedToCheckoutResponse, error)
+	PlaceOrder(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*PlaceOrderResponse, error)
 	GetOrders(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetOrdersResponse, error)
 	GetOrder(ctx context.Context, in *GetOrderRequest, opts ...grpc.CallOption) (*GetOrderResponse, error)
 }
@@ -96,16 +94,6 @@ func (c *orderClient) GetCurrentCart(ctx context.Context, in *emptypb.Empty, opt
 	return out, nil
 }
 
-func (c *orderClient) GetCurrentCartId(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetCartResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetCartResponse)
-	err := c.cc.Invoke(ctx, Order_GetCurrentCartId_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *orderClient) GetCarts(ctx context.Context, in *GetCartsRequest, opts ...grpc.CallOption) (*GetCartsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetCartsResponse)
@@ -126,10 +114,10 @@ func (c *orderClient) GetCartTotal(ctx context.Context, in *GetCartTotalRequest,
 	return out, nil
 }
 
-func (c *orderClient) ProceedToCheckout(ctx context.Context, in *ProceedToCheckoutRequest, opts ...grpc.CallOption) (*ProceedToCheckoutResponse, error) {
+func (c *orderClient) PlaceOrder(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*PlaceOrderResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ProceedToCheckoutResponse)
-	err := c.cc.Invoke(ctx, Order_ProceedToCheckout_FullMethodName, in, out, cOpts...)
+	out := new(PlaceOrderResponse)
+	err := c.cc.Invoke(ctx, Order_PlaceOrder_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -164,10 +152,9 @@ type OrderServer interface {
 	RemoveProductFromCart(context.Context, *RemoveProductFromCartRequest) (*RemoveProductFromCartResponse, error)
 	GetCart(context.Context, *GetCartRequest) (*GetCartResponse, error)
 	GetCurrentCart(context.Context, *emptypb.Empty) (*GetCurrentCartResponse, error)
-	GetCurrentCartId(context.Context, *emptypb.Empty) (*GetCartResponse, error)
 	GetCarts(context.Context, *GetCartsRequest) (*GetCartsResponse, error)
 	GetCartTotal(context.Context, *GetCartTotalRequest) (*GetCartTotalResponse, error)
-	ProceedToCheckout(context.Context, *ProceedToCheckoutRequest) (*ProceedToCheckoutResponse, error)
+	PlaceOrder(context.Context, *emptypb.Empty) (*PlaceOrderResponse, error)
 	GetOrders(context.Context, *emptypb.Empty) (*GetOrdersResponse, error)
 	GetOrder(context.Context, *GetOrderRequest) (*GetOrderResponse, error)
 	mustEmbedUnimplementedOrderServer()
@@ -192,17 +179,14 @@ func (UnimplementedOrderServer) GetCart(context.Context, *GetCartRequest) (*GetC
 func (UnimplementedOrderServer) GetCurrentCart(context.Context, *emptypb.Empty) (*GetCurrentCartResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCurrentCart not implemented")
 }
-func (UnimplementedOrderServer) GetCurrentCartId(context.Context, *emptypb.Empty) (*GetCartResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetCurrentCartId not implemented")
-}
 func (UnimplementedOrderServer) GetCarts(context.Context, *GetCartsRequest) (*GetCartsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCarts not implemented")
 }
 func (UnimplementedOrderServer) GetCartTotal(context.Context, *GetCartTotalRequest) (*GetCartTotalResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCartTotal not implemented")
 }
-func (UnimplementedOrderServer) ProceedToCheckout(context.Context, *ProceedToCheckoutRequest) (*ProceedToCheckoutResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ProceedToCheckout not implemented")
+func (UnimplementedOrderServer) PlaceOrder(context.Context, *emptypb.Empty) (*PlaceOrderResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PlaceOrder not implemented")
 }
 func (UnimplementedOrderServer) GetOrders(context.Context, *emptypb.Empty) (*GetOrdersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetOrders not implemented")
@@ -303,24 +287,6 @@ func _Order_GetCurrentCart_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Order_GetCurrentCartId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(emptypb.Empty)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(OrderServer).GetCurrentCartId(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Order_GetCurrentCartId_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OrderServer).GetCurrentCartId(ctx, req.(*emptypb.Empty))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _Order_GetCarts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetCartsRequest)
 	if err := dec(in); err != nil {
@@ -357,20 +323,20 @@ func _Order_GetCartTotal_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Order_ProceedToCheckout_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ProceedToCheckoutRequest)
+func _Order_PlaceOrder_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(OrderServer).ProceedToCheckout(ctx, in)
+		return srv.(OrderServer).PlaceOrder(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Order_ProceedToCheckout_FullMethodName,
+		FullMethod: Order_PlaceOrder_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OrderServer).ProceedToCheckout(ctx, req.(*ProceedToCheckoutRequest))
+		return srv.(OrderServer).PlaceOrder(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -435,10 +401,6 @@ var Order_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Order_GetCurrentCart_Handler,
 		},
 		{
-			MethodName: "GetCurrentCartId",
-			Handler:    _Order_GetCurrentCartId_Handler,
-		},
-		{
 			MethodName: "GetCarts",
 			Handler:    _Order_GetCarts_Handler,
 		},
@@ -447,8 +409,8 @@ var Order_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Order_GetCartTotal_Handler,
 		},
 		{
-			MethodName: "ProceedToCheckout",
-			Handler:    _Order_ProceedToCheckout_Handler,
+			MethodName: "PlaceOrder",
+			Handler:    _Order_PlaceOrder_Handler,
 		},
 		{
 			MethodName: "GetOrders",

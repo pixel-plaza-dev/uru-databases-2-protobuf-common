@@ -13,6 +13,7 @@ var (
 	SignUp           = typesrest.NewEndpoint("sign-up")
 	Password         = typesrest.NewEndpoint("password")
 	Username         = typesrest.NewEndpoint("username")
+	ProfilePicture   = typesrest.NewEndpoint("profile-picture")
 	UserIdByUsername = typesrest.NewEndpoint(
 		"user-id",
 		typesrest.Username,

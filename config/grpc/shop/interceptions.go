@@ -1,4 +1,4 @@
-package business
+package shop
 
 import (
 	"github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/types/grpc"
@@ -34,9 +34,9 @@ var Interceptions = map[grpc.Method]grpc.Interception{
 	SuspendBranch:                grpc.AccessToken,
 	ActivateBranch:               grpc.AccessToken,
 	DeleteBranch:                 grpc.AccessToken,
-	AddStoreBranchRent:           grpc.AccessToken,
-	GetStoreBranchRents:          grpc.AccessToken,
-	UpdateStoreBranchRent:        grpc.AccessToken,
+	AddBranchRent:                grpc.AccessToken,
+	GetBranchRents:               grpc.AccessToken,
+	UpdateBranchRent:             grpc.AccessToken,
 	GetUnpaidBranchRents:         grpc.AccessToken,
 	GetBusinessUnpaidBranchRents: grpc.AccessToken,
 	AddProductCategory:           grpc.AccessToken,

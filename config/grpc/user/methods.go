@@ -12,6 +12,7 @@ var (
 	GetUsernameByUserId   = grpc.NewMethod("GetUsernameByUserId")
 	IsPasswordCorrect     = grpc.NewMethod("IsPasswordCorrect")
 	UpdateUser            = grpc.NewMethod("UpdateUser")
+	SetProfilePicture     = grpc.NewMethod("SetProfilePicture")
 	GetProfile            = grpc.NewMethod("GetProfile")
 	GetMyProfile          = grpc.NewMethod("GetMyProfile")
 	ChangePassword        = grpc.NewMethod("ChangePassword")

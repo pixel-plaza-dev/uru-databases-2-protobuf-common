@@ -1,4 +1,4 @@
-package business
+package shop
 
 import (
 	"github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/types/grpc"
@@ -34,9 +34,9 @@ var (
 	SuspendBranch                = grpc.NewMethod("SuspendBranch")
 	ActivateBranch               = grpc.NewMethod("ActivateBranch")
 	DeleteBranch                 = grpc.NewMethod("DeleteBranch")
-	AddStoreBranchRent           = grpc.NewMethod("AddStoreBranchRent")
-	GetStoreBranchRents          = grpc.NewMethod("GetStoreBranchRents")
-	UpdateStoreBranchRent        = grpc.NewMethod("UpdateStoreBranchRent")
+	AddBranchRent                = grpc.NewMethod("AddBranchRent")
+	GetBranchRents               = grpc.NewMethod("GetBranchRents")
+	UpdateBranchRent             = grpc.NewMethod("UpdateBranchRent")
 	GetUnpaidBranchRents         = grpc.NewMethod("GetUnpaidBranchRents")
 	GetBusinessUnpaidBranchRents = grpc.NewMethod("GetBusinessUnpaidBranchRents")
 	AddProductCategory           = grpc.NewMethod("AddProductCategory")

@@ -9,10 +9,10 @@ var Base = typesrest.NewEndpoint("accounts")
 
 // Payment service accounts REST endpoints
 var (
-	Relative      = typesrest.NewRelativeEndpoint()
-	Active        = typesrest.NewEndpoint("active")
-	Activate      = typesrest.NewEndpoint("activate")
-	Suspended     = typesrest.NewEndpoint("suspended")
-	Suspend       = typesrest.NewEndpoint("suspend")
-	VerifyPayment = typesrest.NewEndpoint("verify")
+	Relative            = typesrest.NewRelativeEndpoint()
+	Active              = typesrest.NewEndpoint("active")
+	ActivateByAccountId = typesrest.NewEndpoint("activate", typesrest.AccountId)
+	Suspended           = typesrest.NewEndpoint("suspended")
+	SuspendByAccountId  = typesrest.NewEndpoint("suspend", typesrest.AccountId)
+	VerifyPayment       = typesrest.NewEndpoint("verify")
 )

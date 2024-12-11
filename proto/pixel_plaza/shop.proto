@@ -2,11 +2,11 @@ syntax = "proto3";
 
 package pixel_plaza;
 
-option go_package = "compiled/pixel_plaza/business";
+option go_package = "compiled/pixel_plaza/shop";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/empty.proto";
 
-service Business{
+service Shop{
   rpc AddBusiness(AddBusinessRequest) returns (AddBusinessResponse) {}
   rpc GetBusiness(GetBusinessRequest) returns (GetBusinessResponse) {}
   rpc UpdateBusiness(UpdateBusinessRequest) returns (UpdateBusinessResponse) {}
@@ -35,8 +35,8 @@ service Business{
   rpc SuspendBranch(SuspendBranchRequest) returns (SuspendBranchResponse) {}
   rpc ActivateBranch(ActivateBranchRequest) returns (ActivateBranchResponse) {}
   rpc DeleteBranch(DeleteBranchRequest) returns (DeleteBranchResponse) {}
-  rpc AddStoreBranchRent(AddStoreBranchRentRequest) returns (AddStoreBranchRentResponse) {}
-  rpc GetStoreBranchRents(GetStoreBranchRentRequest) returns (GetStoreBranchRentResponse) {}
+  rpc AddStoreBranchRent(AddBranchRentRequest) returns (AddBranchRentResponse) {}
+  rpc GetStoreBranchRents(GetBranchRentsRequest) returns (GetBranchRentsResponse) {}
   rpc UpdateStoreBranchRent(UpdateBranchRentRequest) returns (UpdateBranchRentResponse) {}
   rpc GetUnpaidBranchRents(GetUnpaidBranchRentsRequest) returns (GetUnpaidBranchRentsResponse) {}
   rpc GetBusinessUnpaidBranchRents(GetBusinessUnpaidBranchRentsRequest) returns (GetBusinessUnpaidBranchRentsResponse) {}
@@ -515,22 +515,22 @@ message DeleteBranchResponse {
   string message = 1;
 }
 
-message AddStoreBranchRentRequest {
+message AddBranchRentRequest {
   string branch_id = 1;
   AddBranchRent branch_rent = 2;
 }
 
-message AddStoreBranchRentResponse {
+message AddBranchRentResponse {
   string message = 1;
 }
 
-message GetStoreBranchRentRequest {
+message GetBranchRentsRequest {
   string branch_id = 1;
   optional google.protobuf.Timestamp from = 2;
   optional google.protobuf.Timestamp to = 3;
 }
 
-message GetStoreBranchRentResponse {
+message GetBranchRentsResponse {
   string message = 1;
   repeated GetBranchRent branch_rents = 2;
 }
