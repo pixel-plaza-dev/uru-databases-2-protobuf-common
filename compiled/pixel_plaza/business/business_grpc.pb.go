@@ -65,6 +65,7 @@ const (
 	Business_AddBusinessProduct_FullMethodName           = "/pixel_plaza.Business/AddBusinessProduct"
 	Business_GetBusinessProduct_FullMethodName           = "/pixel_plaza.Business/GetBusinessProduct"
 	Business_UpdateBusinessProduct_FullMethodName        = "/pixel_plaza.Business/UpdateBusinessProduct"
+	Business_SearchBusinessProducts_FullMethodName       = "/pixel_plaza.Business/SearchBusinessProducts"
 	Business_SuspendBusinessProduct_FullMethodName       = "/pixel_plaza.Business/SuspendBusinessProduct"
 	Business_ActivateBusinessProduct_FullMethodName      = "/pixel_plaza.Business/ActivateBusinessProduct"
 	Business_AddBranchProduct_FullMethodName             = "/pixel_plaza.Business/AddBranchProduct"
@@ -122,6 +123,7 @@ type BusinessClient interface {
 	AddBusinessProduct(ctx context.Context, in *AddBusinessProductRequest, opts ...grpc.CallOption) (*AddBusinessProductResponse, error)
 	GetBusinessProduct(ctx context.Context, in *GetBusinessProductRequest, opts ...grpc.CallOption) (*GetBusinessProductResponse, error)
 	UpdateBusinessProduct(ctx context.Context, in *UpdateBusinessProductRequest, opts ...grpc.CallOption) (*UpdateBusinessProductResponse, error)
+	SearchBusinessProducts(ctx context.Context, in *SearchProductsRequest, opts ...grpc.CallOption) (*SearchProductsResponse, error)
 	SuspendBusinessProduct(ctx context.Context, in *SuspendBusinessProductRequest, opts ...grpc.CallOption) (*SuspendBusinessProductResponse, error)
 	ActivateBusinessProduct(ctx context.Context, in *ActivateBusinessProductRequest, opts ...grpc.CallOption) (*ActivateBusinessProductResponse, error)
 	AddBranchProduct(ctx context.Context, in *AddBranchProductRequest, opts ...grpc.CallOption) (*AddBranchProductResponse, error)
@@ -588,6 +590,16 @@ func (c *businessClient) UpdateBusinessProduct(ctx context.Context, in *UpdateBu
 	return out, nil
 }
 
+func (c *businessClient) SearchBusinessProducts(ctx context.Context, in *SearchProductsRequest, opts ...grpc.CallOption) (*SearchProductsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SearchProductsResponse)
+	err := c.cc.Invoke(ctx, Business_SearchBusinessProducts_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *businessClient) SuspendBusinessProduct(ctx context.Context, in *SuspendBusinessProductRequest, opts ...grpc.CallOption) (*SuspendBusinessProductResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(SuspendBusinessProductResponse)
@@ -697,6 +709,7 @@ type BusinessServer interface {
 	AddBusinessProduct(context.Context, *AddBusinessProductRequest) (*AddBusinessProductResponse, error)
 	GetBusinessProduct(context.Context, *GetBusinessProductRequest) (*GetBusinessProductResponse, error)
 	UpdateBusinessProduct(context.Context, *UpdateBusinessProductRequest) (*UpdateBusinessProductResponse, error)
+	SearchBusinessProducts(context.Context, *SearchProductsRequest) (*SearchProductsResponse, error)
 	SuspendBusinessProduct(context.Context, *SuspendBusinessProductRequest) (*SuspendBusinessProductResponse, error)
 	ActivateBusinessProduct(context.Context, *ActivateBusinessProductRequest) (*ActivateBusinessProductResponse, error)
 	AddBranchProduct(context.Context, *AddBranchProductRequest) (*AddBranchProductResponse, error)
@@ -847,6 +860,9 @@ func (UnimplementedBusinessServer) GetBusinessProduct(context.Context, *GetBusin
 }
 func (UnimplementedBusinessServer) UpdateBusinessProduct(context.Context, *UpdateBusinessProductRequest) (*UpdateBusinessProductResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateBusinessProduct not implemented")
+}
+func (UnimplementedBusinessServer) SearchBusinessProducts(context.Context, *SearchProductsRequest) (*SearchProductsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SearchBusinessProducts not implemented")
 }
 func (UnimplementedBusinessServer) SuspendBusinessProduct(context.Context, *SuspendBusinessProductRequest) (*SuspendBusinessProductResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SuspendBusinessProduct not implemented")
@@ -1697,6 +1713,24 @@ func _Business_UpdateBusinessProduct_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Business_SearchBusinessProducts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SearchProductsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BusinessServer).SearchBusinessProducts(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Business_SearchBusinessProducts_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BusinessServer).SearchBusinessProducts(ctx, req.(*SearchProductsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Business_SuspendBusinessProduct_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SuspendBusinessProductRequest)
 	if err := dec(in); err != nil {
@@ -1991,6 +2025,10 @@ var Business_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateBusinessProduct",
 			Handler:    _Business_UpdateBusinessProduct_Handler,
+		},
+		{
+			MethodName: "SearchBusinessProducts",
+			Handler:    _Business_SearchBusinessProducts_Handler,
 		},
 		{
 			MethodName: "SuspendBusinessProduct",

@@ -5,11 +5,11 @@ import (
 )
 
 // Base is the base endpoint for the auth service role permissions REST endpoints
-var Base = typesrest.NewEndpoint("role-permissions")
+var Base = typesrest.NewBaseEndpoint("role-permissions")
 
 // Auth service role permissions REST endpoints
 var (
-	ByRoleId = typesrest.NewEndpoint(
-		"", typesrest.RoleId,
+	ByRoleId = typesrest.NewRelativeEndpoint(
+		typesrest.RoleId,
 	)
 )

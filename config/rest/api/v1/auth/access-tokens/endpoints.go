@@ -5,7 +5,7 @@ import (
 )
 
 // Base is the base endpoint for the auth service access tokens REST endpoints
-var Base = typesrest.NewEndpoint("access-tokens")
+var Base = typesrest.NewBaseEndpoint("access-tokens")
 
 // Auth service access tokens REST endpoints
 var (

@@ -4,7 +4,7 @@ package pixel_plaza;
 
 option go_package = "compiled/pixel_plaza/payment";
 import "google/protobuf/timestamp.proto";
-import "google/protobuf/empty.proto";
+// import "google/protobuf/empty.proto";
 
 service Payment {
   rpc AddOrderPayment(AddOrderPaymentRequest) returns (AddOrderPaymentResponse) {}
@@ -14,9 +14,9 @@ service Payment {
   rpc GetBranchRentsPayments(GetBranchRentPaymentsRequest) returns (GetBranchRentPaymentsResponse) {}
   rpc VerifyPayment (VerifyPaymentRequest) returns (VerifyPaymentResponse) {}
   rpc AddPaymentAccount(AddPaymentAccountRequest) returns (AddPaymentAccountResponse) {}
-  rpc GetPaymentAccounts(google.protobuf.Empty) returns (GetPaymentAccountsResponse) {}
-  rpc GetActivePaymentAccounts(google.protobuf.Empty) returns (GetActivePaymentAccountsResponse) {}
-  rpc GetSuspendedPaymentAccounts(google.protobuf.Empty) returns (GetSuspendedPaymentAccountsResponse) {}
+  rpc GetPaymentAccounts(GetPaymentAccountsRequest) returns (GetPaymentAccountsResponse) {}
+  rpc GetActivePaymentAccounts(GetActivePaymentAccountsRequest) returns (GetActivePaymentAccountsResponse) {}
+  rpc GetSuspendedPaymentAccounts(GetSuspendedPaymentAccountsRequest) returns (GetSuspendedPaymentAccountsResponse) {}
   rpc SuspendPaymentAccount(SuspendPaymentAccountRequest) returns (SuspendPaymentAccountResponse) {}
   rpc ActivatePaymentAccount(ActivatePaymentAccountRequest) returns (ActivatePaymentAccountResponse) {}
   rpc PayForOrder(PayForOrderRequest) returns (PayForOrderResponse) {}
@@ -102,10 +102,15 @@ message VerifyPaymentResponse {
 
 message AddPaymentAccountRequest {
   PaymentAccount payment_account = 1;
+  optional string business_id = 2;
 }
 
 message AddPaymentAccountResponse {
   string message = 1;
+}
+
+message GetPaymentAccountsRequest {
+  optional string business_id = 1;
 }
 
 message GetPaymentAccountsResponse {
@@ -113,9 +118,17 @@ message GetPaymentAccountsResponse {
   repeated PaymentAccount payment_accounts = 2;
 }
 
+message GetActivePaymentAccountsRequest {
+  optional string business_id = 1;
+}
+
 message GetActivePaymentAccountsResponse {
   string message = 1;
   repeated PaymentAccount payment_accounts = 2;
+}
+
+message GetSuspendedPaymentAccountsRequest {
+  optional string business_id = 1;
 }
 
 message GetSuspendedPaymentAccountsResponse {

@@ -5,11 +5,11 @@ import (
 )
 
 // Base is the base endpoint for the user service REST endpoints
-var Base = typesrest.NewEndpoint("users")
+var Base = typesrest.NewBaseEndpoint("users")
 
 // Users service REST endpoints
 var (
-	Relative         = typesrest.NewEndpoint("")
+	Relative         = typesrest.NewRelativeEndpoint()
 	SignUp           = typesrest.NewEndpoint("sign-up")
 	Password         = typesrest.NewEndpoint("password")
 	Username         = typesrest.NewEndpoint("username")

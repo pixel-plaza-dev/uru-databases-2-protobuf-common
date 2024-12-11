@@ -5,12 +5,12 @@ import (
 )
 
 // Base is the base endpoint for the user service emails REST endpoints
-var Base = typesrest.NewEndpoint("emails")
+var Base = typesrest.NewBaseEndpoint("emails")
 
 // User service emails REST endpoints
 var (
-	Relative         = typesrest.NewEndpoint("")
-	ByEmail          = typesrest.NewEndpoint("", typesrest.Email)
+	Relative         = typesrest.NewRelativeEndpoint()
+	ByEmail          = typesrest.NewRelativeEndpoint(typesrest.Email)
 	Primary          = typesrest.NewEndpoint("primary")
 	SendVerification = typesrest.NewEndpoint("send-verification")
 	VerifyByToken    = typesrest.NewEndpoint(

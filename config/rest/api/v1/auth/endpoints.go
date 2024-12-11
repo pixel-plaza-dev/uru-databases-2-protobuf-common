@@ -5,7 +5,7 @@ import (
 )
 
 // Base is the base endpoint for the auth service REST endpoints
-var Base = typesrest.NewEndpoint("auth")
+var Base = typesrest.NewBaseEndpoint("auth")
 
 // Auth service REST endpoints
 var (

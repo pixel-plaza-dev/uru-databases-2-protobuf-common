@@ -11,10 +11,9 @@ service Order {
   rpc RemoveProductFromCart(RemoveProductFromCartRequest) returns (RemoveProductFromCartResponse) {}
   rpc GetCart(GetCartRequest) returns (GetCartResponse) {}
   rpc GetCurrentCart(google.protobuf.Empty) returns (GetCurrentCartResponse) {}
-  rpc GetCurrentCartId(google.protobuf.Empty) returns (GetCartResponse) {}
   rpc GetCarts(GetCartsRequest) returns (GetCartsResponse) {}
   rpc GetCartTotal(GetCartTotalRequest) returns (GetCartTotalResponse) {}
-  rpc ProceedToCheckout(ProceedToCheckoutRequest) returns (ProceedToCheckoutResponse) {}
+  rpc PlaceOrder(google.protobuf.Empty) returns (PlaceOrderResponse) {}
   rpc GetOrders(google.protobuf.Empty) returns (GetOrdersResponse) {}
   rpc GetOrder(GetOrderRequest) returns (GetOrderResponse) {}
 }
@@ -69,10 +68,6 @@ message GetCurrentCartResponse {
   float total_price = 3;
 }
 
-message GetCurrentCartId {
-  string cart_id = 1;
-}
-
 message GetCartsRequest {
   optional google.protobuf.Timestamp from = 1;
   optional google.protobuf.Timestamp to = 2;
@@ -92,12 +87,7 @@ message GetCartTotalResponse {
   float total_price = 2;
 }
 
-message ProceedToCheckoutRequest {
-  string cart_id = 1;
-  optional string user_id = 2;
-}
-
-message ProceedToCheckoutResponse {
+message PlaceOrderResponse {
   string message = 1;
 }
 

@@ -5,11 +5,11 @@ import (
 )
 
 // Base is the base endpoint for the user service phone numbers REST endpoints
-var Base = typesrest.NewEndpoint("phone-numbers")
+var Base = typesrest.NewBaseEndpoint("phone-numbers")
 
 // User service phone numbers REST endpoints
 var (
-	Relative         = typesrest.NewEndpoint("")
+	Relative         = typesrest.NewRelativeEndpoint()
 	SendVerification = typesrest.NewEndpoint("send-verification")
 	VerifyByToken    = typesrest.NewEndpoint(
 		"verify", typesrest.Token,

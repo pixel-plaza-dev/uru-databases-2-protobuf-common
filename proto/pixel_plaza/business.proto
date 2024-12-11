@@ -52,6 +52,7 @@ service Business{
   rpc AddBusinessProduct(AddBusinessProductRequest) returns (AddBusinessProductResponse) {}
   rpc GetBusinessProduct(GetBusinessProductRequest) returns (GetBusinessProductResponse) {}
   rpc UpdateBusinessProduct(UpdateBusinessProductRequest) returns (UpdateBusinessProductResponse) {}
+  rpc SearchBusinessProducts(SearchProductsRequest) returns (SearchProductsResponse) {}
   rpc SuspendBusinessProduct(SuspendBusinessProductRequest) returns (SuspendBusinessProductResponse) {}
   rpc ActivateBusinessProduct(ActivateBusinessProductRequest) returns (ActivateBusinessProductResponse) {}
   rpc AddBranchProduct(AddBranchProductRequest) returns (AddBranchProductResponse) {}
@@ -220,12 +221,19 @@ message UpdateProduct {
   optional UpdateClothing clothing = 15;
 }
 
+message BusinessProduct {
+  string product_id = 1;
+  repeated string images_id = 2;
+  repeated string additional_details = 3;
+}
+
 message BranchProduct {
   Product product = 1;
-  repeated string additional_details = 2;
-  int32 stock = 3;
-  float price = 4;
-  float discount_percentage = 5;
+  repeated string images_id = 2;
+  repeated string additional_details = 3;
+  int32 stock = 4;
+  float price = 5;
+  float discount_percentage = 6;
 }
 
 message SearchProductResult {
@@ -235,16 +243,26 @@ message SearchProductResult {
   string brand = 4;
 }
 
+message SearchBusinessProductResult {
+  string product_id = 1;
+  string name = 2;
+  string description = 3;
+  string brand = 4;
+  repeated string images_id = 5;
+  repeated string additional_details = 6;
+}
+
 message SearchBranchProductResult {
   string product_id = 1;
   string name = 2;
   string description = 3;
   string brand = 4;
-  int32 stock = 5;
-  float price = 6;
-  float discount_percentage = 7;
+  repeated string images_id = 5;
+  repeated string additional_details = 6;
+  int32 stock = 7;
+  float price = 8;
+  float discount_percentage = 9;
 }
-
 
 message AddBusinessRequest {
   string name = 1;
@@ -645,9 +663,7 @@ message GetBusinessProductRequest {
 
 message GetBusinessProductResponse {
   string message = 1;
-  string product_id = 2;
-  repeated string images_id = 3;
-  repeated string additional_details = 4;
+  BusinessProduct business_product = 2;
 }
 
 message UpdateBusinessProductRequest {
@@ -659,6 +675,16 @@ message UpdateBusinessProductRequest {
 
 message UpdateBusinessProductResponse {
   string message = 1;
+}
+
+message SearchBusinessProductsRequest {
+  string query = 1;
+  optional string product_category_id = 2;
+}
+
+message SearchBusinessProductsResponse {
+  string message = 1;
+  repeated SearchBusinessProductResult products = 2;
 }
 
 message SuspendBusinessProductRequest {

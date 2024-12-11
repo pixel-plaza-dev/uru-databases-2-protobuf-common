@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	configgrpcauth "github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/config/grpc/auth"
+	configgrpcorder "github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/config/grpc/order"
+	configgrpcpayment "github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/config/grpc/payment"
 	configgrpcuser "github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/config/grpc/user"
 	utilsparsertags "github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/utils/parser/tags"
 	"github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/utils/path"
@@ -12,6 +14,9 @@ func main() {
 	// Get the path of the compiled protobuf file in Go
 	userPath := path.GetProtoGoPath("pixel_plaza", "user")
 	authPath := path.GetProtoGoPath("pixel_plaza", "auth")
+	orderPath := path.GetProtoGoPath("pixel_plaza", "order")
+	paymentPath := path.GetProtoGoPath("pixel_plaza", "payment")
+	businessPath := path.GetProtoGoPath("pixel_plaza", "business")
 
 	// Create the GoFileStructFields map
 	goFileStructFields := utilsparsertags.GoFileStructFields{
@@ -77,6 +82,37 @@ func main() {
 			},
 			configgrpcauth.RevokeUserRole.RequestString(): []string{
 				"UserId",
+			},
+		},
+		orderPath: {
+			configgrpcorder.GetCart.RequestString(): []string{
+				"CartId",
+			},
+			configgrpcorder.GetCartTotal.RequestString(): []string{
+				"CartId",
+			},
+			configgrpcorder.GetOrder.RequestString(): []string{
+				"OrderId",
+			},
+		},
+		paymentPath: {
+			configgrpcpayment.AddBranchRentPayment.RequestString(): []string{
+				"BranchRentId",
+			},
+			configgrpcpayment.GetBranchRentPayments.RequestString(): []string{
+				"BranchRentId",
+			},
+			configgrpcpayment.PayForBranchRent.RequestString(): []string{
+				"BranchRentId",
+			},
+			configgrpcpayment.AddOrderPayment.RequestString(): []string{
+				"OrderId",
+			},
+			configgrpcpayment.GetOrderPayments.RequestString(): []string{
+				"OrderId",
+			},
+			configgrpcpayment.PayForOrder.RequestString(): []string{
+				"OrderId",
 			},
 		},
 	}

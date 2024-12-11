@@ -5,13 +5,13 @@ import (
 )
 
 // Base is the base endpoint for the auth service refresh tokens REST endpoints
-var Base = typesrest.NewEndpoint("refresh-tokens")
+var Base = typesrest.NewBaseEndpoint("refresh-tokens")
 
 // Auth service refresh tokens REST endpoints
 var (
-	Relative = typesrest.NewEndpoint("")
-	ByJwtId  = typesrest.NewEndpoint(
-		"",
+	Relative = typesrest.NewRelativeEndpoint()
+	ByJwtId  = typesrest.NewRelativeEndpoint(
+
 		typesrest.JwtId,
 	)
 	ValidByJwtId = typesrest.NewEndpoint(

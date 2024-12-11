@@ -5,4 +5,4 @@ import (
 )
 
 // Base is the base endpoint for the API REST endpoints
-var Base = typesrest.NewEndpoint("api")
+var Base = typesrest.NewBaseEndpoint("api")

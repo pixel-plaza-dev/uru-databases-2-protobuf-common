@@ -27,4 +27,8 @@ var (
 	RoleId       = NewParam("role-id")
 	UserId       = NewParam("user-id")
 	JwtId        = NewParam("jwt-id")
+	OrderId      = NewParam("order-id")
+	CartId       = NewParam("cart-id")
+	BranchRentId = NewParam("branch-rent-id")
+	AccountId    = NewParam("account-id")
 )

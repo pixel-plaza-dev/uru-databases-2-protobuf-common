@@ -11,7 +11,6 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -47,9 +46,9 @@ type PaymentClient interface {
 	GetBranchRentsPayments(ctx context.Context, in *GetBranchRentPaymentsRequest, opts ...grpc.CallOption) (*GetBranchRentPaymentsResponse, error)
 	VerifyPayment(ctx context.Context, in *VerifyPaymentRequest, opts ...grpc.CallOption) (*VerifyPaymentResponse, error)
 	AddPaymentAccount(ctx context.Context, in *AddPaymentAccountRequest, opts ...grpc.CallOption) (*AddPaymentAccountResponse, error)
-	GetPaymentAccounts(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetPaymentAccountsResponse, error)
-	GetActivePaymentAccounts(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetActivePaymentAccountsResponse, error)
-	GetSuspendedPaymentAccounts(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetSuspendedPaymentAccountsResponse, error)
+	GetPaymentAccounts(ctx context.Context, in *GetPaymentAccountsRequest, opts ...grpc.CallOption) (*GetPaymentAccountsResponse, error)
+	GetActivePaymentAccounts(ctx context.Context, in *GetActivePaymentAccountsRequest, opts ...grpc.CallOption) (*GetActivePaymentAccountsResponse, error)
+	GetSuspendedPaymentAccounts(ctx context.Context, in *GetSuspendedPaymentAccountsRequest, opts ...grpc.CallOption) (*GetSuspendedPaymentAccountsResponse, error)
 	SuspendPaymentAccount(ctx context.Context, in *SuspendPaymentAccountRequest, opts ...grpc.CallOption) (*SuspendPaymentAccountResponse, error)
 	ActivatePaymentAccount(ctx context.Context, in *ActivatePaymentAccountRequest, opts ...grpc.CallOption) (*ActivatePaymentAccountResponse, error)
 	PayForOrder(ctx context.Context, in *PayForOrderRequest, opts ...grpc.CallOption) (*PayForOrderResponse, error)
@@ -134,7 +133,7 @@ func (c *paymentClient) AddPaymentAccount(ctx context.Context, in *AddPaymentAcc
 	return out, nil
 }
 
-func (c *paymentClient) GetPaymentAccounts(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetPaymentAccountsResponse, error) {
+func (c *paymentClient) GetPaymentAccounts(ctx context.Context, in *GetPaymentAccountsRequest, opts ...grpc.CallOption) (*GetPaymentAccountsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetPaymentAccountsResponse)
 	err := c.cc.Invoke(ctx, Payment_GetPaymentAccounts_FullMethodName, in, out, cOpts...)
@@ -144,7 +143,7 @@ func (c *paymentClient) GetPaymentAccounts(ctx context.Context, in *emptypb.Empt
 	return out, nil
 }
 
-func (c *paymentClient) GetActivePaymentAccounts(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetActivePaymentAccountsResponse, error) {
+func (c *paymentClient) GetActivePaymentAccounts(ctx context.Context, in *GetActivePaymentAccountsRequest, opts ...grpc.CallOption) (*GetActivePaymentAccountsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetActivePaymentAccountsResponse)
 	err := c.cc.Invoke(ctx, Payment_GetActivePaymentAccounts_FullMethodName, in, out, cOpts...)
@@ -154,7 +153,7 @@ func (c *paymentClient) GetActivePaymentAccounts(ctx context.Context, in *emptyp
 	return out, nil
 }
 
-func (c *paymentClient) GetSuspendedPaymentAccounts(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetSuspendedPaymentAccountsResponse, error) {
+func (c *paymentClient) GetSuspendedPaymentAccounts(ctx context.Context, in *GetSuspendedPaymentAccountsRequest, opts ...grpc.CallOption) (*GetSuspendedPaymentAccountsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetSuspendedPaymentAccountsResponse)
 	err := c.cc.Invoke(ctx, Payment_GetSuspendedPaymentAccounts_FullMethodName, in, out, cOpts...)
@@ -215,9 +214,9 @@ type PaymentServer interface {
 	GetBranchRentsPayments(context.Context, *GetBranchRentPaymentsRequest) (*GetBranchRentPaymentsResponse, error)
 	VerifyPayment(context.Context, *VerifyPaymentRequest) (*VerifyPaymentResponse, error)
 	AddPaymentAccount(context.Context, *AddPaymentAccountRequest) (*AddPaymentAccountResponse, error)
-	GetPaymentAccounts(context.Context, *emptypb.Empty) (*GetPaymentAccountsResponse, error)
-	GetActivePaymentAccounts(context.Context, *emptypb.Empty) (*GetActivePaymentAccountsResponse, error)
-	GetSuspendedPaymentAccounts(context.Context, *emptypb.Empty) (*GetSuspendedPaymentAccountsResponse, error)
+	GetPaymentAccounts(context.Context, *GetPaymentAccountsRequest) (*GetPaymentAccountsResponse, error)
+	GetActivePaymentAccounts(context.Context, *GetActivePaymentAccountsRequest) (*GetActivePaymentAccountsResponse, error)
+	GetSuspendedPaymentAccounts(context.Context, *GetSuspendedPaymentAccountsRequest) (*GetSuspendedPaymentAccountsResponse, error)
 	SuspendPaymentAccount(context.Context, *SuspendPaymentAccountRequest) (*SuspendPaymentAccountResponse, error)
 	ActivatePaymentAccount(context.Context, *ActivatePaymentAccountRequest) (*ActivatePaymentAccountResponse, error)
 	PayForOrder(context.Context, *PayForOrderRequest) (*PayForOrderResponse, error)
@@ -253,13 +252,13 @@ func (UnimplementedPaymentServer) VerifyPayment(context.Context, *VerifyPaymentR
 func (UnimplementedPaymentServer) AddPaymentAccount(context.Context, *AddPaymentAccountRequest) (*AddPaymentAccountResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddPaymentAccount not implemented")
 }
-func (UnimplementedPaymentServer) GetPaymentAccounts(context.Context, *emptypb.Empty) (*GetPaymentAccountsResponse, error) {
+func (UnimplementedPaymentServer) GetPaymentAccounts(context.Context, *GetPaymentAccountsRequest) (*GetPaymentAccountsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPaymentAccounts not implemented")
 }
-func (UnimplementedPaymentServer) GetActivePaymentAccounts(context.Context, *emptypb.Empty) (*GetActivePaymentAccountsResponse, error) {
+func (UnimplementedPaymentServer) GetActivePaymentAccounts(context.Context, *GetActivePaymentAccountsRequest) (*GetActivePaymentAccountsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetActivePaymentAccounts not implemented")
 }
-func (UnimplementedPaymentServer) GetSuspendedPaymentAccounts(context.Context, *emptypb.Empty) (*GetSuspendedPaymentAccountsResponse, error) {
+func (UnimplementedPaymentServer) GetSuspendedPaymentAccounts(context.Context, *GetSuspendedPaymentAccountsRequest) (*GetSuspendedPaymentAccountsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSuspendedPaymentAccounts not implemented")
 }
 func (UnimplementedPaymentServer) SuspendPaymentAccount(context.Context, *SuspendPaymentAccountRequest) (*SuspendPaymentAccountResponse, error) {
@@ -422,7 +421,7 @@ func _Payment_AddPaymentAccount_Handler(srv interface{}, ctx context.Context, de
 }
 
 func _Payment_GetPaymentAccounts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(emptypb.Empty)
+	in := new(GetPaymentAccountsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -434,13 +433,13 @@ func _Payment_GetPaymentAccounts_Handler(srv interface{}, ctx context.Context, d
 		FullMethod: Payment_GetPaymentAccounts_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PaymentServer).GetPaymentAccounts(ctx, req.(*emptypb.Empty))
+		return srv.(PaymentServer).GetPaymentAccounts(ctx, req.(*GetPaymentAccountsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Payment_GetActivePaymentAccounts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(emptypb.Empty)
+	in := new(GetActivePaymentAccountsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -452,13 +451,13 @@ func _Payment_GetActivePaymentAccounts_Handler(srv interface{}, ctx context.Cont
 		FullMethod: Payment_GetActivePaymentAccounts_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PaymentServer).GetActivePaymentAccounts(ctx, req.(*emptypb.Empty))
+		return srv.(PaymentServer).GetActivePaymentAccounts(ctx, req.(*GetActivePaymentAccountsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Payment_GetSuspendedPaymentAccounts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(emptypb.Empty)
+	in := new(GetSuspendedPaymentAccountsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -470,7 +469,7 @@ func _Payment_GetSuspendedPaymentAccounts_Handler(srv interface{}, ctx context.C
 		FullMethod: Payment_GetSuspendedPaymentAccounts_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PaymentServer).GetSuspendedPaymentAccounts(ctx, req.(*emptypb.Empty))
+		return srv.(PaymentServer).GetSuspendedPaymentAccounts(ctx, req.(*GetSuspendedPaymentAccountsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
