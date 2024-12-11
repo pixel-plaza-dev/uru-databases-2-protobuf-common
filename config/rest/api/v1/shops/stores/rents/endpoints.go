@@ -10,7 +10,7 @@ var Base = typesrest.NewBaseEndpoint("rents")
 // Shop service stores rents REST endpoints
 var (
 	Relative       = typesrest.NewRelativeEndpoint()
-	ByBranchId     = typesrest.NewRelativeEndpoint(typesrest.BranchId)
 	ByBranchRentId = typesrest.NewRelativeEndpoint(typesrest.BranchRentId)
-	ByBusinessId   = typesrest.NewRelativeEndpoint(typesrest.BusinessId)
+	ByBranchId     = typesrest.NewEndpoint("branch-id", typesrest.BranchId)
+	ByBusinessId   = typesrest.NewEndpoint("business-id", typesrest.BusinessId)
 )
