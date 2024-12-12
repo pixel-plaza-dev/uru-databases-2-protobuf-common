@@ -442,10 +442,6 @@ message DeleteStoreResponse {
   string message = 1;
 }
 
-message GetUnoccupiedStoresRequest {
-  string business_id = 1;
-}
-
 message GetUnoccupiedStoresResponse {
   string message = 1;
   repeated Store stores = 2;
