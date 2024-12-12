@@ -1,4 +1,4 @@
-package categories
+package markets
 
 import (
 	typesrest "github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/types/rest"
@@ -6,3 +6,9 @@ import (
 
 // Base is the base endpoint for the shop service markets REST endpoints
 var Base = typesrest.NewBaseEndpoint("markets")
+
+// Shop service markets REST endpoints
+var (
+	Relative     = typesrest.NewRelativeEndpoint()
+	ByBusinessId = typesrest.NewRelativeEndpoint(typesrest.BusinessId)
+)
