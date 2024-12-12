@@ -43,7 +43,7 @@ type PaymentClient interface {
 	GetOrderPayments(ctx context.Context, in *GetOrderPaymentsRequest, opts ...grpc.CallOption) (*GetOrderPaymentsResponse, error)
 	AddBranchRentPayment(ctx context.Context, in *AddBranchRentPaymentRequest, opts ...grpc.CallOption) (*AddBranchRentPaymentResponse, error)
 	GetBranchRentPayments(ctx context.Context, in *GetBranchRentPaymentsRequest, opts ...grpc.CallOption) (*GetBranchRentPaymentsResponse, error)
-	GetBranchRentsPayments(ctx context.Context, in *GetBranchRentPaymentsRequest, opts ...grpc.CallOption) (*GetBranchRentPaymentsResponse, error)
+	GetBranchRentsPayments(ctx context.Context, in *GetBranchRentsPaymentsRequest, opts ...grpc.CallOption) (*GetBranchRentsPaymentsResponse, error)
 	VerifyPayment(ctx context.Context, in *VerifyPaymentRequest, opts ...grpc.CallOption) (*VerifyPaymentResponse, error)
 	AddPaymentAccount(ctx context.Context, in *AddPaymentAccountRequest, opts ...grpc.CallOption) (*AddPaymentAccountResponse, error)
 	GetPaymentAccounts(ctx context.Context, in *GetPaymentAccountsRequest, opts ...grpc.CallOption) (*GetPaymentAccountsResponse, error)
@@ -103,9 +103,9 @@ func (c *paymentClient) GetBranchRentPayments(ctx context.Context, in *GetBranch
 	return out, nil
 }
 
-func (c *paymentClient) GetBranchRentsPayments(ctx context.Context, in *GetBranchRentPaymentsRequest, opts ...grpc.CallOption) (*GetBranchRentPaymentsResponse, error) {
+func (c *paymentClient) GetBranchRentsPayments(ctx context.Context, in *GetBranchRentsPaymentsRequest, opts ...grpc.CallOption) (*GetBranchRentsPaymentsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetBranchRentPaymentsResponse)
+	out := new(GetBranchRentsPaymentsResponse)
 	err := c.cc.Invoke(ctx, Payment_GetBranchRentsPayments_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -211,7 +211,7 @@ type PaymentServer interface {
 	GetOrderPayments(context.Context, *GetOrderPaymentsRequest) (*GetOrderPaymentsResponse, error)
 	AddBranchRentPayment(context.Context, *AddBranchRentPaymentRequest) (*AddBranchRentPaymentResponse, error)
 	GetBranchRentPayments(context.Context, *GetBranchRentPaymentsRequest) (*GetBranchRentPaymentsResponse, error)
-	GetBranchRentsPayments(context.Context, *GetBranchRentPaymentsRequest) (*GetBranchRentPaymentsResponse, error)
+	GetBranchRentsPayments(context.Context, *GetBranchRentsPaymentsRequest) (*GetBranchRentsPaymentsResponse, error)
 	VerifyPayment(context.Context, *VerifyPaymentRequest) (*VerifyPaymentResponse, error)
 	AddPaymentAccount(context.Context, *AddPaymentAccountRequest) (*AddPaymentAccountResponse, error)
 	GetPaymentAccounts(context.Context, *GetPaymentAccountsRequest) (*GetPaymentAccountsResponse, error)
@@ -243,7 +243,7 @@ func (UnimplementedPaymentServer) AddBranchRentPayment(context.Context, *AddBran
 func (UnimplementedPaymentServer) GetBranchRentPayments(context.Context, *GetBranchRentPaymentsRequest) (*GetBranchRentPaymentsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBranchRentPayments not implemented")
 }
-func (UnimplementedPaymentServer) GetBranchRentsPayments(context.Context, *GetBranchRentPaymentsRequest) (*GetBranchRentPaymentsResponse, error) {
+func (UnimplementedPaymentServer) GetBranchRentsPayments(context.Context, *GetBranchRentsPaymentsRequest) (*GetBranchRentsPaymentsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBranchRentsPayments not implemented")
 }
 func (UnimplementedPaymentServer) VerifyPayment(context.Context, *VerifyPaymentRequest) (*VerifyPaymentResponse, error) {
@@ -367,7 +367,7 @@ func _Payment_GetBranchRentPayments_Handler(srv interface{}, ctx context.Context
 }
 
 func _Payment_GetBranchRentsPayments_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetBranchRentPaymentsRequest)
+	in := new(GetBranchRentsPaymentsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -379,7 +379,7 @@ func _Payment_GetBranchRentsPayments_Handler(srv interface{}, ctx context.Contex
 		FullMethod: Payment_GetBranchRentsPayments_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PaymentServer).GetBranchRentsPayments(ctx, req.(*GetBranchRentPaymentsRequest))
+		return srv.(PaymentServer).GetBranchRentsPayments(ctx, req.(*GetBranchRentsPaymentsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

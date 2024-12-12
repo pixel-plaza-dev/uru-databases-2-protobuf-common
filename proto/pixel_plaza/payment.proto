@@ -11,7 +11,7 @@ service Payment {
   rpc GetOrderPayments(GetOrderPaymentsRequest) returns (GetOrderPaymentsResponse) {}
   rpc AddBranchRentPayment(AddBranchRentPaymentRequest) returns (AddBranchRentPaymentResponse) {}
   rpc GetBranchRentPayments(GetBranchRentPaymentsRequest) returns (GetBranchRentPaymentsResponse) {}
-  rpc GetBranchRentsPayments(GetBranchRentPaymentsRequest) returns (GetBranchRentPaymentsResponse) {}
+  rpc GetBranchRentsPayments(GetBranchRentsPaymentsRequest) returns (GetBranchRentsPaymentsResponse) {}
   rpc VerifyPayment (VerifyPaymentRequest) returns (VerifyPaymentResponse) {}
   rpc AddPaymentAccount(AddPaymentAccountRequest) returns (AddPaymentAccountResponse) {}
   rpc GetPaymentAccounts(GetPaymentAccountsRequest) returns (GetPaymentAccountsResponse) {}
