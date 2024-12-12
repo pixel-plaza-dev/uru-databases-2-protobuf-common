@@ -14,7 +14,7 @@ service Shop{
   rpc GetBusiness(GetBusinessRequest) returns (GetBusinessResponse) {}
   rpc UpdateBusiness(UpdateBusinessRequest) returns (UpdateBusinessResponse) {}
   rpc SetBusinessProfilePicture(SetBusinessProfilePictureRequest) returns (SetBusinessProfilePictureResponse) {}
-  rpc AddAdminRevisionToBusiness(AddAdminRevisionToBusinessRequest) returns (AddAdminRevisionToBusinessResponse) {}
+  rpc OpenAdminRevisionToBusiness(OpenAdminRevisionToBusinessRequest) returns (OpenAdminRevisionToBusinessResponse) {}
   rpc DeleteBusiness(DeleteBusinessRequest) returns (DeleteBusinessResponse) {}
   rpc AddBusinessOwner(AddBusinessOwnerRequest) returns (AddBusinessOwnerResponse) {}
   rpc RemoveBusinessOwner(RemoveBusinessOwnerRequest) returns (RemoveBusinessOwnerResponse) {}
@@ -288,13 +288,13 @@ message SearchBranchProductResult {
   float discount_percentage = 9;
 }
 
-message AddAdminRevisionToBusinessRequest {
+message OpenAdminRevisionToBusinessRequest {
   string business_id = 1;
   optional string title = 2;
   optional string description = 3;
 }
 
-message AddAdminRevisionToBusinessResponse {
+message OpenAdminRevisionToBusinessResponse {
   string message = 1;
 }
 

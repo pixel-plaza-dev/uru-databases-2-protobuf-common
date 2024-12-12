@@ -27,7 +27,7 @@ const (
 	Shop_GetBusiness_FullMethodName                        = "/pixel_plaza.Shop/GetBusiness"
 	Shop_UpdateBusiness_FullMethodName                     = "/pixel_plaza.Shop/UpdateBusiness"
 	Shop_SetBusinessProfilePicture_FullMethodName          = "/pixel_plaza.Shop/SetBusinessProfilePicture"
-	Shop_AddAdminRevisionToBusiness_FullMethodName         = "/pixel_plaza.Shop/AddAdminRevisionToBusiness"
+	Shop_OpenAdminRevisionToBusiness_FullMethodName        = "/pixel_plaza.Shop/OpenAdminRevisionToBusiness"
 	Shop_DeleteBusiness_FullMethodName                     = "/pixel_plaza.Shop/DeleteBusiness"
 	Shop_AddBusinessOwner_FullMethodName                   = "/pixel_plaza.Shop/AddBusinessOwner"
 	Shop_RemoveBusinessOwner_FullMethodName                = "/pixel_plaza.Shop/RemoveBusinessOwner"
@@ -88,7 +88,7 @@ type ShopClient interface {
 	GetBusiness(ctx context.Context, in *GetBusinessRequest, opts ...grpc.CallOption) (*GetBusinessResponse, error)
 	UpdateBusiness(ctx context.Context, in *UpdateBusinessRequest, opts ...grpc.CallOption) (*UpdateBusinessResponse, error)
 	SetBusinessProfilePicture(ctx context.Context, in *SetBusinessProfilePictureRequest, opts ...grpc.CallOption) (*SetBusinessProfilePictureResponse, error)
-	AddAdminRevisionToBusiness(ctx context.Context, in *AddAdminRevisionToBusinessRequest, opts ...grpc.CallOption) (*AddAdminRevisionToBusinessResponse, error)
+	OpenAdminRevisionToBusiness(ctx context.Context, in *OpenAdminRevisionToBusinessRequest, opts ...grpc.CallOption) (*OpenAdminRevisionToBusinessResponse, error)
 	DeleteBusiness(ctx context.Context, in *DeleteBusinessRequest, opts ...grpc.CallOption) (*DeleteBusinessResponse, error)
 	AddBusinessOwner(ctx context.Context, in *AddBusinessOwnerRequest, opts ...grpc.CallOption) (*AddBusinessOwnerResponse, error)
 	RemoveBusinessOwner(ctx context.Context, in *RemoveBusinessOwnerRequest, opts ...grpc.CallOption) (*RemoveBusinessOwnerResponse, error)
@@ -216,10 +216,10 @@ func (c *shopClient) SetBusinessProfilePicture(ctx context.Context, in *SetBusin
 	return out, nil
 }
 
-func (c *shopClient) AddAdminRevisionToBusiness(ctx context.Context, in *AddAdminRevisionToBusinessRequest, opts ...grpc.CallOption) (*AddAdminRevisionToBusinessResponse, error) {
+func (c *shopClient) OpenAdminRevisionToBusiness(ctx context.Context, in *OpenAdminRevisionToBusinessRequest, opts ...grpc.CallOption) (*OpenAdminRevisionToBusinessResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(AddAdminRevisionToBusinessResponse)
-	err := c.cc.Invoke(ctx, Shop_AddAdminRevisionToBusiness_FullMethodName, in, out, cOpts...)
+	out := new(OpenAdminRevisionToBusinessResponse)
+	err := c.cc.Invoke(ctx, Shop_OpenAdminRevisionToBusiness_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -707,7 +707,7 @@ type ShopServer interface {
 	GetBusiness(context.Context, *GetBusinessRequest) (*GetBusinessResponse, error)
 	UpdateBusiness(context.Context, *UpdateBusinessRequest) (*UpdateBusinessResponse, error)
 	SetBusinessProfilePicture(context.Context, *SetBusinessProfilePictureRequest) (*SetBusinessProfilePictureResponse, error)
-	AddAdminRevisionToBusiness(context.Context, *AddAdminRevisionToBusinessRequest) (*AddAdminRevisionToBusinessResponse, error)
+	OpenAdminRevisionToBusiness(context.Context, *OpenAdminRevisionToBusinessRequest) (*OpenAdminRevisionToBusinessResponse, error)
 	DeleteBusiness(context.Context, *DeleteBusinessRequest) (*DeleteBusinessResponse, error)
 	AddBusinessOwner(context.Context, *AddBusinessOwnerRequest) (*AddBusinessOwnerResponse, error)
 	RemoveBusinessOwner(context.Context, *RemoveBusinessOwnerRequest) (*RemoveBusinessOwnerResponse, error)
@@ -786,8 +786,8 @@ func (UnimplementedShopServer) UpdateBusiness(context.Context, *UpdateBusinessRe
 func (UnimplementedShopServer) SetBusinessProfilePicture(context.Context, *SetBusinessProfilePictureRequest) (*SetBusinessProfilePictureResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetBusinessProfilePicture not implemented")
 }
-func (UnimplementedShopServer) AddAdminRevisionToBusiness(context.Context, *AddAdminRevisionToBusinessRequest) (*AddAdminRevisionToBusinessResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AddAdminRevisionToBusiness not implemented")
+func (UnimplementedShopServer) OpenAdminRevisionToBusiness(context.Context, *OpenAdminRevisionToBusinessRequest) (*OpenAdminRevisionToBusinessResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method OpenAdminRevisionToBusiness not implemented")
 }
 func (UnimplementedShopServer) DeleteBusiness(context.Context, *DeleteBusinessRequest) (*DeleteBusinessResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteBusiness not implemented")
@@ -1077,20 +1077,20 @@ func _Shop_SetBusinessProfilePicture_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Shop_AddAdminRevisionToBusiness_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AddAdminRevisionToBusinessRequest)
+func _Shop_OpenAdminRevisionToBusiness_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(OpenAdminRevisionToBusinessRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ShopServer).AddAdminRevisionToBusiness(ctx, in)
+		return srv.(ShopServer).OpenAdminRevisionToBusiness(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Shop_AddAdminRevisionToBusiness_FullMethodName,
+		FullMethod: Shop_OpenAdminRevisionToBusiness_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ShopServer).AddAdminRevisionToBusiness(ctx, req.(*AddAdminRevisionToBusinessRequest))
+		return srv.(ShopServer).OpenAdminRevisionToBusiness(ctx, req.(*OpenAdminRevisionToBusinessRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1977,8 +1977,8 @@ var Shop_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Shop_SetBusinessProfilePicture_Handler,
 		},
 		{
-			MethodName: "AddAdminRevisionToBusiness",
-			Handler:    _Shop_AddAdminRevisionToBusiness_Handler,
+			MethodName: "OpenAdminRevisionToBusiness",
+			Handler:    _Shop_OpenAdminRevisionToBusiness_Handler,
 		},
 		{
 			MethodName: "DeleteBusiness",
