@@ -48,9 +48,9 @@ const (
 	Shop_SuspendBranch_FullMethodName                = "/pixel_plaza.Shop/SuspendBranch"
 	Shop_ActivateBranch_FullMethodName               = "/pixel_plaza.Shop/ActivateBranch"
 	Shop_DeleteBranch_FullMethodName                 = "/pixel_plaza.Shop/DeleteBranch"
-	Shop_AddStoreBranchRent_FullMethodName           = "/pixel_plaza.Shop/AddStoreBranchRent"
-	Shop_GetStoreBranchRents_FullMethodName          = "/pixel_plaza.Shop/GetStoreBranchRents"
-	Shop_UpdateStoreBranchRent_FullMethodName        = "/pixel_plaza.Shop/UpdateStoreBranchRent"
+	Shop_AddBranchRent_FullMethodName                = "/pixel_plaza.Shop/AddBranchRent"
+	Shop_GetBranchRents_FullMethodName               = "/pixel_plaza.Shop/GetBranchRents"
+	Shop_UpdateBranchRent_FullMethodName             = "/pixel_plaza.Shop/UpdateBranchRent"
 	Shop_GetUnpaidBranchRents_FullMethodName         = "/pixel_plaza.Shop/GetUnpaidBranchRents"
 	Shop_GetBusinessUnpaidBranchRents_FullMethodName = "/pixel_plaza.Shop/GetBusinessUnpaidBranchRents"
 	Shop_AddProductCategory_FullMethodName           = "/pixel_plaza.Shop/AddProductCategory"
@@ -106,9 +106,9 @@ type ShopClient interface {
 	SuspendBranch(ctx context.Context, in *SuspendBranchRequest, opts ...grpc.CallOption) (*SuspendBranchResponse, error)
 	ActivateBranch(ctx context.Context, in *ActivateBranchRequest, opts ...grpc.CallOption) (*ActivateBranchResponse, error)
 	DeleteBranch(ctx context.Context, in *DeleteBranchRequest, opts ...grpc.CallOption) (*DeleteBranchResponse, error)
-	AddStoreBranchRent(ctx context.Context, in *AddBranchRentRequest, opts ...grpc.CallOption) (*AddBranchRentResponse, error)
-	GetStoreBranchRents(ctx context.Context, in *GetBranchRentsRequest, opts ...grpc.CallOption) (*GetBranchRentsResponse, error)
-	UpdateStoreBranchRent(ctx context.Context, in *UpdateBranchRentRequest, opts ...grpc.CallOption) (*UpdateBranchRentResponse, error)
+	AddBranchRent(ctx context.Context, in *AddBranchRentRequest, opts ...grpc.CallOption) (*AddBranchRentResponse, error)
+	GetBranchRents(ctx context.Context, in *GetBranchRentsRequest, opts ...grpc.CallOption) (*GetBranchRentsResponse, error)
+	UpdateBranchRent(ctx context.Context, in *UpdateBranchRentRequest, opts ...grpc.CallOption) (*UpdateBranchRentResponse, error)
 	GetUnpaidBranchRents(ctx context.Context, in *GetUnpaidBranchRentsRequest, opts ...grpc.CallOption) (*GetUnpaidBranchRentsResponse, error)
 	GetBusinessUnpaidBranchRents(ctx context.Context, in *GetBusinessUnpaidBranchRentsRequest, opts ...grpc.CallOption) (*GetBusinessUnpaidBranchRentsResponse, error)
 	AddProductCategory(ctx context.Context, in *AddProductCategoryRequest, opts ...grpc.CallOption) (*AddProductCategoryResponse, error)
@@ -420,30 +420,30 @@ func (c *shopClient) DeleteBranch(ctx context.Context, in *DeleteBranchRequest, 
 	return out, nil
 }
 
-func (c *shopClient) AddStoreBranchRent(ctx context.Context, in *AddBranchRentRequest, opts ...grpc.CallOption) (*AddBranchRentResponse, error) {
+func (c *shopClient) AddBranchRent(ctx context.Context, in *AddBranchRentRequest, opts ...grpc.CallOption) (*AddBranchRentResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(AddBranchRentResponse)
-	err := c.cc.Invoke(ctx, Shop_AddStoreBranchRent_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Shop_AddBranchRent_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *shopClient) GetStoreBranchRents(ctx context.Context, in *GetBranchRentsRequest, opts ...grpc.CallOption) (*GetBranchRentsResponse, error) {
+func (c *shopClient) GetBranchRents(ctx context.Context, in *GetBranchRentsRequest, opts ...grpc.CallOption) (*GetBranchRentsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetBranchRentsResponse)
-	err := c.cc.Invoke(ctx, Shop_GetStoreBranchRents_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Shop_GetBranchRents_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *shopClient) UpdateStoreBranchRent(ctx context.Context, in *UpdateBranchRentRequest, opts ...grpc.CallOption) (*UpdateBranchRentResponse, error) {
+func (c *shopClient) UpdateBranchRent(ctx context.Context, in *UpdateBranchRentRequest, opts ...grpc.CallOption) (*UpdateBranchRentResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(UpdateBranchRentResponse)
-	err := c.cc.Invoke(ctx, Shop_UpdateStoreBranchRent_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Shop_UpdateBranchRent_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -692,9 +692,9 @@ type ShopServer interface {
 	SuspendBranch(context.Context, *SuspendBranchRequest) (*SuspendBranchResponse, error)
 	ActivateBranch(context.Context, *ActivateBranchRequest) (*ActivateBranchResponse, error)
 	DeleteBranch(context.Context, *DeleteBranchRequest) (*DeleteBranchResponse, error)
-	AddStoreBranchRent(context.Context, *AddBranchRentRequest) (*AddBranchRentResponse, error)
-	GetStoreBranchRents(context.Context, *GetBranchRentsRequest) (*GetBranchRentsResponse, error)
-	UpdateStoreBranchRent(context.Context, *UpdateBranchRentRequest) (*UpdateBranchRentResponse, error)
+	AddBranchRent(context.Context, *AddBranchRentRequest) (*AddBranchRentResponse, error)
+	GetBranchRents(context.Context, *GetBranchRentsRequest) (*GetBranchRentsResponse, error)
+	UpdateBranchRent(context.Context, *UpdateBranchRentRequest) (*UpdateBranchRentResponse, error)
 	GetUnpaidBranchRents(context.Context, *GetUnpaidBranchRentsRequest) (*GetUnpaidBranchRentsResponse, error)
 	GetBusinessUnpaidBranchRents(context.Context, *GetBusinessUnpaidBranchRentsRequest) (*GetBusinessUnpaidBranchRentsResponse, error)
 	AddProductCategory(context.Context, *AddProductCategoryRequest) (*AddProductCategoryResponse, error)
@@ -810,14 +810,14 @@ func (UnimplementedShopServer) ActivateBranch(context.Context, *ActivateBranchRe
 func (UnimplementedShopServer) DeleteBranch(context.Context, *DeleteBranchRequest) (*DeleteBranchResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteBranch not implemented")
 }
-func (UnimplementedShopServer) AddStoreBranchRent(context.Context, *AddBranchRentRequest) (*AddBranchRentResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AddStoreBranchRent not implemented")
+func (UnimplementedShopServer) AddBranchRent(context.Context, *AddBranchRentRequest) (*AddBranchRentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddBranchRent not implemented")
 }
-func (UnimplementedShopServer) GetStoreBranchRents(context.Context, *GetBranchRentsRequest) (*GetBranchRentsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetStoreBranchRents not implemented")
+func (UnimplementedShopServer) GetBranchRents(context.Context, *GetBranchRentsRequest) (*GetBranchRentsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetBranchRents not implemented")
 }
-func (UnimplementedShopServer) UpdateStoreBranchRent(context.Context, *UpdateBranchRentRequest) (*UpdateBranchRentResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateStoreBranchRent not implemented")
+func (UnimplementedShopServer) UpdateBranchRent(context.Context, *UpdateBranchRentRequest) (*UpdateBranchRentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateBranchRent not implemented")
 }
 func (UnimplementedShopServer) GetUnpaidBranchRents(context.Context, *GetUnpaidBranchRentsRequest) (*GetUnpaidBranchRentsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUnpaidBranchRents not implemented")
@@ -1407,56 +1407,56 @@ func _Shop_DeleteBranch_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Shop_AddStoreBranchRent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Shop_AddBranchRent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(AddBranchRentRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ShopServer).AddStoreBranchRent(ctx, in)
+		return srv.(ShopServer).AddBranchRent(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Shop_AddStoreBranchRent_FullMethodName,
+		FullMethod: Shop_AddBranchRent_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ShopServer).AddStoreBranchRent(ctx, req.(*AddBranchRentRequest))
+		return srv.(ShopServer).AddBranchRent(ctx, req.(*AddBranchRentRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Shop_GetStoreBranchRents_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Shop_GetBranchRents_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetBranchRentsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ShopServer).GetStoreBranchRents(ctx, in)
+		return srv.(ShopServer).GetBranchRents(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Shop_GetStoreBranchRents_FullMethodName,
+		FullMethod: Shop_GetBranchRents_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ShopServer).GetStoreBranchRents(ctx, req.(*GetBranchRentsRequest))
+		return srv.(ShopServer).GetBranchRents(ctx, req.(*GetBranchRentsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Shop_UpdateStoreBranchRent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Shop_UpdateBranchRent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UpdateBranchRentRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ShopServer).UpdateStoreBranchRent(ctx, in)
+		return srv.(ShopServer).UpdateBranchRent(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Shop_UpdateStoreBranchRent_FullMethodName,
+		FullMethod: Shop_UpdateBranchRent_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ShopServer).UpdateStoreBranchRent(ctx, req.(*UpdateBranchRentRequest))
+		return srv.(ShopServer).UpdateBranchRent(ctx, req.(*UpdateBranchRentRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1959,16 +1959,16 @@ var Shop_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Shop_DeleteBranch_Handler,
 		},
 		{
-			MethodName: "AddStoreBranchRent",
-			Handler:    _Shop_AddStoreBranchRent_Handler,
+			MethodName: "AddBranchRent",
+			Handler:    _Shop_AddBranchRent_Handler,
 		},
 		{
-			MethodName: "GetStoreBranchRents",
-			Handler:    _Shop_GetStoreBranchRents_Handler,
+			MethodName: "GetBranchRents",
+			Handler:    _Shop_GetBranchRents_Handler,
 		},
 		{
-			MethodName: "UpdateStoreBranchRent",
-			Handler:    _Shop_UpdateStoreBranchRent_Handler,
+			MethodName: "UpdateBranchRent",
+			Handler:    _Shop_UpdateBranchRent_Handler,
 		},
 		{
 			MethodName: "GetUnpaidBranchRents",

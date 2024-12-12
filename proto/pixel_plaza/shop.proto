@@ -35,9 +35,9 @@ service Shop{
   rpc SuspendBranch(SuspendBranchRequest) returns (SuspendBranchResponse) {}
   rpc ActivateBranch(ActivateBranchRequest) returns (ActivateBranchResponse) {}
   rpc DeleteBranch(DeleteBranchRequest) returns (DeleteBranchResponse) {}
-  rpc AddStoreBranchRent(AddBranchRentRequest) returns (AddBranchRentResponse) {}
-  rpc GetStoreBranchRents(GetBranchRentsRequest) returns (GetBranchRentsResponse) {}
-  rpc UpdateStoreBranchRent(UpdateBranchRentRequest) returns (UpdateBranchRentResponse) {}
+  rpc AddBranchRent(AddBranchRentRequest) returns (AddBranchRentResponse) {}
+  rpc GetBranchRents(GetBranchRentsRequest) returns (GetBranchRentsResponse) {}
+  rpc UpdateBranchRent(UpdateBranchRentRequest) returns (UpdateBranchRentResponse) {}
   rpc GetUnpaidBranchRents(GetUnpaidBranchRentsRequest) returns (GetUnpaidBranchRentsResponse) {}
   rpc GetBusinessUnpaidBranchRents(GetBusinessUnpaidBranchRentsRequest) returns (GetBusinessUnpaidBranchRentsResponse) {}
   rpc AddProductCategory(AddProductCategoryRequest) returns (AddProductCategoryResponse) {}
