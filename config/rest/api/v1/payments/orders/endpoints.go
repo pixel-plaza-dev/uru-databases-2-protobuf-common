@@ -9,5 +9,6 @@ var Base = typesrest.NewBaseEndpoint("orders")
 
 // Payment service orders REST endpoints
 var (
-	ByOrderId = typesrest.NewRelativeEndpoint(typesrest.OrderId)
+	ByOrderId    = typesrest.NewRelativeEndpoint(typesrest.OrderId)
+	PayByOrderId = typesrest.NewEndpoint("pay", typesrest.OrderId)
 )

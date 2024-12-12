@@ -9,6 +9,7 @@ var Base = typesrest.NewEndpoint("branch-rents")
 
 // Payment service branch rents REST endpoints
 var (
-	Relative       = typesrest.NewRelativeEndpoint()
-	ByBranchRentId = typesrest.NewRelativeEndpoint(typesrest.BranchRentId)
+	Relative          = typesrest.NewRelativeEndpoint()
+	ByBranchRentId    = typesrest.NewRelativeEndpoint(typesrest.BranchRentId)
+	PayByBranchRentId = typesrest.NewEndpoint("pay", typesrest.BranchRentId)
 )

@@ -9,5 +9,5 @@ import (
 var (
 	AddOrderPaymentMapper  = typesrest.NewMapper(ByOrderId, grpcpayment.AddOrderPayment)
 	GetOrderPaymentsMapper = typesrest.NewMapper(ByOrderId, grpcpayment.GetOrderPayments)
-	PayForOrderMapper      = typesrest.NewMapper(ByOrderId, grpcpayment.PayForOrder)
+	PayForOrderMapper      = typesrest.NewMapper(PayByOrderId, grpcpayment.PayForOrder)
 )

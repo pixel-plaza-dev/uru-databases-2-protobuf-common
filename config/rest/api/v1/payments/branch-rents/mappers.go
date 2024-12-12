@@ -10,5 +10,5 @@ var (
 	GetBranchRentsPaymentsMapper = typesrest.NewMapper(Relative, grpcpayment.GetBranchRentsPayments)
 	AddBranchRentPaymentMapper   = typesrest.NewMapper(ByBranchRentId, grpcpayment.AddBranchRentPayment)
 	GetBranchRentPaymentsMapper  = typesrest.NewMapper(ByBranchRentId, grpcpayment.GetBranchRentPayments)
-	PayForBranchRentMapper       = typesrest.NewMapper(ByBranchRentId, grpcpayment.PayForBranchRent)
+	PayForBranchRentMapper       = typesrest.NewMapper(PayByBranchRentId, grpcpayment.PayForBranchRent)
 )
