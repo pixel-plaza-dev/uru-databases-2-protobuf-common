@@ -59,4 +59,6 @@ var (
 	GetBranchProduct                   = grpc.NewMethod("GetBranchProduct")
 	SearchBranchProducts               = grpc.NewMethod("SearchBranchProducts")
 	UpdateBranchProduct                = grpc.NewMethod("UpdateBranchProduct")
+	IncreaseBranchProductStock         = grpc.NewMethod("IncreaseBranchProductStock")
+	DecreaseBranchProductStock         = grpc.NewMethod("DecreaseBranchProductStock")
 )

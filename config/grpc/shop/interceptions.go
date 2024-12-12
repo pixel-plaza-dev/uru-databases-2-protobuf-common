@@ -59,4 +59,6 @@ var Interceptions = map[grpc.Method]grpc.Interception{
 	GetBranchProduct:                   grpc.None,
 	SearchBranchProducts:               grpc.None,
 	UpdateBranchProduct:                grpc.AccessToken,
+	IncreaseBranchProductStock:         grpc.AccessToken,
+	DecreaseBranchProductStock:         grpc.AccessToken,
 }

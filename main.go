@@ -237,6 +237,12 @@ func main() {
 			configgrpcshop.IsBusinessClient.RequestString(): []string{
 				"BusinessId",
 			},
+			configgrpcshop.IncreaseBranchProductStock.RequestString(): []string{
+				"BranchProductId",
+			},
+			configgrpcshop.DecreaseBranchProductStock.RequestString(): []string{
+				"BranchProductId",
+			},
 		},
 	}
 

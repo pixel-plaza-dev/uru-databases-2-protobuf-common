@@ -73,6 +73,8 @@ const (
 	Shop_GetBranchProduct_FullMethodName                   = "/pixel_plaza.Shop/GetBranchProduct"
 	Shop_SearchBranchProducts_FullMethodName               = "/pixel_plaza.Shop/SearchBranchProducts"
 	Shop_UpdateBranchProduct_FullMethodName                = "/pixel_plaza.Shop/UpdateBranchProduct"
+	Shop_DecreaseBranchProductStock_FullMethodName         = "/pixel_plaza.Shop/DecreaseBranchProductStock"
+	Shop_IncreaseBranchProductStock_FullMethodName         = "/pixel_plaza.Shop/IncreaseBranchProductStock"
 )
 
 // ShopClient is the client API for Shop service.
@@ -132,6 +134,8 @@ type ShopClient interface {
 	GetBranchProduct(ctx context.Context, in *GetBranchProductRequest, opts ...grpc.CallOption) (*GetBranchProductResponse, error)
 	SearchBranchProducts(ctx context.Context, in *SearchBranchProductsRequest, opts ...grpc.CallOption) (*SearchBranchProductsResponse, error)
 	UpdateBranchProduct(ctx context.Context, in *UpdateBranchProductRequest, opts ...grpc.CallOption) (*UpdateBranchProductResponse, error)
+	DecreaseBranchProductStock(ctx context.Context, in *DecreaseBranchProductStockRequest, opts ...grpc.CallOption) (*DecreaseBranchProductStockResponse, error)
+	IncreaseBranchProductStock(ctx context.Context, in *IncreaseBranchProductStockRequest, opts ...grpc.CallOption) (*IncreaseBranchProductStockResponse, error)
 }
 
 type shopClient struct {
@@ -672,6 +676,26 @@ func (c *shopClient) UpdateBranchProduct(ctx context.Context, in *UpdateBranchPr
 	return out, nil
 }
 
+func (c *shopClient) DecreaseBranchProductStock(ctx context.Context, in *DecreaseBranchProductStockRequest, opts ...grpc.CallOption) (*DecreaseBranchProductStockResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DecreaseBranchProductStockResponse)
+	err := c.cc.Invoke(ctx, Shop_DecreaseBranchProductStock_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *shopClient) IncreaseBranchProductStock(ctx context.Context, in *IncreaseBranchProductStockRequest, opts ...grpc.CallOption) (*IncreaseBranchProductStockResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(IncreaseBranchProductStockResponse)
+	err := c.cc.Invoke(ctx, Shop_IncreaseBranchProductStock_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ShopServer is the server API for Shop service.
 // All implementations must embed UnimplementedShopServer
 // for forward compatibility.
@@ -729,6 +753,8 @@ type ShopServer interface {
 	GetBranchProduct(context.Context, *GetBranchProductRequest) (*GetBranchProductResponse, error)
 	SearchBranchProducts(context.Context, *SearchBranchProductsRequest) (*SearchBranchProductsResponse, error)
 	UpdateBranchProduct(context.Context, *UpdateBranchProductRequest) (*UpdateBranchProductResponse, error)
+	DecreaseBranchProductStock(context.Context, *DecreaseBranchProductStockRequest) (*DecreaseBranchProductStockResponse, error)
+	IncreaseBranchProductStock(context.Context, *IncreaseBranchProductStockRequest) (*IncreaseBranchProductStockResponse, error)
 	mustEmbedUnimplementedShopServer()
 }
 
@@ -897,6 +923,12 @@ func (UnimplementedShopServer) SearchBranchProducts(context.Context, *SearchBran
 }
 func (UnimplementedShopServer) UpdateBranchProduct(context.Context, *UpdateBranchProductRequest) (*UpdateBranchProductResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateBranchProduct not implemented")
+}
+func (UnimplementedShopServer) DecreaseBranchProductStock(context.Context, *DecreaseBranchProductStockRequest) (*DecreaseBranchProductStockResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DecreaseBranchProductStock not implemented")
+}
+func (UnimplementedShopServer) IncreaseBranchProductStock(context.Context, *IncreaseBranchProductStockRequest) (*IncreaseBranchProductStockResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method IncreaseBranchProductStock not implemented")
 }
 func (UnimplementedShopServer) mustEmbedUnimplementedShopServer() {}
 func (UnimplementedShopServer) testEmbeddedByValue()              {}
@@ -1873,6 +1905,42 @@ func _Shop_UpdateBranchProduct_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Shop_DecreaseBranchProductStock_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DecreaseBranchProductStockRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ShopServer).DecreaseBranchProductStock(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Shop_DecreaseBranchProductStock_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ShopServer).DecreaseBranchProductStock(ctx, req.(*DecreaseBranchProductStockRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Shop_IncreaseBranchProductStock_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IncreaseBranchProductStockRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ShopServer).IncreaseBranchProductStock(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Shop_IncreaseBranchProductStock_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ShopServer).IncreaseBranchProductStock(ctx, req.(*IncreaseBranchProductStockRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Shop_ServiceDesc is the grpc.ServiceDesc for Shop service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -2091,6 +2159,14 @@ var Shop_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateBranchProduct",
 			Handler:    _Shop_UpdateBranchProduct_Handler,
+		},
+		{
+			MethodName: "DecreaseBranchProductStock",
+			Handler:    _Shop_DecreaseBranchProductStock_Handler,
+		},
+		{
+			MethodName: "IncreaseBranchProductStock",
+			Handler:    _Shop_IncreaseBranchProductStock_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

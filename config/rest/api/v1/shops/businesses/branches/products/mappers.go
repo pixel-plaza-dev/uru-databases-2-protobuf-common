@@ -7,8 +7,16 @@ import (
 
 // Shop service branches products endpoints mapping
 var (
-	AddBranchProductMapper     = typesrest.NewMapper(ByBranchId, grpcshop.AddBranchProduct)
-	GetBranchProductMapper     = typesrest.NewMapper(ByBranchId, grpcshop.GetBranchProduct)
-	UpdateBranchProductMapper  = typesrest.NewMapper(ByBranchId, grpcshop.UpdateBranchProduct)
-	SearchBranchProductsMapper = typesrest.NewMapper(Search, grpcshop.SearchBranchProducts)
+	AddBranchProductMapper           = typesrest.NewMapper(ByBranchId, grpcshop.AddBranchProduct)
+	GetBranchProductMapper           = typesrest.NewMapper(ByBranchId, grpcshop.GetBranchProduct)
+	UpdateBranchProductMapper        = typesrest.NewMapper(ByBranchId, grpcshop.UpdateBranchProduct)
+	SearchBranchProductsMapper       = typesrest.NewMapper(Search, grpcshop.SearchBranchProducts)
+	IncreaseBranchProductStockMapper = typesrest.NewMapper(
+		IncreaseStockByBranchProductId,
+		grpcshop.IncreaseBranchProductStock,
+	)
+	DecreaseBranchProductStockMapper = typesrest.NewMapper(
+		DecreaseStockByBranchProductId,
+		grpcshop.DecreaseBranchProductStock,
+	)
 )

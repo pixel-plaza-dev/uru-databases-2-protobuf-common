@@ -9,6 +9,8 @@ var Base = typesrest.NewBaseEndpoint("products")
 
 // Shop service branches products REST endpoints
 var (
-	ByBranchId = typesrest.NewRelativeEndpoint(typesrest.BranchId)
-	Search     = typesrest.NewEndpoint("search")
+	ByBranchId                     = typesrest.NewRelativeEndpoint(typesrest.BranchId)
+	Search                         = typesrest.NewEndpoint("search")
+	IncreaseStockByBranchProductId = typesrest.NewEndpoint("increase-stock", typesrest.BranchProductId)
+	DecreaseStockByBranchProductId = typesrest.NewEndpoint("decrease-stock", typesrest.BranchProductId)
 )

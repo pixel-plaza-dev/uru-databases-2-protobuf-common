@@ -60,6 +60,8 @@ service Shop{
   rpc GetBranchProduct(GetBranchProductRequest) returns (GetBranchProductResponse) {}
   rpc SearchBranchProducts(SearchBranchProductsRequest) returns (SearchBranchProductsResponse) {}
   rpc UpdateBranchProduct(UpdateBranchProductRequest) returns (UpdateBranchProductResponse) {}
+  rpc DecreaseBranchProductStock(DecreaseBranchProductStockRequest) returns (DecreaseBranchProductStockResponse) {}
+  rpc IncreaseBranchProductStock(IncreaseBranchProductStockRequest) returns (IncreaseBranchProductStockResponse) {}
 }
 
 message OpenAdminRevision {
@@ -782,3 +784,22 @@ message UpdateBranchProductRequest {
 message UpdateBranchProductResponse {
   string message = 1;
 }
+
+message IncreaseBranchProductStockRequest {
+  string branch_product_id = 1;
+  int32 amount = 2;
+}
+
+message IncreaseBranchProductStockResponse {
+  string message = 1;
+}
+
+message DecreaseBranchProductStockRequest {
+  string branch_product_id = 1;
+  int32 amount = 2;
+}
+
+message DecreaseBranchProductStockResponse {
+  string message = 1;
+}
+
