@@ -20,70 +20,73 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Shop_AddBusiness_FullMethodName                  = "/pixel_plaza.Shop/AddBusiness"
-	Shop_GetBusiness_FullMethodName                  = "/pixel_plaza.Shop/GetBusiness"
-	Shop_UpdateBusiness_FullMethodName               = "/pixel_plaza.Shop/UpdateBusiness"
-	Shop_SetBusinessProfilePicture_FullMethodName    = "/pixel_plaza.Shop/SetBusinessProfilePicture"
-	Shop_SuspendBusiness_FullMethodName              = "/pixel_plaza.Shop/SuspendBusiness"
-	Shop_ActivateBusiness_FullMethodName             = "/pixel_plaza.Shop/ActivateBusiness"
-	Shop_DeleteBusiness_FullMethodName               = "/pixel_plaza.Shop/DeleteBusiness"
-	Shop_AddBusinessOwner_FullMethodName             = "/pixel_plaza.Shop/AddBusinessOwner"
-	Shop_RemoveBusinessOwner_FullMethodName          = "/pixel_plaza.Shop/RemoveBusinessOwner"
-	Shop_GetBusinessOwners_FullMethodName            = "/pixel_plaza.Shop/GetBusinessOwners"
-	Shop_AddBusinessClient_FullMethodName            = "/pixel_plaza.Shop/AddBusinessClient"
-	Shop_IsBusinessClient_FullMethodName             = "/pixel_plaza.Shop/IsBusinessClient"
-	Shop_AddMarketCategory_FullMethodName            = "/pixel_plaza.Shop/AddMarketCategory"
-	Shop_GetMarketCategory_FullMethodName            = "/pixel_plaza.Shop/GetMarketCategory"
-	Shop_UpdateMarketCategory_FullMethodName         = "/pixel_plaza.Shop/UpdateMarketCategory"
-	Shop_AddBusinessMarketCategory_FullMethodName    = "/pixel_plaza.Shop/AddBusinessMarketCategory"
-	Shop_GetBusinessMarketCategories_FullMethodName  = "/pixel_plaza.Shop/GetBusinessMarketCategories"
-	Shop_AddStore_FullMethodName                     = "/pixel_plaza.Shop/AddStore"
-	Shop_GetStore_FullMethodName                     = "/pixel_plaza.Shop/GetStore"
-	Shop_DeleteStore_FullMethodName                  = "/pixel_plaza.Shop/DeleteStore"
-	Shop_GetUnoccupiedStores_FullMethodName          = "/pixel_plaza.Shop/GetUnoccupiedStores"
-	Shop_AddBranch_FullMethodName                    = "/pixel_plaza.Shop/AddBranch"
-	Shop_GetBranch_FullMethodName                    = "/pixel_plaza.Shop/GetBranch"
-	Shop_GetBusinessBranches_FullMethodName          = "/pixel_plaza.Shop/GetBusinessBranches"
-	Shop_UpdateBranch_FullMethodName                 = "/pixel_plaza.Shop/UpdateBranch"
-	Shop_SuspendBranch_FullMethodName                = "/pixel_plaza.Shop/SuspendBranch"
-	Shop_ActivateBranch_FullMethodName               = "/pixel_plaza.Shop/ActivateBranch"
-	Shop_DeleteBranch_FullMethodName                 = "/pixel_plaza.Shop/DeleteBranch"
-	Shop_AddBranchRent_FullMethodName                = "/pixel_plaza.Shop/AddBranchRent"
-	Shop_GetBranchRents_FullMethodName               = "/pixel_plaza.Shop/GetBranchRents"
-	Shop_UpdateBranchRent_FullMethodName             = "/pixel_plaza.Shop/UpdateBranchRent"
-	Shop_GetUnpaidBranchRents_FullMethodName         = "/pixel_plaza.Shop/GetUnpaidBranchRents"
-	Shop_GetBusinessUnpaidBranchRents_FullMethodName = "/pixel_plaza.Shop/GetBusinessUnpaidBranchRents"
-	Shop_AddProductCategory_FullMethodName           = "/pixel_plaza.Shop/AddProductCategory"
-	Shop_GetProductCategory_FullMethodName           = "/pixel_plaza.Shop/GetProductCategory"
-	Shop_UpdateProductCategory_FullMethodName        = "/pixel_plaza.Shop/UpdateProductCategory"
-	Shop_AddProduct_FullMethodName                   = "/pixel_plaza.Shop/AddProduct"
-	Shop_GetProduct_FullMethodName                   = "/pixel_plaza.Shop/GetProduct"
-	Shop_UpdateProduct_FullMethodName                = "/pixel_plaza.Shop/UpdateProduct"
-	Shop_SearchProducts_FullMethodName               = "/pixel_plaza.Shop/SearchProducts"
-	Shop_SuspendProduct_FullMethodName               = "/pixel_plaza.Shop/SuspendProduct"
-	Shop_ActivateProduct_FullMethodName              = "/pixel_plaza.Shop/ActivateProduct"
-	Shop_AddBusinessProduct_FullMethodName           = "/pixel_plaza.Shop/AddBusinessProduct"
-	Shop_GetBusinessProduct_FullMethodName           = "/pixel_plaza.Shop/GetBusinessProduct"
-	Shop_UpdateBusinessProduct_FullMethodName        = "/pixel_plaza.Shop/UpdateBusinessProduct"
-	Shop_SearchBusinessProducts_FullMethodName       = "/pixel_plaza.Shop/SearchBusinessProducts"
-	Shop_SuspendBusinessProduct_FullMethodName       = "/pixel_plaza.Shop/SuspendBusinessProduct"
-	Shop_ActivateBusinessProduct_FullMethodName      = "/pixel_plaza.Shop/ActivateBusinessProduct"
-	Shop_AddBranchProduct_FullMethodName             = "/pixel_plaza.Shop/AddBranchProduct"
-	Shop_GetBranchProduct_FullMethodName             = "/pixel_plaza.Shop/GetBranchProduct"
-	Shop_SearchBranchProducts_FullMethodName         = "/pixel_plaza.Shop/SearchBranchProducts"
-	Shop_UpdateBranchProduct_FullMethodName          = "/pixel_plaza.Shop/UpdateBranchProduct"
+	Shop_UpdateAdminRevision_FullMethodName                = "/pixel_plaza.Shop/UpdateAdminRevision"
+	Shop_CloseAdminRevision_FullMethodName                 = "/pixel_plaza.Shop/CloseAdminRevision"
+	Shop_GetAdminRevisions_FullMethodName                  = "/pixel_plaza.Shop/GetAdminRevisions"
+	Shop_AddBusiness_FullMethodName                        = "/pixel_plaza.Shop/AddBusiness"
+	Shop_GetBusiness_FullMethodName                        = "/pixel_plaza.Shop/GetBusiness"
+	Shop_UpdateBusiness_FullMethodName                     = "/pixel_plaza.Shop/UpdateBusiness"
+	Shop_SetBusinessProfilePicture_FullMethodName          = "/pixel_plaza.Shop/SetBusinessProfilePicture"
+	Shop_AddAdminRevisionToBusiness_FullMethodName         = "/pixel_plaza.Shop/AddAdminRevisionToBusiness"
+	Shop_DeleteBusiness_FullMethodName                     = "/pixel_plaza.Shop/DeleteBusiness"
+	Shop_AddBusinessOwner_FullMethodName                   = "/pixel_plaza.Shop/AddBusinessOwner"
+	Shop_RemoveBusinessOwner_FullMethodName                = "/pixel_plaza.Shop/RemoveBusinessOwner"
+	Shop_GetBusinessOwners_FullMethodName                  = "/pixel_plaza.Shop/GetBusinessOwners"
+	Shop_AddBusinessClient_FullMethodName                  = "/pixel_plaza.Shop/AddBusinessClient"
+	Shop_IsBusinessClient_FullMethodName                   = "/pixel_plaza.Shop/IsBusinessClient"
+	Shop_AddMarketCategory_FullMethodName                  = "/pixel_plaza.Shop/AddMarketCategory"
+	Shop_GetMarketCategory_FullMethodName                  = "/pixel_plaza.Shop/GetMarketCategory"
+	Shop_UpdateMarketCategory_FullMethodName               = "/pixel_plaza.Shop/UpdateMarketCategory"
+	Shop_AddBusinessMarketCategory_FullMethodName          = "/pixel_plaza.Shop/AddBusinessMarketCategory"
+	Shop_GetBusinessMarketCategories_FullMethodName        = "/pixel_plaza.Shop/GetBusinessMarketCategories"
+	Shop_AddStore_FullMethodName                           = "/pixel_plaza.Shop/AddStore"
+	Shop_GetStore_FullMethodName                           = "/pixel_plaza.Shop/GetStore"
+	Shop_DeleteStore_FullMethodName                        = "/pixel_plaza.Shop/DeleteStore"
+	Shop_GetUnoccupiedStores_FullMethodName                = "/pixel_plaza.Shop/GetUnoccupiedStores"
+	Shop_AddBranch_FullMethodName                          = "/pixel_plaza.Shop/AddBranch"
+	Shop_GetBranch_FullMethodName                          = "/pixel_plaza.Shop/GetBranch"
+	Shop_GetBusinessBranches_FullMethodName                = "/pixel_plaza.Shop/GetBusinessBranches"
+	Shop_UpdateBranch_FullMethodName                       = "/pixel_plaza.Shop/UpdateBranch"
+	Shop_CloseTemporarily_FullMethodName                   = "/pixel_plaza.Shop/CloseTemporarily"
+	Shop_OpenBranch_FullMethodName                         = "/pixel_plaza.Shop/OpenBranch"
+	Shop_OpenAdminRevisionToBranch_FullMethodName          = "/pixel_plaza.Shop/OpenAdminRevisionToBranch"
+	Shop_DeleteBranch_FullMethodName                       = "/pixel_plaza.Shop/DeleteBranch"
+	Shop_AddBranchRent_FullMethodName                      = "/pixel_plaza.Shop/AddBranchRent"
+	Shop_GetBranchRents_FullMethodName                     = "/pixel_plaza.Shop/GetBranchRents"
+	Shop_UpdateBranchRent_FullMethodName                   = "/pixel_plaza.Shop/UpdateBranchRent"
+	Shop_GetUnpaidBranchRents_FullMethodName               = "/pixel_plaza.Shop/GetUnpaidBranchRents"
+	Shop_GetBusinessUnpaidBranchRents_FullMethodName       = "/pixel_plaza.Shop/GetBusinessUnpaidBranchRents"
+	Shop_AddProductCategory_FullMethodName                 = "/pixel_plaza.Shop/AddProductCategory"
+	Shop_GetProductCategory_FullMethodName                 = "/pixel_plaza.Shop/GetProductCategory"
+	Shop_UpdateProductCategory_FullMethodName              = "/pixel_plaza.Shop/UpdateProductCategory"
+	Shop_AddProduct_FullMethodName                         = "/pixel_plaza.Shop/AddProduct"
+	Shop_GetProduct_FullMethodName                         = "/pixel_plaza.Shop/GetProduct"
+	Shop_UpdateProduct_FullMethodName                      = "/pixel_plaza.Shop/UpdateProduct"
+	Shop_SearchProducts_FullMethodName                     = "/pixel_plaza.Shop/SearchProducts"
+	Shop_OpenAdminRevisionToProduct_FullMethodName         = "/pixel_plaza.Shop/OpenAdminRevisionToProduct"
+	Shop_AddBusinessProduct_FullMethodName                 = "/pixel_plaza.Shop/AddBusinessProduct"
+	Shop_GetBusinessProduct_FullMethodName                 = "/pixel_plaza.Shop/GetBusinessProduct"
+	Shop_UpdateBusinessProduct_FullMethodName              = "/pixel_plaza.Shop/UpdateBusinessProduct"
+	Shop_SearchBusinessProducts_FullMethodName             = "/pixel_plaza.Shop/SearchBusinessProducts"
+	Shop_OpenAdminRevisionToBusinessProduct_FullMethodName = "/pixel_plaza.Shop/OpenAdminRevisionToBusinessProduct"
+	Shop_AddBranchProduct_FullMethodName                   = "/pixel_plaza.Shop/AddBranchProduct"
+	Shop_GetBranchProduct_FullMethodName                   = "/pixel_plaza.Shop/GetBranchProduct"
+	Shop_SearchBranchProducts_FullMethodName               = "/pixel_plaza.Shop/SearchBranchProducts"
+	Shop_UpdateBranchProduct_FullMethodName                = "/pixel_plaza.Shop/UpdateBranchProduct"
 )
 
 // ShopClient is the client API for Shop service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ShopClient interface {
+	UpdateAdminRevision(ctx context.Context, in *UpdateAdminRevisionRequest, opts ...grpc.CallOption) (*UpdateAdminRevisionResponse, error)
+	CloseAdminRevision(ctx context.Context, in *CloseAdminRevisionRequest, opts ...grpc.CallOption) (*CloseAdminRevisionResponse, error)
+	GetAdminRevisions(ctx context.Context, in *GetAdminRevisionsRequest, opts ...grpc.CallOption) (*GetAdminRevisionsResponse, error)
 	AddBusiness(ctx context.Context, in *AddBusinessRequest, opts ...grpc.CallOption) (*AddBusinessResponse, error)
 	GetBusiness(ctx context.Context, in *GetBusinessRequest, opts ...grpc.CallOption) (*GetBusinessResponse, error)
 	UpdateBusiness(ctx context.Context, in *UpdateBusinessRequest, opts ...grpc.CallOption) (*UpdateBusinessResponse, error)
 	SetBusinessProfilePicture(ctx context.Context, in *SetBusinessProfilePictureRequest, opts ...grpc.CallOption) (*SetBusinessProfilePictureResponse, error)
-	SuspendBusiness(ctx context.Context, in *SuspendBusinessRequest, opts ...grpc.CallOption) (*SuspendBusinessResponse, error)
-	ActivateBusiness(ctx context.Context, in *ActivateBusinessRequest, opts ...grpc.CallOption) (*ActivateBusinessResponse, error)
+	AddAdminRevisionToBusiness(ctx context.Context, in *AddAdminRevisionToBusinessRequest, opts ...grpc.CallOption) (*AddAdminRevisionToBusinessResponse, error)
 	DeleteBusiness(ctx context.Context, in *DeleteBusinessRequest, opts ...grpc.CallOption) (*DeleteBusinessResponse, error)
 	AddBusinessOwner(ctx context.Context, in *AddBusinessOwnerRequest, opts ...grpc.CallOption) (*AddBusinessOwnerResponse, error)
 	RemoveBusinessOwner(ctx context.Context, in *RemoveBusinessOwnerRequest, opts ...grpc.CallOption) (*RemoveBusinessOwnerResponse, error)
@@ -103,8 +106,9 @@ type ShopClient interface {
 	GetBranch(ctx context.Context, in *GetBranchRequest, opts ...grpc.CallOption) (*GetBranchResponse, error)
 	GetBusinessBranches(ctx context.Context, in *GetBusinessBranchesRequest, opts ...grpc.CallOption) (*GetBusinessBranchesResponse, error)
 	UpdateBranch(ctx context.Context, in *UpdateBranchRequest, opts ...grpc.CallOption) (*UpdateBranchResponse, error)
-	SuspendBranch(ctx context.Context, in *SuspendBranchRequest, opts ...grpc.CallOption) (*SuspendBranchResponse, error)
-	ActivateBranch(ctx context.Context, in *ActivateBranchRequest, opts ...grpc.CallOption) (*ActivateBranchResponse, error)
+	CloseTemporarily(ctx context.Context, in *CloseTemporarilyRequest, opts ...grpc.CallOption) (*CloseTemporarilyResponse, error)
+	OpenBranch(ctx context.Context, in *OpenBranchRequest, opts ...grpc.CallOption) (*OpenBranchResponse, error)
+	OpenAdminRevisionToBranch(ctx context.Context, in *OpenAdminRevisionToBranchRequest, opts ...grpc.CallOption) (*OpenAdminRevisionToBranchResponse, error)
 	DeleteBranch(ctx context.Context, in *DeleteBranchRequest, opts ...grpc.CallOption) (*DeleteBranchResponse, error)
 	AddBranchRent(ctx context.Context, in *AddBranchRentRequest, opts ...grpc.CallOption) (*AddBranchRentResponse, error)
 	GetBranchRents(ctx context.Context, in *GetBranchRentsRequest, opts ...grpc.CallOption) (*GetBranchRentsResponse, error)
@@ -118,14 +122,12 @@ type ShopClient interface {
 	GetProduct(ctx context.Context, in *GetProductRequest, opts ...grpc.CallOption) (*GetProductResponse, error)
 	UpdateProduct(ctx context.Context, in *UpdateProductRequest, opts ...grpc.CallOption) (*UpdateProductResponse, error)
 	SearchProducts(ctx context.Context, in *SearchProductsRequest, opts ...grpc.CallOption) (*SearchProductsResponse, error)
-	SuspendProduct(ctx context.Context, in *SuspendProductRequest, opts ...grpc.CallOption) (*SuspendProductResponse, error)
-	ActivateProduct(ctx context.Context, in *ActivateProductRequest, opts ...grpc.CallOption) (*ActivateProductResponse, error)
+	OpenAdminRevisionToProduct(ctx context.Context, in *OpenAdminRevisionToProductRequest, opts ...grpc.CallOption) (*OpenAdminRevisionToProductResponse, error)
 	AddBusinessProduct(ctx context.Context, in *AddBusinessProductRequest, opts ...grpc.CallOption) (*AddBusinessProductResponse, error)
 	GetBusinessProduct(ctx context.Context, in *GetBusinessProductRequest, opts ...grpc.CallOption) (*GetBusinessProductResponse, error)
 	UpdateBusinessProduct(ctx context.Context, in *UpdateBusinessProductRequest, opts ...grpc.CallOption) (*UpdateBusinessProductResponse, error)
 	SearchBusinessProducts(ctx context.Context, in *SearchBusinessProductsRequest, opts ...grpc.CallOption) (*SearchBusinessProductsResponse, error)
-	SuspendBusinessProduct(ctx context.Context, in *SuspendBusinessProductRequest, opts ...grpc.CallOption) (*SuspendBusinessProductResponse, error)
-	ActivateBusinessProduct(ctx context.Context, in *ActivateBusinessProductRequest, opts ...grpc.CallOption) (*ActivateBusinessProductResponse, error)
+	OpenAdminRevisionToBusinessProduct(ctx context.Context, in *OpenAdminRevisionToBusinessProductRequest, opts ...grpc.CallOption) (*OpenAdminRevisionToBusinessProductResponse, error)
 	AddBranchProduct(ctx context.Context, in *AddBranchProductRequest, opts ...grpc.CallOption) (*AddBranchProductResponse, error)
 	GetBranchProduct(ctx context.Context, in *GetBranchProductRequest, opts ...grpc.CallOption) (*GetBranchProductResponse, error)
 	SearchBranchProducts(ctx context.Context, in *SearchBranchProductsRequest, opts ...grpc.CallOption) (*SearchBranchProductsResponse, error)
@@ -138,6 +140,36 @@ type shopClient struct {
 
 func NewShopClient(cc grpc.ClientConnInterface) ShopClient {
 	return &shopClient{cc}
+}
+
+func (c *shopClient) UpdateAdminRevision(ctx context.Context, in *UpdateAdminRevisionRequest, opts ...grpc.CallOption) (*UpdateAdminRevisionResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateAdminRevisionResponse)
+	err := c.cc.Invoke(ctx, Shop_UpdateAdminRevision_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *shopClient) CloseAdminRevision(ctx context.Context, in *CloseAdminRevisionRequest, opts ...grpc.CallOption) (*CloseAdminRevisionResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CloseAdminRevisionResponse)
+	err := c.cc.Invoke(ctx, Shop_CloseAdminRevision_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *shopClient) GetAdminRevisions(ctx context.Context, in *GetAdminRevisionsRequest, opts ...grpc.CallOption) (*GetAdminRevisionsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetAdminRevisionsResponse)
+	err := c.cc.Invoke(ctx, Shop_GetAdminRevisions_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *shopClient) AddBusiness(ctx context.Context, in *AddBusinessRequest, opts ...grpc.CallOption) (*AddBusinessResponse, error) {
@@ -180,20 +212,10 @@ func (c *shopClient) SetBusinessProfilePicture(ctx context.Context, in *SetBusin
 	return out, nil
 }
 
-func (c *shopClient) SuspendBusiness(ctx context.Context, in *SuspendBusinessRequest, opts ...grpc.CallOption) (*SuspendBusinessResponse, error) {
+func (c *shopClient) AddAdminRevisionToBusiness(ctx context.Context, in *AddAdminRevisionToBusinessRequest, opts ...grpc.CallOption) (*AddAdminRevisionToBusinessResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(SuspendBusinessResponse)
-	err := c.cc.Invoke(ctx, Shop_SuspendBusiness_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *shopClient) ActivateBusiness(ctx context.Context, in *ActivateBusinessRequest, opts ...grpc.CallOption) (*ActivateBusinessResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ActivateBusinessResponse)
-	err := c.cc.Invoke(ctx, Shop_ActivateBusiness_FullMethodName, in, out, cOpts...)
+	out := new(AddAdminRevisionToBusinessResponse)
+	err := c.cc.Invoke(ctx, Shop_AddAdminRevisionToBusiness_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -390,20 +412,30 @@ func (c *shopClient) UpdateBranch(ctx context.Context, in *UpdateBranchRequest, 
 	return out, nil
 }
 
-func (c *shopClient) SuspendBranch(ctx context.Context, in *SuspendBranchRequest, opts ...grpc.CallOption) (*SuspendBranchResponse, error) {
+func (c *shopClient) CloseTemporarily(ctx context.Context, in *CloseTemporarilyRequest, opts ...grpc.CallOption) (*CloseTemporarilyResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(SuspendBranchResponse)
-	err := c.cc.Invoke(ctx, Shop_SuspendBranch_FullMethodName, in, out, cOpts...)
+	out := new(CloseTemporarilyResponse)
+	err := c.cc.Invoke(ctx, Shop_CloseTemporarily_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *shopClient) ActivateBranch(ctx context.Context, in *ActivateBranchRequest, opts ...grpc.CallOption) (*ActivateBranchResponse, error) {
+func (c *shopClient) OpenBranch(ctx context.Context, in *OpenBranchRequest, opts ...grpc.CallOption) (*OpenBranchResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ActivateBranchResponse)
-	err := c.cc.Invoke(ctx, Shop_ActivateBranch_FullMethodName, in, out, cOpts...)
+	out := new(OpenBranchResponse)
+	err := c.cc.Invoke(ctx, Shop_OpenBranch_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *shopClient) OpenAdminRevisionToBranch(ctx context.Context, in *OpenAdminRevisionToBranchRequest, opts ...grpc.CallOption) (*OpenAdminRevisionToBranchResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(OpenAdminRevisionToBranchResponse)
+	err := c.cc.Invoke(ctx, Shop_OpenAdminRevisionToBranch_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -540,20 +572,10 @@ func (c *shopClient) SearchProducts(ctx context.Context, in *SearchProductsReque
 	return out, nil
 }
 
-func (c *shopClient) SuspendProduct(ctx context.Context, in *SuspendProductRequest, opts ...grpc.CallOption) (*SuspendProductResponse, error) {
+func (c *shopClient) OpenAdminRevisionToProduct(ctx context.Context, in *OpenAdminRevisionToProductRequest, opts ...grpc.CallOption) (*OpenAdminRevisionToProductResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(SuspendProductResponse)
-	err := c.cc.Invoke(ctx, Shop_SuspendProduct_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *shopClient) ActivateProduct(ctx context.Context, in *ActivateProductRequest, opts ...grpc.CallOption) (*ActivateProductResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ActivateProductResponse)
-	err := c.cc.Invoke(ctx, Shop_ActivateProduct_FullMethodName, in, out, cOpts...)
+	out := new(OpenAdminRevisionToProductResponse)
+	err := c.cc.Invoke(ctx, Shop_OpenAdminRevisionToProduct_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -600,20 +622,10 @@ func (c *shopClient) SearchBusinessProducts(ctx context.Context, in *SearchBusin
 	return out, nil
 }
 
-func (c *shopClient) SuspendBusinessProduct(ctx context.Context, in *SuspendBusinessProductRequest, opts ...grpc.CallOption) (*SuspendBusinessProductResponse, error) {
+func (c *shopClient) OpenAdminRevisionToBusinessProduct(ctx context.Context, in *OpenAdminRevisionToBusinessProductRequest, opts ...grpc.CallOption) (*OpenAdminRevisionToBusinessProductResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(SuspendBusinessProductResponse)
-	err := c.cc.Invoke(ctx, Shop_SuspendBusinessProduct_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *shopClient) ActivateBusinessProduct(ctx context.Context, in *ActivateBusinessProductRequest, opts ...grpc.CallOption) (*ActivateBusinessProductResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ActivateBusinessProductResponse)
-	err := c.cc.Invoke(ctx, Shop_ActivateBusinessProduct_FullMethodName, in, out, cOpts...)
+	out := new(OpenAdminRevisionToBusinessProductResponse)
+	err := c.cc.Invoke(ctx, Shop_OpenAdminRevisionToBusinessProduct_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -664,12 +676,14 @@ func (c *shopClient) UpdateBranchProduct(ctx context.Context, in *UpdateBranchPr
 // All implementations must embed UnimplementedShopServer
 // for forward compatibility.
 type ShopServer interface {
+	UpdateAdminRevision(context.Context, *UpdateAdminRevisionRequest) (*UpdateAdminRevisionResponse, error)
+	CloseAdminRevision(context.Context, *CloseAdminRevisionRequest) (*CloseAdminRevisionResponse, error)
+	GetAdminRevisions(context.Context, *GetAdminRevisionsRequest) (*GetAdminRevisionsResponse, error)
 	AddBusiness(context.Context, *AddBusinessRequest) (*AddBusinessResponse, error)
 	GetBusiness(context.Context, *GetBusinessRequest) (*GetBusinessResponse, error)
 	UpdateBusiness(context.Context, *UpdateBusinessRequest) (*UpdateBusinessResponse, error)
 	SetBusinessProfilePicture(context.Context, *SetBusinessProfilePictureRequest) (*SetBusinessProfilePictureResponse, error)
-	SuspendBusiness(context.Context, *SuspendBusinessRequest) (*SuspendBusinessResponse, error)
-	ActivateBusiness(context.Context, *ActivateBusinessRequest) (*ActivateBusinessResponse, error)
+	AddAdminRevisionToBusiness(context.Context, *AddAdminRevisionToBusinessRequest) (*AddAdminRevisionToBusinessResponse, error)
 	DeleteBusiness(context.Context, *DeleteBusinessRequest) (*DeleteBusinessResponse, error)
 	AddBusinessOwner(context.Context, *AddBusinessOwnerRequest) (*AddBusinessOwnerResponse, error)
 	RemoveBusinessOwner(context.Context, *RemoveBusinessOwnerRequest) (*RemoveBusinessOwnerResponse, error)
@@ -689,8 +703,9 @@ type ShopServer interface {
 	GetBranch(context.Context, *GetBranchRequest) (*GetBranchResponse, error)
 	GetBusinessBranches(context.Context, *GetBusinessBranchesRequest) (*GetBusinessBranchesResponse, error)
 	UpdateBranch(context.Context, *UpdateBranchRequest) (*UpdateBranchResponse, error)
-	SuspendBranch(context.Context, *SuspendBranchRequest) (*SuspendBranchResponse, error)
-	ActivateBranch(context.Context, *ActivateBranchRequest) (*ActivateBranchResponse, error)
+	CloseTemporarily(context.Context, *CloseTemporarilyRequest) (*CloseTemporarilyResponse, error)
+	OpenBranch(context.Context, *OpenBranchRequest) (*OpenBranchResponse, error)
+	OpenAdminRevisionToBranch(context.Context, *OpenAdminRevisionToBranchRequest) (*OpenAdminRevisionToBranchResponse, error)
 	DeleteBranch(context.Context, *DeleteBranchRequest) (*DeleteBranchResponse, error)
 	AddBranchRent(context.Context, *AddBranchRentRequest) (*AddBranchRentResponse, error)
 	GetBranchRents(context.Context, *GetBranchRentsRequest) (*GetBranchRentsResponse, error)
@@ -704,14 +719,12 @@ type ShopServer interface {
 	GetProduct(context.Context, *GetProductRequest) (*GetProductResponse, error)
 	UpdateProduct(context.Context, *UpdateProductRequest) (*UpdateProductResponse, error)
 	SearchProducts(context.Context, *SearchProductsRequest) (*SearchProductsResponse, error)
-	SuspendProduct(context.Context, *SuspendProductRequest) (*SuspendProductResponse, error)
-	ActivateProduct(context.Context, *ActivateProductRequest) (*ActivateProductResponse, error)
+	OpenAdminRevisionToProduct(context.Context, *OpenAdminRevisionToProductRequest) (*OpenAdminRevisionToProductResponse, error)
 	AddBusinessProduct(context.Context, *AddBusinessProductRequest) (*AddBusinessProductResponse, error)
 	GetBusinessProduct(context.Context, *GetBusinessProductRequest) (*GetBusinessProductResponse, error)
 	UpdateBusinessProduct(context.Context, *UpdateBusinessProductRequest) (*UpdateBusinessProductResponse, error)
 	SearchBusinessProducts(context.Context, *SearchBusinessProductsRequest) (*SearchBusinessProductsResponse, error)
-	SuspendBusinessProduct(context.Context, *SuspendBusinessProductRequest) (*SuspendBusinessProductResponse, error)
-	ActivateBusinessProduct(context.Context, *ActivateBusinessProductRequest) (*ActivateBusinessProductResponse, error)
+	OpenAdminRevisionToBusinessProduct(context.Context, *OpenAdminRevisionToBusinessProductRequest) (*OpenAdminRevisionToBusinessProductResponse, error)
 	AddBranchProduct(context.Context, *AddBranchProductRequest) (*AddBranchProductResponse, error)
 	GetBranchProduct(context.Context, *GetBranchProductRequest) (*GetBranchProductResponse, error)
 	SearchBranchProducts(context.Context, *SearchBranchProductsRequest) (*SearchBranchProductsResponse, error)
@@ -726,6 +739,15 @@ type ShopServer interface {
 // pointer dereference when methods are called.
 type UnimplementedShopServer struct{}
 
+func (UnimplementedShopServer) UpdateAdminRevision(context.Context, *UpdateAdminRevisionRequest) (*UpdateAdminRevisionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateAdminRevision not implemented")
+}
+func (UnimplementedShopServer) CloseAdminRevision(context.Context, *CloseAdminRevisionRequest) (*CloseAdminRevisionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CloseAdminRevision not implemented")
+}
+func (UnimplementedShopServer) GetAdminRevisions(context.Context, *GetAdminRevisionsRequest) (*GetAdminRevisionsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAdminRevisions not implemented")
+}
 func (UnimplementedShopServer) AddBusiness(context.Context, *AddBusinessRequest) (*AddBusinessResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddBusiness not implemented")
 }
@@ -738,11 +760,8 @@ func (UnimplementedShopServer) UpdateBusiness(context.Context, *UpdateBusinessRe
 func (UnimplementedShopServer) SetBusinessProfilePicture(context.Context, *SetBusinessProfilePictureRequest) (*SetBusinessProfilePictureResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetBusinessProfilePicture not implemented")
 }
-func (UnimplementedShopServer) SuspendBusiness(context.Context, *SuspendBusinessRequest) (*SuspendBusinessResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SuspendBusiness not implemented")
-}
-func (UnimplementedShopServer) ActivateBusiness(context.Context, *ActivateBusinessRequest) (*ActivateBusinessResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ActivateBusiness not implemented")
+func (UnimplementedShopServer) AddAdminRevisionToBusiness(context.Context, *AddAdminRevisionToBusinessRequest) (*AddAdminRevisionToBusinessResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddAdminRevisionToBusiness not implemented")
 }
 func (UnimplementedShopServer) DeleteBusiness(context.Context, *DeleteBusinessRequest) (*DeleteBusinessResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteBusiness not implemented")
@@ -801,11 +820,14 @@ func (UnimplementedShopServer) GetBusinessBranches(context.Context, *GetBusiness
 func (UnimplementedShopServer) UpdateBranch(context.Context, *UpdateBranchRequest) (*UpdateBranchResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateBranch not implemented")
 }
-func (UnimplementedShopServer) SuspendBranch(context.Context, *SuspendBranchRequest) (*SuspendBranchResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SuspendBranch not implemented")
+func (UnimplementedShopServer) CloseTemporarily(context.Context, *CloseTemporarilyRequest) (*CloseTemporarilyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CloseTemporarily not implemented")
 }
-func (UnimplementedShopServer) ActivateBranch(context.Context, *ActivateBranchRequest) (*ActivateBranchResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ActivateBranch not implemented")
+func (UnimplementedShopServer) OpenBranch(context.Context, *OpenBranchRequest) (*OpenBranchResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method OpenBranch not implemented")
+}
+func (UnimplementedShopServer) OpenAdminRevisionToBranch(context.Context, *OpenAdminRevisionToBranchRequest) (*OpenAdminRevisionToBranchResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method OpenAdminRevisionToBranch not implemented")
 }
 func (UnimplementedShopServer) DeleteBranch(context.Context, *DeleteBranchRequest) (*DeleteBranchResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteBranch not implemented")
@@ -846,11 +868,8 @@ func (UnimplementedShopServer) UpdateProduct(context.Context, *UpdateProductRequ
 func (UnimplementedShopServer) SearchProducts(context.Context, *SearchProductsRequest) (*SearchProductsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SearchProducts not implemented")
 }
-func (UnimplementedShopServer) SuspendProduct(context.Context, *SuspendProductRequest) (*SuspendProductResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SuspendProduct not implemented")
-}
-func (UnimplementedShopServer) ActivateProduct(context.Context, *ActivateProductRequest) (*ActivateProductResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ActivateProduct not implemented")
+func (UnimplementedShopServer) OpenAdminRevisionToProduct(context.Context, *OpenAdminRevisionToProductRequest) (*OpenAdminRevisionToProductResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method OpenAdminRevisionToProduct not implemented")
 }
 func (UnimplementedShopServer) AddBusinessProduct(context.Context, *AddBusinessProductRequest) (*AddBusinessProductResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddBusinessProduct not implemented")
@@ -864,11 +883,8 @@ func (UnimplementedShopServer) UpdateBusinessProduct(context.Context, *UpdateBus
 func (UnimplementedShopServer) SearchBusinessProducts(context.Context, *SearchBusinessProductsRequest) (*SearchBusinessProductsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SearchBusinessProducts not implemented")
 }
-func (UnimplementedShopServer) SuspendBusinessProduct(context.Context, *SuspendBusinessProductRequest) (*SuspendBusinessProductResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SuspendBusinessProduct not implemented")
-}
-func (UnimplementedShopServer) ActivateBusinessProduct(context.Context, *ActivateBusinessProductRequest) (*ActivateBusinessProductResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ActivateBusinessProduct not implemented")
+func (UnimplementedShopServer) OpenAdminRevisionToBusinessProduct(context.Context, *OpenAdminRevisionToBusinessProductRequest) (*OpenAdminRevisionToBusinessProductResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method OpenAdminRevisionToBusinessProduct not implemented")
 }
 func (UnimplementedShopServer) AddBranchProduct(context.Context, *AddBranchProductRequest) (*AddBranchProductResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddBranchProduct not implemented")
@@ -901,6 +917,60 @@ func RegisterShopServer(s grpc.ServiceRegistrar, srv ShopServer) {
 		t.testEmbeddedByValue()
 	}
 	s.RegisterService(&Shop_ServiceDesc, srv)
+}
+
+func _Shop_UpdateAdminRevision_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateAdminRevisionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ShopServer).UpdateAdminRevision(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Shop_UpdateAdminRevision_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ShopServer).UpdateAdminRevision(ctx, req.(*UpdateAdminRevisionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Shop_CloseAdminRevision_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CloseAdminRevisionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ShopServer).CloseAdminRevision(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Shop_CloseAdminRevision_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ShopServer).CloseAdminRevision(ctx, req.(*CloseAdminRevisionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Shop_GetAdminRevisions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAdminRevisionsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ShopServer).GetAdminRevisions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Shop_GetAdminRevisions_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ShopServer).GetAdminRevisions(ctx, req.(*GetAdminRevisionsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _Shop_AddBusiness_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -975,38 +1045,20 @@ func _Shop_SetBusinessProfilePicture_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Shop_SuspendBusiness_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SuspendBusinessRequest)
+func _Shop_AddAdminRevisionToBusiness_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddAdminRevisionToBusinessRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ShopServer).SuspendBusiness(ctx, in)
+		return srv.(ShopServer).AddAdminRevisionToBusiness(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Shop_SuspendBusiness_FullMethodName,
+		FullMethod: Shop_AddAdminRevisionToBusiness_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ShopServer).SuspendBusiness(ctx, req.(*SuspendBusinessRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Shop_ActivateBusiness_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ActivateBusinessRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ShopServer).ActivateBusiness(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Shop_ActivateBusiness_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ShopServer).ActivateBusiness(ctx, req.(*ActivateBusinessRequest))
+		return srv.(ShopServer).AddAdminRevisionToBusiness(ctx, req.(*AddAdminRevisionToBusinessRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1353,38 +1405,56 @@ func _Shop_UpdateBranch_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Shop_SuspendBranch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SuspendBranchRequest)
+func _Shop_CloseTemporarily_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CloseTemporarilyRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ShopServer).SuspendBranch(ctx, in)
+		return srv.(ShopServer).CloseTemporarily(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Shop_SuspendBranch_FullMethodName,
+		FullMethod: Shop_CloseTemporarily_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ShopServer).SuspendBranch(ctx, req.(*SuspendBranchRequest))
+		return srv.(ShopServer).CloseTemporarily(ctx, req.(*CloseTemporarilyRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Shop_ActivateBranch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ActivateBranchRequest)
+func _Shop_OpenBranch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(OpenBranchRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ShopServer).ActivateBranch(ctx, in)
+		return srv.(ShopServer).OpenBranch(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Shop_ActivateBranch_FullMethodName,
+		FullMethod: Shop_OpenBranch_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ShopServer).ActivateBranch(ctx, req.(*ActivateBranchRequest))
+		return srv.(ShopServer).OpenBranch(ctx, req.(*OpenBranchRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Shop_OpenAdminRevisionToBranch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(OpenAdminRevisionToBranchRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ShopServer).OpenAdminRevisionToBranch(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Shop_OpenAdminRevisionToBranch_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ShopServer).OpenAdminRevisionToBranch(ctx, req.(*OpenAdminRevisionToBranchRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1623,38 +1693,20 @@ func _Shop_SearchProducts_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Shop_SuspendProduct_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SuspendProductRequest)
+func _Shop_OpenAdminRevisionToProduct_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(OpenAdminRevisionToProductRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ShopServer).SuspendProduct(ctx, in)
+		return srv.(ShopServer).OpenAdminRevisionToProduct(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Shop_SuspendProduct_FullMethodName,
+		FullMethod: Shop_OpenAdminRevisionToProduct_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ShopServer).SuspendProduct(ctx, req.(*SuspendProductRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Shop_ActivateProduct_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ActivateProductRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ShopServer).ActivateProduct(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Shop_ActivateProduct_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ShopServer).ActivateProduct(ctx, req.(*ActivateProductRequest))
+		return srv.(ShopServer).OpenAdminRevisionToProduct(ctx, req.(*OpenAdminRevisionToProductRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1731,38 +1783,20 @@ func _Shop_SearchBusinessProducts_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Shop_SuspendBusinessProduct_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SuspendBusinessProductRequest)
+func _Shop_OpenAdminRevisionToBusinessProduct_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(OpenAdminRevisionToBusinessProductRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ShopServer).SuspendBusinessProduct(ctx, in)
+		return srv.(ShopServer).OpenAdminRevisionToBusinessProduct(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Shop_SuspendBusinessProduct_FullMethodName,
+		FullMethod: Shop_OpenAdminRevisionToBusinessProduct_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ShopServer).SuspendBusinessProduct(ctx, req.(*SuspendBusinessProductRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Shop_ActivateBusinessProduct_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ActivateBusinessProductRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ShopServer).ActivateBusinessProduct(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Shop_ActivateBusinessProduct_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ShopServer).ActivateBusinessProduct(ctx, req.(*ActivateBusinessProductRequest))
+		return srv.(ShopServer).OpenAdminRevisionToBusinessProduct(ctx, req.(*OpenAdminRevisionToBusinessProductRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1847,6 +1881,18 @@ var Shop_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*ShopServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
+			MethodName: "UpdateAdminRevision",
+			Handler:    _Shop_UpdateAdminRevision_Handler,
+		},
+		{
+			MethodName: "CloseAdminRevision",
+			Handler:    _Shop_CloseAdminRevision_Handler,
+		},
+		{
+			MethodName: "GetAdminRevisions",
+			Handler:    _Shop_GetAdminRevisions_Handler,
+		},
+		{
 			MethodName: "AddBusiness",
 			Handler:    _Shop_AddBusiness_Handler,
 		},
@@ -1863,12 +1909,8 @@ var Shop_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Shop_SetBusinessProfilePicture_Handler,
 		},
 		{
-			MethodName: "SuspendBusiness",
-			Handler:    _Shop_SuspendBusiness_Handler,
-		},
-		{
-			MethodName: "ActivateBusiness",
-			Handler:    _Shop_ActivateBusiness_Handler,
+			MethodName: "AddAdminRevisionToBusiness",
+			Handler:    _Shop_AddAdminRevisionToBusiness_Handler,
 		},
 		{
 			MethodName: "DeleteBusiness",
@@ -1947,12 +1989,16 @@ var Shop_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Shop_UpdateBranch_Handler,
 		},
 		{
-			MethodName: "SuspendBranch",
-			Handler:    _Shop_SuspendBranch_Handler,
+			MethodName: "CloseTemporarily",
+			Handler:    _Shop_CloseTemporarily_Handler,
 		},
 		{
-			MethodName: "ActivateBranch",
-			Handler:    _Shop_ActivateBranch_Handler,
+			MethodName: "OpenBranch",
+			Handler:    _Shop_OpenBranch_Handler,
+		},
+		{
+			MethodName: "OpenAdminRevisionToBranch",
+			Handler:    _Shop_OpenAdminRevisionToBranch_Handler,
 		},
 		{
 			MethodName: "DeleteBranch",
@@ -2007,12 +2053,8 @@ var Shop_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Shop_SearchProducts_Handler,
 		},
 		{
-			MethodName: "SuspendProduct",
-			Handler:    _Shop_SuspendProduct_Handler,
-		},
-		{
-			MethodName: "ActivateProduct",
-			Handler:    _Shop_ActivateProduct_Handler,
+			MethodName: "OpenAdminRevisionToProduct",
+			Handler:    _Shop_OpenAdminRevisionToProduct_Handler,
 		},
 		{
 			MethodName: "AddBusinessProduct",
@@ -2031,12 +2073,8 @@ var Shop_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Shop_SearchBusinessProducts_Handler,
 		},
 		{
-			MethodName: "SuspendBusinessProduct",
-			Handler:    _Shop_SuspendBusinessProduct_Handler,
-		},
-		{
-			MethodName: "ActivateBusinessProduct",
-			Handler:    _Shop_ActivateBusinessProduct_Handler,
+			MethodName: "OpenAdminRevisionToBusinessProduct",
+			Handler:    _Shop_OpenAdminRevisionToBusinessProduct_Handler,
 		},
 		{
 			MethodName: "AddBranchProduct",

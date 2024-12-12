@@ -123,6 +123,12 @@ func main() {
 			},
 		},
 		shopPath: {
+			configgrpcshop.UpdateAdminRevision.RequestString(): []string{
+				"AdminRevisionId",
+			},
+			configgrpcshop.CloseAdminRevision.RequestString(): []string{
+				"AdminRevisionId",
+			},
 			configgrpcshop.GetStore.RequestString(): []string{
 				"StoreId",
 			},
@@ -159,10 +165,7 @@ func main() {
 			configgrpcshop.UpdateProduct.RequestString(): []string{
 				"ProductId",
 			},
-			configgrpcshop.SuspendProduct.RequestString(): []string{
-				"ProductId",
-			},
-			configgrpcshop.ActivateProduct.RequestString(): []string{
+			configgrpcshop.OpenAdminRevisionToProduct.RequestString(): []string{
 				"ProductId",
 			},
 			configgrpcshop.GetBusinessProduct.RequestString(): []string{
@@ -171,11 +174,8 @@ func main() {
 			configgrpcshop.UpdateBusinessProduct.RequestString(): []string{
 				"ProductId",
 			},
-			configgrpcshop.ActivateBusinessProduct.RequestString(): []string{
-				"ProductId",
-			},
-			configgrpcshop.SuspendBusinessProduct.RequestString(): []string{
-				"ProductId",
+			configgrpcshop.OpenAdminRevisionToBusinessProduct.RequestString(): []string{
+				"BusinessId",
 			},
 			configgrpcshop.GetBranchRents.RequestString(): []string{
 				"BranchId",
@@ -198,10 +198,13 @@ func main() {
 			configgrpcshop.UpdateBranch.RequestString(): []string{
 				"BranchId",
 			},
-			configgrpcshop.SuspendBranch.RequestString(): []string{
+			configgrpcshop.OpenBranch.RequestString(): []string{
 				"BranchId",
 			},
-			configgrpcshop.ActivateBranch.RequestString(): []string{
+			configgrpcshop.CloseTemporarilyBranch.RequestString(): []string{
+				"BranchId",
+			},
+			configgrpcshop.OpenAdminRevisionToBranch.RequestString(): []string{
 				"BranchId",
 			},
 			configgrpcshop.AddBusinessOwner.RequestString(): []string{
@@ -222,10 +225,7 @@ func main() {
 			configgrpcshop.SetBusinessProfilePicture.RequestString(): []string{
 				"BusinessId",
 			},
-			configgrpcshop.SuspendBusiness.RequestString(): []string{
-				"BusinessId",
-			},
-			configgrpcshop.ActivateBusiness.RequestString(): []string{
+			configgrpcshop.OpenAdminRevisionToBusiness.RequestString(): []string{
 				"BusinessId",
 			},
 			configgrpcshop.DeleteBusiness.RequestString(): []string{

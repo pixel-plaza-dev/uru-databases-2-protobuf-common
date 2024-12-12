@@ -9,9 +9,7 @@ var Base = typesrest.NewBaseEndpoint("products")
 
 // Shop service products REST endpoints
 var (
-	Relative            = typesrest.NewRelativeEndpoint()
-	ByProductId         = typesrest.NewRelativeEndpoint(typesrest.ProductId)
-	Search              = typesrest.NewEndpoint("search")
-	SuspendByProductId  = typesrest.NewEndpoint("suspend", typesrest.ProductId)
-	ActivateByProductId = typesrest.NewEndpoint("activate", typesrest.ProductId)
+	Relative    = typesrest.NewRelativeEndpoint()
+	ByProductId = typesrest.NewRelativeEndpoint(typesrest.ProductId)
+	Search      = typesrest.NewEndpoint("search")
 )

@@ -39,7 +39,7 @@ message GetPayment {
 }
 
 message PaymentAccount {
-  string platform = 1;
+  string account_platform = 1;
   string account_identifier = 2;
   optional string account_phone_number = 3;
   optional string account_email = 4;

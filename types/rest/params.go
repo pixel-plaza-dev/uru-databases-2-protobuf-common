@@ -36,4 +36,5 @@ var (
 	BusinessId   = NewParam("business-id")
 	CategoryId   = NewParam("category-id")
 	ProductId    = NewParam("product-id")
+	RevisionId   = NewParam("revision-id")
 )

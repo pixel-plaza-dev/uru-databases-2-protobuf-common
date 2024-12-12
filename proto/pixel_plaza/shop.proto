@@ -7,12 +7,14 @@ import "google/protobuf/timestamp.proto";
 import "google/protobuf/empty.proto";
 
 service Shop{
+  rpc UpdateAdminRevision(UpdateAdminRevisionRequest) returns (UpdateAdminRevisionResponse) {}
+  rpc CloseAdminRevision(CloseAdminRevisionRequest) returns (CloseAdminRevisionResponse) {}
+  rpc GetAdminRevisions(GetAdminRevisionsRequest) returns (GetAdminRevisionsResponse) {}
   rpc AddBusiness(AddBusinessRequest) returns (AddBusinessResponse) {}
   rpc GetBusiness(GetBusinessRequest) returns (GetBusinessResponse) {}
   rpc UpdateBusiness(UpdateBusinessRequest) returns (UpdateBusinessResponse) {}
   rpc SetBusinessProfilePicture(SetBusinessProfilePictureRequest) returns (SetBusinessProfilePictureResponse) {}
-  rpc SuspendBusiness(SuspendBusinessRequest) returns (SuspendBusinessResponse) {}
-  rpc ActivateBusiness(ActivateBusinessRequest) returns (ActivateBusinessResponse) {}
+  rpc AddAdminRevisionToBusiness(AddAdminRevisionToBusinessRequest) returns (AddAdminRevisionToBusinessResponse) {}
   rpc DeleteBusiness(DeleteBusinessRequest) returns (DeleteBusinessResponse) {}
   rpc AddBusinessOwner(AddBusinessOwnerRequest) returns (AddBusinessOwnerResponse) {}
   rpc RemoveBusinessOwner(RemoveBusinessOwnerRequest) returns (RemoveBusinessOwnerResponse) {}
@@ -32,8 +34,9 @@ service Shop{
   rpc GetBranch(GetBranchRequest) returns (GetBranchResponse) {}
   rpc GetBusinessBranches(GetBusinessBranchesRequest) returns (GetBusinessBranchesResponse) {}
   rpc UpdateBranch(UpdateBranchRequest) returns (UpdateBranchResponse) {}
-  rpc SuspendBranch(SuspendBranchRequest) returns (SuspendBranchResponse) {}
-  rpc ActivateBranch(ActivateBranchRequest) returns (ActivateBranchResponse) {}
+  rpc CloseTemporarily(CloseTemporarilyRequest) returns (CloseTemporarilyResponse) {}
+  rpc OpenBranch(OpenBranchRequest) returns (OpenBranchResponse) {}
+  rpc OpenAdminRevisionToBranch(OpenAdminRevisionToBranchRequest) returns (OpenAdminRevisionToBranchResponse) {}
   rpc DeleteBranch(DeleteBranchRequest) returns (DeleteBranchResponse) {}
   rpc AddBranchRent(AddBranchRentRequest) returns (AddBranchRentResponse) {}
   rpc GetBranchRents(GetBranchRentsRequest) returns (GetBranchRentsResponse) {}
@@ -47,18 +50,37 @@ service Shop{
   rpc GetProduct(GetProductRequest) returns (GetProductResponse) {}
   rpc UpdateProduct(UpdateProductRequest) returns (UpdateProductResponse) {}
   rpc SearchProducts(SearchProductsRequest) returns (SearchProductsResponse) {}
-  rpc SuspendProduct(SuspendProductRequest) returns (SuspendProductResponse) {}
-  rpc ActivateProduct(ActivateProductRequest) returns (ActivateProductResponse) {}
+  rpc OpenAdminRevisionToProduct(OpenAdminRevisionToProductRequest) returns (OpenAdminRevisionToProductResponse) {}
   rpc AddBusinessProduct(AddBusinessProductRequest) returns (AddBusinessProductResponse) {}
   rpc GetBusinessProduct(GetBusinessProductRequest) returns (GetBusinessProductResponse) {}
   rpc UpdateBusinessProduct(UpdateBusinessProductRequest) returns (UpdateBusinessProductResponse) {}
   rpc SearchBusinessProducts(SearchBusinessProductsRequest) returns (SearchBusinessProductsResponse) {}
-  rpc SuspendBusinessProduct(SuspendBusinessProductRequest) returns (SuspendBusinessProductResponse) {}
-  rpc ActivateBusinessProduct(ActivateBusinessProductRequest) returns (ActivateBusinessProductResponse) {}
+  rpc OpenAdminRevisionToBusinessProduct(OpenAdminRevisionToBusinessProductRequest) returns (OpenAdminRevisionToBusinessProductResponse) {}
   rpc AddBranchProduct(AddBranchProductRequest) returns (AddBranchProductResponse) {}
   rpc GetBranchProduct(GetBranchProductRequest) returns (GetBranchProductResponse) {}
   rpc SearchBranchProducts(SearchBranchProductsRequest) returns (SearchBranchProductsResponse) {}
   rpc UpdateBranchProduct(UpdateBranchProductRequest) returns (UpdateBranchProductResponse) {}
+}
+
+message OpenAdminRevision {
+  string title = 1;
+  string description = 2;
+  optional bool is_suspended = 3;
+}
+
+message UpdateAdminRevision {
+  optional string title = 1;
+  optional string description = 2;
+  optional bool is_suspended = 3;
+}
+
+message GetAdminRevision {
+  string admin_revision_id = 1;
+  string title = 2;
+  string description = 3;
+  google.protobuf.Timestamp opened_at = 4;
+  optional google.protobuf.Timestamp closed_at = 5;
+  optional bool is_suspended = 6;
 }
 
 message Store {
@@ -264,6 +286,44 @@ message SearchBranchProductResult {
   float discount_percentage = 9;
 }
 
+message AddAdminRevisionToBusinessRequest {
+  string business_id = 1;
+  optional string title = 2;
+  optional string description = 3;
+}
+
+message AddAdminRevisionToBusinessResponse {
+  string message = 1;
+}
+
+message UpdateAdminRevisionRequest {
+  string admin_revision_id = 1;
+  optional string title = 2;
+  optional string description = 3;
+  optional bool is_suspended = 4;
+}
+
+message UpdateAdminRevisionResponse {
+  string message = 1;
+}
+
+message CloseAdminRevisionRequest {
+  string admin_revision_id = 1;
+}
+
+message CloseAdminRevisionResponse {
+  string message = 1;
+}
+
+message GetAdminRevisionsRequest {
+  repeated string admin_revision_id = 1;
+}
+
+message GetAdminRevisionsResponse {
+  string message = 1;
+  repeated GetAdminRevision admin_revisions = 2;
+}
+
 message AddBusinessRequest {
   string name = 1;
   string description = 2;
@@ -299,22 +359,6 @@ message SetBusinessProfilePictureRequest {
 }
 
 message SetBusinessProfilePictureResponse {
-  string message = 1;
-}
-
-message SuspendBusinessRequest {
-  string business_id = 1;
-}
-
-message SuspendBusinessResponse {
-  string message = 1;
-}
-
-message ActivateBusinessRequest {
-  string business_id = 1;
-}
-
-message ActivateBusinessResponse {
   string message = 1;
 }
 
@@ -478,19 +522,28 @@ message UpdateBranchResponse {
   string message = 1;
 }
 
-message SuspendBranchRequest {
+message CloseTemporarilyRequest {
   string branch_id = 1;
 }
 
-message SuspendBranchResponse {
+message CloseTemporarilyResponse {
   string message = 1;
 }
 
-message ActivateBranchRequest {
+message OpenBranchRequest {
   string branch_id = 1;
 }
 
-message ActivateBranchResponse {
+message OpenBranchResponse {
+  string message = 1;
+}
+
+message OpenAdminRevisionToBranchRequest {
+  string branch_id = 1;
+  OpenAdminRevision admin_revision = 2;
+}
+
+message OpenAdminRevisionToBranchResponse {
   string message = 1;
 }
 
@@ -625,19 +678,12 @@ message SearchProductsResponse {
   repeated SearchProductResult products = 2;
 }
 
-message SuspendProductRequest {
+message OpenAdminRevisionToProductRequest {
   string product_id = 1;
+  OpenAdminRevision admin_revision = 2;
 }
 
-message SuspendProductResponse {
-  string message = 1;
-}
-
-message ActivateProductRequest {
-  string product_id = 1;
-}
-
-message ActivateProductResponse {
+message OpenAdminRevisionToProductResponse {
   string message = 1;
 }
 
@@ -683,21 +729,13 @@ message SearchBusinessProductsResponse {
   repeated SearchBusinessProductResult products = 2;
 }
 
-message SuspendBusinessProductRequest {
+message OpenAdminRevisionToBusinessProductRequest {
   string business_id = 1;
   string product_id = 2;
+  OpenAdminRevision admin_revision = 3;
 }
 
-message SuspendBusinessProductResponse {
-  string message = 1;
-}
-
-message ActivateBusinessProductRequest {
-  string business_id = 1;
-  string product_id = 2;
-}
-
-message ActivateBusinessProductResponse {
+message OpenAdminRevisionToBusinessProductResponse {
   string message = 1;
 }
 

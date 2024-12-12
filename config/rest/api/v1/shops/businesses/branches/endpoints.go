@@ -9,9 +9,9 @@ var Base = typesrest.NewBaseEndpoint("branches")
 
 // Shop service branches REST endpoints
 var (
-	Relative           = typesrest.NewRelativeEndpoint()
-	ByBranchId         = typesrest.NewRelativeEndpoint(typesrest.BranchId)
-	ByBusinessId       = typesrest.NewEndpoint("business-id", typesrest.BusinessId)
-	ActivateByBranchId = typesrest.NewEndpoint("activate", typesrest.BranchId)
-	SuspendByBranchId  = typesrest.NewEndpoint("suspend", typesrest.BranchId)
+	Relative                   = typesrest.NewRelativeEndpoint()
+	ByBranchId                 = typesrest.NewRelativeEndpoint(typesrest.BranchId)
+	ByBusinessId               = typesrest.NewEndpoint("business-id", typesrest.BusinessId)
+	CloseTemporarilyByBranchId = typesrest.NewEndpoint("close-temporarily", typesrest.BranchId)
+	OpenByBranchId             = typesrest.NewEndpoint("open", typesrest.BranchId)
 )
