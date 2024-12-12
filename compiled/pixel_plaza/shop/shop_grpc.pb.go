@@ -47,7 +47,7 @@ const (
 	Shop_GetBranch_FullMethodName                          = "/pixel_plaza.Shop/GetBranch"
 	Shop_GetBusinessBranches_FullMethodName                = "/pixel_plaza.Shop/GetBusinessBranches"
 	Shop_UpdateBranch_FullMethodName                       = "/pixel_plaza.Shop/UpdateBranch"
-	Shop_CloseTemporarily_FullMethodName                   = "/pixel_plaza.Shop/CloseTemporarily"
+	Shop_CloseTemporarilyBranch_FullMethodName             = "/pixel_plaza.Shop/CloseTemporarilyBranch"
 	Shop_OpenBranch_FullMethodName                         = "/pixel_plaza.Shop/OpenBranch"
 	Shop_OpenAdminRevisionToBranch_FullMethodName          = "/pixel_plaza.Shop/OpenAdminRevisionToBranch"
 	Shop_DeleteBranch_FullMethodName                       = "/pixel_plaza.Shop/DeleteBranch"
@@ -108,7 +108,7 @@ type ShopClient interface {
 	GetBranch(ctx context.Context, in *GetBranchRequest, opts ...grpc.CallOption) (*GetBranchResponse, error)
 	GetBusinessBranches(ctx context.Context, in *GetBusinessBranchesRequest, opts ...grpc.CallOption) (*GetBusinessBranchesResponse, error)
 	UpdateBranch(ctx context.Context, in *UpdateBranchRequest, opts ...grpc.CallOption) (*UpdateBranchResponse, error)
-	CloseTemporarily(ctx context.Context, in *CloseTemporarilyRequest, opts ...grpc.CallOption) (*CloseTemporarilyResponse, error)
+	CloseTemporarilyBranch(ctx context.Context, in *CloseTemporarilyBranchRequest, opts ...grpc.CallOption) (*CloseTemporarilyBranchResponse, error)
 	OpenBranch(ctx context.Context, in *OpenBranchRequest, opts ...grpc.CallOption) (*OpenBranchResponse, error)
 	OpenAdminRevisionToBranch(ctx context.Context, in *OpenAdminRevisionToBranchRequest, opts ...grpc.CallOption) (*OpenAdminRevisionToBranchResponse, error)
 	DeleteBranch(ctx context.Context, in *DeleteBranchRequest, opts ...grpc.CallOption) (*DeleteBranchResponse, error)
@@ -416,10 +416,10 @@ func (c *shopClient) UpdateBranch(ctx context.Context, in *UpdateBranchRequest, 
 	return out, nil
 }
 
-func (c *shopClient) CloseTemporarily(ctx context.Context, in *CloseTemporarilyRequest, opts ...grpc.CallOption) (*CloseTemporarilyResponse, error) {
+func (c *shopClient) CloseTemporarilyBranch(ctx context.Context, in *CloseTemporarilyBranchRequest, opts ...grpc.CallOption) (*CloseTemporarilyBranchResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CloseTemporarilyResponse)
-	err := c.cc.Invoke(ctx, Shop_CloseTemporarily_FullMethodName, in, out, cOpts...)
+	out := new(CloseTemporarilyBranchResponse)
+	err := c.cc.Invoke(ctx, Shop_CloseTemporarilyBranch_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -727,7 +727,7 @@ type ShopServer interface {
 	GetBranch(context.Context, *GetBranchRequest) (*GetBranchResponse, error)
 	GetBusinessBranches(context.Context, *GetBusinessBranchesRequest) (*GetBusinessBranchesResponse, error)
 	UpdateBranch(context.Context, *UpdateBranchRequest) (*UpdateBranchResponse, error)
-	CloseTemporarily(context.Context, *CloseTemporarilyRequest) (*CloseTemporarilyResponse, error)
+	CloseTemporarilyBranch(context.Context, *CloseTemporarilyBranchRequest) (*CloseTemporarilyBranchResponse, error)
 	OpenBranch(context.Context, *OpenBranchRequest) (*OpenBranchResponse, error)
 	OpenAdminRevisionToBranch(context.Context, *OpenAdminRevisionToBranchRequest) (*OpenAdminRevisionToBranchResponse, error)
 	DeleteBranch(context.Context, *DeleteBranchRequest) (*DeleteBranchResponse, error)
@@ -846,8 +846,8 @@ func (UnimplementedShopServer) GetBusinessBranches(context.Context, *GetBusiness
 func (UnimplementedShopServer) UpdateBranch(context.Context, *UpdateBranchRequest) (*UpdateBranchResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateBranch not implemented")
 }
-func (UnimplementedShopServer) CloseTemporarily(context.Context, *CloseTemporarilyRequest) (*CloseTemporarilyResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CloseTemporarily not implemented")
+func (UnimplementedShopServer) CloseTemporarilyBranch(context.Context, *CloseTemporarilyBranchRequest) (*CloseTemporarilyBranchResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CloseTemporarilyBranch not implemented")
 }
 func (UnimplementedShopServer) OpenBranch(context.Context, *OpenBranchRequest) (*OpenBranchResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method OpenBranch not implemented")
@@ -1437,20 +1437,20 @@ func _Shop_UpdateBranch_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Shop_CloseTemporarily_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CloseTemporarilyRequest)
+func _Shop_CloseTemporarilyBranch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CloseTemporarilyBranchRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ShopServer).CloseTemporarily(ctx, in)
+		return srv.(ShopServer).CloseTemporarilyBranch(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Shop_CloseTemporarily_FullMethodName,
+		FullMethod: Shop_CloseTemporarilyBranch_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ShopServer).CloseTemporarily(ctx, req.(*CloseTemporarilyRequest))
+		return srv.(ShopServer).CloseTemporarilyBranch(ctx, req.(*CloseTemporarilyBranchRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2057,8 +2057,8 @@ var Shop_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Shop_UpdateBranch_Handler,
 		},
 		{
-			MethodName: "CloseTemporarily",
-			Handler:    _Shop_CloseTemporarily_Handler,
+			MethodName: "CloseTemporarilyBranch",
+			Handler:    _Shop_CloseTemporarilyBranch_Handler,
 		},
 		{
 			MethodName: "OpenBranch",

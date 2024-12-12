@@ -34,7 +34,7 @@ service Shop{
   rpc GetBranch(GetBranchRequest) returns (GetBranchResponse) {}
   rpc GetBusinessBranches(GetBusinessBranchesRequest) returns (GetBusinessBranchesResponse) {}
   rpc UpdateBranch(UpdateBranchRequest) returns (UpdateBranchResponse) {}
-  rpc CloseTemporarily(CloseTemporarilyRequest) returns (CloseTemporarilyResponse) {}
+  rpc CloseTemporarilyBranch(CloseTemporarilyBranchRequest) returns (CloseTemporarilyBranchResponse) {}
   rpc OpenBranch(OpenBranchRequest) returns (OpenBranchResponse) {}
   rpc OpenAdminRevisionToBranch(OpenAdminRevisionToBranchRequest) returns (OpenAdminRevisionToBranchResponse) {}
   rpc DeleteBranch(DeleteBranchRequest) returns (DeleteBranchResponse) {}
@@ -524,11 +524,11 @@ message UpdateBranchResponse {
   string message = 1;
 }
 
-message CloseTemporarilyRequest {
+message CloseTemporarilyBranchRequest {
   string branch_id = 1;
 }
 
-message CloseTemporarilyResponse {
+message CloseTemporarilyBranchResponse {
   string message = 1;
 }
 
