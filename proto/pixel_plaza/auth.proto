@@ -117,7 +117,7 @@ message RevokeRefreshTokensResponse {
 }
 
 message AddPermissionRequest {
-  string permission = 1;
+  Permission permission = 1;
 }
 
 message AddPermissionResponse {
