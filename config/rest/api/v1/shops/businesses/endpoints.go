@@ -1,4 +1,4 @@
-package shops
+package businesses
 
 import (
 	typesrest "github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/types/rest"

@@ -1,11 +1,11 @@
-package businesses
+package products
 
 import (
 	grpcshop "github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/config/grpc/shop"
 	typesrest "github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/types/rest"
 )
 
-// Shop service business products endpoints mapping
+// Shop service businesses products endpoints mapping
 var (
 	AddBusinessProductMapper      = typesrest.NewMapper(Relative, grpcshop.AddBusinessProduct)
 	GetBusinessProductMapper      = typesrest.NewMapper(ByProductId, grpcshop.GetBusinessProduct)

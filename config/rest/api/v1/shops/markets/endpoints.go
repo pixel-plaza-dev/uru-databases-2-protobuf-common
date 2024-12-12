@@ -6,3 +6,9 @@ import (
 
 // Base is the base endpoint for the shop service markets REST endpoints
 var Base = typesrest.NewBaseEndpoint("markets")
+
+// Shop service markets REST endpoints
+var (
+	Relative     = typesrest.NewRelativeEndpoint()
+	ByBusinessId = typesrest.NewRelativeEndpoint(typesrest.BusinessId)
+)

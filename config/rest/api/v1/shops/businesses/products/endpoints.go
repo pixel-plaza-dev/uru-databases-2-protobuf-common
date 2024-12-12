@@ -1,13 +1,13 @@
-package businesses
+package products
 
 import (
 	typesrest "github.com/pixel-plaza-dev/uru-databases-2-protobuf-common/types/rest"
 )
 
-// Base is the base endpoint for the shop service business products REST endpoints
-var Base = typesrest.NewBaseEndpoint("business")
+// Base is the base endpoint for the shop service businesses products REST endpoints
+var Base = typesrest.NewBaseEndpoint("products")
 
-// Shop service business products REST endpoints
+// Shop service businesses products REST endpoints
 var (
 	Relative            = typesrest.NewRelativeEndpoint()
 	ByProductId         = typesrest.NewRelativeEndpoint(typesrest.ProductId)
