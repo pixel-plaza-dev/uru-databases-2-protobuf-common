@@ -12,6 +12,4 @@ var (
 	Relative                   = typesrest.NewRelativeEndpoint()
 	ByBusinessId               = typesrest.NewRelativeEndpoint(typesrest.BusinessId)
 	ProfilePictureByBusinessId = typesrest.NewEndpoint("profile-picture", typesrest.BusinessId)
-	SuspendByBusinessId        = typesrest.NewEndpoint("suspend", typesrest.BusinessId)
-	ActivateByBusinessId       = typesrest.NewEndpoint("activate", typesrest.BusinessId)
 )

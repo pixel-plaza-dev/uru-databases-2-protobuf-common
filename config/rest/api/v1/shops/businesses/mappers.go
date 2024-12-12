@@ -14,7 +14,5 @@ var (
 		ProfilePictureByBusinessId,
 		grpcshop.SetBusinessProfilePicture,
 	)
-	SuspendBusinessMapper  = typesrest.NewMapper(SuspendByBusinessId, grpcshop.SuspendBusiness)
-	ActivateBusinessMapper = typesrest.NewMapper(ActivateByBusinessId, grpcshop.ActivateBusiness)
-	DeleteBusinessMapper   = typesrest.NewMapper(ByBusinessId, grpcshop.DeleteBusiness)
+	DeleteBusinessMapper = typesrest.NewMapper(ByBusinessId, grpcshop.DeleteBusiness)
 )
