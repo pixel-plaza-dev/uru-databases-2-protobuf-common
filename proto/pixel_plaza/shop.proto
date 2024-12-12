@@ -52,7 +52,7 @@ service Shop{
   rpc AddBusinessProduct(AddBusinessProductRequest) returns (AddBusinessProductResponse) {}
   rpc GetBusinessProduct(GetBusinessProductRequest) returns (GetBusinessProductResponse) {}
   rpc UpdateBusinessProduct(UpdateBusinessProductRequest) returns (UpdateBusinessProductResponse) {}
-  rpc SearchBusinessProducts(SearchProductsRequest) returns (SearchProductsResponse) {}
+  rpc SearchBusinessProducts(SearchBusinessProductsRequest) returns (SearchBusinessProductsResponse) {}
   rpc SuspendBusinessProduct(SuspendBusinessProductRequest) returns (SuspendBusinessProductResponse) {}
   rpc ActivateBusinessProduct(ActivateBusinessProductRequest) returns (ActivateBusinessProductResponse) {}
   rpc AddBranchProduct(AddBranchProductRequest) returns (AddBranchProductResponse) {}

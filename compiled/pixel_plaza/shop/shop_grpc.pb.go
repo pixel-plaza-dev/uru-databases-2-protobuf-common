@@ -123,7 +123,7 @@ type ShopClient interface {
 	AddBusinessProduct(ctx context.Context, in *AddBusinessProductRequest, opts ...grpc.CallOption) (*AddBusinessProductResponse, error)
 	GetBusinessProduct(ctx context.Context, in *GetBusinessProductRequest, opts ...grpc.CallOption) (*GetBusinessProductResponse, error)
 	UpdateBusinessProduct(ctx context.Context, in *UpdateBusinessProductRequest, opts ...grpc.CallOption) (*UpdateBusinessProductResponse, error)
-	SearchBusinessProducts(ctx context.Context, in *SearchProductsRequest, opts ...grpc.CallOption) (*SearchProductsResponse, error)
+	SearchBusinessProducts(ctx context.Context, in *SearchBusinessProductsRequest, opts ...grpc.CallOption) (*SearchBusinessProductsResponse, error)
 	SuspendBusinessProduct(ctx context.Context, in *SuspendBusinessProductRequest, opts ...grpc.CallOption) (*SuspendBusinessProductResponse, error)
 	ActivateBusinessProduct(ctx context.Context, in *ActivateBusinessProductRequest, opts ...grpc.CallOption) (*ActivateBusinessProductResponse, error)
 	AddBranchProduct(ctx context.Context, in *AddBranchProductRequest, opts ...grpc.CallOption) (*AddBranchProductResponse, error)
@@ -590,9 +590,9 @@ func (c *shopClient) UpdateBusinessProduct(ctx context.Context, in *UpdateBusine
 	return out, nil
 }
 
-func (c *shopClient) SearchBusinessProducts(ctx context.Context, in *SearchProductsRequest, opts ...grpc.CallOption) (*SearchProductsResponse, error) {
+func (c *shopClient) SearchBusinessProducts(ctx context.Context, in *SearchBusinessProductsRequest, opts ...grpc.CallOption) (*SearchBusinessProductsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(SearchProductsResponse)
+	out := new(SearchBusinessProductsResponse)
 	err := c.cc.Invoke(ctx, Shop_SearchBusinessProducts_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -709,7 +709,7 @@ type ShopServer interface {
 	AddBusinessProduct(context.Context, *AddBusinessProductRequest) (*AddBusinessProductResponse, error)
 	GetBusinessProduct(context.Context, *GetBusinessProductRequest) (*GetBusinessProductResponse, error)
 	UpdateBusinessProduct(context.Context, *UpdateBusinessProductRequest) (*UpdateBusinessProductResponse, error)
-	SearchBusinessProducts(context.Context, *SearchProductsRequest) (*SearchProductsResponse, error)
+	SearchBusinessProducts(context.Context, *SearchBusinessProductsRequest) (*SearchBusinessProductsResponse, error)
 	SuspendBusinessProduct(context.Context, *SuspendBusinessProductRequest) (*SuspendBusinessProductResponse, error)
 	ActivateBusinessProduct(context.Context, *ActivateBusinessProductRequest) (*ActivateBusinessProductResponse, error)
 	AddBranchProduct(context.Context, *AddBranchProductRequest) (*AddBranchProductResponse, error)
@@ -861,7 +861,7 @@ func (UnimplementedShopServer) GetBusinessProduct(context.Context, *GetBusinessP
 func (UnimplementedShopServer) UpdateBusinessProduct(context.Context, *UpdateBusinessProductRequest) (*UpdateBusinessProductResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateBusinessProduct not implemented")
 }
-func (UnimplementedShopServer) SearchBusinessProducts(context.Context, *SearchProductsRequest) (*SearchProductsResponse, error) {
+func (UnimplementedShopServer) SearchBusinessProducts(context.Context, *SearchBusinessProductsRequest) (*SearchBusinessProductsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SearchBusinessProducts not implemented")
 }
 func (UnimplementedShopServer) SuspendBusinessProduct(context.Context, *SuspendBusinessProductRequest) (*SuspendBusinessProductResponse, error) {
@@ -1714,7 +1714,7 @@ func _Shop_UpdateBusinessProduct_Handler(srv interface{}, ctx context.Context, d
 }
 
 func _Shop_SearchBusinessProducts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SearchProductsRequest)
+	in := new(SearchBusinessProductsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -1726,7 +1726,7 @@ func _Shop_SearchBusinessProducts_Handler(srv interface{}, ctx context.Context, 
 		FullMethod: Shop_SearchBusinessProducts_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ShopServer).SearchBusinessProducts(ctx, req.(*SearchProductsRequest))
+		return srv.(ShopServer).SearchBusinessProducts(ctx, req.(*SearchBusinessProductsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
