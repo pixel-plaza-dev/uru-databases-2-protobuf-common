@@ -10,6 +10,9 @@ var (
 	AddBranchRentMapper                = typesrest.NewMapper(Relative, grpcshop.AddBranchRent)
 	GetBranchRentsMapper               = typesrest.NewMapper(ByBranchId, grpcshop.GetBranchRents)
 	UpdateBranchRentMapper             = typesrest.NewMapper(ByBranchRentId, grpcshop.UpdateBranchRent)
-	GetUnpaidBranchRentsMapper         = typesrest.NewMapper(ByBranchId, grpcshop.GetUnpaidBranchRents)
-	GetBusinessUnpaidBranchRentsMapper = typesrest.NewMapper(ByBusinessId, grpcshop.GetBusinessUnpaidBranchRents)
+	GetUnpaidBranchRentsMapper         = typesrest.NewMapper(BranchUnpaidByBranchId, grpcshop.GetUnpaidBranchRents)
+	GetBusinessUnpaidBranchRentsMapper = typesrest.NewMapper(
+		BusinessUnpaidByBusinessId,
+		grpcshop.GetBusinessUnpaidBranchRents,
+	)
 )
