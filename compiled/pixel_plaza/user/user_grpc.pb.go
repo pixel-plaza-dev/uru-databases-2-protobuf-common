@@ -20,31 +20,32 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	User_SignUp_FullMethodName                = "/pixel_plaza.User/SignUp"
-	User_UsernameExists_FullMethodName        = "/pixel_plaza.User/UsernameExists"
-	User_GetUsernameByUserId_FullMethodName   = "/pixel_plaza.User/GetUsernameByUserId"
-	User_GetUserIdByUsername_FullMethodName   = "/pixel_plaza.User/GetUserIdByUsername"
-	User_IsPasswordCorrect_FullMethodName     = "/pixel_plaza.User/IsPasswordCorrect"
-	User_UpdateUser_FullMethodName            = "/pixel_plaza.User/UpdateUser"
-	User_SetProfilePicture_FullMethodName     = "/pixel_plaza.User/SetProfilePicture"
-	User_GetProfile_FullMethodName            = "/pixel_plaza.User/GetProfile"
-	User_GetMyProfile_FullMethodName          = "/pixel_plaza.User/GetMyProfile"
-	User_ChangeUsername_FullMethodName        = "/pixel_plaza.User/ChangeUsername"
-	User_ChangePassword_FullMethodName        = "/pixel_plaza.User/ChangePassword"
-	User_AddEmail_FullMethodName              = "/pixel_plaza.User/AddEmail"
-	User_DeleteEmail_FullMethodName           = "/pixel_plaza.User/DeleteEmail"
-	User_SendVerificationEmail_FullMethodName = "/pixel_plaza.User/SendVerificationEmail"
-	User_VerifyEmail_FullMethodName           = "/pixel_plaza.User/VerifyEmail"
-	User_GetPrimaryEmail_FullMethodName       = "/pixel_plaza.User/GetPrimaryEmail"
-	User_GetActiveEmails_FullMethodName       = "/pixel_plaza.User/GetActiveEmails"
-	User_ChangePrimaryEmail_FullMethodName    = "/pixel_plaza.User/ChangePrimaryEmail"
-	User_GetPhoneNumber_FullMethodName        = "/pixel_plaza.User/GetPhoneNumber"
-	User_ChangePhoneNumber_FullMethodName     = "/pixel_plaza.User/ChangePhoneNumber"
-	User_SendVerificationSMS_FullMethodName   = "/pixel_plaza.User/SendVerificationSMS"
-	User_VerifyPhoneNumber_FullMethodName     = "/pixel_plaza.User/VerifyPhoneNumber"
-	User_ForgotPassword_FullMethodName        = "/pixel_plaza.User/ForgotPassword"
-	User_ResetPassword_FullMethodName         = "/pixel_plaza.User/ResetPassword"
-	User_DeleteUser_FullMethodName            = "/pixel_plaza.User/DeleteUser"
+	User_SignUp_FullMethodName                      = "/pixel_plaza.User/SignUp"
+	User_UsernameExists_FullMethodName              = "/pixel_plaza.User/UsernameExists"
+	User_GetUsernameByUserId_FullMethodName         = "/pixel_plaza.User/GetUsernameByUserId"
+	User_GetUserIdByUsername_FullMethodName         = "/pixel_plaza.User/GetUserIdByUsername"
+	User_IsPasswordCorrectByUsername_FullMethodName = "/pixel_plaza.User/IsPasswordCorrectByUsername"
+	User_IsPasswordCorrectByUserId_FullMethodName   = "/pixel_plaza.User/IsPasswordCorrectByUserId"
+	User_UpdateUser_FullMethodName                  = "/pixel_plaza.User/UpdateUser"
+	User_SetProfilePicture_FullMethodName           = "/pixel_plaza.User/SetProfilePicture"
+	User_GetProfile_FullMethodName                  = "/pixel_plaza.User/GetProfile"
+	User_GetMyProfile_FullMethodName                = "/pixel_plaza.User/GetMyProfile"
+	User_ChangeUsername_FullMethodName              = "/pixel_plaza.User/ChangeUsername"
+	User_ChangePassword_FullMethodName              = "/pixel_plaza.User/ChangePassword"
+	User_AddEmail_FullMethodName                    = "/pixel_plaza.User/AddEmail"
+	User_DeleteEmail_FullMethodName                 = "/pixel_plaza.User/DeleteEmail"
+	User_SendVerificationEmail_FullMethodName       = "/pixel_plaza.User/SendVerificationEmail"
+	User_VerifyEmail_FullMethodName                 = "/pixel_plaza.User/VerifyEmail"
+	User_GetPrimaryEmail_FullMethodName             = "/pixel_plaza.User/GetPrimaryEmail"
+	User_GetActiveEmails_FullMethodName             = "/pixel_plaza.User/GetActiveEmails"
+	User_ChangePrimaryEmail_FullMethodName          = "/pixel_plaza.User/ChangePrimaryEmail"
+	User_GetPhoneNumber_FullMethodName              = "/pixel_plaza.User/GetPhoneNumber"
+	User_ChangePhoneNumber_FullMethodName           = "/pixel_plaza.User/ChangePhoneNumber"
+	User_SendVerificationSMS_FullMethodName         = "/pixel_plaza.User/SendVerificationSMS"
+	User_VerifyPhoneNumber_FullMethodName           = "/pixel_plaza.User/VerifyPhoneNumber"
+	User_ForgotPassword_FullMethodName              = "/pixel_plaza.User/ForgotPassword"
+	User_ResetPassword_FullMethodName               = "/pixel_plaza.User/ResetPassword"
+	User_DeleteUser_FullMethodName                  = "/pixel_plaza.User/DeleteUser"
 )
 
 // UserClient is the client API for User service.
@@ -55,7 +56,8 @@ type UserClient interface {
 	UsernameExists(ctx context.Context, in *UsernameExistsRequest, opts ...grpc.CallOption) (*UsernameExistsResponse, error)
 	GetUsernameByUserId(ctx context.Context, in *GetUsernameByUserIdRequest, opts ...grpc.CallOption) (*GetUsernameByUserIdResponse, error)
 	GetUserIdByUsername(ctx context.Context, in *GetUserIdByUsernameRequest, opts ...grpc.CallOption) (*GetUserIdByUsernameResponse, error)
-	IsPasswordCorrect(ctx context.Context, in *IsPasswordCorrectRequest, opts ...grpc.CallOption) (*IsPasswordCorrectResponse, error)
+	IsPasswordCorrectByUsername(ctx context.Context, in *IsPasswordCorrectByUsernameRequest, opts ...grpc.CallOption) (*IsPasswordCorrectByUsernameResponse, error)
+	IsPasswordCorrectByUserId(ctx context.Context, in *IsPasswordCorrectByUserIdRequest, opts ...grpc.CallOption) (*IsPasswordCorrectByUserIdResponse, error)
 	UpdateUser(ctx context.Context, in *UpdateUserRequest, opts ...grpc.CallOption) (*UpdateUserResponse, error)
 	SetProfilePicture(ctx context.Context, in *SetProfilePictureRequest, opts ...grpc.CallOption) (*SetProfilePictureResponse, error)
 	GetProfile(ctx context.Context, in *GetProfileRequest, opts ...grpc.CallOption) (*GetProfileResponse, error)
@@ -126,10 +128,20 @@ func (c *userClient) GetUserIdByUsername(ctx context.Context, in *GetUserIdByUse
 	return out, nil
 }
 
-func (c *userClient) IsPasswordCorrect(ctx context.Context, in *IsPasswordCorrectRequest, opts ...grpc.CallOption) (*IsPasswordCorrectResponse, error) {
+func (c *userClient) IsPasswordCorrectByUsername(ctx context.Context, in *IsPasswordCorrectByUsernameRequest, opts ...grpc.CallOption) (*IsPasswordCorrectByUsernameResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(IsPasswordCorrectResponse)
-	err := c.cc.Invoke(ctx, User_IsPasswordCorrect_FullMethodName, in, out, cOpts...)
+	out := new(IsPasswordCorrectByUsernameResponse)
+	err := c.cc.Invoke(ctx, User_IsPasswordCorrectByUsername_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) IsPasswordCorrectByUserId(ctx context.Context, in *IsPasswordCorrectByUserIdRequest, opts ...grpc.CallOption) (*IsPasswordCorrectByUserIdResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(IsPasswordCorrectByUserIdResponse)
+	err := c.cc.Invoke(ctx, User_IsPasswordCorrectByUserId_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -344,7 +356,8 @@ type UserServer interface {
 	UsernameExists(context.Context, *UsernameExistsRequest) (*UsernameExistsResponse, error)
 	GetUsernameByUserId(context.Context, *GetUsernameByUserIdRequest) (*GetUsernameByUserIdResponse, error)
 	GetUserIdByUsername(context.Context, *GetUserIdByUsernameRequest) (*GetUserIdByUsernameResponse, error)
-	IsPasswordCorrect(context.Context, *IsPasswordCorrectRequest) (*IsPasswordCorrectResponse, error)
+	IsPasswordCorrectByUsername(context.Context, *IsPasswordCorrectByUsernameRequest) (*IsPasswordCorrectByUsernameResponse, error)
+	IsPasswordCorrectByUserId(context.Context, *IsPasswordCorrectByUserIdRequest) (*IsPasswordCorrectByUserIdResponse, error)
 	UpdateUser(context.Context, *UpdateUserRequest) (*UpdateUserResponse, error)
 	SetProfilePicture(context.Context, *SetProfilePictureRequest) (*SetProfilePictureResponse, error)
 	GetProfile(context.Context, *GetProfileRequest) (*GetProfileResponse, error)
@@ -387,8 +400,11 @@ func (UnimplementedUserServer) GetUsernameByUserId(context.Context, *GetUsername
 func (UnimplementedUserServer) GetUserIdByUsername(context.Context, *GetUserIdByUsernameRequest) (*GetUserIdByUsernameResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUserIdByUsername not implemented")
 }
-func (UnimplementedUserServer) IsPasswordCorrect(context.Context, *IsPasswordCorrectRequest) (*IsPasswordCorrectResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method IsPasswordCorrect not implemented")
+func (UnimplementedUserServer) IsPasswordCorrectByUsername(context.Context, *IsPasswordCorrectByUsernameRequest) (*IsPasswordCorrectByUsernameResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method IsPasswordCorrectByUsername not implemented")
+}
+func (UnimplementedUserServer) IsPasswordCorrectByUserId(context.Context, *IsPasswordCorrectByUserIdRequest) (*IsPasswordCorrectByUserIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method IsPasswordCorrectByUserId not implemented")
 }
 func (UnimplementedUserServer) UpdateUser(context.Context, *UpdateUserRequest) (*UpdateUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateUser not implemented")
@@ -543,20 +559,38 @@ func _User_GetUserIdByUsername_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
-func _User_IsPasswordCorrect_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(IsPasswordCorrectRequest)
+func _User_IsPasswordCorrectByUsername_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IsPasswordCorrectByUsernameRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServer).IsPasswordCorrect(ctx, in)
+		return srv.(UserServer).IsPasswordCorrectByUsername(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: User_IsPasswordCorrect_FullMethodName,
+		FullMethod: User_IsPasswordCorrectByUsername_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).IsPasswordCorrect(ctx, req.(*IsPasswordCorrectRequest))
+		return srv.(UserServer).IsPasswordCorrectByUsername(ctx, req.(*IsPasswordCorrectByUsernameRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_IsPasswordCorrectByUserId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IsPasswordCorrectByUserIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).IsPasswordCorrectByUserId(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_IsPasswordCorrectByUserId_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).IsPasswordCorrectByUserId(ctx, req.(*IsPasswordCorrectByUserIdRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -945,8 +979,12 @@ var User_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _User_GetUserIdByUsername_Handler,
 		},
 		{
-			MethodName: "IsPasswordCorrect",
-			Handler:    _User_IsPasswordCorrect_Handler,
+			MethodName: "IsPasswordCorrectByUsername",
+			Handler:    _User_IsPasswordCorrectByUsername_Handler,
+		},
+		{
+			MethodName: "IsPasswordCorrectByUserId",
+			Handler:    _User_IsPasswordCorrectByUserId_Handler,
 		},
 		{
 			MethodName: "UpdateUser",
